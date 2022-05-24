@@ -11,7 +11,8 @@ export function App() {
   return (
     <div className="app main-layout">
       <AppHeader />
-      <main className="app">
+ 
+ <main>
         <Switch>
           <Route path="/Editor" component={Editor} />
           <Route path="/" component={Home} />

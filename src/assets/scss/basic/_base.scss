@@ -1,18 +1,21 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Roboto;
+    font-family: open-sans;
 }
 
 * {
     box-sizing: border-box;
+    &:hover{
+       outline:  1px black  dotted ;
+    }
 }
 
 h1,
 h2,
 h3,
 p {
-    margin: 0 0 1rem;
+    margin: 0;
 }
 
 a {
