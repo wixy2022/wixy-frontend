@@ -1,6 +1,6 @@
 export const AppFooter = () => {
 
     return <footer className="app-footer ">
-        Ori Sason <span>-</span> Alex Yakovlev <span>-</span> Vicky Polatov
+        <span className="footer-logo">WiXY</span> Yakovlev Alex <span>-</span> Sason Ori <span>-</span> Polatov Vicky
     </footer>
 }
