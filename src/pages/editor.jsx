@@ -207,38 +207,33 @@ export const Editor = () => {
         ]
 
     })
-    const [cmps,updateCmps]= useState(wap.cmps)
-    
-    useEffect(()=>{
+    const [cmps, updateCmps] = useState(wap.cmps)
 
-    },[cmps])
+
     const handleOnDragEnd = (result) => {
         console.log(result)
         if (!result.destination) {
             return;
         }
-        const [recoredItems] = cmps.splice(result.source.index,1)
-        cmps.splice(result.destination.index,0,recoredItems)
+        const [recoredItems] = cmps.splice(result.source.index, 1)
+        cmps.splice(result.destination.index, 0, recoredItems)
         console.log(cmps)
         updateCmps(cmps)
     }
-    console.log(cmps,wap)
 
     return <section className="editor">
         <DragDropContext onDragEnd={handleOnDragEnd}>
-            <Droppable droppableId="dynamic-dmps">
+            <Droppable droppableId={wap._id}>
                 {(provided) => (
                     <div {...provided.droppableProps}
-                        ref={provided.innerRef}
-                        className="droppable-contianer">
+                        ref={provided.innerRef}>
                         {cmps.map((cmp, idx) => {
                             return (
-                                <Draggable key={idx+cmp.id} draggableId={cmp.id} index={idx}>
+                                <Draggable key={idx + cmp.id} draggableId={cmp.id} index={idx}>
                                     {(providedDraggable) => {
-                                        return <DynamicCmp key={idx+cmp.id} cmp={cmp} forwardref={providedDraggable.innerRef}
-                                           props1= {providedDraggable.draggableProps}
-                                           props2= {providedDraggable.dragHandleProps} />
-                                    
+                                        return <DynamicCmp key={idx + cmp.id} cmp={cmp} forwardref={providedDraggable.innerRef}
+                                            props1={providedDraggable.draggableProps}
+                                            props2={providedDraggable.dragHandleProps} />
                                     }}
                                 </Draggable>
                             )
