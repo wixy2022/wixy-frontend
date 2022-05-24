@@ -36,6 +36,7 @@ export const AppHeader = () => {
             <div className="flex">
                 <nav className="flex">
                     <NavLink to='/' exact>Home</NavLink>
+                    <NavLink to='/editor'>Editor</NavLink>
                     <NavLink to='/about'>About</NavLink>
                 </nav>
                 <div className="profile-button center-text" onClick={onProfileButton}>
