@@ -9,7 +9,9 @@
         font-weight: 600;
         letter-spacing: 1px;
         height: 48px;
-        width: 84px;
+        border-inline-start: 1px solid lightgrey;
+        border-inline-end: 1px solid lightgrey;
+        width: 112px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -27,17 +29,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-
-
-        span {
-            margin-left: 6px;
-        }
-
-        &:first-of-type:not(.login) {
-            border-inline-start: 1px solid lightgrey;
-            border-inline-end: 1px solid lightgrey;
-            width: 112px;
-        }
 
         &:hover:not(.logo-link):not(.active) {
             color: lightseagreen;

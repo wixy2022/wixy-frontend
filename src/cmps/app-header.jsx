@@ -35,11 +35,11 @@ export const AppHeader = () => {
             <Link className="logo-link" to="/"><div className="logo">WiXY</div></Link>
             {/* <div className="flex"> */}
             <nav className="header-nav">
-                <NavLink to='/' exact>Home <span>˅</span> </NavLink>
-                <NavLink to='/about'>About <span>˅</span></NavLink>
-                <NavLink to='/templates'>Templates <span>˅</span></NavLink>
-                <NavLink to='/editor'>Editor <span>˅</span></NavLink>
-                <NavLink to='/my-sites'>My Sites <span>˅</span></NavLink>
+                <NavLink to='/' exact>Home</NavLink>
+                <NavLink to='/about'>About</NavLink>
+                <NavLink to='/templates'>Templates</NavLink>
+                <NavLink to='/editor'>Editor</NavLink>
+                <NavLink to='/my-sites'>My Sites</NavLink>
             </nav>
             <Link className="login" to='/login'>Login</Link>
             {/* <div className="profile-button center-text" onClick={onProfileButton}>
