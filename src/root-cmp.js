@@ -9,10 +9,10 @@ import { Home } from "./pages/home";
 export function App() {
 
   return (
-    <div className="app main-layout">
+    <div className="main-layout">
       <AppHeader />
- 
- <main>
+
+      <main className="app">
         <Switch>
           <Route path="/Editor" component={Editor} />
           <Route path="/" component={Home} />
@@ -21,5 +21,5 @@ export function App() {
       <AppFooter />
       <UserMsg />
     </div>
-  );
+  )
 }
