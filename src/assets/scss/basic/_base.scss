@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Roboto;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin: 0 0 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* FORM INPUTS */
+button {
+    cursor: pointer;
+}
+
+input,
+select,
+textarea {
+    padding: 0.5em;
+    border-radius: 4px;
+    border: 1px solid black;
+
+    &:focus-visible {
+        outline: 1px solid black;
+    }
+}
