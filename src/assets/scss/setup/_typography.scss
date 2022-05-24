@@ -1,15 +1,25 @@
 /* FIX - remove fonts if not in use */
+// @font-face {
+//     font-family: Roboto;
+//     src: url(../../fonts/Roboto/Roboto-Regular.ttf);
+// }
+
+// @font-face {
+//     font-family: Lobster;
+//     src: url(../../fonts/Lobster/Lobster-Regular.ttf);
+// }
+
+// @font-face {
+//     font-family: fa-solid;
+//     src: url(../../fonts/awesome/fa-solid-900.ttf);
+// }
+
 @font-face {
-    font-family: Roboto;
-    src: url(../../fonts/Roboto/Roboto-Regular.ttf);
+    font-family: questrial;
+    src: url(../../fonts/questrial/Questrial-Regular.ttf);
 }
 
 @font-face {
-    font-family: Lobster;
-    src: url(../../fonts/Lobster/Lobster-Regular.ttf);
-}
-
-@font-face {
-    font-family: fa-solid;
-    src: url(../../fonts/awesome/fa-solid-900.ttf);
+    font-family: open-sans;
+    src: url(../../fonts/OpenSans/OpenSans-Regular.ttf);
 }
