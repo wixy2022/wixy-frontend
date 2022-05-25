@@ -18,7 +18,7 @@ export const Editor = () => {
             thumbnail: "http://res.cloudinary.com/dpmzxdfuh/image/upload/v1642950099/mute1ysfnzjcsrlexz25.jpg",
             style: {
                 padngBlock: 0,
-                backgroundColor: "#1D375A"
+                backgroundColor: "#f0f0f0"
             },
             cmps: [
                 {
@@ -29,14 +29,15 @@ export const Editor = () => {
                         color: "#000000",
                         fontFamily: "kalam",
                         fontSize: 40,
+                        backgroundColor:'lightblue',
+                        display:'flex',
+                        justifyContent:'center'
                     },
                 },
                 {
                     id: '12343',
                     type: "container",
                     style: {
-                        backgroundColor: "#1D375A",
-                        border: "1px solid red"
                     },
                     cmps: [
                         {
@@ -46,7 +47,7 @@ export const Editor = () => {
                             txt: "More details",
                             className: "nav-link",
                             style: {
-                                color: "whitesmoke",
+                                color: "black",
                             },
                         },
                         {
@@ -56,7 +57,7 @@ export const Editor = () => {
                             txt: "More details222",
                             className: "nav-link",
                             style: {
-                                color: "whitesmoke",
+                                color: "blue",
                             },
                         },
                         {
@@ -82,7 +83,7 @@ export const Editor = () => {
             thumbnail: "http://res.cloudinary.com/dpmzxdfuh/image/upload/v1642950099/mute1ysfnzjcsrlexz25.jpg",
             style: {
                 padngBlock: 0,
-                backgroundColor: "green"
+                backgroundColor: "coral"
             },
             cmps: [
                 {

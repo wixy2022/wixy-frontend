@@ -11,8 +11,9 @@ const wap = {
 const containerCmp = {
     id: null, //makeId
     type: 'container',
-    theme: 'wap-header-01', //ONLY MAIN CONTAINERS WILL USE THIS KEY
-    className: [],
+    category: 'wap-header',
+    theme: ['happy'], //ONLY MAIN CONTAINERS WILL USE THIS KEY
+    className: ['happy-header'],
     imgUrl: '', //ONLY MAIN CONTAINERS WILL USE THIS KEY
     style: {
         //IF WE WILL ADD AN EDITOR
@@ -20,6 +21,15 @@ const containerCmp = {
     cmps: [{}, {}],
     isPublic: false
 }
+
+/*
+[
+    headers:[],
+    footers:[]
+]
+
+
+*/
 
 const txtCmp = {
     id: null, //makeId
