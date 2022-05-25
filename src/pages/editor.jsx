@@ -29,9 +29,9 @@ export const Editor = () => {
                         color: "#000000",
                         fontFamily: "kalam",
                         fontSize: 40,
-                        backgroundColor:'lightblue',
-                        display:'flex',
-                        justifyContent:'center'
+                        backgroundColor: 'lightblue',
+                        display: 'flex',
+                        justifyContent: 'center'
                     },
                 },
                 {
