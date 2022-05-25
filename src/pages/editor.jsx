@@ -3,12 +3,12 @@ import { DynamicCmp } from "../cmps/dyamin-cmp"
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { EditorToolBar } from "../cmps/app-toolbar"
 import {temp2Wap} from '../data/temp2'
-import {temp3Wap} from '../data/temp3'
-import {temp1} from '../data/temp1'
+// import {temp3Wap} from '../data/temp3'
+// import {temp1} from '../data/temp1'
 import { allTemplates } from "../data/templets";
 
 export const Editor = () => {
-    const wap = temp1
+    const wap = temp2Wap
     // const initialDemoCmp = {
     //     _id: 'mongoDBId',
     //     name: 'template-dramatic-1',
