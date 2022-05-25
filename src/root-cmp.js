@@ -21,5 +21,5 @@ export function App() {
       <AppFooter />
       <UserMsg />
     </div>
-  );
+  )
 }
