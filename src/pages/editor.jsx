@@ -1,248 +1,297 @@
 import { useEffect, useState } from "react"
 import { DynamicCmp } from "../cmps/dyamin-cmp"
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-
+import { EditorToolBar } from "../cmps/app-toolbar"
+import {temp2Wap} from '../data/temp2'
+import {temp3Wap} from '../data/temp3'
+import {temp1} from '../data/temp1'
+import { allTemplates } from "../data/templets";
 
 export const Editor = () => {
+    const wap = temp1
+    // const initialDemoCmp = {
+    //     _id: 'mongoDBId',
+    //     name: 'template-dramatic-1',
+    //     imgUrl: '',
+    //     imgUrl: 'https://i.ibb.co/m8N2Xzd/Vicky-first-wap-ever.png', if you want ...
+    //     createdBy: 'miniUser',
+    //     className: ['dramatic-container'],
+    //     cmps: [{
+    //         id: 'dramatic-header-123',
+    //         type: 'container',
+    //         type: 'container-draggable' note !!! its draggable
+    //         category: 'wap-header',
+    //         theme: ['dramatic'],
+    //         className: ['dramatic-header'],
+    //         imgUrl: '',
+    //         style: {},
+    //         cmps: [
+    //             {
+    //                 id: 'header-dramatic-title-123',
+    //                 type: 'txt',
+    //                 className: ['title'],
+    //                 txt: 'PH-STUDIO',
+    //                 style: {},
+    //             },
+    //             {
+    //                 id: ' header-dramatic-container-123',
+    //                 type: 'container',
+    // 
+    //                 category: 'wap-header-container',
+    //                 className: ['dramatic-header-links-container'],
+    //                 cmps: [
+    //                     {
+    //                         id: 'header-dramatic-anc-1',
+    //                         type: 'anchor',
+    //                         url: 'https://www.facebook.com/',
+    //                         className: ['link'],
+    //                         txt: 'visit us on facebook',
+    //                         style: {},
+    //                     },
+    //                     {
+    //                         id: 'header-dramatic-anc-2',
+    //                         type: 'anchor',
+    //                         url: 'https://www.instagram.com/?hl=en',
+    //                         className: ['link'],
+    //                         txt: 'visit us on instagram',
+    //                         style: {},
+    //                     }
+    //                 ],
+    //             },
 
-    const [wap, setWap] = useState({
-        _id: '5e28393890dd7201a06d4e44',
-        name: "Resort",
-        thumbnail: "http://res.cloudinary.com/dpmzxdfuh/image/upload/v1642926845/rlhviliowwd0fi2oblsm.jpg",
-        type: "container",
-        cmps: [{
-            id: '12341a',
-            type: "container",
-            category: "wap-header",
-            className: "wap-header-1",
-            thumbnail: "http://res.cloudinary.com/dpmzxdfuh/image/upload/v1642950099/mute1ysfnzjcsrlexz25.jpg",
-            style: {
-                padngBlock: 0,
-                backgroundColor: "#f0f0f0"
-            },
-            cmps: [
-                {
-                    id: '12342',
-                    type: "txt",
-                    txt: "Pacifico",
-                    style: {
-                        color: "#000000",
-                        fontFamily: "kalam",
-                        fontSize: 40,
-                        backgroundColor:'lightblue',
-                        display:'flex',
-                        justifyContent:'center'
-                    },
-                },
-                {
-                    id: '12343',
-                    type: "container",
-                    style: {
-                    },
-                    cmps: [
-                        {
-                            id: '12332176',
-                            type: "anchor",
-                            url: "https://www.google.com",
-                            txt: "More details",
-                            className: "nav-link",
-                            style: {
-                                color: "black",
-                            },
-                        },
-                        {
-                            id: '12344',
-                            type: "anchor",
-                            url: "https://www.google.com",
-                            txt: "More details222",
-                            className: "nav-link",
-                            style: {
-                                color: "blue",
-                            },
-                        },
-                        {
-                            id: '12345',
-                            type: "img",
-                            url: "https://m.media-amazon.com/images/I/81ZifMbP2dL._SY450_.jpg",
-                            txt: "More details222",
-                            className: "nav-link",
-                            style: {
-                                color: "black",
-                                maxHeight: '150px'
-                            },
-                        },
-                    ]
-                }
-            ]
-        },
-        {
-            id: '42a346',
-            type: "container",
-            category: "wap-header",
-            className: "wap-header-1",
-            thumbnail: "http://res.cloudinary.com/dpmzxdfuh/image/upload/v1642950099/mute1ysfnzjcsrlexz25.jpg",
-            style: {
-                padngBlock: 0,
-                backgroundColor: "coral"
-            },
-            cmps: [
-                {
-                    id: '123122',
-                    type: "txt",
-                    txt: "Pacifico",
-                    style: {
-                        color: "#000000",
-                        fontFamily: "kalam",
-                        fontSize: 40,
-                    },
-                },
-                {
-                    id: '32312312',
-                    type: "container",
-                    style: {
-                        border: "1px solid red"
-                    },
-                    cmps: [
-                        {
-                            id: '22312321312',
-                            type: "img",
-                            url: "https://www.vermontteddybear.com/dw/image/v2/BDKM_PRD/on/demandware.static/-/Sites-master-catalog-vtb/default/dw0c5c4cde/images/VTB/vtb-23846-18ohsosoftteddybear-lightbrown_feature4_20201012_0843.jpg?sw=600",
-                            txt: "More details222",
-                            className: "nav-link",
-                            style: {
-                                color: "black",
-                                maxHeight: "100px"
-                            },
-                        },
-                        {
-                            id: '156456',
-                            type: "img",
-                            url: "https://www.vermontteddybear.com/dw/image/v2/BDKM_PRD/on/demandware.static/-/Sites-master-catalog-vtb/default/dw0c5c4cde/images/VTB/vtb-23846-18ohsosoftteddybear-lightbrown_feature4_20201012_0843.jpg?sw=600",
-                            txt: "More details222",
-                            className: "nav-link",
-                            style: {
-                                color: "black",
-                                maxHeight: "100px"
-                            },
-                        },
-                        {
-                            id: '15645645654',
-                            type: "img",
-                            url: "https://www.vermontteddybear.com/dw/image/v2/BDKM_PRD/on/demandware.static/-/Sites-master-catalog-vtb/default/dw0c5c4cde/images/VTB/vtb-23846-18ohsosoftteddybear-lightbrown_feature4_20201012_0843.jpg?sw=600",
-                            txt: "More details222",
-                            className: "nav-link",
-                            style: {
-                                color: "black",
-                                maxHeight: "100px"
-                            },
-                        },
-                    ]
-                }
-            ]
-        },
-        {
-            id: '123a46',
-            type: "container",
-            category: "wap-header",
-            className: "wap-header-1",
-            thumbnail: "http://res.cloudinary.com/dpmzxdfuh/image/upload/v1642950099/mute1ysfnzjcsrlexz25.jpg",
-            style: {
-                padngBlock: 0,
-                backgroundColor: "green"
-            },
-            cmps: [
-                {
-                    id: '123122',
-                    type: "txt",
-                    txt: "Pacifico",
-                    style: {
-                        color: "#000000",
-                        fontFamily: "kalam",
-                        fontSize: 40,
-                    },
-                },
-                {
-                    id: '12312312',
-                    type: "container",
-                    style: {
-                        border: "1px solid red"
-                    },
-                    cmps: [
-                        {
-                            id: '12312321312',
-                            type: "img",
-                            url: "https://www.vermontteddybear.com/dw/image/v2/BDKM_PRD/on/demandware.static/-/Sites-master-catalog-vtb/default/dw0c5c4cde/images/VTB/vtb-23846-18ohsosoftteddybear-lightbrown_feature4_20201012_0843.jpg?sw=600",
-                            txt: "More details222",
-                            className: "nav-link",
-                            style: {
-                                color: "black",
-                                maxHeight: "100px"
-                            },
-                        },
-                        {
-                            id: '456456',
-                            type: "img",
-                            url: "https://www.vermontteddybear.com/dw/image/v2/BDKM_PRD/on/demandware.static/-/Sites-master-catalog-vtb/default/dw0c5c4cde/images/VTB/vtb-23846-18ohsosoftteddybear-lightbrown_feature4_20201012_0843.jpg?sw=600",
-                            txt: "More details222",
-                            className: "nav-link",
-                            style: {
-                                color: "black",
-                                maxHeight: "100px"
-                            },
-                        },
-                        {
-                            id: '45645645654',
-                            type: "img",
-                            url: "https://www.vermontteddybear.com/dw/image/v2/BDKM_PRD/on/demandware.static/-/Sites-master-catalog-vtb/default/dw0c5c4cde/images/VTB/vtb-23846-18ohsosoftteddybear-lightbrown_feature4_20201012_0843.jpg?sw=600",
-                            txt: "More details222",
-                            className: "nav-link",
-                            style: {
-                                color: "black",
-                                maxHeight: "100px"
-                            },
-                        },
-                    ]
-                }
-            ]
-        }
-        ]
 
-    })
+    //         ],
+    //         isPublic: true
+    //     },
+    //     {
+    //         id: 'hero-dramatic-container-123',
+    //         type: 'container',
+    //          type: 'container-draggable' note !!! its draggable or it wont be draggable
+    //         category: 'wap-hero',
+    //         theme: ['dramatic'],
+    //         className: ['dramatic-hero'],
+    //         imgUrl: 'https: //images.unsplash.com/photo-1647776145661-d3526d7c2b7f?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287',
+    //         style: {},
+    //         cmps: [
+    //             {
+    //                 id: 'hero-dramatic-txt-123',
+    //                 type: 'txt',
+    //                 className: ['txt', 'title'],
+    //                 txt: 'PH-STUDIO - make your dreams come true',
+    //                 style: {}
+    //             }
+    //         ],
+    //         isPublic: true
+    //     },
+    //     {
+    //         id: 'dramatic-gallery-container',
+    //         type: 'container',
+    //          type: 'container-draggable' note !!! its draggable or it wont be draggable
+    //         category: 'wap-gallery-list',
+    //         theme: ['dramatic'],
+    //         className: ['dramatic-gallery-container'],
+    //         cmps: [
+    //             {
+    //                 id: 'dramatic-gallery-title',
+    //                 type: 'container',
+    //                 theme: ['dramatic'],
+    //                 className: ['dramatic-gallery-title'],
+    //                 cmps: [
+    //                     {
+    //                         id: 'gallery-container',
+    //                         type: 'txt',
+    //                         className: ['gallery-container'],
+    //                         txt: 'Our Works',
+    //                     },
+    //                 ],
+    //             },
+    //             {
+    //                 id: 'dramatic-gallery',
+    //                 type: 'container',
+    //                 category: 'wap-gallery-list',
+    //                 theme: ['dramatic'],
+    //                 className: ['dramatic-gallery'],
+    //                 cmps: [
+    //                     {
+    //                         id: 'img1',
+    //                         type: 'img',
+    //                         url: 'https://www.familyadventureproject.org/wp-content/uploads/2OnFire.jpg',
+    //                         className: ['dramatic-gallery-img'],
+    //                     },
+    //                     {
+    //                         id: 'img2',
+    //                         type: 'img',
+    //                         url: 'https://www.findingtheuniverse.com/wp-content/uploads/2018/08/Lightning-New-Mexico-by-Laurence-Norah.jpg',
+    //                         className: ['dramatic-gallery-img'],
+    //                     },
+    //                     {
+    //                         id: 'img3',
+    //                         type: 'img',
+    //                         url: 'https://s.alamy.com/assets/latest/resolutions/2560/enterprise/enterprise-hero-banner.jpg',
+    //                         className: ['dramatic-gallery-img'],
+    //                     },
+    //                     {
+    //                         id: 'img4',
+    //                         type: 'img',
+    //                         url: 'https://images.squarespace-cdn.com/content/v1/5368697fe4b07ba114021f78/1603072765884-N3RIXIJGDRE0P7NA2ZNV/Wellington-elopement-photos-1.jpg?format=1000w',
+    //                         className: ['dramatic-gallery-img'],
+    //                     }
+    //                 ]
+    //             }
+    //         ]
+    //     },
+    //     {
+    //         id: 'dramatic-team-container',
+    //         type: 'container',
+    //          type: 'container-draggable' note !!! its draggable or it wont be draggable
+    //         category: 'wap-list',
+    //         theme: ['dramatic'],
+    //         className: ['dramatic-team-container'],
+    //         cmps: [
+    //             {
+    //                 id: 'dramatic-team-title',
+    //                 type: 'container',
+    //                 theme: ['dramatic'],
+    //                 className: ['dramatic-team-title'],
+    //                 cmps: [
+    //                     {
+    //                         id: 'team-container',
+    //                         type: 'txt',
+    //                         className: ['team-container'],
+    //                         txt: 'Our Team',
+    //                     },
+    //                 ],
+    //             },
+    //             {
+    //                 id: 'dramatic-team-list',
+    //                 type: 'container',
+    //                 theme: ['dramatic'],
+    //                 className: ['dramatic-team-list'],
+    //                 cmps: [
+    //                     {
+    //                         id: 'dramatic-card1',
+    //                         type: 'container',
+    //                         category: 'wap-card',
+    //                         theme: ['dramatic'],
+    //                         className: ['dramatic-card'],
+    //                         cmps: [
+    //                             {
+    //                                 id: 'alex-img',
+    //                                 type: 'img',
+    //                                 url: 'https://i.ibb.co/cQtNGtp/alex-yakovlev.jpg',
+    //                                 className: ['dramatic-team-img'],
+    //                             },
+    //                             {
+    //                                 id: 'dramatic-txt-card1',
+    //                                 type: 'txt',
+    //                                 className: ['txt'],
+    //                                 txt: 'Alex Yakovlev',
+    //                             }
+    //                         ]
+    //                     },
+    //                     {
+    //                         id: 'dramatic-card2',
+    //                         type: 'container',
+    //                         category: 'wap-card',
+    //                         theme: ['dramatic'],
+    //                         className: ['dramatic-card'],
+    //                         cmps: [
+    //                             {
+    //                                 id: 'ori-img',
+    //                                 type: 'img',
+    //                                 url: 'https://i.ibb.co/Hdk2gg0/ori-sason.jpg',
+    //                                 className: ['dramatic-team-img'],
+    //                             },
+    //                             {
+    //                                 id: 'dramatic-txt-card1',
+    //                                 type: 'txt',
+    //                                 className: ['txt'],
+    //                                 txt: 'Ori Sason',
+    //                             }
+    //                         ]
+    //                     },
+    //                     {
+    //                         id: 'dramatic-card3',
+    //                         type: 'container',
+    //                         category: 'wap-card',
+    //                         theme: ['dramatic'],
+    //                         className: ['dramatic-card'],
+    //                         cmps: [
+    //                             {
+    //                                 id: 'vicky-img',
+    //                                 type: 'img',
+    //                                 url: 'https://i.ibb.co/SNzWPG1/vicky-polatov.jpg',
+    //                                 className: ['dramatic-team-img'],
+    //                             },
+    //                             {
+    //                                 id: 'dramatic-txt-card1',
+    //                                 type: 'txt',
+    //                                 className: ['txt'],
+    //                                 txt: 'Vicky Polatov',
+    //                             }
+    //                         ]
+    //                     }
+    //                 ],
+    //             }
+    //         ],
+    //         isPublic: true
+    //     }
+    //     ]
+    // }
+
     const [cmps, updateCmps] = useState(wap.cmps)
-
+    const templates = allTemplates
+    useEffect(()=>{
+        console.log(cmps)
+    },[cmps])
 
     const handleOnDragEnd = (result) => {
-        console.log(result)
         if (!result.destination) {
             return;
         }
-        const [recoredItems] = cmps.splice(result.source.index, 1)
-        cmps.splice(result.destination.index, 0, recoredItems)
-        console.log(cmps)
-        updateCmps(cmps)
+        if(result.draggableId.includes('template')){
+            console.log('yes',result.source)
+            // change to selected template at index
+            const template = templates.header[result.source.index-100]
+            // change to MakeId
+            template.id = (Math.random()*100 +'')
+            const idx = result.destination.index
+            console.log(template)
+            cmps.splice(idx, 0, template)
+            updateCmps(cmps)
+            
+        }else{
+            let items = JSON.parse(JSON.stringify(cmps))
+            const [recoredItems] = items.splice(result.source.index, 1)
+            items.splice(result.destination.index, 0, recoredItems)
+            updateCmps(items)
+        }
     }
-
+    console.log(cmps)
     return <section className="editor">
         <DragDropContext onDragEnd={handleOnDragEnd}>
-            <Droppable droppableId={wap._id}>
-                {(provided) => (
+            <Droppable  droppableId={wap._id}>
+                {(provided) => (<>
+            <EditorToolBar templates={templates}/>
                     <div {...provided.droppableProps}
+                        className='editor-site-container'
                         ref={provided.innerRef}>
-                        {cmps.map((cmp, idx) => {
-                            return (
-                                <Draggable key={idx + cmp.id} draggableId={cmp.id} index={idx}>
+                        {cmps.map((cmp, idx) =>  (
+                            <Draggable key={idx + cmp.id} draggableId={cmp.id} index={idx}>
                                     {(providedDraggable) => {
-                                        return <DynamicCmp key={idx + cmp.id} cmp={cmp} forwardref={providedDraggable.innerRef}
-                                            props1={providedDraggable.draggableProps}
-                                            props2={providedDraggable.dragHandleProps} />
+                                        return <DynamicCmp key={idx + cmp.id}  index={idx}
+                                        cmp={cmp} forwardref={providedDraggable.innerRef}
+                                        props1={providedDraggable.draggableProps}
+                                        props2={providedDraggable.dragHandleProps} />
                                     }}
                                 </Draggable>
                             )
-                        }
-                        )}
-                        {provided.placeholder}
+                            
+                            )}
+                            {provided.placeholder}
                     </div>
 
+                </>
                 )}
             </Droppable>
         </DragDropContext>

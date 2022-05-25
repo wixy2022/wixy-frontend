@@ -1,6 +1,12 @@
 .editor{
-
+    display: flex;
     & *>:hover{
         outline:  1px black  dotted ;
+     }
+     .editor-site-container{
+         display: flex;
+         flex-grow: 1;
+         width: 80%;
+         flex-direction: column;
      }
 }
