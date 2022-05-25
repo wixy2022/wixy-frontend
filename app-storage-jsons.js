@@ -9,7 +9,7 @@ const wap = {
 }
 
 const containerCmp = {
-    id: null, //makeId
+    id: null, //makeId,
     type: 'container',
     category: 'wap-header',
     theme: ['happy'], //ONLY MAIN CONTAINERS WILL USE THIS KEY
@@ -48,7 +48,8 @@ const txtCmp = {
 }
 
 const imgCmp = {
-    id: null, //makeId
+    id: null, //makeId,
+    type:'img',
     url: 'https://m.media-amazon.com/images/I/81ZifMbP2dL._SY450_.jpg',
     className: [],
     style: {
@@ -61,7 +62,9 @@ const imgCmp = {
 
 const anchorCmp = {
     id: null, //makeId
-    url: 'https://m.media-amazon.com/images/I/81ZifMbP2dL._SY450_.jpg',
+    type:'anchor',
+    url: '',
+    txt:'Contact us',
     className: [],
     style: {
         //IF WE WILL ADD AN EDITOR

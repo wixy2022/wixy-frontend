@@ -6,10 +6,11 @@
     align-items: center;
     width: 100%;
     height: 82px;
-    padding: 8px;
+    padding: 15px;
 
-    .title {
-        font-size: 1.1em;
+    pre {
+        font-size: 2.7em;
+        font-family: alfa-slab-one;
     }
 
     &>* {
@@ -30,36 +31,77 @@
     background-size: cover;
     display: flex;
     align-items: flex-end;
-    padding: 10px;
+    padding: 15px;
 
-    .txt.title {
-        font-size: 2.7rem;
+    .txt-cmp {
+        flex-grow: 1;
+        font-size: 2.5rem;
         color: white;
+    }
+
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        text-overflow: clip;
+        font-family: alfa-slab-one;
+    }
+}
+
+.dramatic-team-title-container {
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    border: 1px solid black;
+    border-left: 25px solid black;
+    border-right: 25px solid black;
+
+    pre {
+        margin: 10px;
+        font-family: alfa-slab-one;
+    }
+}
+
+.dramatic-gallery-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: black;
+    align-items: center;
+    gap: 10px;
+    height: fit-content;
+
+    .img-cmp {
+        width: 200px;
+    }
+
+    img {
+        width: 100%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        position: center;
     }
 
 }
 
 .dramatic-team-container {
-    border: 3px solid black;
-    background-color: black;
-    padding: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    text-align: center;
+    border: 24px solid black;
+    background-color: white;
+    padding: 8px 15px;
+    gap: 5%;
 
-    .dramatic-team-container {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        font-weight: 600;
-        text-align: center;
-        border: 3px solid black;
-        background-color: white;
-        padding: 20px;
-    }
-
-    .team-container {
-        margin-bottom: 30px;
-        font-size: 1.2em;
+    pre {
+        font-size: 2.7rem;
+        margin: 5px;
+        font-family: alfa-slab-one;
     }
 
     .dramatic-team-list {
@@ -70,28 +112,43 @@
         width: 100%;
     }
 
+    .dramatic-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+
+        pre {
+            font-size: 1rem;
+            font-family: alfa-slab-one;
+        }
+
+    }
+
+    .img-cmp {
+        max-width: 150px;
+        flex-grow: 1;
+        display: flex;
+    }
+
     img {
-        width: 200px;
-        height: 200px;
+        width: 100%;
+        aspect-ratio: 1/1;
         object-fit: cover;
         border-radius: 50%;
         border: 3px solid black;
     }
 }
 
-.dramatic-gallery-container {
-    display: flex;
-    flex-direction: column;
+.dramatic-footer {
+    background-color: rgba(0, 0, 0, 0.856);
+    color: white;
+    border: 1px double black;
 
-    .dramatic-gallery {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    pre {
+        margin: 0;
+        text-align: center;
+        font-family: alfa-slab-one;
     }
-
-    img {
-        width: 300px;
-        height: 300px;
-    }
-
 }
