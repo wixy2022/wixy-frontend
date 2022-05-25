@@ -1,12 +1,17 @@
 .editor{
     display: flex;
-    & *>:hover{
-        outline:  1px black  dotted ;
-     }
-     .editor-site-container{
-         display: flex;
-         flex-grow: 1;
-         width: 80%;
-         flex-direction: column;
+    position: relative;
+    overflow-y: hidden;
+    height: 94.9vh;
+    .editor-site-container{
+        display: flex;
+        flex-grow: 1;
+        width: 80%;
+        max-height: 90vh;
+        overflow-y: auto;
+        flex-direction: column;
+        & *>:hover{
+            outline:  1px black  dotted ;
+         }
      }
 }

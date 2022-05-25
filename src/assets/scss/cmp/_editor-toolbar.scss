@@ -1,0 +1,292 @@
+.template-tool-bar {
+    display: flex;
+    width: 50px;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    padding-block-start: 30px;
+    // height: 100px;
+    // background-color: red;
+
+
+    .editor-icon-container {
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        position: relative;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            //////////////////////////////TODO: Fix global var  /////////////////////////////////////////////
+            background-color: rgba(128, 128, 128, 0.11);
+
+        }
+
+        >* {
+            width: 20px;
+            height: 20px;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .editor-icon-img {
+
+
+
+            &.header {
+
+                // bac
+                // background-color: blue;
+                background-image: url(../../img/template-toolbar-icons/header-icon.png);
+
+                &.header:hover {
+                    &.header:hover::before {
+                        position: absolute;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        top: .4em;
+                        left: 4em;
+                        content: 'Header';
+                        background-color: white;
+                        width: 60px;
+                        height: 20px;
+                        border-radius: 0.37em;
+                        padding: .3em;
+                        box-shadow: 0px 0px 2px 0px grey
+                    }
+
+                }
+            }
+
+            &.section {
+
+                // background-color: blue;
+                background-image: url(../../img/template-toolbar-icons/section-icon.png);
+
+                &.section:hover {
+                    &.section:hover::before {
+                        position: absolute;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        top: .4em;
+                        left: 4em;
+                        content: 'Section';
+                        background-color: white;
+                        width: 60px;
+                        height: 20px;
+                        border-radius: 0.37em;
+                        padding: .3em;
+                        box-shadow: 0px 0px 2px 0px grey
+                    }
+
+                }
+            }
+
+            &.footer {
+
+                // background-color: blue;
+                background-image: url(../../img/template-toolbar-icons/footer-icon.png);
+
+                &.footer:hover {
+                    &.footer:hover::before {
+                        position: absolute;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        top: .4em;
+                        left: 4em;
+                        content: 'Footer';
+                        background-color: white;
+                        width: 60px;
+                        height: 20px;
+                        border-radius: 0.37em;
+                        padding: .3em;
+                        box-shadow: 0px 0px 2px 0px grey
+                    }
+
+                }
+            }
+
+            &.text {
+                &.text:hover {
+                    &.text:hover::before {
+                        position: absolute;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        top: .4em;
+                        left: 4em;
+                        content: 'Text';
+                        background-color: white;
+                        width: 60px;
+                        height: 20px;
+                        border-radius: 0.37em;
+                        padding: .3em;
+                        box-shadow: 0px 0px 2px 0px grey
+                    }
+
+                }
+
+                // background-color: blue;
+                background-image: url(../../img/template-toolbar-icons/text-icon.png);
+            }
+
+            &.gallery {
+                &.gallery:hover {
+                    &.gallery:hover::before {
+                        position: absolute;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        top: .4em;
+                        left: 4em;
+                        content: 'Gallery';
+                        background-color: white;
+                        width: 60px;
+                        height: 20px;
+                        border-radius: 0.37em;
+                        padding: .3em;
+                        box-shadow: 0px 0px 2px 0px grey
+                    }
+
+                }
+
+                // background-color: blue;
+                background-image: url(../../img/template-toolbar-icons/gallery-icon.png);
+            }
+
+            &.map {
+                &.map:hover {
+                    &.map:hover::before {
+                        position: absolute;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        top: .4em;
+                        left: 4em;
+                        content: 'Map';
+                        background-color: white;
+                        width: 60px;
+                        height: 20px;
+                        border-radius: 0.37em;
+                        padding: .3em;
+                        box-shadow: 0px 0px 2px 0px grey
+                    }
+
+                }
+
+                // background-color: blue;
+                background-image: url(../../img/template-toolbar-icons/map-icon.png);
+            }
+
+            &.cards {
+                &.cards:hover {
+                    &.cards:hover::before {
+                        position: absolute;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        top: .4em;
+                        left: 4em;
+                        content: 'Cards';
+                        background-color: white;
+                        width: 60px;
+                        height: 20px;
+                        border-radius: 0.37em;
+                        padding: .3em;
+                        box-shadow: 0px 0px 2px 0px grey
+                    }
+
+                }
+
+                // background-color: blue;
+                background-image: url(../../img/template-toolbar-icons/cards-icon.png);
+            }
+
+
+
+            &.video {
+                &.video:hover {
+                    &.video:hover::before {
+                        position: absolute;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        top: .4em;
+                        left: 4em;
+                        content: 'Video';
+                        background-color: white;
+                        width: 60px;
+                        height: 20px;
+                        border-radius: 0.37em;
+                        padding: .3em;
+                        box-shadow: 0px 0px 2px 0px grey
+                    }
+
+                }
+
+                // background-color: blue;
+                background-image: url(../../img/template-toolbar-icons/video-icon.png);
+            }
+
+            &.form {
+                &.form:hover {
+                    &.form:hover::before {
+                        position: absolute;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        top: .4em;
+                        left: 4em;
+                        content: 'Form';
+                        background-color: white;
+                        width: 60px;
+                        height: 20px;
+                        border-radius: 0.37em;
+                        padding: .3em;
+                        box-shadow: 0px 0px 2px 0px grey
+                    }
+
+                }
+
+                // background-color: blue;
+                background-image: url(../../img/template-toolbar-icons/form-icon.png);
+            }
+
+            &.chat {
+                &.chat:hover {
+                    &.chat:hover::before {
+                        position: absolute;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        top: .4em;
+                        left: 4em;
+                        content: 'Chat';
+                        background-color: white;
+                        width: 60px;
+                        height: 20px;
+                        border-radius: 0.37em;
+                        padding: .3em;
+                        box-shadow: 0px 0px 2px 0px grey
+                    }
+
+                }
+
+                // background-color: blue;
+                background-image: url(../../img/template-toolbar-icons/chat-icon.png);
+            }
+        }
+    }
+
+}
+
+//         <div onClick={onHandleTemplates} className='editor-icon-container' name='video' ><a  className="editor-icon-img video" /></div>
+//         <div onClick={onHandleTemplates} className='editor-icon-container' name='form' ><a  className="editor-icon-img form" /></div>
+//         <div onClick={onHandleTemplates} className='editor-icon-container' name='chat' ><a  className="editor-icon-img chat" /></div>
