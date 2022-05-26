@@ -2,13 +2,27 @@
     display: flex;
     width: 50px;
     justify-content: flex-start;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     padding-block-start: 30px;
-    // height: 100px;
-    // background-color: red;
+    position: fixed;
+    .tool-bar-options{
+        position: relative;
+        width: 400px;
+        > *{
+            width: 300px;
+            position: relative;
+            z-index: 30;
+        }
+    }
+    .template-bar-btns{
+        padding-inline-start: 4px;
 
-
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+    }
     .editor-icon-container {
         width: 40px;
         height: 40px;
@@ -59,7 +73,6 @@
                         padding: .3em;
                         box-shadow: 0px 0px 2px 0px grey
                     }
-
                 }
             }
 

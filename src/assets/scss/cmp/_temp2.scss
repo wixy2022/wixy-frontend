@@ -1,6 +1,9 @@
-.template2.wap-header {
-
+.wap-header-02 {
+    padding: 0 1rem;
     background-color: rgb(250, 248, 239);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     .title {
         margin: 0;
@@ -8,8 +11,15 @@
         font-family: questrial;
     }
 
-    .navbar pre {
-        padding: 2rem 1rem;
+    .navbar {
+
+        display: flex;
+        align-items: center;
+        gap: 1em;
+
+        pre {
+            padding: 2rem 1rem;
+        }
 
         &:hover {
             color: orange;
@@ -17,7 +27,7 @@
     }
 }
 
-.template2.wap-section {
+.wap-section-02 {
     overflow: hidden;
     background-color: rgb(224, 213, 202);
 
@@ -35,6 +45,9 @@
 
     .description-section {
         padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
 
         .txt.title {
             font-size: 2.5rem;
@@ -48,7 +61,7 @@
 }
 
 @media screen and (min-width: 1000px) {
-    .template2.wap-section {
+    .wap-section-02 {
         max-height: 400px;
         display: flex;
         max-height: unset;
@@ -67,7 +80,7 @@
     }
 }
 
-.template2.wap-cards-section .card {
+.wap-cards-02 .card {
     padding: 2rem;
     text-align: center;
 
@@ -116,7 +129,7 @@
 }
 
 @media screen and(min-width: 1000px) {
-    .template2.wap-cards-section {
+    .wap-cards-02 {
         display: flex;
 
         .card {
@@ -133,7 +146,7 @@
     }
 }
 
-.template2.wap-footer {
+.wap-footer-02 {
     text-align: center;
     padding: 0.5rem 0;
 
