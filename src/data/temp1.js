@@ -70,12 +70,12 @@ const dramaticThemeTitle = {
     type: 'container-draggable',
     category: 'wap-title',
     theme: ['dramatic'],
-    className: ['dramatic-team-title-container'],
+    className: ['dramatic-title-container'],
     cmps: [{
         id: utilService.makeId(),
         type: 'txt',
         theme: ['dramatic'],
-        className: ['dramatic-team-title'],
+        className: ['dramatic-title'],
         txt: 'Our Works',
     }]
 }

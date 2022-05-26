@@ -51,7 +51,7 @@
     }
 }
 
-.dramatic-team-title-container {
+.dramatic-title-container {
     font-size: 2.5rem;
     display: flex;
     align-items: center;
@@ -72,16 +72,10 @@
 
 .dramatic-gallery-container {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
     background-color: rgb(14, 14, 14);
-    align-items: center;
-    gap: 10px;
+    gap: 3%;
     height: fit-content;
-
-    .img-cmp {
-        width: 200px;
-    }
 
     img {
         width: 100%;
@@ -94,7 +88,7 @@
 
 .dramatic-team-container {
     width: 100%;
-    height: 380px;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -116,6 +110,7 @@
 
     .dramatic-team-list {
         flex-grow: 1;
+        flex-direction: column;
         display: flex;
         align-items: center;
         justify-content: space-evenly;
@@ -139,7 +134,7 @@
     }
 
     .img-cmp {
-        max-width: 206px;
+        max-width: 251px;
         flex-grow: 1;
         display: flex;
     }
@@ -167,5 +162,30 @@
         font-family: alfa-slab-one;
         font-weight: 400;
         letter-spacing: 3px;
+    }
+}
+
+/* // MQ */
+
+@media (min-width: 625px) {
+
+    .dramatic-gallery-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
+        align-items: stretch;
+        justify-content: stretch;
+        flex-direction: unset;
+    }
+
+    .dramatic-team-container {
+        height: 380px;
+
+        .dramatic-team-list {
+            flex-direction: unset;
+        }
+
+        .img-cmp {
+            max-width: 206px;
+        }
     }
 }
