@@ -9,10 +9,16 @@ body {
 
 }
 
+pre {
+    font-family: unset;
+    white-space: pre-wrap;
+}
+
 h1,
 h2,
 h3,
-p {
+p,
+pre {
     margin: 0;
 }
 

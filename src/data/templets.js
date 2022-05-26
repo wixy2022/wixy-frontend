@@ -111,5 +111,5 @@ export const allTemplates = {
     }, {}],
     main: [{}, {}, {}],
     footers: [{}, {}, {}],
-    froms: [{}, {}, {}],
+    forms: [{}, {}, {}],
 }

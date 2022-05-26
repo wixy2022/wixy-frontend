@@ -1,6 +1,5 @@
 export const TxtCmp = ({ cmp }) => {
     /* FIX - add options */
-    return <section className="txt-cmp">
-        <pre style={cmp.style}>{cmp.txt}</pre>
-    </section>
+    return <pre className={`txt-cmp ${cmp.className}`} style={cmp.style}>{cmp.txt}</pre>
+
 }

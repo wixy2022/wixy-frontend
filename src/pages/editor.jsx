@@ -43,7 +43,7 @@ export const Editor = () => {
         <DragDropContext onDragEnd={handleOnDragEnd}>
             <Droppable droppableId={wap._id}>
                 {(provided) => (<>
-                    <EditorToolBar templates={templates} />
+                    <TemplateToolBar templates={templates} />
                     <div {...provided.droppableProps}
                         className='editor-site-container'
                         ref={provided.innerRef}>
