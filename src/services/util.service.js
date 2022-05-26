@@ -3,7 +3,8 @@ export const utilService = {
     makeId,
     makeLorem,
     getRandomIntInclusive,
-    dateToString
+    dateToString,
+    createKey
 }
 
 function makeId(length = 6) {
@@ -35,4 +36,8 @@ function getRandomIntInclusive(min, max) {
 
 function dateToString(date, language = 'he-IL') {
     return Intl.DateTimeFormat(language, { dateStyle: 'short', timeStyle: 'short', hour12: false }).format(new Date(date))
+}
+
+function createKey (){
+    return makeId(10)
 }

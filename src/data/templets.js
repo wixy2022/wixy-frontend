@@ -1,3 +1,4 @@
+
 export const allTemplates = {
     header: [{
         id: '1234a1sa',
@@ -108,8 +109,13 @@ export const allTemplates = {
 
         ],
         isPublic: true
-    }, {}],
-    main: [{}, {}, {}],
-    footers: [{}, {}, {}],
-    forms: [{}, {}, {}],
+    }],
+    section: [],
+    footers: [],
+    form: [],
+    text: [],
+    gallery: [],
+    map: [],
+    chat: [],
+    video: [],
 }

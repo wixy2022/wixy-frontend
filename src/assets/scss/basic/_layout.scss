@@ -1,3 +1,16 @@
-.app {
-    min-height: 88vh;
+.main-app {
+    display: grid;
+    grid-template-rows: 48px 1fr;
+    &.editor-open {
+        .app-header {
+            position: fixed;
+            
+        }
+    }
+    // max-height: 60vh;
+    // background-color: red;
+    .app {
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
 }
