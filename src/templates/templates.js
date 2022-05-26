@@ -1,3 +1,8 @@
+import { wapHeader01, wapHeader02 } from './header'
+import { wapSection01, wapSection02 } from './section'
+import { wapCards01, wapCards02 } from './card'
+import { wapFooter01, wapFooter02 } from './footer'
+
 export const allTemplates = {
     header: [{
         id: '1234a1sa',
@@ -37,7 +42,7 @@ export const allTemplates = {
                         className: "nav-link",
                         style: {
                             color: "black",
-                            backgroundColor:"red"
+                            backgroundColor: "red"
                         },
                     },
                     {
@@ -108,8 +113,22 @@ export const allTemplates = {
 
         ],
         isPublic: true
-    }, {}],
-    main: [{}, {}, {}],
-    footers: [{}, {}, {}],
-    forms: [{}, {}, {}],
+    }, wapHeader02],
+    section: [wapSection02, {}],
+    text: [{},{}],
+    card: [wapCards02],
+    gallery: [{},{}],
+    form: [{},{}],
+    map: [{},{}],
+    chat: [{},{}],
+    video: [{},{}],
+    footers: [wapFooter02, {}],
+}
+
+
+export const temp2Wap = {
+    _id: 'MongoDBId2',
+    name: 'template 2',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653565945/templates/page-template-02_glfv7t.png',
+    cmps: [wapHeader02, wapSection02, wapCards02, wapFooter02]
 }
