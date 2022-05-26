@@ -52,8 +52,7 @@ const dramaticThemeHero = {
     category: 'wap-hero',
     theme: ['dramatic'],
     className: ['dramatic-hero'],
-    imgUrl: 'https: //images.unsplash.com/photo-1647776145661-d3526d7c2b7f?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287',
-    style: {},
+    imgUrl: 'https://wallpaperaccess.com/full/3156824.jpg',
     cmps: [
         {
             id: 'hero-dramatic-txt-123',
@@ -91,25 +90,25 @@ const dramaticThemeGallery = {
         {
             id: utilService.makeId(),
             type: 'img',
-            url: 'https://www.familyadventureproject.org/wp-content/uploads/2OnFire.jpg',
+            url: 'https://i.ibb.co/R3d2KF9/gallery5.jpg',
             className: ['dramatic-gallery-img'],
         },
         {
             id: utilService.makeId(),
             type: 'img',
-            url: 'https://www.findingtheuniverse.com/wp-content/uploads/2018/08/Lightning-New-Mexico-by-Laurence-Norah.jpg',
+            url: 'https://i.ibb.co/rZsWjvZ/gallery2.jpg',
             className: ['dramatic-gallery-img'],
         },
         {
             id: utilService.makeId(),
             type: 'img',
-            url: 'https://s.alamy.com/assets/latest/resolutions/2560/enterprise/enterprise-hero-banner.jpg',
+            url: 'https://i.ibb.co/N9t7rNh/gallery3.jpg',
             className: ['dramatic-gallery-img'],
         },
         {
             id: utilService.makeId(),
             type: 'img',
-            url: 'https://images.squarespace-cdn.com/content/v1/5368697fe4b07ba114021f78/1603072765884-N3RIXIJGDRE0P7NA2ZNV/Wellington-elopement-photos-1.jpg?format=1000w',
+            url: 'https://i.ibb.co/qNLSrT8/gallery4.jpg',
             className: ['dramatic-gallery-img'],
         }
     ]
@@ -153,14 +152,14 @@ const dramaticThemeList = {
                         {
                             id: utilService.makeId(),
                             type: 'img',
-                            url: 'https://i.ibb.co/cQtNGtp/alex-yakovlev.jpg',
+                            url: 'https://i.ibb.co/p40Xhhs/team1.jpg',
                             className: ['dramatic-team-img'],
                         },
                         {
                             id: utilService.makeId(),
                             type: 'txt',
                             className: ['txt'],
-                            txt: 'Alex Yakovlev',
+                            txt: 'Rey Rose',
                         }
                     ]
                 },
@@ -174,14 +173,14 @@ const dramaticThemeList = {
                         {
                             id: utilService.makeId(),
                             type: 'img',
-                            url: 'https://i.ibb.co/Hdk2gg0/ori-sason.jpg',
+                            url: 'https://i.ibb.co/3chftzb/team2.jpg',
                             className: ['dramatic-team-img'],
                         },
                         {
                             id: utilService.makeId(),
                             type: 'txt',
                             className: ['txt'],
-                            txt: 'Ori Sason',
+                            txt: 'Mishel Yang',
                         }
                     ]
                 },
@@ -195,14 +194,14 @@ const dramaticThemeList = {
                         {
                             id: utilService.makeId(),
                             type: 'img',
-                            url: 'https://i.ibb.co/SNzWPG1/vicky-polatov.jpg',
+                            url: 'https://i.ibb.co/qnyK5XT/team3.jpg',
                             className: ['dramatic-team-img'],
                         },
                         {
                             id: utilService.makeId(),
                             type: 'txt',
                             className: ['txt'],
-                            txt: 'Vicky Polatov',
+                            txt: 'Kim Cohen',
                         }
                     ]
                 }
