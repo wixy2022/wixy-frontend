@@ -2,18 +2,18 @@ import { useEffect, useState } from "react"
 import { DynamicCmp } from "../cmps/dyamin-cmp"
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { TemplateToolBar } from "../cmps/editor-toolbar"
-import { temp2Wap } from '../templates/templates'
+import { temp1Wap, temp2Wap } from '../templates/templates'
 import { utilService } from '../services/util.service'
-import { temp1 } from '../templates/temp1'
+// import { temp1Wap, temp2Wap } from '../templates/temp1'
 import { allTemplates } from "../templates/templates";
 import { dramaticThemeWap } from '../templates/temp1.js'
 
 
 export const Editor = ({ setPageClass }) => {
-    const wap = dramaticThemeWap
+    const wap = temp1Wap
     const [toolBarMode, setToolBarMode] = useState('')
     const [cmps, updateCmps] = useState(wap.cmps)
-    const [templateKey,setTemplateKey] = useState(null)
+    const [templateKey, setTemplateKey] = useState(null)
     const templates = allTemplates
     useEffect(() => {
         setPageClass('editor-open')

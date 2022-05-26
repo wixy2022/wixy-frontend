@@ -1,31 +1,31 @@
-import { utilService } from "../services/util.service";
+// import { utilService } from "../services/util.service";
 
 // const dramaticThemeHeader = {
 //     id: utilService.makeId(),
 //     type: 'container-draggable',
 //     category: 'wap-header',
 //     theme: 'dramatic',
-//     className: 'wap-header-01',
+//     className: ['wap-header-01'],
 //     imgUrl: 'https://i.ibb.co/m8N2Xzd/Vicky-first-wap-ever.png',
 //     style: {},
 //     cmps: [
 //         {
 //             id: utilService.makeId(),
 //             type: 'txt',
-//             className: 'title',
+//             className: ['title'],
 //             txt: 'PH-STUDIO',
 //         },
 //         {
 //             id: utilService.makeId(),
 //             type: 'container',
 //             category: 'wap-header-container',
-//             className: 'dramatic-header-links-container',
+//             className: ['dramatic-header-links-container'],
 //             cmps: [
 //                 {
 //                     id: utilService.makeId(),
 //                     type: 'anchor',
 //                     url: 'https://www.facebook.com/',
-//                     className: 'link',
+//                     className: ['link'],
 //                     txt: 'facebook',
 
 //                 },
@@ -33,7 +33,7 @@ import { utilService } from "../services/util.service";
 //                     id: utilService.makeId(),
 //                     type: 'anchor',
 //                     url: 'https://www.instagram.com/?hl=en',
-//                     className: 'link',
+//                     className: ['link'],
 //                     txt: 'instagram',
 //                     style: {},
 //                 }
@@ -50,14 +50,14 @@ import { utilService } from "../services/util.service";
 //     id: utilService.makeId(),
 //     type: 'container-draggable',
 //     category: 'wap-hero',
-//     theme: 'dramatic',
+//     theme: ['dramatic'],
 //     className: 'wap-hero-01',
 //     imgUrl: 'https://wallpaperaccess.com/full/3156824.jpg',
 //     cmps: [
 //         {
 //             id: 'hero-dramatic-txt-123',
 //             type: 'txt',
-//             className: 'txt title',
+//             className: ['txt', 'title'],
 //             txt: 'PH-STUDIO - make your dreams come true',
 //             style: {}
 //         }
@@ -69,13 +69,13 @@ import { utilService } from "../services/util.service";
 //     id: utilService.makeId(),
 //     type: 'container-draggable',
 //     category: 'wap-title',
-//     theme: 'dramatic',
-//     className: 'wap-title-01',
+//     theme: ['dramatic'],
+//     className: ['dramatic-title-container'],
 //     cmps: [{
 //         id: utilService.makeId(),
 //         type: 'txt',
-//         theme: 'dramatic',
-//         className: 'dramatic-title',
+//         theme: ['dramatic'],
+//         className: ['dramatic-team-title'],
 //         txt: 'Our Works',
 //     }]
 // }
@@ -83,33 +83,33 @@ import { utilService } from "../services/util.service";
 // const dramaticThemeGallery = {
 //     id: utilService.makeId(),
 //     type: 'container-draggable',
-//     category: 'wap-gallery',
-//     theme: 'dramatic',
-//     className: 'wap-gallery-01',
+//     category: 'wap-gallery-list',
+//     theme: ['dramatic'],
+//     className: ['dramatic-gallery-container'],
 //     cmps: [
 //         {
 //             id: utilService.makeId(),
 //             type: 'img',
 //             url: 'https://i.ibb.co/R3d2KF9/gallery5.jpg',
-//             className: 'dramatic-gallery-img',
+//             className: ['dramatic-gallery-img'],
 //         },
 //         {
 //             id: utilService.makeId(),
 //             type: 'img',
 //             url: 'https://i.ibb.co/rZsWjvZ/gallery2.jpg',
-//             className: 'dramatic-gallery-img',
+//             className: ['dramatic-gallery-img'],
 //         },
 //         {
 //             id: utilService.makeId(),
 //             type: 'img',
 //             url: 'https://i.ibb.co/N9t7rNh/gallery3.jpg',
-//             className: 'dramatic-gallery-img',
+//             className: ['dramatic-gallery-img'],
 //         },
 //         {
 //             id: utilService.makeId(),
 //             type: 'img',
 //             url: 'https://i.ibb.co/qNLSrT8/gallery4.jpg',
-//             className: 'dramatic-gallery-img',
+//             className: ['dramatic-gallery-img'],
 //         }
 //     ]
 // }
@@ -117,47 +117,48 @@ import { utilService } from "../services/util.service";
 // const dramaticThemeList = {
 //     id: utilService.makeId(),
 //     type: 'container-draggable',
-//     category: 'wap-cards',
-//     theme: 'dramatic',
-//     className: 'wap-cards-01',
+//     category: 'wap-list',
+//     theme: ['dramatic'],
+//     className: ['dramatic-team-container'],
 //     cmps: [
 //         {
 //             id: utilService.makeId(),
 //             type: 'container',
-//             theme: 'dramatic',
-//             className: 'dramatic-team-title',
+//             theme: ['dramatic'],
+//             className: ['dramatic-team-title'],
 //             cmps: [
 //                 {
 //                     id: utilService.makeId(),
 //                     type: 'txt',
-//                     className: 'team-container',
+//                     className: ['team-container'],
 //                     txt: 'Our Team',
 //                 },
 //             ],
 //         },
+
 //         {
 //             id: utilService.makeId(),
 //             type: 'container',
-//             theme: 'dramatic',
-//             className: 'dramatic-team-list',
+//             theme: ['dramatic'],
+//             className: ['dramatic-team-list'],
 //             cmps: [
 //                 {
 //                     id: utilService.makeId(),
 //                     type: 'container',
 //                     category: 'wap-card',
-//                     theme: 'dramatic',
-//                     className: 'dramatic-card',
+//                     theme: ['dramatic'],
+//                     className: ['dramatic-card'],
 //                     cmps: [
 //                         {
 //                             id: utilService.makeId(),
 //                             type: 'img',
 //                             url: 'https://i.ibb.co/p40Xhhs/team1.jpg',
-//                             className: 'dramatic-team-img',
+//                             className: ['dramatic-team-img'],
 //                         },
 //                         {
 //                             id: utilService.makeId(),
 //                             type: 'txt',
-//                             className: 'txt',
+//                             className: ['txt'],
 //                             txt: 'Rey Rose',
 //                         }
 //                     ]
@@ -166,19 +167,19 @@ import { utilService } from "../services/util.service";
 //                     id: utilService.makeId(),
 //                     type: 'container',
 //                     category: 'wap-card',
-//                     theme: 'dramatic',
-//                     className: 'dramatic-card',
+//                     theme: ['dramatic'],
+//                     className: ['dramatic-card'],
 //                     cmps: [
 //                         {
 //                             id: utilService.makeId(),
 //                             type: 'img',
 //                             url: 'https://i.ibb.co/3chftzb/team2.jpg',
-//                             className: 'dramatic-team-img',
+//                             className: ['dramatic-team-img'],
 //                         },
 //                         {
 //                             id: utilService.makeId(),
 //                             type: 'txt',
-//                             className: 'txt',
+//                             className: ['txt'],
 //                             txt: 'Mishel Yang',
 //                         }
 //                     ]
@@ -187,19 +188,19 @@ import { utilService } from "../services/util.service";
 //                     id: utilService.makeId(),
 //                     type: 'container',
 //                     category: 'wap-card',
-//                     theme: 'dramatic',
-//                     className: 'dramatic-card',
+//                     theme: ['dramatic'],
+//                     className: ['dramatic-card'],
 //                     cmps: [
 //                         {
 //                             id: utilService.makeId(),
 //                             type: 'img',
 //                             url: 'https://i.ibb.co/qnyK5XT/team3.jpg',
-//                             className: 'dramatic-team-img',
+//                             className: ['dramatic-team-img'],
 //                         },
 //                         {
 //                             id: utilService.makeId(),
 //                             type: 'txt',
-//                             className: 'txt',
+//                             className: ['txt'],
 //                             txt: 'Kim Cohen',
 //                         }
 //                     ]
@@ -214,13 +215,13 @@ import { utilService } from "../services/util.service";
 //     id: utilService.makeId(),
 //     type: 'container-draggable',
 //     category: 'wap-footer',
-//     theme: 'dramatic',
-//     className: 'wap-footer-01',
+//     theme: ['dramatic'],
+//     className: ['dramatic-footer'],
 //     cmps: [
 //         {
 //             id: utilService.makeId(),
 //             type: 'txt',
-//             className: 'title',
+//             className: ['title'],
 //             txt: 'PH-STUDIO',
 //         }
 //     ],
@@ -232,7 +233,7 @@ import { utilService } from "../services/util.service";
 //     name: 'template-dramatic-1',
 //     imgUrl: '',
 //     createdBy: 'miniUser',
-//     className: 'wap-01',
+//     className: ['dramatic-container'],
 //     cmps: [dramaticThemeHeader,
 //         dramaticThemeHero,
 //         dramaticThemeTitle,

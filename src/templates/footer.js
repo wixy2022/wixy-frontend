@@ -1,6 +1,22 @@
 import { utilService } from "../services/util.service"
 
-export const wapFooter01 = {}
+export const wapFooter01 = {
+    id: utilService.makeId(),
+    type: 'container-draggable',
+    category: 'wap-footer',
+    theme: 'dramatic',
+    className: 'wap-footer-01',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653580954/templates/footer-t1_cmf0nd.png',
+    cmps: [
+        {
+            id: utilService.makeId(),
+            type: 'txt',
+            className: 'title',
+            txt: 'PH-STUDIO',
+        }
+    ],
+    isPublic: true
+}
 
 export const wapFooter02 = {
     id: utilService.makeId(16), //makeId

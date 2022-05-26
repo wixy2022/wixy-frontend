@@ -1,6 +1,23 @@
 import { utilService } from "../services/util.service"
 
-export const wapSection01 = {}
+export const wapSection01 = {
+    id: utilService.makeId(),
+    type: 'container-draggable',
+    category: 'wap-hero',
+    theme: 'dramatic',
+    className: 'wap-hero-01',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653580957/templates/hero-t1_ldzw5u.png',
+    cmps: [
+        {
+            id: 'hero-dramatic-txt-123',
+            type: 'txt',
+            className: 'txt title',
+            txt: 'PH-STUDIO - make your dreams come true',
+            style: {}
+        }
+    ],
+    isPublic: true
+}
 
 export const wapSection02 = {
     id: utilService.makeId(16),
