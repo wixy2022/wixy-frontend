@@ -1,0 +1,171 @@
+.dramatic-header:not([data-rbd-draggable-context-id]) {
+    background-color: rgb(14, 14, 14);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 74px;
+    padding: 15px;
+
+    a {
+        margin-left: 22px;
+    }
+
+    pre {
+        font-size: 2.7em;
+        font-family: alfa-slab-one;
+    }
+
+    &>* {
+        display: inline;
+    }
+
+    .dramatic-header {
+        display: flex;
+    }
+}
+
+.dramatic-hero {
+    width: 100%;
+    height: 72vh;
+    background-image: url("https://wallpaperaccess.com/full/3156824.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: flex-end;
+    padding: 15px;
+
+    .txt-cmp {
+        flex-grow: 1;
+        font-size: 2.5rem;
+        color: white;
+    }
+
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        text-overflow: clip;
+        font-family: alfa-slab-one;
+    }
+}
+
+.dramatic-team-title-container {
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    background: linear-gradient(to right, rgb(14 14 14), rgba(14, 14, 14, 0.527), rgb(14 14 14));
+    color: rgb(209, 209, 209);
+    border: 10px solid rgb(14, 14, 14);
+    border-left: 25px solid rgb(14, 14, 14);
+    border-right: 25px solid rgb(14, 14, 14);
+
+    pre {
+        margin: 10px;
+        font-family: alfa-slab-one;
+        font-weight: 400;
+    }
+}
+
+.dramatic-gallery-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(14, 14, 14);
+    align-items: center;
+    gap: 10px;
+    height: fit-content;
+
+    .img-cmp {
+        width: 200px;
+    }
+
+    img {
+        width: 100%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        position: center;
+    }
+
+}
+
+.dramatic-team-container {
+    width: 100%;
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    text-align: center;
+    border: 24px solid rgb(14, 14, 14);
+    background-color: rgba(0, 0, 0, 0.897);
+    padding: 8px 15px;
+
+    pre {
+        font-size: 2.7rem;
+        margin: 5px;
+        color: rgb(209, 209, 209);
+        letter-spacing: 3px;
+        font-family: alfa-slab-one;
+        font-weight: 400;
+    }
+
+    .dramatic-team-list {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 100%;
+    }
+
+    .dramatic-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+
+        pre {
+            font-size: 1rem;
+            font-family: alfa-slab-one;
+            color: white;
+            font-family: open-sans;
+        }
+
+    }
+
+    .img-cmp {
+        max-width: 206px;
+        flex-grow: 1;
+        display: flex;
+    }
+
+    img {
+        width: 100%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        border-radius: 5px;
+        object-position: 0 -12px;
+        border: 2px solid rgb(14, 14, 14);
+        // opacity: 0.8;
+    }
+}
+
+.dramatic-footer {
+    background-color: rgba(0, 0, 0, 0.897);
+    color: white;
+    border: 1px double rgb(14, 14, 14);
+    padding: 8px;
+
+    pre {
+        margin: 0;
+        text-align: center;
+        font-family: alfa-slab-one;
+        font-weight: 400;
+        letter-spacing: 3px;
+    }
+}
