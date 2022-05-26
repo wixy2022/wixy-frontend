@@ -9,6 +9,22 @@
     justify-content: center;
     align-items: center;
 }
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(128, 128, 128, 0.13); 
+    -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0.5); 
+}
 
 /* FLEXBOX */
 .flex {
@@ -34,6 +50,14 @@
         gap: 1em;
     }
 }
+.hidden{
+    // visibility: hidden;*{
+       & > *{
+            
+            transition: 3s;
+            left: 100px;
+        }
+}
 
 /* FONT AWESOME */
 
@@ -52,4 +76,4 @@
 /* DEBUG */
 // * {
 //     border: 1px solid red;
-// }
+// }s

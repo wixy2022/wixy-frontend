@@ -1,15 +1,17 @@
 .editor {
     display: grid;
     position: relative;
-    overflow-y: hidden;
     grid-template-columns: 50px 1fr;
+
     
     &.tool-bar-open{
-        grid-template-columns: 22em 1fr;
+        grid-template-columns: 24rem 1fr;
     }
     padding: 0;
     margin: 0;
     .editor-site-container {
+        overflow-y: auto;
+        max-height: 94.9vh;
         display: flex;
         grid-column: 2/-1;
         flex-grow: 1;

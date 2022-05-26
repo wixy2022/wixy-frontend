@@ -1,23 +1,26 @@
 .template-tool-bar {
     display: flex;
     width: 50px;
+    height: 100%;
     justify-content: flex-start;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     padding-block-start: 30px;
     position: fixed;
+    box-shadow: 0px 4px 5px black;
     .tool-bar-options{
+        transition: 3s ;
+        padding-inline-start: rem(20px);
         position: relative;
         width: 400px;
         > *{
             width: 300px;
             position: relative;
-            z-index: 30;
+            z-index: 10;
         }
     }
     .template-bar-btns{
-        padding-inline-start: 4px;
-
+        padding-inline-start: rem(4.8px);
         align-items: center;
         justify-content: center;
         display: flex;
@@ -62,6 +65,7 @@
                         position: absolute;
                         display: flex;
                         align-items: center;
+                        z-index: 20;
                         justify-content: center;
                         top: .4em;
                         left: 4em;
@@ -85,6 +89,7 @@
                     &.section:hover::before {
                         position: absolute;
                         display: flex;
+                        z-index: 20;
                         align-items: center;
                         justify-content: center;
                         top: .4em;
@@ -110,6 +115,7 @@
                     &.footer:hover::before {
                         position: absolute;
                         display: flex;
+                        z-index: 20;
                         align-items: center;
                         justify-content: center;
                         top: .4em;
@@ -131,6 +137,7 @@
                     &.text:hover::before {
                         position: absolute;
                         display: flex;
+                        z-index: 20;
                         align-items: center;
                         justify-content: center;
                         top: .4em;
@@ -155,6 +162,7 @@
                     &.gallery:hover::before {
                         position: absolute;
                         display: flex;
+                        z-index: 20;
                         align-items: center;
                         justify-content: center;
                         top: .4em;
@@ -179,6 +187,7 @@
                     &.map:hover::before {
                         position: absolute;
                         display: flex;
+                        z-index: 20;
                         align-items: center;
                         justify-content: center;
                         top: .4em;
@@ -206,6 +215,7 @@
                         align-items: center;
                         justify-content: center;
                         top: .4em;
+                        z-index: 20;
                         left: 4em;
                         content: 'Cards';
                         background-color: white;
@@ -233,6 +243,7 @@
                         justify-content: center;
                         top: .4em;
                         left: 4em;
+                        z-index: 20;
                         content: 'Video';
                         background-color: white;
                         width: 60px;
@@ -252,6 +263,7 @@
                 &.form:hover {
                     &.form:hover::before {
                         position: absolute;
+                        z-index: 20;
                         display: flex;
                         align-items: center;
                         justify-content: center;
@@ -277,6 +289,7 @@
                     &.chat:hover::before {
                         position: absolute;
                         display: flex;
+                        z-index: 20;
                         align-items: center;
                         justify-content: center;
                         top: .4em;

@@ -1,5 +1,6 @@
 .main-app {
     display: grid;
+
     grid-template-rows: 48px 1fr;
     &.editor-open {
         .app-header {
