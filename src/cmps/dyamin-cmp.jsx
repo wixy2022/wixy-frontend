@@ -6,9 +6,10 @@ import { TxtCmp } from "./dynamic-cmps/txt-cmp"
 
 export class DynamicCmp extends React.Component {
     getCmp = (cmp) => {
-        if (typeof cmp.className === 'object') cmp.className = cmp.className.join(' ')
+        
         if (cmp.category) cmp.className += ' ' + cmp.category
         if (cmp.theme) cmp.className += ' ' + cmp.theme
+        
         switch (cmp.type) {
             case 'txt': return <TxtCmp cmp={cmp} />
             case 'container-draggable':

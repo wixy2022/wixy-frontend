@@ -18,9 +18,11 @@
 
 /* COMPONENTS */
 @import './cmp/editor-toolbar';
-@import './cmp/dramatic';
 @import './cmp/app-header';
 @import './cmp/temp2';
 @import './cmp/temp3';
 @import './cmp/app-footer';
 @import './cmp/user-msg';
+
+/* TEMPLATES */
+@import './templates/dramatic';

@@ -3,7 +3,7 @@ import { Draggable } from "react-beautiful-dnd"
 import { DraggableTemplate } from './draggable-template.jsx'
 
 
-export const TemplateToolBar = ({ setToolBarMode, templates }) => {
+export const TemplateToolBar = ({ setToolBarMode, templates,setTemplateKey }) => {
     const [selectedTemplates, setSelectedTemplates] = useState(null)
     const [currTopic, setCurrTopic] = useState(null)
 
@@ -13,10 +13,12 @@ export const TemplateToolBar = ({ setToolBarMode, templates }) => {
         ev.stopPropagation()
         const name = ev.target.name
         if (currTopic === name) {
+            setTemplateKey('')
             setToolBarMode('')
             setCurrTopic(null)
             setSelectedTemplates(null)
         } else {
+            setTemplateKey(`${name}`)
             await setCurrTopic(name)
             await  setSelectedTemplates(templates[name])
             setToolBarMode('tool-bar-open')
