@@ -1,6 +1,101 @@
 import { utilService } from "../services/util.service"
 
-export const wapCards01 = {}
+export const wapCards01 = {
+    id: utilService.makeId(),
+    type: 'container-draggable',
+    category: 'wap-cards',
+    theme: 'dramatic',
+    className: 'wap-cards-01',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653581168/templates/cards-t1_pcba2x.png',
+    cmps: [
+        {
+            id: utilService.makeId(),
+            type: 'container',
+            theme: 'dramatic',
+            className: 'dramatic-team-title',
+            cmps: [
+                {
+                    id: utilService.makeId(),
+                    type: 'txt',
+                    className: 'team-container',
+                    txt: 'Our Team',
+                },
+            ],
+        },
+        {
+            id: utilService.makeId(),
+            type: 'container',
+            theme: 'dramatic',
+            className: 'dramatic-team-list',
+            cmps: [
+                {
+                    id: utilService.makeId(),
+                    type: 'container',
+                    category: 'wap-card',
+                    theme: 'dramatic',
+                    className: 'dramatic-card',
+                    cmps: [
+                        {
+                            id: utilService.makeId(),
+                            type: 'img',
+                            url: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653580978/templates/team1_glsspk.jpg',
+                            className: 'dramatic-team-img',
+                        },
+                        {
+                            id: utilService.makeId(),
+                            type: 'txt',
+                            className: 'txt',
+                            txt: 'Rey Rose',
+                        }
+                    ]
+                },
+                {
+                    id: utilService.makeId(),
+                    type: 'container',
+                    category: 'wap-card',
+                    theme: 'dramatic',
+                    className: 'dramatic-card',
+                    cmps: [
+                        {
+                            id: utilService.makeId(),
+                            type: 'img',
+                            url: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653580978/templates/team2_whg4cx.jpg',
+                            className: 'dramatic-team-img',
+                        },
+                        {
+                            id: utilService.makeId(),
+                            type: 'txt',
+                            className: 'txt',
+                            txt: 'Mishel Yang',
+                        }
+                    ]
+                },
+                {
+                    id: utilService.makeId(),
+                    type: 'container',
+                    category: 'wap-card',
+                    theme: 'dramatic',
+                    className: 'dramatic-card',
+                    cmps: [
+                        {
+                            id: utilService.makeId(),
+                            type: 'img',
+                            url: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653580978/templates/team3_tzdckz.jpg',
+                            className: 'dramatic-team-img',
+                        },
+                        {
+                            id: utilService.makeId(),
+                            type: 'txt',
+                            className: 'txt',
+                            txt: 'Kim Cohen',
+                        }
+                    ]
+                }
+            ],
+        }
+    ],
+    isPublic: true
+}
 
 export const wapCards02 = {
     id: utilService.makeId(16), //makeId
