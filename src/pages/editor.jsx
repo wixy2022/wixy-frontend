@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { DynamicCmp } from "../cmps/dyamin-cmp"
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { EditorToolBar } from "../cmps/app-toolbar"
+import { TemplateToolBar } from "../cmps/editor-toolbar"
 import { temp2Wap } from '../data/temp2'
 import { temp3Wap } from '../data/temp3'
 import { temp1 } from '../data/temp1'
