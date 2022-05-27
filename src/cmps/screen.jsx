@@ -22,10 +22,6 @@ export const Screen = () => {
         dispatch(setScreen(false))
     }
 
-
-    console.log(screenHeight, 'screenHeight')
-    console.log('from screen')
-
     return <>
         {isOpenScreen && <div ref={screenRef} className="screen" onClick={onCloseScreen}></div>}
     </>

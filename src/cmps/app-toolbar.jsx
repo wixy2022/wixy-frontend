@@ -12,12 +12,8 @@ export const EditorToolBar = ({ templates }) => {
     // const [curr]
 
     const onHandleTemplates = ({ target: { name } }) => {
-        console.log(templates)
-
         setSelectedTemplates(templates[name])
     }
-
-    console.log(selectedTemplates)
 
     return <section style={{ width: '60px' }}>
         <a onClick={onHandleTemplates} name='header' className="btn ">Headers</a>

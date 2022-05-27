@@ -20,7 +20,6 @@ export const TemplateToolBar = ({ setToolBarMode, templates, setTemplateKey }) =
             setTemplateKey(`${name}`)
             setSelectedTemplates(templates[name])
             setToolBarMode('tool-bar-open')
-
         }
     }
     const getToolBarButtons = () => {
@@ -31,7 +30,6 @@ export const TemplateToolBar = ({ setToolBarMode, templates, setTemplateKey }) =
             <a name={name} onClick={onHandleTemplates} className={`editor-icon-img ${name}`} /></div>)
     }
 
-    // console.log(selectedTemplates)
     return <section className="template-tool-bar" >
         <div className="template-bar-btns">
             {getToolBarButtons()}
@@ -39,35 +37,19 @@ export const TemplateToolBar = ({ setToolBarMode, templates, setTemplateKey }) =
 
         <div className={`tool-bar-options`}>
             {selectedTemplates && selectedTemplates.map((template, idx) => {
-                return <Draggable style={{ width: '250px', height: '100px' }} key={utilService.createKey() + 'template'} draggableId={template.id + 'template'} index={idx + 100}>
+                return <Draggable key={utilService.createKey() + 'template'} draggableId={template.id + 'template'} index={idx + 100}>
                     {(provided) => {
                         return <DraggableTemplate
                             className="template-editor-display"
-                            props1={provided.draggableProps}
+                            draggableProps={provided.draggableProps}
                             template={template}
-                            props2={provided.dragHandleProps}
+                            dragHandleProps={provided.dragHandleProps}
                             forwardref={provided.innerRef}
                         />
                     }}
                 </Draggable>
 
             })}
-            {/* {selectedTemplates && selectedTemplates.map((template, idx) => {
-                return <Draggable style={{ width: '250px', height: '100px' }} key={idx + template.id + 'template'} draggableId={template.id + 'template'} index={idx + 100}>
-                    {(provided) => {
-                        return <DraggableTemplate
-                            className="template-editor-display"
-                            props1={provided.draggableProps}
-                            template={template}
-                            props2={provided.dragHandleProps}
-                            forwardref={provided.innerRef}
-                        />
-                    }}
-                </Draggable>
-
-            })} */}
         </div>
     </section>
-
-
 }

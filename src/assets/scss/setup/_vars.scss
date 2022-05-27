@@ -1,1 +1,5 @@
+/* GLOBAL SIZES */
+$site-header-height: 48px;
+$site-without-header: calc(100vh - $site-header-height)
+
 /* COLOR PALETTE */

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { DynamicCmp } from "../dyamin-cmp";
+import { DynamicCmp } from "../dynamic-cmp";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import  { Node } from 'react'
 

@@ -13,7 +13,7 @@
 
     .editor-site-container {
         overflow-y: auto;
-        max-height: calc(100vh - 48px);
+        height: $site-without-header;
         display: flex;
         grid-column: 2/-1;
         flex-grow: 1;

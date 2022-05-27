@@ -9,10 +9,6 @@ import { Home } from "./pages/home";
 
 export function App() {
   const [pageClass, setPageClass] = useState('')
-  console.log(pageClass)
-
-
-
 
   return (
     <div className={`main-app ${pageClass}`}>
