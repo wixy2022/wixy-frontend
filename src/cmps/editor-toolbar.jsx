@@ -54,24 +54,7 @@ export const TemplateToolBar = ({ setToolBarMode, templates, setTemplateKey,onCl
                         />
                     }}
                 </Draggable>
-
             })}
-            {/* {selectedTemplates && selectedTemplates.map((template, idx) => {
-                return <Draggable style={{ width: '250px', height: '100px' }} key={idx + template.id + 'template'} draggableId={template.id + 'template'} index={idx + 100}>
-                    {(provided) => {
-                        return <DraggableTemplate
-                            className="template-editor-display"
-                            props1={provided.draggableProps}
-                            template={template}
-                            props2={provided.dragHandleProps}
-                            forwardref={provided.innerRef}
-                        />
-                    }}
-                </Draggable>
-
-            })} */}
         </div>
     </section>
-
-
 }

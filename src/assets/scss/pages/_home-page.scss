@@ -1,7 +1,6 @@
 .home-page {
     display: grid;
     grid-template-rows: repeat(3,minmax(750px,1fr));
-    
     max-height: calc(100vh - 48px);
     overflow-y: auto;
 
