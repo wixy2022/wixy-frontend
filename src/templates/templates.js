@@ -18,8 +18,8 @@ export const allTemplates = {
     footer: [wapFooter01,wapFooter02],
 }
 //   const names = ['header', 'section', 'text', 'cards', 'gallery', 'form', 'map', 'chat', 'video', 'footer',]
-
-
+ 
+//
 export const temp1Wap = {
     _id: 'mongoDBId',
     name: 'template-dramatic-1',
@@ -39,3 +39,5 @@ export const temp2Wap = {
     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653565945/templates/page-template-02_glfv7t.png',
     cmps: [wapHeader02, wapSection02, wapCards02, wapFooter02]
 }
+// /////////////// DEV ONLY
+export const allWaps =[temp2Wap,temp1Wap,temp2Wap,temp1Wap,temp2Wap,temp1Wap,temp2Wap,temp1Wap,temp2Wap]

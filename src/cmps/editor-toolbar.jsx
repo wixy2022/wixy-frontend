@@ -3,13 +3,16 @@ import { Draggable } from "react-beautiful-dnd"
 import { DraggableTemplate } from './draggable-template.jsx'
 import { utilService } from "../services/util.service.js"
 
-export const TemplateToolBar = ({ setToolBarMode, templates, setTemplateKey }) => {
+export const TemplateToolBar = ({ setToolBarMode, templates, setTemplateKey,onCloseScreen ,onSetHeight }) => {
     const [selectedTemplates, setSelectedTemplates] = useState(null)
     const [currTopic, setCurrTopic] = useState(null)
 
     const onHandleTemplates = async (ev) => {
         ev.stopPropagation()
         const { name } = ev.target
+        onCloseScreen()
+        await onSetHeight()
+
         if (currTopic === name) {
             setCurrTopic(null)
             setTemplateKey('')
@@ -22,6 +25,7 @@ export const TemplateToolBar = ({ setToolBarMode, templates, setTemplateKey }) =
             setToolBarMode('tool-bar-open')
 
         }
+
     }
     const getToolBarButtons = () => {
         const names = ['header', 'section', 'text', 'cards', 'gallery', 'form', 'map', 'chat', 'video', 'footer',]

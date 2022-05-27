@@ -5,7 +5,13 @@ export function Home() {
     return <section className="home-page">
         
             <section className="hero">
-                <h1 style={{fontSize: '40px', marginBlockStart:'100px'}}>SSSS</h1>
+                <div className="get-started">
+                    <div> Create a website with</div>
+                     <div className="logo"><img src="https://res.cloudinary.com/drpqhjyvk/image/upload/v1653680277/logo-wixy_o9vwtu.png" alt="" /></div>
+                    <button className="get-started-btn">Get Started</button>
+                </div>
+                <div className="hero-img"></div>
+                
                 <pre>
                 </pre>
             </section>
