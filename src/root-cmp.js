@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 
 import { AppHeader } from "./cmps/app-header";
-import { Screen } from "./cmps/screen";
 // import { AppFooter } from "./cmps/app-footer";
 import { UserMsg } from "./cmps/user-msg";
 import { Editor } from "./pages/editor";
@@ -12,10 +11,13 @@ export function App() {
   const [pageClass, setPageClass] = useState('')
   console.log(pageClass)
 
+
+
+
   return (
     <div className={`main-app ${pageClass}`}>
       <AppHeader />
-      <Screen />
+
       <main className="app">
         <Switch>
           {/* <Route path="/Editor" component={()=><Editor />} /> */}

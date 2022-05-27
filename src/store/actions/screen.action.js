@@ -16,12 +16,3 @@ export function setScreenHeight(screenHeight) {
         })
     }
 }
-
-export function setScreenSettings(settings) {
-    return dispatch => {
-        return dispatch({
-            type: 'SET_SCREEN_SETTINGS',
-            settings
-        })
-    }
-}

@@ -1,6 +1,6 @@
 const initialState = {
     isOpenScreen: false,
-    settings: null
+    screenHeight: null
 }
 
 export function screenReducer(state = initialState, action) {
@@ -13,8 +13,6 @@ export function screenReducer(state = initialState, action) {
         case 'SET_HEIGHT_SCREEN':
             console.log(action.screenHeight, 'screenH - RED')
             return { ...state, screenHeight: action.screenHeight }
-        case 'SET_SCREEN_SETTINGS':
-            return { ...state, settings: { ...action.settings } }
         default:
             return state
     }

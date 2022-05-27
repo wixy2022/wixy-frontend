@@ -7,8 +7,6 @@ export const TemplateToolBar = ({ setToolBarMode, templates, setTemplateKey }) =
     const [selectedTemplates, setSelectedTemplates] = useState(null)
     const [currTopic, setCurrTopic] = useState(null)
 
-
-
     const onHandleTemplates = async (ev) => {
         ev.stopPropagation()
         const { name } = ev.target
@@ -22,6 +20,7 @@ export const TemplateToolBar = ({ setToolBarMode, templates, setTemplateKey }) =
             setTemplateKey(`${name}`)
             setSelectedTemplates(templates[name])
             setToolBarMode('tool-bar-open')
+
         }
     }
     const getToolBarButtons = () => {

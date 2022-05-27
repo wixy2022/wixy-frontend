@@ -17,7 +17,6 @@ export const EditorToolBar = ({ templates }) => {
         setSelectedTemplates(templates[name])
     }
 
-
     console.log(selectedTemplates)
 
     return <section style={{ width: '60px' }}>

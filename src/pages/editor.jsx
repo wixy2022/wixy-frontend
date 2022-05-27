@@ -5,7 +5,7 @@ import { TemplateToolBar } from "../cmps/editor-toolbar"
 import { temp1Wap, temp2Wap } from '../templates/templates'
 import { utilService } from '../services/util.service'
 import { allTemplates } from "../templates/templates"
-import { setScreen, setScreenSettings } from "../store/actions/screen.action"
+import { setScreen, setScreenHeight } from "../store/actions/screen.action"
 import { useDispatch, useSelector } from "react-redux"
 import { Screen } from '../cmps/screen';
 
@@ -23,7 +23,7 @@ export const Editor = ({ setPageClass }) => {
     useEffect(() => {
         const screenHeight = editorRef.current.scrollHeight
         setPageClass('editor-open')
-        dispatch(setScreenSettings({})) // {posX, posY, screenHeight, screenWidth}
+        dispatch(setScreenHeight(screenHeight))
         return () => {
             setPageClass('')
         }
@@ -87,7 +87,7 @@ export const Editor = ({ setPageClass }) => {
                     <div {...provided.droppableProps}
                         className='editor-site-container'
                         ref={el => { editorRef.current = el; provided.innerRef(el); }}>
-                        {/* <Screen /> */}
+                        <Screen />
                         {/* {isOpenScreen && <div ref={screenRef} className="screen" onClick={onCloseScreen}></div>} */}
                         {cmps.map((cmp, idx) => (
                             <Draggable key={utilService.createKey()} draggableId={cmp.id} index={idx}>

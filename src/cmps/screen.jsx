@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 
 export const Screen = () => {
 
-    const { isOpenScreen } = useSelector(storeState => storeState.screenModule)
-    const { posX, posY, screenHeight, screenWidth } = useSelector(storeState => storeState.screenModule)
+    const { isOpenScreen, screenHeight } = useSelector(storeState => storeState.screenModule)
     const dispatch = useDispatch()
     const screenRef = useRef()
 
@@ -13,10 +12,10 @@ export const Screen = () => {
 
     useEffect(() => {
         setScreenHeight(screenRef)
-    }, [])
+    }, [isOpenScreen])
 
     const setScreenHeight = () => {
-        screenRef.current?.style.setProperty('--screen-height', 500 + 'px')
+        screenRef.current?.style.setProperty('--screen-height', screenHeight + 'px')
     }
 
     const onCloseScreen = () => {
