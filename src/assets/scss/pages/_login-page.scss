@@ -1,0 +1,9 @@
+.MuiTypography-root.MuiTypography-body2.MuiLink-root {
+    color: rgb(14 14 14);
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+        color: rgb(97, 97, 97);
+    }
+}

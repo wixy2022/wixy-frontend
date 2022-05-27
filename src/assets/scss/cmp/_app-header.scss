@@ -6,17 +6,17 @@
     z-index: 30;
 
     .logo {
-        font-family: questrial;
-        font-size: 20px;
-        font-weight: 600;
-        letter-spacing: 1px;
         height: 48px;
-        border-inline-start: 1px solid lightgrey;
+        padding: 15px;
+        margin-inline-start: 20px;
+        width: 110px;
+        // margin-inline-end: 16px;
         border-inline-end: 1px solid lightgrey;
-        width: 112px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+
+        img{
+            width: 78%;
+            height: 100%;
+        }
     }
 
     .header-nav {
@@ -24,7 +24,7 @@
         flex-grow: 1;
     }
 
-    a {
+    a:not(.logo-link) {
         height: 48px;
         width: 92px;
         font-size: 14px;
@@ -33,7 +33,7 @@
         justify-content: center;
 
         &:hover:not(.logo-link):not(.active) {
-            color: lightseagreen;
+            color: rgb(12, 110, 252);
         }
 
         &.active {

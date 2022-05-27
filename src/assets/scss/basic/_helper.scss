@@ -9,7 +9,23 @@
     justify-content: center;
     align-items: center;
 }
-
+// .logo-i{
+//     position: relative;
+//    &::after{
+//        position: absolute;
+//        content: '';
+//        left: 3.01px;
+//        top: 7.97px;
+//         width: 50.8%;
+//         height: 12.8%;
+//         background-color: $clr1;
+//    }
+// }
+// .logo{
+//     font-family: alfa-slab-one;
+//     font-size: 20px;
+//     font-weight: 600;
+// }
 ::-webkit-scrollbar {
     width: 10px;
 }

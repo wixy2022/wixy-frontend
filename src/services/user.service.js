@@ -1,67 +1,39 @@
-// import { storageService } from './async-storage.service.js'
-import { httpService } from './http.service';
-import { socketService } from './socket.service';
+import Axios from 'axios'
+const axios = Axios.create({
+    withCredentials: true
+})
 
-// const STORAGE_KEY = 'userDB'
-const STORAGE_KEY_LOGGEDIN = 'loggedinUser'
-
-const BASE_PATH = 'auth/'
+const AUTH_URL = (process.env.NODE_ENV == 'production') ? '/api/auth' : '//localhost:3030/api/auth'
 
 export const userService = {
     login,
     logout,
-    signup,
-    getLoggedinUser,
+    getLoggedInUser,
+    signUp
 }
 
-async function login(credentials) {
-    const user = await httpService.post(BASE_PATH + 'login', credentials)
-    if (user) {
-        socketService.login(user._id)
-        sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
-    }
+function getLoggedInUser() {
+    const user = JSON.parse(sessionStorage.getItem('loggedinUser'))
     return user
-
-    /* Next lines are for FRONTEND ONLY */
-    // return storageService.query(STORAGE_KEY).then(users => {
-    //     const user = users.find(user => user.username === credentials.username &&
-    //         user.password === credentials.password)
-
-    //     if (user) sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
-
-    //     return user
-    // })
 }
 
-async function signup(userInfo) {
-    const user = await httpService.post(BASE_PATH + 'signup', userInfo)
-    socketService.signup(user._id)
-    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
-    return user
-
-    /* Next lines are for FRONTEND ONLY */
-    // const user = { ...userInfo }
-    // return storageService.post(STORAGE_KEY, user)
-    //     .then((user) => {
-    //         sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
-    //         return user
-    //     })
+async function login(user) {
+    const res = await axios.post(`${AUTH_URL}/login`, user)
+    const loggedinUser = res.data
+    sessionStorage.setItem('loggedinUser', JSON.stringify(loggedinUser))
+    console.log('login', loggedinUser)
+    return loggedinUser
 }
 
 async function logout() {
-    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, null)
-    socketService.logout()
-    return await httpService.post(BASE_PATH + 'logout')
-
-    /* Next lines are for FRONTEND ONLY */
-    // return Promise.resolve()
+    await axios.post(`${AUTH_URL}/logout`)
+    sessionStorage.removeItem('loggedinUser')
 }
 
-function getLoggedinUser() {
-    return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN))
+async function signUp(user) {
+    const res = await axios.post(`${AUTH_URL}/signup`, user)
+    const loggedinUser = res.data
+    sessionStorage.setItem('loggedinUser', JSON.stringify(loggedinUser))
+    console.log('signup', loggedinUser)
+    return Promise.resolve(loggedinUser)
 }
-
-/* FIX - TEST DATA */
-// Test Data
-// userService.signup({username: 'muki', password: 'muki1', fullname: 'Muki Ja' })
-// userService.login({username: 'muki', password: 'muki1'})

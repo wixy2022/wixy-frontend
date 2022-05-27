@@ -25,6 +25,7 @@ export const Editor = ({ setPageClass }) => {
     useEffect(() => {
         loadWap()
         setPageClass('editor-open')
+        onSetHeight()
         return () => {
             setPageClass('')
         }
@@ -58,6 +59,10 @@ export const Editor = ({ setPageClass }) => {
 
     const onCloseScreen = () => {
         dispatch(setScreen(false))
+    }
+    const onSetHeight = () => {
+        const screenHeight = editorRef.current.scrollHeight
+        dispatch(setScreenHeight(screenHeight))
     }
 
     const handleOnDragEnd = (result) => {
@@ -103,7 +108,7 @@ export const Editor = ({ setPageClass }) => {
         <DragDropContext onDragEnd={handleOnDragEnd}>
             <Droppable droppableId={wap._id}>
                 {(provided) => (<>
-                    <TemplateToolBar setToolBarMode={setToolBarMode} templates={templates} setTemplateKey={setTemplateKey} />
+                    <TemplateToolBar onSetHeight={onSetHeight} onCloseScreen={onCloseScreen} setToolBarMode={setToolBarMode} templates={templates} setTemplateKey={setTemplateKey} />
                     <div {...provided.droppableProps}
                         className='editor-site-container'
                         ref={el => { editorRef.current = el; provided.innerRef(el); }}>
