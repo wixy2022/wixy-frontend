@@ -8,8 +8,8 @@ import { Editor } from "./pages/editor";
 import { Home } from "./pages/home";
 
 export function App() {
-const [pageClass,setPageClass] = useState('')
-console.log(pageClass)
+  const [pageClass, setPageClass] = useState('')
+  console.log(pageClass)
 
 
 
@@ -21,12 +21,12 @@ console.log(pageClass)
       <main className="app">
         <Switch>
           {/* <Route path="/Editor" component={()=><Editor />} /> */}
-          <Route path="/Editor" component={()=><Editor setPageClass={setPageClass}/>} />
+          <Route path="/Editor" component={() => <Editor setPageClass={setPageClass} />} />
           <Route path="/" component={Home} />
         </Switch>
       </main>
       {/* <AppFooter /> */}
-      <UserMsg />
+      {/* <UserMsg /> */}
     </div>
   )
 }

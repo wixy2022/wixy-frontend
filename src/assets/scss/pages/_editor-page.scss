@@ -3,12 +3,14 @@
     position: relative;
     grid-template-columns: 50px 1fr;
 
-    
-    &.tool-bar-open{
+
+    &.tool-bar-open {
         grid-template-columns: 24rem 1fr;
     }
+
     padding: 0;
     margin: 0;
+
     .editor-site-container {
         overflow-y: auto;
         max-height: calc(100vh - 48px);
@@ -16,6 +18,7 @@
         grid-column: 2/-1;
         flex-grow: 1;
         flex-direction: column;
+        position: relative;
 
         & *>:hover {
             outline: 1px black dotted;

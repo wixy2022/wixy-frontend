@@ -1,35 +1,25 @@
 import { NavLink, Link } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react"
+import { setScreen } from "../store/actions/screen.action"
 // import { useState } from "react"
-// import { useDispatch, useSelector } from "react-redux";
 // import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-// import { logout } from "../store/actions/user.action";
 // import logoImg from '../assets/img/logo.png'
 
 export const AppHeader = () => {
+    const { isOpenScreen } = useSelector(storeState => storeState.screenModule)
+    const dispatch = useDispatch()
 
-    // const { user } = useSelector(storeState => storeState.userModule)
-    // const [isMenuOpen, setIsMenuOpen] = useState(false)
-    // const history = useHistory()
-    // const dispatch = useDispatch()
+    // useEffect(() => {
 
-    // const onProfileButton = () => {
-    //     if (user) {
-    //         setIsMenuOpen(!isMenuOpen)
-    //     } else {
-    //         setIsMenuOpen(false)
-    //         history.push('/login')
-    //     }
-    // }
+    // }, [screen])
 
-    // const onLogout = () => {
-    //     dispatch(logout())
-    // }
-
-    // const getFirstLetterOfUser = () => {
-    //     return user.username.charAt(0).toUpperCase()
-    // }
+    const onCloseScreen = () => {
+        dispatch(setScreen(false))
+    }
 
     return <section className="app-header ">
+        {/* {isOpenScreen && <div className="screen" onClick={onCloseScreen}></div>} */}
         <main className="flex align-center">
             {/* <Link to="/"><img src={logoImg} alt="Wixy" className="logo" /></Link> */}
             <Link className="logo-link" to="/"><div className="logo">WiXY</div></Link>
