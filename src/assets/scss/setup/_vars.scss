@@ -1,4 +1,6 @@
+/* GLOBAL SIZES */
+$site-header-height: 48px;
+$site-without-header: calc(100vh - $site-header-height);
+
 /* COLOR PALETTE */
-
-
-$clr1 : rgb(12, 110, 252)
+$clr1 : rgb(12, 110, 252);

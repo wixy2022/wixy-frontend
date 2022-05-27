@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { TempleteCard } from "../cmps/template-card"
+import { utilService } from "../services/util.service"
 import { allWaps } from '../templates/templates'
 
 
@@ -14,7 +15,7 @@ export const Templates = () => {
             Pick the Website Template You Love
         </h1>
         <div className="templates-preview">
-            {allWaps.map(wap => <TempleteCard wap={wap} />)}
+            {allWaps.map(wap => <TempleteCard key={utilService.createKey()} wap={wap} />)}
         </div>
     </section>
 }

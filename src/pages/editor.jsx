@@ -1,41 +1,70 @@
 import { useEffect, useRef, useState } from "react"
-import { DynamicCmp } from "../cmps/dyamin-cmp"
+import { DynamicCmp } from "../cmps/dynamic-cmp"
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { TemplateToolBar } from "../cmps/editor-toolbar"
-import { temp1Wap, temp2Wap } from '../templates/templates'
 import { utilService } from '../services/util.service'
 import { allTemplates } from "../templates/templates"
 import { setScreen, setScreenHeight } from "../store/actions/screen.action"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { Screen } from '../cmps/screen';
-import { height } from "@mui/system";
+import { wapService } from "../services/wap.service";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
+// import { temp1Wap, temp2Wap } from '../templates/templates'
 
 export const Editor = ({ setPageClass }) => {
-    const wap = temp1Wap
+    // const wap = temp1Wap
+    const [wap, setWap] = useState(wapService.getEmptyWap())
     const [toolBarMode, setToolBarMode] = useState('')
-    const [cmps, updateCmps] = useState(wap.cmps)
     const [templateKey, setTemplateKey] = useState(null)
     const dispatch = useDispatch()
     const editorRef = useRef()
     const templates = allTemplates
+    const history = useHistory()
 
     useEffect(() => {
+        loadWap()
         setPageClass('editor-open')
         onSetHeight()
         return () => {
             setPageClass('')
         }
-    }, [])
+    }, [history.location.search])
+
+    useEffect(() => {
+        if (!wap) return
+        const screenHeight = editorRef.current.scrollHeight
+        dispatch(setScreenHeight(screenHeight))
+    }, [wap])
+
+    const loadWap = async () => {
+        const urlSrcPrm = new URLSearchParams(history.location.search)
+        const wapId = urlSrcPrm.get('id')
+
+        if (wapId) {
+            try {
+                const wap = await wapService.getById(wapId)
+                setWap(wap)
+                return
+            } catch (err) {
+                console.log('status', err.response.status)
+                console.log('data', err.response.data)
+                /* FIX -  */
+                // this.props.setUserMsg({ type: 'danger', txt: 'Failed loading your page. Please try again later' })
+            }
+        }
+
+        setWap(wapService.getEmptyWap())
+    }
 
     const onCloseScreen = () => {
         dispatch(setScreen(false))
     }
-    const onSetHeight=()=>{
+    const onSetHeight = () => {
         const screenHeight = editorRef.current.scrollHeight
-        console.log('height-setted', screenHeight)
         dispatch(setScreenHeight(screenHeight))
     }
-  
+
     const handleOnDragEnd = (result) => {
         if (!result.destination) {
             return;
@@ -44,27 +73,31 @@ export const Editor = ({ setPageClass }) => {
             const template = JSON.parse(JSON.stringify(templates[templateKey][result.source.index - 100]))
             template.id = utilService.makeId()
             const idx = result.destination.index
-            cmps.splice(idx, 0, template)
+            let copiedCmps = JSON.parse(JSON.stringify(wap.cmps))
+            copiedCmps.splice(idx, 0, template)
+            // const updatedCmp = wap.cmps.map((currCmp, currIdx) => currIdx === idx ? template : currCmp)
+            // wap.cmps.splice(idx, 0, template)
             onCloseScreen()
-            updateCmps(cmps)
+            setWap({ ...wap, cmps: copiedCmps })
+            // updateCmps(cmps)
 
         } else {
-            let items = JSON.parse(JSON.stringify(cmps))
-            const [recoredItems] = items.splice(result.source.index, 1)
-            items.splice(result.destination.index, 0, recoredItems)
-            updateCmps(items)
+            let copiedCmps = JSON.parse(JSON.stringify(wap.cmps))
+            const [selectedCmp] = copiedCmps.splice(result.source.index, 1)
+            copiedCmps.splice(result.destination.index, 0, selectedCmp)
+            setWap({ ...wap, cmps: copiedCmps })
+            // updateCmps(copiedCmps)
         }
     }
 
     const onEditElement = () => {
-        // console.log('onEditElement')
         dispatch(setScreen(true))
     }
 
-   
+    /* FIX - loader */
+    if (!wap) return ''
 
-    return <section 
-        
+    return <section
         onMouseUp={({ target }) => {
             setTimeout(() => {
                 target.scrollTop = target.scrollTop + 2
@@ -75,21 +108,19 @@ export const Editor = ({ setPageClass }) => {
         <DragDropContext onDragEnd={handleOnDragEnd}>
             <Droppable droppableId={wap._id}>
                 {(provided) => (<>
-                    <TemplateToolBar onSetHeight={onSetHeight} onCloseScreen={onCloseScreen}  setToolBarMode={setToolBarMode} templates={templates} setTemplateKey={setTemplateKey} />
+                    <TemplateToolBar onSetHeight={onSetHeight} onCloseScreen={onCloseScreen} setToolBarMode={setToolBarMode} templates={templates} setTemplateKey={setTemplateKey} />
                     <div {...provided.droppableProps}
                         className='editor-site-container'
                         ref={el => { editorRef.current = el; provided.innerRef(el); }}>
                         <Screen />
-                        {/* {isOpenScreen && <div ref={screenRef} className="screen" onClick={onCloseScreen}></div>} */}
-                        {cmps.map((cmp, idx) => (
+                        {wap.cmps.map((cmp, idx) => (
                             <Draggable key={utilService.createKey()} draggableId={cmp.id} index={idx}>
                                 {(providedDraggable) => {
                                     return <DynamicCmp key={utilService.createKey()} index={idx}
                                         cmp={cmp} forwardref={providedDraggable.innerRef}
                                         onEditElement={onEditElement}
-                                        // isOptionModalOpen={isOptionModalOpen}
-                                        props1={providedDraggable.draggableProps}
-                                        props2={providedDraggable.dragHandleProps} />
+                                        draggableProps={providedDraggable.draggableProps}
+                                        dragHandleProps={providedDraggable.dragHandleProps} />
                                 }}
                             </Draggable>
                         )

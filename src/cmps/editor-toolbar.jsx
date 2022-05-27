@@ -3,7 +3,7 @@ import { Draggable } from "react-beautiful-dnd"
 import { DraggableTemplate } from './draggable-template.jsx'
 import { utilService } from "../services/util.service.js"
 
-export const TemplateToolBar = ({ setToolBarMode, templates, setTemplateKey,onCloseScreen ,onSetHeight }) => {
+export const TemplateToolBar = ({ setToolBarMode, templates, setTemplateKey, onCloseScreen, onSetHeight }) => {
     const [selectedTemplates, setSelectedTemplates] = useState(null)
     const [currTopic, setCurrTopic] = useState(null)
 
@@ -23,7 +23,6 @@ export const TemplateToolBar = ({ setToolBarMode, templates, setTemplateKey,onCl
             setTemplateKey(`${name}`)
             setSelectedTemplates(templates[name])
             setToolBarMode('tool-bar-open')
-
         }
 
     }
@@ -35,7 +34,6 @@ export const TemplateToolBar = ({ setToolBarMode, templates, setTemplateKey,onCl
             <a name={name} onClick={onHandleTemplates} className={`editor-icon-img ${name}`} /></div>)
     }
 
-    // console.log(selectedTemplates)
     return <section className="template-tool-bar" >
         <div className="template-bar-btns">
             {getToolBarButtons()}
@@ -43,13 +41,13 @@ export const TemplateToolBar = ({ setToolBarMode, templates, setTemplateKey,onCl
 
         <div className={`tool-bar-options`}>
             {selectedTemplates && selectedTemplates.map((template, idx) => {
-                return <Draggable style={{ width: '250px', height: '100px' }} key={utilService.createKey() + 'template'} draggableId={template.id + 'template'} index={idx + 100}>
+                return <Draggable key={utilService.createKey() + 'template'} draggableId={template.id + 'template'} index={idx + 100}>
                     {(provided) => {
                         return <DraggableTemplate
                             className="template-editor-display"
-                            props1={provided.draggableProps}
+                            draggableProps={provided.draggableProps}
                             template={template}
-                            props2={provided.dragHandleProps}
+                            dragHandleProps={provided.dragHandleProps}
                             forwardref={provided.innerRef}
                         />
                     }}

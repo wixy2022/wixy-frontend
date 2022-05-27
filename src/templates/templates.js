@@ -21,9 +21,9 @@ export const allTemplates = {
  
 //
 export const temp1Wap = {
-    _id: 'mongoDBId',
+    _id: '62911fb25a660f6cae594bb4',
     name: 'template-dramatic-1',
-    imgUrl: '',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653688477/templates/page-template-01_awthi3.png',
     createdBy: 'miniUser',
     cmps: [wapHeader01,
         wapSection01,
@@ -34,9 +34,9 @@ export const temp1Wap = {
 }
 
 export const temp2Wap = {
-    _id: 'MongoDBId2',
+    _id: '629120385a660f6cae594bb5',
     name: 'template 2',
-    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653565945/templates/page-template-02_glfv7t.png',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653689226/templates/page-template-02_aknlvb.png',
     cmps: [wapHeader02, wapSection02, wapCards02, wapFooter02]
 }
 // /////////////// DEV ONLY
