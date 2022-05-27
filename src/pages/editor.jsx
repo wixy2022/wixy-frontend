@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux"
 import { Screen } from '../cmps/screen';
 import { wapService } from "../services/wap.service";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import {Loader } from "../cmps/app-loader";
 
 // import { temp1Wap, temp2Wap } from '../templates/templates'
 
@@ -95,8 +96,9 @@ export const Editor = ({ setPageClass }) => {
     }
 
     /* FIX - loader */
-    if (!wap) return ''
-
+    
+    if (!wap) return <Loader/>
+     
     return <section
         onMouseUp={({ target }) => {
             setTimeout(() => {
