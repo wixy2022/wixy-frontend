@@ -8,22 +8,20 @@ import { allTemplates } from "../templates/templates"
 import { setScreen, setScreenHeight } from "../store/actions/screen.action"
 import { useDispatch, useSelector } from "react-redux"
 import { Screen } from '../cmps/screen';
+import { height } from "@mui/system";
 
 export const Editor = ({ setPageClass }) => {
     const wap = temp1Wap
     const [toolBarMode, setToolBarMode] = useState('')
     const [cmps, updateCmps] = useState(wap.cmps)
     const [templateKey, setTemplateKey] = useState(null)
-    // const { isOpenScreen } = useSelector(storeState => storeState.screenModule)
     const dispatch = useDispatch()
-    // const screenRef = useRef()
     const editorRef = useRef()
     const templates = allTemplates
 
     useEffect(() => {
-        const screenHeight = editorRef.current.scrollHeight
         setPageClass('editor-open')
-        dispatch(setScreenHeight(screenHeight))
+        onSetHeight()
         return () => {
             setPageClass('')
         }
@@ -32,7 +30,12 @@ export const Editor = ({ setPageClass }) => {
     const onCloseScreen = () => {
         dispatch(setScreen(false))
     }
-
+    const onSetHeight=()=>{
+        const screenHeight = editorRef.current.scrollHeight
+        console.log('height-setted', screenHeight)
+        dispatch(setScreenHeight(screenHeight))
+    }
+  
     const handleOnDragEnd = (result) => {
         if (!result.destination) {
             return;
@@ -58,19 +61,10 @@ export const Editor = ({ setPageClass }) => {
         dispatch(setScreen(true))
     }
 
-    // useEffect(() => {
-    //     setScreenHeight()
-    // })
+   
 
-    // const setScreenHeight = (screenRef) => {
-    //     const height = editorRef.current.scrollHeight
-    //     console.log(height, 'height')
-    //     screenRef.current?.style.setProperty('--screen-height', height + 'px')
-    //     console.log(screenRef.current, 'screenRef.current')
-    // }
-
-
-    return <section
+    return <section 
+        
         onMouseUp={({ target }) => {
             setTimeout(() => {
                 target.scrollTop = target.scrollTop + 2
@@ -81,7 +75,7 @@ export const Editor = ({ setPageClass }) => {
         <DragDropContext onDragEnd={handleOnDragEnd}>
             <Droppable droppableId={wap._id}>
                 {(provided) => (<>
-                    <TemplateToolBar setToolBarMode={setToolBarMode} templates={templates} setTemplateKey={setTemplateKey} />
+                    <TemplateToolBar onSetHeight={onSetHeight} onCloseScreen={onCloseScreen}  setToolBarMode={setToolBarMode} templates={templates} setTemplateKey={setTemplateKey} />
                     <div {...provided.droppableProps}
                         className='editor-site-container'
                         ref={el => { editorRef.current = el; provided.innerRef(el); }}>
