@@ -1,12 +1,11 @@
 .home-page {
-    display: grid;
     max-height: $site-without-header;
-    grid-template-rows: repeat(3, minmax(650px, 1fr));
     overflow-y: auto;
 
     .hero {
         position: relative;
         height: 100%;
+        margin-block-end: 38px;
 
         .get-started {
             display: flex;
