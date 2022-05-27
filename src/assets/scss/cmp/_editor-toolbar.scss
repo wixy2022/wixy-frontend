@@ -8,24 +8,36 @@
     padding-block-start: 30px;
     position: fixed;
     box-shadow: 0px 4px 5px black;
-    .tool-bar-options{
-        transition: 3s ;
+
+    .tool-bar-options {
+        transition: 3s;
         padding-inline-start: rem(20px);
         position: relative;
         width: 400px;
-        > *{
+
+        >* {
             width: 300px;
+            height: fit-content;
             position: relative;
             z-index: 10;
+            box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.664);
+            border-radius: 5px;
+            overflow: hidden;
+
+            &:not(:first-child) {
+                margin-top: 15px;
+            }
         }
     }
-    .template-bar-btns{
+
+    .template-bar-btns {
         padding-inline-start: rem(4.8px);
         align-items: center;
         justify-content: center;
         display: flex;
         flex-direction: column;
     }
+
     .editor-icon-container {
         width: 40px;
         height: 40px;
@@ -312,6 +324,8 @@
     }
 
 }
+
+// box-shadow: 0 0 4px 0px;
 
 //         <div onClick={onHandleTemplates} className='editor-icon-container' name='video' ><a  className="editor-icon-img video" /></div>
 //         <div onClick={onHandleTemplates} className='editor-icon-container' name='form' ><a  className="editor-icon-img form" /></div>

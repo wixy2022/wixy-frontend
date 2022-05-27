@@ -32,7 +32,7 @@ export const TemplateToolBar = ({ setToolBarMode, templates, setTemplateKey }) =
             <a name={name} onClick={onHandleTemplates} className={`editor-icon-img ${name}`} /></div>)
     }
 
-    console.log(selectedTemplates)
+    // console.log(selectedTemplates)
     return <section className="template-tool-bar" >
         <div className="template-bar-btns">
             {getToolBarButtons()}

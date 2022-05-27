@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import { userReducer } from './reducers/user.reducer'
+import { screenReducer } from './reducers/screen.reducer'
 
 export const rootReducer = combineReducers({
-    userModule: userReducer,
+    screenModule: screenReducer,
 })

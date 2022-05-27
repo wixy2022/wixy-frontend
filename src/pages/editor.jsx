@@ -1,30 +1,37 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { DynamicCmp } from "../cmps/dyamin-cmp"
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { TemplateToolBar } from "../cmps/editor-toolbar"
 import { temp1Wap, temp2Wap } from '../templates/templates'
 import { utilService } from '../services/util.service'
-// import { temp1Wap, temp2Wap } from '../templates/temp1'
-import { allTemplates } from "../templates/templates";
-import { dramaticThemeWap } from '../templates/temp1.js'
-
+import { allTemplates } from "../templates/templates"
+import { setScreen, setScreenSettings } from "../store/actions/screen.action"
+import { useDispatch, useSelector } from "react-redux"
+import { Screen } from '../cmps/screen';
 
 export const Editor = ({ setPageClass }) => {
     const wap = temp1Wap
     const [toolBarMode, setToolBarMode] = useState('')
     const [cmps, updateCmps] = useState(wap.cmps)
     const [templateKey, setTemplateKey] = useState(null)
+    // const { isOpenScreen } = useSelector(storeState => storeState.screenModule)
+    const dispatch = useDispatch()
+    // const screenRef = useRef()
+    const editorRef = useRef()
     const templates = allTemplates
+
     useEffect(() => {
+        const screenHeight = editorRef.current.scrollHeight
         setPageClass('editor-open')
+        dispatch(setScreenSettings({})) // {posX, posY, screenHeight, screenWidth}
         return () => {
             setPageClass('')
         }
     }, [])
 
-    useEffect(() => {
-        console.log(cmps)
-    }, [cmps])
+    const onCloseScreen = () => {
+        dispatch(setScreen(false))
+    }
 
     const handleOnDragEnd = (result) => {
         if (!result.destination) {
@@ -36,6 +43,7 @@ export const Editor = ({ setPageClass }) => {
             const idx = result.destination.index
             console.log(template)
             cmps.splice(idx, 0, template)
+            onCloseScreen()
             updateCmps(cmps)
 
         } else {
@@ -46,19 +54,48 @@ export const Editor = ({ setPageClass }) => {
             updateCmps(items)
         }
     }
-    return <section className={`editor ${toolBarMode}`}>
+
+    const onEditElement = () => {
+        // console.log('onEditElement')
+        dispatch(setScreen(true))
+    }
+
+    // useEffect(() => {
+    //     setScreenHeight()
+    // })
+
+    // const setScreenHeight = (screenRef) => {
+    //     const height = editorRef.current.scrollHeight
+    //     console.log(height, 'height')
+    //     screenRef.current?.style.setProperty('--screen-height', height + 'px')
+    //     console.log(screenRef.current, 'screenRef.current')
+    // }
+
+
+    return <section
+        onMouseUp={({ target }) => {
+            setTimeout(() => {
+                target.scrollTop = target.scrollTop + 2
+                target.scrollTop = target.scrollTop - 1
+            }, 20);
+        }}
+        className={`editor ${toolBarMode}`}>
         <DragDropContext onDragEnd={handleOnDragEnd}>
             <Droppable droppableId={wap._id}>
                 {(provided) => (<>
                     <TemplateToolBar setToolBarMode={setToolBarMode} templates={templates} setTemplateKey={setTemplateKey} />
                     <div {...provided.droppableProps}
                         className='editor-site-container'
-                        ref={provided.innerRef}>
+                        ref={el => { editorRef.current = el; provided.innerRef(el); }}>
+                        {/* <Screen /> */}
+                        {/* {isOpenScreen && <div ref={screenRef} className="screen" onClick={onCloseScreen}></div>} */}
                         {cmps.map((cmp, idx) => (
                             <Draggable key={utilService.createKey()} draggableId={cmp.id} index={idx}>
                                 {(providedDraggable) => {
                                     return <DynamicCmp key={utilService.createKey()} index={idx}
                                         cmp={cmp} forwardref={providedDraggable.innerRef}
+                                        onEditElement={onEditElement}
+                                        // isOptionModalOpen={isOptionModalOpen}
                                         props1={providedDraggable.draggableProps}
                                         props2={providedDraggable.dragHandleProps} />
                                 }}
