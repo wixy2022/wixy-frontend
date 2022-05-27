@@ -21,11 +21,6 @@ export const Editor = ({ setPageClass }) => {
             setPageClass('')
         }
     }, [])
-
-    useEffect(() => {
-        console.log(cmps)
-    }, [cmps])
-
     const handleOnDragEnd = (result) => {
         if (!result.destination) {
             return;
@@ -34,12 +29,10 @@ export const Editor = ({ setPageClass }) => {
             const template = JSON.parse(JSON.stringify(templates[templateKey][result.source.index - 100]))
             template.id = utilService.makeId()
             const idx = result.destination.index
-            console.log(template)
             cmps.splice(idx, 0, template)
             updateCmps(cmps)
 
         } else {
-            console.log(result.source)
             let items = JSON.parse(JSON.stringify(cmps))
             const [recoredItems] = items.splice(result.source.index, 1)
             items.splice(result.destination.index, 0, recoredItems)
@@ -67,7 +60,6 @@ export const Editor = ({ setPageClass }) => {
                         )}
                         {provided.placeholder}
                     </div>
-
                 </>
                 )}
             </Droppable>

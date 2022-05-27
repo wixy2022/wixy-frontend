@@ -1,7 +1,8 @@
 .main-app {
     display: grid;
-
+    min-height: 100vh;
     grid-template-rows: 48px 1fr;
+    
     &.editor-open {
         .app-header {
             position: fixed;
@@ -13,5 +14,7 @@
     .app {
         grid-row-start: 2;
         grid-row-end: 3;
+        
     }
+    
 }

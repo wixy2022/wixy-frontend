@@ -11,7 +11,7 @@
     margin: 0;
     .editor-site-container {
         overflow-y: auto;
-        max-height: 94.9vh;
+        max-height: calc(100vh - 48px);
         display: flex;
         grid-column: 2/-1;
         flex-grow: 1;
