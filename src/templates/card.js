@@ -150,3 +150,51 @@ function _getCard02(title, subtitle, details, anchorUrl, anchorTxt) {
 
     return card
 }
+
+export const wapCards03 = {
+    id: utilService.makeId(16),
+    type: 'container-draggable',
+    category: 'wap-cards',
+    theme: 'classic',
+    className: 'wap-cards-03',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653734951/templates/wap-cards-03_nawfbi.png',
+    cmps: [
+        getCard('https://res.cloudinary.com/drpqhjyvk/image/upload/v1653580978/templates/team3_tzdckz.jpg', 'Ashley Jones', 'Art Director'),
+        getCard('https://res.cloudinary.com/drpqhjyvk/image/upload/v1653580978/templates/team1_glsspk.jpg', 'Robert Rose', 'Product Designer'),
+        getCard('https://res.cloudinary.com/drpqhjyvk/image/upload/v1653580978/templates/team2_whg4cx.jpg', 'Alexa Young', 'Product Manager'),
+        getCard('https://res.cloudinary.com/drpqhjyvk/image/upload/v1653734835/templates/team4_itowlp.png', 'Don Fancis', 'Tech Lead'),
+    ],
+}
+
+function getCard(imgUrl, title, subtitle) {
+    const card = {
+        id: utilService.makeId(16),
+        type: 'container',
+        className: 'card flex',
+        imgUrl: '', //ONLY MAIN CONTAINERS WILL USE THIS KEY
+        cmps: [{
+            id: utilService.makeId(16),
+            type: 'img',
+            url: imgUrl,
+            className: 'img',
+        },
+        {
+            id: utilService.makeId(16),
+            type: 'container',
+            className: 'txt-container',
+            cmps: [{
+                id: utilService.makeId(16),
+                type: 'txt',
+                className: 'txt title',
+                txt: title,
+            }, {
+                id: utilService.makeId(16),
+                type: 'txt',
+                className: 'txt description',
+                txt: 'Art Director'
+            }],
+        }],
+    }
+
+    return card
+}
