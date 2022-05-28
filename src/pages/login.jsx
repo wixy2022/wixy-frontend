@@ -3,8 +3,8 @@ import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
 import TextField from '@mui/material/TextField'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import Checkbox from '@mui/material/Checkbox'
+// import FormControlLabel from '@mui/material/FormControlLabel'
+// import Checkbox from '@mui/material/Checkbox'
 import Link from '@mui/material/Link'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
@@ -19,6 +19,17 @@ class _Login extends React.Component {
 
     state = {
         isLoginForm: true
+    }
+
+    componentDidMount() {
+        const mode = this.props.match.path
+        this.setState({ isLoginForm: mode === '/login' })
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.match.path === this.props.match.path) return
+        const mode = this.props.match.path
+        this.setState({ isLoginForm: mode === '/login' })
     }
 
     handleSubmit = async (event, isLogin) => {
@@ -38,7 +49,8 @@ class _Login extends React.Component {
     }
 
     onToggleLoginForm = (isLoginForm) => {
-        this.setState({ isLoginForm })
+        if (isLoginForm) this.props.history.push('/login')
+        else this.props.history.push('/signup')
     }
 
     render() {

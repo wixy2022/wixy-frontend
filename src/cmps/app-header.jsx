@@ -24,7 +24,7 @@ export const AppHeader = () => {
             {/* <Link to="/"><img src={logoImg} alt="Wixy" className="logo" /></Link> */}
             <Link className="logo-link" to="/"><div className="logo">
                 <img src="https://res.cloudinary.com/drpqhjyvk/image/upload/v1653680277/logo-wixy_o9vwtu.png" alt="" />
-                </div></Link>
+            </div></Link>
             {/* <div className="flex"> */}
             <nav className="header-nav">
                 <NavLink to='/' exact>Home</NavLink>
@@ -33,7 +33,10 @@ export const AppHeader = () => {
                 <NavLink to='/editor'>Editor</NavLink>
                 <NavLink to='/my-sites'>My Sites</NavLink>
             </nav>
-            <Link className="login" to='/login'>Login</Link>
+            <nav className="login-signup-container">
+                <Link className="login" to='/login'>Login</Link>
+                <Link className="sign-up" to='/signup'>Sign Up</Link>
+            </nav>
             {/* <div className="profile-button center-text" onClick={onProfileButton}>
                     {!user && <p></p>}
                     {user && <p>{getFirstLetterOfUser()}</p>}
