@@ -4,8 +4,8 @@
 
     .hero {
         position: relative;
-        height: 100%;
-        margin-block-end: 38px;
+        height: 80vh;
+        margin-block-end: -17px;
 
         .get-started {
             display: flex;
@@ -51,7 +51,7 @@
 
             position: relative;
 
-            height: 750px;
+            height: 80vh;
             background-image: url(https://cdn.pixabay.com/photo/2017/11/27/21/31/computer-2982270_1280.jpg);
             background-position: 0 60%;
             opacity: 0.6;

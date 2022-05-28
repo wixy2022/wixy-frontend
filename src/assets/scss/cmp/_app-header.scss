@@ -13,7 +13,7 @@
         // margin-inline-end: 16px;
         border-inline-end: 1px solid lightgrey;
 
-        img{
+        img {
             width: 78%;
             height: 100%;
         }
@@ -37,6 +37,21 @@
         }
 
         &.active {
+            font-weight: 600;
+        }
+    }
+
+    .login-signup-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        a {
+            width: fit-content;
+            margin: 0 8px;
+        }
+
+        .sign-up {
             font-weight: 600;
         }
     }
