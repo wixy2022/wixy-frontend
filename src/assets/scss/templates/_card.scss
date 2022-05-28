@@ -227,3 +227,83 @@
         }
     }
 }
+
+.wap-cards-04 {
+    height: 620px;
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+
+    .title {
+        font-size: 3rem;
+        text-transform: uppercase;
+        font-weight: 100;
+    }
+    .subtitle {
+        max-width: 350px;
+        font-size: 1em;
+        font-weight: 600;
+       
+    }
+
+    .card.left-card {
+        padding: 2em;
+        // width: 50%;
+        flex-grow: 1;
+        justify-content: flex-start;
+        align-items: flex-start;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        background-image: url(https://res.cloudinary.com/drpqhjyvk/image/upload/v1653758121/templates/pexels-photo-4545329_amfi0d.jpg);
+        .anchor{
+            margin-top: rem(40px);
+            font-weight: 700;
+            font-size: 20px;
+          letter-spacing: 1px;
+          background-color: white;
+          padding: .2em 1em .2em;
+        }
+    }
+
+    .card.right-card {
+        flex-grow: 1;
+        padding: 2em;
+        // width: 50%;
+        text-align: right;
+        justify-content: flex-start;
+        align-items: flex-end;
+        background-repeat: no-repeat;
+        display: flex;
+        flex-direction: column;
+        background-size: cover;
+        background-image: url(https://res.cloudinary.com/drpqhjyvk/image/upload/v1653758136/templates/pexels-photo-149369_sfknwg.jpg);
+
+        .title {
+            font-weight: bold;
+            color: white;
+        }
+        .anchor{
+            margin-top: rem(40px);
+            font-weight: 700;
+            font-size: 20px;
+          letter-spacing: 1px;
+          padding: .2em 1em .2em;
+          background-color: black;
+          color: #f0f0f0;
+        }
+        .subtitle {
+            max-width: 350px;
+            font-size: 1em;
+            font-weight: 600;
+        }
+    }
+}
+
+@media (min-width:800px) {
+    .wap-cards-04 {
+        flex-direction: row;
+    }
+}

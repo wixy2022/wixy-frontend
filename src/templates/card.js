@@ -111,11 +111,11 @@ export const wapCards02 = {
     ],
 }
 
-function _getCard02(title, subtitle, details, anchorUrl, anchorTxt) {
+function _getCard02(title, subtitle, details, anchorUrl, anchorTxt, className = '') {
     const card = {
         id: utilService.makeId(16),
         type: 'container',
-        className: 'card',
+        className: `card ${className}`,
         cmps: [{
             id: utilService.makeId(16),
             type: 'txt',
@@ -165,8 +165,80 @@ export const wapCards03 = {
         getCard('https://res.cloudinary.com/drpqhjyvk/image/upload/v1653734835/templates/team4_itowlp.png', 'Don Fancis', 'Tech Lead'),
     ],
 }
+export const wapCards04 = {
+    id: utilService.makeId(16),
+    type: 'container-draggable',
+    category: 'wap-cards',
+    theme: 'classic',
+    className: 'wap-cards-04',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653773086/templates/wap-cards-04_ticnkc.png',
+    cmps: [
+        {
+            id: utilService.makeId(16),
+            type: 'container',
+            className: 'card flex right-card',
+            imgUrl: '', //ONLY MAIN CONTAINERS WILL USE THIS KEY
+            cmps: [{
+                id: utilService.makeId(16),
+                type: 'txt',
+                className: 'title',
+                txt: 'WHAT WE DO',
+            }, {
+                id: utilService.makeId(16),
+                type: 'txt',
+                className: 'subtitle',
+                txt: 'Sample text. Click to select the text box. Click again or double click to start editing the text.',
+            },
+            {
+                id: utilService.makeId(16),
+                type: 'anchor',
+                className: 'anchor',
+                txt: 'READ MORE',
+                imgUrl: '',
+                style: {
+                    borderRadius: '',
+                    backgroundColor: '',
+                    color: '',
+                    fontFamily: ''
+                }
+            }],
+            isPublic: false
+        },
+        {
+            id: utilService.makeId(16),
+            type: 'container',
+            className: 'card flex left-card',
+            imgUrl: '', //ONLY MAIN CONTAINERS WILL USE THIS KEY
+            cmps: [{
+                id: utilService.makeId(16),
+                type: 'txt',
+                className: 'title',
+                txt: 'WHAT WE DO',
+            }, {
+                id: utilService.makeId(16),
+                type: 'txt',
+                className: 'subtitle',
+                txt: 'Sample text. Click to select the text box. Click again or double click to start editing the text.',
+            },
+            {
+                id: utilService.makeId(16),
+                type: 'anchor',
+                className: 'anchor',
+                txt: 'READ MORE',
+                imgUrl: '',
+                style: {
+                    borderRadius: '',
+                    backgroundColor: '',
+                    color: '',
+                    fontFamily: ''
+                }
+            }],
+            isPublic: false
+        },
+],
+}
 
-function getCard(imgUrl, title, subtitle) {
+function getCard(imgUrl, title, subtitle,) {
     const card = {
         id: utilService.makeId(16),
         type: 'container',

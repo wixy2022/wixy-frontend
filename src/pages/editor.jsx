@@ -11,12 +11,12 @@ import { wapService } from "../services/wap.service"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 import { Loader } from "../cmps/app-loader"
 import { useEffectUpdate } from "../hooks/use-effect-update"
+import { EditModal } from "../cmps/edit-modal"
 
 
-// import { temp1Wap, temp2Wap } from '../templates/templates'
+// import { temp1Wap, temp2Wap, temp3Wap } from '../templates/templates'
 
 export const Editor = ({ setPageClass }) => {
-    // const wap = temp1Wap
     const [wap, setWap] = useState(null)
     const [toolBarMode, setToolBarMode] = useState('')
     const [templateKey, setTemplateKey] = useState(null)
@@ -24,6 +24,8 @@ export const Editor = ({ setPageClass }) => {
     const editorRef = useRef()
     const templates = allTemplates
     const history = useHistory()
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+    const [editModalSettings, setEditModalSettings] = useState(null)
 
     useEffect(() => {
         loadWap()
@@ -65,6 +67,7 @@ export const Editor = ({ setPageClass }) => {
     const onCloseScreen = () => {
         dispatch(setScreen(false))
     }
+
     const onSetHeight = () => {
         const screenHeight = editorRef.current.scrollHeight
         dispatch(setScreenHeight(screenHeight))
@@ -95,16 +98,31 @@ export const Editor = ({ setPageClass }) => {
         }
     }
 
-    const onEditElement = () => {
-        dispatch(setScreen(true))
-    }
-
     const onChangeInput = (cmp) => {
         const updatedCmps = wap.cmps.map(currCmp => currCmp.id === cmp.id ? cmp : currCmp)
         setWap({ ...wap, cmps: updatedCmps })
     }
 
-    /* FIX - loader */
+    const onEditElement = () => {
+        dispatch(setScreen(true))
+    }
+
+    const onOpenEditModal = (ev) => {
+        ev.stopPropagation()
+
+        /* FIX - 250 is the width of the modal */
+        /* FIX - 280 = height of modal 200 and 80 i've added */
+
+        let posX = ev.clientX - editorRef.current.offsetLeft //mouse position less editor posX
+        if (window.innerWidth < 500) posX = '' //if mobile, CSS will make it centered to screen
+        else if (posX - 250 <= 16) posX += 250 //if it cant open to the left, it will open to the right
+
+        let posY = ev.clientY + editorRef.current.scrollTop //mouse position plus editor scroll position
+        if (posY - editorRef.current.scrollTop - 280 <= 16) posY += 280 // if it cant open above, it will open below
+
+        setEditModalSettings({ posX, posY, setIsEditModalOpen })
+        setIsEditModalOpen(true)
+    }
 
     return <section
         onMouseUp={({ target }) => {
@@ -130,6 +148,7 @@ export const Editor = ({ setPageClass }) => {
                                         cmp={cmp} forwardref={providedDraggable.innerRef}
                                         onEditElement={onEditElement}
                                         onChangeInput={onChangeInput}
+                                        onOpenEditModal={onOpenEditModal}
                                         draggableProps={providedDraggable.draggableProps}
                                         dragHandleProps={providedDraggable.dragHandleProps} />
                                 }}
@@ -137,10 +156,13 @@ export const Editor = ({ setPageClass }) => {
                         )
                         )}
                         {provided.placeholder}
+
+                        {isEditModalOpen && <EditModal {...editModalSettings} />}
                     </div>
                 </>
                 )}
             </Droppable>
         </DragDropContext>
+
     </section>
 }

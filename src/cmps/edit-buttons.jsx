@@ -1,4 +1,4 @@
-export function EditButtons(props) {
+export function EditButtons({componentType, onOpenEditModal}) {
 
     const getActions = componentType => {
         switch (componentType) {
@@ -25,9 +25,11 @@ export function EditButtons(props) {
     }
 
     // const actions = [{ type: 'color', title: 'Change Color' }, { type: 'clone', title: 'Duplicate Box' }, { type: 'delete', title: 'delete' }, { type: 'txtDecoration', title: 'Change Decoration' }, { type: 'imgUrl', title: 'Change Picture' }, { type: 'borderRadius', title: 'Change Radius' }]
-    const actions = getActions(props.componentType)
+    const actions = getActions(componentType)
     return <div className="edit-buttons up-screen">
-        {actions.map(action => <div className="img-container" title={action.title} key={action.type}><img title={action.title} src={getUrl(action.type)}></img></div>)}
+        {actions.map(action => <div className="img-container" title={action.title} key={action.type} onClick={onOpenEditModal}>
+            <img title={action.title} src={getUrl(action.type)}></img>
+        </div>)}
     </div>
 }
 

@@ -24,18 +24,19 @@ export class DynamicCmp extends React.Component {
     }
 
     getCmp = (cmp) => {
-        const { onEditElement } = this.props
+        const { onEditElement, onOpenEditModal } = this.props
 
         if (cmp.category) cmp.className += ' ' + cmp.category
         if (cmp.theme) cmp.className += ' ' + cmp.theme
 
         switch (cmp.type) {
-            case 'txt': return <TxtCmp cmp={cmp} onEditElement={onEditElement} onChangeInput={this.onChangeInput}/>
+            case 'txt': return <TxtCmp cmp={cmp} onEditElement={onEditElement} onChangeInput={this.onChangeInput} onOpenEditModal={onOpenEditModal}/>
 
             case 'container-draggable':
-            case 'container': return <section className={cmp.className} >
+            case 'container': return <section className={cmp.className}>
                 {cmp.cmps.map((currCmp) =>
-                    <DynamicCmp key={currCmp.id} className={currCmp.className} cmp={currCmp} onEditElement={onEditElement} onChangeInput={this.onChangeInput}/>
+                    <DynamicCmp key={currCmp.id} className={currCmp.className} cmp={currCmp} 
+                        onEditElement={onEditElement} onChangeInput={this.onChangeInput} onOpenEditModal={onOpenEditModal}/>
                 )}
             </section>
 

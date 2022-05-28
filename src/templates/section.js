@@ -35,7 +35,7 @@ export const wapSection02 = {
     {
         id: utilService.makeId(16),
         type: 'container',
-        className: 'description-section',
+        className: 'txt-container',
         cmps: [{
             id: utilService.makeId(16),
             type: 'txt',
@@ -53,4 +53,92 @@ export const wapSection02 = {
             txt: 'Yantra - where every dish is a history book on a plate. Some are complete chapters ­– perfect renditions of traditional Indian cuisine. Others are living chronicles of our times – inspired by tradition and contemporary influences.Yantra pays tribute to fine Indian cuisine with a balanced mix of classic and contemporary dishes. In loving, reverent and highly skilled hands, cherished dishes are recreated with a passion. You will find many dishes are presented in incarnations that simultaneously stir loving memories while exciting your palate.'
         }],
     }],
+}
+
+export const wapSection03 = {
+    id: utilService.makeId(),
+    type: 'container-draggable',
+    category: 'wap-section',
+    theme: 'classic',
+    className: 'wap-section-03',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653755007/templates/section-wap-03_dli4ne.png',
+    cmps: [
+        {
+            id: utilService.makeId(16),
+            type: 'txt',
+            className: 'txt title',
+            txt: 'COMMUNITY & INSPIRATION',
+        }, {
+            id: utilService.makeId(16),
+            type: 'txt',
+            className: 'txt subtitle',
+            txt: 'WHAT ARE MINIMALIST DESIGNS?',
+        }
+
+    ],
+    isPublic: true
+
+
+
+
+}
+
+export const wapSection04 = {
+    id: utilService.makeId(),
+    type: 'container-draggable',
+    category: 'wap-section',
+    theme: 'classic',
+    className: 'wap-section-04',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653773084/templates/wap-section-04_pbeum7.png',
+    cmps: [
+        {
+            id: utilService.makeId(16),
+            type: 'img',
+            url: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653755224/templates/wap-04_u3ivvw.jpg',
+            className: 'wap-section-04-img',
+            style: {
+                borderRadius: '',
+                border: '',
+                boxShadow: ''
+            }
+        },
+        {
+            id: utilService.makeId(16),
+            type: 'txt',
+            className: 'txt title',
+            txt: 'THE FIRM CREATES SUSTAINABLE',
+        }, {
+            id: utilService.makeId(16),
+            type: 'txt',
+            className: 'txt subtitle',
+            txt: 'BUILDINGS AND SPACES',
+        }, {
+            id: utilService.makeId(16),
+            type: 'txt',
+            className: 'txt description',
+            txt: 'Our buildings are shaped by their unique context, the creativity imbued by our design teams and the vision of our clients. '
+        }, {
+            id: utilService.makeId(16),
+            type: 'anchor',
+            className:'anchor',
+            txt: 'learn more',
+            imgUrl: '',
+            style: {
+                borderRadius: '',
+                backgroundColor: '',
+                color: '',
+                fontFamily: ''
+            },
+
+        },
+         
+        
+
+
+    ],
+    isPublic: true
+
+
+
+
 }
