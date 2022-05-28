@@ -95,6 +95,11 @@ export const Editor = ({ setPageClass }) => {
         }
     }
 
+    const onChangeInput = (cmp) => {
+        const updatedCmps = wap.cmps.map(currCmp => currCmp.id === cmp.id ? cmp : currCmp)
+        setWap({ ...wap, cmps: updatedCmps })
+    }
+
     const onEditElement = () => {
         dispatch(setScreen(true))
     }
@@ -124,8 +129,10 @@ export const Editor = ({ setPageClass }) => {
                                     return <DynamicCmp key={utilService.createKey()} index={idx}
                                         cmp={cmp} forwardref={providedDraggable.innerRef}
                                         onEditElement={onEditElement}
+                                        onChangeInput={onChangeInput}
                                         draggableProps={providedDraggable.draggableProps}
-                                        dragHandleProps={providedDraggable.dragHandleProps} />
+                                        dragHandleProps={providedDraggable.dragHandleProps} 
+                                        />
                                 }}
                             </Draggable>
                         )
