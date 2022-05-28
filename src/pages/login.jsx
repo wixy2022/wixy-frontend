@@ -42,10 +42,10 @@ class _Login extends React.Component {
             password: data.get('password'),
         }
 
-        // let loggedInUser
-        // if (isLogin) { loggedInUser = await this.props.login(user) }
-        // else { loggedInUser = await this.props.signUp(user) }
-        // if (loggedInUser) this.props.history.push('/')
+        let loggedInUser
+        if (isLogin) { loggedInUser = await this.props.login(user) }
+        else { loggedInUser = await this.props.signUp(user) }
+        if (loggedInUser) this.props.history.push('/templates')
     }
 
     onToggleLoginForm = (isLoginForm) => {
