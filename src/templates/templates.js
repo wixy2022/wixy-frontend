@@ -1,15 +1,15 @@
 import { wapHeader01, wapHeader02 } from './header'
-import { wapSection01, wapSection02 } from './section'
-import { wapCards01, wapCards02, wapCards03 } from './card'
+import { wapSection01, wapSection02 , wapSection03,wapSection04} from './section'
+import { wapCards01, wapCards02, wapCards03 ,wapCards04} from './card'
 import { wapFooter01, wapFooter02 } from './footer'
 import { wapText01 } from './text'
 import { wapGallery01, wapGallery0102 } from './gallery'
 
 export const allTemplates = {
     header: [wapHeader01, wapHeader02],
-    section: [wapSection01, wapSection02],
+    section: [wapSection01, wapSection02, wapSection03,wapSection04],
     text: [wapText01],
-    cards: [wapCards01, wapCards02, wapCards03],
+    cards: [wapCards01, wapCards02, wapCards03,wapCards04],
     gallery: [wapGallery0102],
     form: [],
     map: [],
@@ -39,5 +39,8 @@ export const temp2Wap = {
     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653689226/templates/page-template-02_aknlvb.png',
     cmps: [wapHeader02, wapSection02, wapCards02, wapCards03, wapFooter02]
 }
+const alexWap =[ wapSection03,wapSection04, wapSection03,wapCards04]
+
+
 // /////////////// DEV ONLY
 export const allWaps = [temp2Wap, temp1Wap, temp2Wap, temp1Wap, temp2Wap, temp1Wap, temp2Wap, temp1Wap, temp2Wap]

@@ -22,12 +22,13 @@
             align-items: center;
 
             >* {
-                animation: toolbar-animation .4s forwards;
+                animation: toolbar-animation .4s 1 forwards;
 
                 @keyframes toolbar-animation {
                     100% {
                         // right: 0px;
                         top: 0;
+
                     }
 
                 }
@@ -45,7 +46,7 @@
         top: 10px;
 
         >* {
-            top: 500px;
+            top: 300px;
             width: 320px;
             // right: 420px;
             height: fit-content;
@@ -378,6 +379,7 @@
         .template-bar-btns {
             width: unset;
         }
+
         .editor-icon-container {
             width: 50px;
             height: 50px;
