@@ -6,12 +6,14 @@ import { Login } from './pages/login.jsx'
 import { UserMsg } from "./cmps/user-msg";
 import { Editor } from "./pages/editor";
 import { Home } from "./pages/home";
+import { EditModal } from "./cmps/edit-modal.jsx";
 
 
 export function App() {
   const [pageClass, setPageClass] = useState('')
   return (
     <div className={`main-app ${pageClass}`}>
+      <EditModal />
       <AppHeader />
 
       <main className="app">

@@ -35,7 +35,7 @@ export const wapSection02 = {
     {
         id: utilService.makeId(16),
         type: 'container',
-        className: 'description-section',
+        className: 'txt-container',
         cmps: [{
             id: utilService.makeId(16),
             type: 'txt',

@@ -1,0 +1,92 @@
+.edit-modal {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1002;
+    min-width: 250px;
+    overflow: hidden;
+    border-top: 6px solid $clr1;
+    background-color: white;
+    border-radius: 6px;
+
+    &>header {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid lightgray;
+
+        &>h2 {
+            font-size: 1rem;
+            font-weight: bold;
+            padding: 1rem;
+        }
+
+        &>.close-btn {
+            align-self: center;
+            position: relative;
+            height: 35px;
+            width: 35px;
+            margin-inline-end: 1rem;
+            font-weight: bold;
+            border-radius: 50%;
+
+            &:hover {
+                background-color: $clr3;
+            }
+
+            &>button {
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: unset;
+                border: unset;
+            }
+        }
+    }
+
+    &>main {
+        max-height: 200px;
+        overflow-y: auto;
+    }
+
+    .list-item {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        padding: 0.8rem 1rem;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $clr2;
+        }
+
+        >.img-container {
+            height: 15px;
+            width: 15px;
+            background-position: top;
+            background-size: contain;
+
+            &.classic {
+                background-image: url(https://res.cloudinary.com/drpqhjyvk/image/upload/v1653753825/icons/classic-icon_g76m7l.png);
+            }
+
+            &.dark {
+                background-image: url(https://res.cloudinary.com/drpqhjyvk/image/upload/v1653756620/icons/dark-icon_mt6man.png);
+            }
+
+            &.dramatic {
+                background-image: url(https://res.cloudinary.com/drpqhjyvk/image/upload/v1653756621/icons/dramatic-icon_vqc0aa.png);
+            }
+
+            &.festive {
+                background-image: url(https://res.cloudinary.com/drpqhjyvk/image/upload/v1653756621/icons/festive-icon_rohjrb.png);
+            }
+
+            &.light {
+                background-image: url(https://res.cloudinary.com/drpqhjyvk/image/upload/v1653756620/icons/light-icon_kqgpse.png);
+            }
+        }
+    }
+}
