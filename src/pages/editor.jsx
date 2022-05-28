@@ -14,10 +14,9 @@ import { useEffectUpdate } from "../hooks/use-effect-update"
 import { EditModal } from "../cmps/edit-modal"
 
 
-// import { temp1Wap, temp2Wap } from '../templates/templates'
+// import { temp1Wap, temp2Wap, temp3Wap } from '../templates/templates'
 
 export const Editor = ({ setPageClass }) => {
-    // const wap = temp1Wap
     const [wap, setWap] = useState(null)
     const [toolBarMode, setToolBarMode] = useState('')
     const [templateKey, setTemplateKey] = useState(null)
@@ -68,6 +67,7 @@ export const Editor = ({ setPageClass }) => {
     const onCloseScreen = () => {
         dispatch(setScreen(false))
     }
+    
     const onSetHeight = () => {
         const screenHeight = editorRef.current.scrollHeight
         dispatch(setScreenHeight(screenHeight))
@@ -123,9 +123,7 @@ export const Editor = ({ setPageClass }) => {
         setEditModalSettings({ posX, posY, setIsEditModalOpen })
         setIsEditModalOpen(true)
     }
-
-    /* FIX - loader */
-
+    
     return <section
         onMouseUp={({ target }) => {
             setTimeout(() => {

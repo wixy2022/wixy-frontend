@@ -171,7 +171,7 @@ export const wapCards04 = {
     category: 'wap-cards',
     theme: 'classic',
     className: 'wap-cards-04',
-    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653734951/templates/wap-cards-03_nawfbi.png',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653773086/templates/wap-cards-04_ticnkc.png',
     cmps: [
         {
             id: utilService.makeId(16),

@@ -54,6 +54,7 @@ export const wapSection02 = {
         }],
     }],
 }
+
 export const wapSection03 = {
     id: utilService.makeId(),
     type: 'container-draggable',
@@ -81,13 +82,14 @@ export const wapSection03 = {
 
 
 }
+
 export const wapSection04 = {
     id: utilService.makeId(),
     type: 'container-draggable',
     category: 'wap-section',
     theme: 'classic',
     className: 'wap-section-04',
-    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653755007/templates/section-wap-03_dli4ne.png',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653773084/templates/wap-section-04_pbeum7.png',
     cmps: [
         {
             id: utilService.makeId(16),
