@@ -54,15 +54,85 @@ export const wapSection02 = {
         }],
     }],
 }
- export const wapSection03 ={
+export const wapSection03 = {
     id: utilService.makeId(),
     type: 'container-draggable',
     category: 'wap-section',
     theme: 'classic',
     className: 'wap-section-03',
-    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653565595/templates/wap-section-02_jrcyn7.png',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653755007/templates/section-wap-03_dli4ne.png',
     cmps: [
+        {
+            id: utilService.makeId(16),
+            type: 'txt',
+            className: 'txt title',
+            txt: 'COMMUNITY & INSPIRATION',
+        }, {
+            id: utilService.makeId(16),
+            type: 'txt',
+            className: 'txt subtitle',
+            txt: 'WHAT ARE MINIMALIST DESIGNS?',
+        }
+
+    ],
+    isPublic: true
+
+
+
+
+}
+export const wapSection04 = {
+    id: utilService.makeId(),
+    type: 'container-draggable',
+    category: 'wap-section',
+    theme: 'classic',
+    className: 'wap-section-04',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653755007/templates/section-wap-03_dli4ne.png',
+    cmps: [
+        {
+            id: utilService.makeId(16),
+            type: 'img',
+            url: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653755224/templates/wap-04_u3ivvw.jpg',
+            className: 'wap-section-04-img',
+            style: {
+                borderRadius: '',
+                border: '',
+                boxShadow: ''
+            }
+        },
+        {
+            id: utilService.makeId(16),
+            type: 'txt',
+            className: 'txt title',
+            txt: 'THE FIRM CREATES SUSTAINABLE',
+        }, {
+            id: utilService.makeId(16),
+            type: 'txt',
+            className: 'txt subtitle',
+            txt: 'BUILDINGS AND SPACES',
+        }, {
+            id: utilService.makeId(16),
+            type: 'txt',
+            className: 'txt description',
+            txt: 'Our buildings are shaped by their unique context, the creativity imbued by our design teams and the vision of our clients. '
+        }, {
+            id: utilService.makeId(16),
+            type: 'anchor',
+            className:'anchor',
+            txt: 'learn more',
+            imgUrl: '',
+            style: {
+                borderRadius: '',
+                backgroundColor: '',
+                color: '',
+                fontFamily: ''
+            },
+
+        },
+         
         
+
+
     ],
     isPublic: true
 
