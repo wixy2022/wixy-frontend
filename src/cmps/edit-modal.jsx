@@ -1,6 +1,4 @@
-import { useState } from "react"
-
-export const EditModal = () => {
+export const EditModal = ({ posX, posY, setIsEditModalOpen }) => {
 
     const isList = true
     const title = 'Themes'
@@ -9,10 +7,10 @@ export const EditModal = () => {
     /* FIX - change idx to id */
     /* FIX - islist should be by the object we send */
 
-    return <section className="edit-modal">
+    return <section className="edit-modal" style={{ left: posX, top: posY }}>
         <header>
             <h2>{title}</h2>
-            <div className="close-btn"><button>✖</button></div>
+            <div className="close-btn" onClick={() => setIsEditModalOpen(false)}><button>✖</button></div>
         </header>
         <main>
             {isList && list.map((item, idx) => <div key={idx} className={`list-item ${item}`}>

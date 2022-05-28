@@ -1,4 +1,4 @@
-export function EditButtons(props) {
+export function EditButtons({componentType, onOpenEditModal}) {
 
     const getActions = componentType => {
         switch (componentType) {
@@ -13,7 +13,7 @@ export function EditButtons(props) {
     const getUrl = actionType => {
         // console.log(actionType)
         switch (actionType) {
-            case 'theme': return 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653746696/icons/theme-_bvmxcd.png'
+            case 'theme': return 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653747364/icons/theme-icon_aoick6.png'
             case 'color': return 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653592961/icons/color_kjmbom.png'
             case 'clone': return 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653598367/icons/copy_exfrdo.png'
             case 'delete': return 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653598367/icons/trash_egjl8h.png'
@@ -25,9 +25,11 @@ export function EditButtons(props) {
     }
 
     // const actions = [{ type: 'color', title: 'Change Color' }, { type: 'clone', title: 'Duplicate Box' }, { type: 'delete', title: 'delete' }, { type: 'txtDecoration', title: 'Change Decoration' }, { type: 'imgUrl', title: 'Change Picture' }, { type: 'borderRadius', title: 'Change Radius' }]
-    const actions = getActions(props.componentType)
+    const actions = getActions(componentType)
     return <div className="edit-buttons up-screen">
-        {actions.map(action => <div className="img-container" title={action.title} key={action.type}><img title={action.title} src={getUrl(action.type)}></img></div>)}
+        {actions.map(action => <div className="img-container" title={action.title} key={action.type} onClick={onOpenEditModal}>
+            <img title={action.title} src={getUrl(action.type)}></img>
+        </div>)}
     </div>
 }
 
