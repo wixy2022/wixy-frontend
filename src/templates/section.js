@@ -54,3 +54,19 @@ export const wapSection02 = {
         }],
     }],
 }
+ export const wapSection03 ={
+    id: utilService.makeId(),
+    type: 'container-draggable',
+    category: 'wap-section',
+    theme: 'classic',
+    className: 'wap-section-03',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653565595/templates/wap-section-02_jrcyn7.png',
+    cmps: [
+        
+    ],
+    isPublic: true
+
+
+
+
+}

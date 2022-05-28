@@ -1,5 +1,5 @@
 import { wapHeader01, wapHeader02 } from './header'
-import { wapSection01, wapSection02 } from './section'
+import { wapSection01, wapSection02 , wapSection03} from './section'
 import { wapCards01, wapCards02, wapCards03 } from './card'
 import { wapFooter01, wapFooter02 } from './footer'
 import { wapText01 } from './text'
@@ -7,7 +7,7 @@ import { wapGallery01, wapGallery0102 } from './gallery'
 
 export const allTemplates = {
     header: [wapHeader01, wapHeader02],
-    section: [wapSection01, wapSection02],
+    section: [wapSection01, wapSection02, wapSection03],
     text: [wapText01],
     cards: [wapCards01, wapCards02, wapCards03],
     gallery: [wapGallery0102],
