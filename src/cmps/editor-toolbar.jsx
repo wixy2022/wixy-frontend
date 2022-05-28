@@ -6,9 +6,9 @@ import { utilService } from "../services/util.service.js"
 export const TemplateToolBar = ({ setToolBarMode, templates, setTemplateKey, onCloseScreen, onSetHeight }) => {
     const [selectedTemplates, setSelectedTemplates] = useState(null)
     const [currTopic, setCurrTopic] = useState(null)
-
+    
     const onHandleTemplates = async (ev) => {
-        ev.stopPropagation()
+        // ev.stopPropagation()
         const { name } = ev.target
         onCloseScreen()
         await onSetHeight()
@@ -28,10 +28,13 @@ export const TemplateToolBar = ({ setToolBarMode, templates, setTemplateKey, onC
     }
     const getToolBarButtons = () => {
         const names = ['header', 'section', 'text', 'cards', 'gallery', 'form', 'map', 'chat', 'video', 'footer',]
-        return names.map((name) => <div
+        return names.map((name) => <button
+        onClick={onHandleTemplates}
             className='editor-icon-container'
             key={name} name={name} >
-            <a name={name} onClick={onHandleTemplates} className={`editor-icon-img ${name}`} /></div>)
+
+            <a name={name} onClick={onHandleTemplates} className={`editor-icon-img ${name}`} ></a>
+            </button>)
     }
 
     return <section className="template-tool-bar" >
@@ -41,7 +44,7 @@ export const TemplateToolBar = ({ setToolBarMode, templates, setTemplateKey, onC
 
         <div className={`tool-bar-options`}>
             {selectedTemplates && selectedTemplates.map((template, idx) => {
-                return <Draggable key={utilService.createKey() + 'template'} draggableId={template.id + 'template'} index={idx + 100}>
+                return <Draggable  key={utilService.createKey() + 'template'} draggableId={template.id + 'template'} index={idx + 100}>
                     {(provided) => {
                         return <DraggableTemplate
                             className="template-editor-display"
