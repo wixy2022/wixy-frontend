@@ -42,11 +42,8 @@ class _Login extends React.Component {
             password: data.get('password'),
         }
 
-<<<<<<< HEAD
-=======
         console.log('111')
 
->>>>>>> d4f14ed7ee2803ffa7c1307fa83bb8f3e2a46c64
         let loggedInUser
         if (isLogin) { loggedInUser = await this.props.login(user) }
         else { loggedInUser = await this.props.signUp(user) }
