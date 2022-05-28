@@ -1,0 +1,25 @@
+.wap-gallery-01 {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(14, 14, 14);
+    gap: 3%;
+    height: fit-content;
+
+    img {
+        width: 100%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        position: center;
+    }
+
+}
+
+@media (min-width: 625px) {
+    .wap-gallery-01 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
+        align-items: stretch;
+        justify-content: stretch;
+        flex-direction: unset;
+    }
+}

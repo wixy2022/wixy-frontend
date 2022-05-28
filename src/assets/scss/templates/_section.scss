@@ -1,4 +1,35 @@
+.wap-hero-01 {
+    width: 100%;
+    min-height: 72vh;
+    background-image: url("https://wallpaperaccess.com/full/3156824.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: flex-end;
+    padding: 15px;
 
+    .txt-cmp {
+        flex-grow: 1;
+        font-size: 1.5rem;
+        color: white;
+    }
+
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        text-overflow: clip;
+        font-family: alfa-slab-one;
+    }
+}
+
+@media (min-width: 625px) {
+    .wap-hero-01 {
+        .txt-cmp {
+            font-size: 2.5rem;
+        }
+    }
+}
 
 .wap-section-02 {
     overflow: hidden;

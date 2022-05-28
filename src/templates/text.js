@@ -5,7 +5,7 @@ export const wapText01 = {
     type: 'container-draggable',
     category: 'wap-text',
     theme: 'dramatic',
-    className: 'wap-text-01',
+    className: 'wap-txt-01',
     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653580954/templates/title.t1_vlcch7.png',
     cmps: [{
         id: utilService.makeId(),

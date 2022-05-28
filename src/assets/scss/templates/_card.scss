@@ -1,3 +1,108 @@
+.wap-cards-01 {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    text-align: center;
+    border: 24px solid rgb(14, 14, 14);
+    background-color: rgba(0, 0, 0, 0.897);
+    padding: 8px 15px;
+
+    pre {
+        font-size: 2.7rem;
+        color: rgb(209, 209, 209);
+        letter-spacing: 3px;
+        font-family: alfa-slab-one;
+        font-weight: 400;
+        width: fit-content;
+    }
+
+    .dramatic-team-list {
+        flex-grow: 1;
+        flex-direction: column;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 100%;
+        gap: 15px;
+    }
+
+    .dramatic-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+
+        .txt-cmp {
+            width: 100%;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 251px;
+        }
+
+        pre {
+            height: 45px;
+            width: 100%;
+            font-size: 1.3rem;
+            font-weight: 600;
+            font-family: open-sans;
+            background-color: rgb(209, 209, 209);
+            color: rgb(14, 14, 14);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 5px;
+            border: 2px solid rgb(14, 14, 14);
+            // box-shadow: inset 0 0 16px 4px rgba(14, 14, 14, 0.651);
+        }
+
+        &>.img-cmp {
+            max-width: 251px;
+            flex-grow: 1;
+            display: flex;
+
+            &>img {
+                width: 100%;
+                aspect-ratio: 1/1;
+                object-fit: cover;
+                border-radius: 5px;
+                object-position: 0 -12px;
+                border: 2px solid rgb(14, 14, 14);
+                // opacity: 0.8;
+            }
+        }
+    }
+
+}
+
+@media (min-width: 625px) {
+    .wap-cards-01 {
+        min-height: 380px;
+
+        .dramatic-team-list {
+            flex-direction: unset;
+            gap: unset;
+        }
+
+        div:last-of-type {
+            max-width: 253px;
+
+        }
+
+        .img-cmp {
+            max-width: 250px;
+        }
+    }
+}
+
 .wap-cards-02 .card {
     padding: 2rem;
     text-align: center;

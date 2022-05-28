@@ -11,7 +11,7 @@ export const TxtCmp = ({ cmp, onEditElement }) => {
         onEditElement()
     }
 
-    return <div className="relative">
+    return <div className="txt-cmp relative">
         {isOptionModalOpen && <EditButtons componentType={cmp.type} />}
         <pre onClick={onTxtClick} onBlur={() => { setIsOptionModalOpen(false) }} className={`up-screen txt-cmp ${cmp.className}`} style={cmp.style} contentEditable suppressContentEditableWarning={true}
         >{cmp.txt}</pre>
