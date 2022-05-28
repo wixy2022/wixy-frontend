@@ -3,8 +3,8 @@ import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
 import TextField from '@mui/material/TextField'
-// import FormControlLabel from '@mui/material/FormControlLabel'
-// import Checkbox from '@mui/material/Checkbox'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Checkbox from '@mui/material/Checkbox'
 import Link from '@mui/material/Link'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
@@ -32,9 +32,9 @@ class _Login extends React.Component {
         this.setState({ isLoginForm: mode === '/login' })
     }
 
-    handleSubmit = async (event, isLogin) => {
-        event.preventDefault()
-        const data = new FormData(event.currentTarget)
+    handleSubmit = async (ev, isLogin) => {
+        ev.preventDefault()
+        const data = new FormData(ev.currentTarget)
         const user = {
             firstName: data.get('firstName'),
             lastName: data.get('lastName'),
@@ -42,6 +42,11 @@ class _Login extends React.Component {
             password: data.get('password'),
         }
 
+<<<<<<< HEAD
+=======
+        console.log('111')
+
+>>>>>>> d4f14ed7ee2803ffa7c1307fa83bb8f3e2a46c64
         let loggedInUser
         if (isLogin) { loggedInUser = await this.props.login(user) }
         else { loggedInUser = await this.props.signUp(user) }
@@ -62,6 +67,7 @@ class _Login extends React.Component {
         // console.log('theme', theme)
 
         return <section>
+            {/* ~~~~~~~~~~ SIGN-IN PAGE  ~~~~~~~~~~ */}
             {!isLoginForm && <ThemeProvider theme={theme}>
                 <Container component="main" maxWidth="xs">
                     <CssBaseline />
@@ -145,8 +151,7 @@ class _Login extends React.Component {
                 </Container>
             </ThemeProvider >}
 
-            {/* ///////////////////////// */}
-
+            {/* ~~~~~~~~~~ LOGIN PAGE  ~~~~~~~~~~ */}
             {isLoginForm && <ThemeProvider theme={theme}>
                 <Container component="main" maxWidth="xs">
                     <CssBaseline />

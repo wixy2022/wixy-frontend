@@ -1,9 +1,11 @@
-import Axios from 'axios'
-const axios = Axios.create({
-    withCredentials: true
-})
+import { httpService } from "./http.service"
 
-const AUTH_URL = (process.env.NODE_ENV == 'production') ? '/api/auth' : '//localhost:3030/api/auth'
+// import Axios from 'axios'
+// const axios = Axios.create({
+//     withCredentials: true
+// })
+
+// const AUTH_URL = (process.env.NODE_ENV == 'production') ? '/api/auth' : '//localhost:3030/api/auth'
 
 export const userService = {
     login,
@@ -18,21 +20,21 @@ function getLoggedInUser() {
 }
 
 async function login(user) {
-    const res = await axios.post(`${AUTH_URL}/login`, user)
-    const loggedinUser = res.data
+    const loggedinUser = await httpService.post(`auth/login`, user)
     sessionStorage.setItem('loggedinUser', JSON.stringify(loggedinUser))
     console.log('login', loggedinUser)
+    console.log('login')
     return loggedinUser
 }
 
 async function logout() {
-    await axios.post(`${AUTH_URL}/logout`)
+    await httpService.post(`auth/logout`)
     sessionStorage.removeItem('loggedinUser')
 }
 
 async function signUp(user) {
-    const res = await axios.post(`${AUTH_URL}/signup`, user)
-    const loggedinUser = res.data
+    console.log(user, 'user from service')
+    const loggedinUser = await httpService.post(`auth/signup`, user)
     sessionStorage.setItem('loggedinUser', JSON.stringify(loggedinUser))
     console.log('signup', loggedinUser)
     return Promise.resolve(loggedinUser)
