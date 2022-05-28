@@ -10,7 +10,6 @@ import { Screen } from '../cmps/screen'
 import { wapService } from "../services/wap.service"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 import { Loader } from "../cmps/app-loader"
-import { useEffectUpdate } from "../hooks/use-effect-update"
 
 
 // import { temp1Wap, temp2Wap } from '../templates/templates'
