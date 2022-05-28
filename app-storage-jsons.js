@@ -12,8 +12,8 @@ const containerCmp = {
     id: null, //makeId,
     type: 'container',
     category: 'wap-header',
-    theme: ['happy'], //ONLY MAIN CONTAINERS WILL USE THIS KEY
-    className: ['happy-header'],
+    theme: 'happy', //ONLY MAIN CONTAINERS WILL USE THIS KEY
+    className: 'wap-header-99',
     imgUrl: '', //ONLY MAIN CONTAINERS WILL USE THIS KEY
     style: {
         //IF WE WILL ADD AN EDITOR
@@ -34,7 +34,7 @@ const containerCmp = {
 const txtCmp = {
     id: null, //makeId
     type: 'txt',
-    className: [],
+    className: 'txt',
     txt: 'string of text',
     style: {
         //IF WE WILL ADD AN EDITOR
@@ -49,9 +49,9 @@ const txtCmp = {
 
 const imgCmp = {
     id: null, //makeId,
-    type:'img',
+    type: 'img',
     url: 'https://m.media-amazon.com/images/I/81ZifMbP2dL._SY450_.jpg',
-    className: [],
+    className: '',
     style: {
         //IF WE WILL ADD AN EDITOR
         borderRadius: '0',
@@ -62,10 +62,10 @@ const imgCmp = {
 
 const anchorCmp = {
     id: null, //makeId
-    type:'anchor',
+    type: 'anchor',
     url: '',
-    txt:'Contact us',
-    className: [],
+    txt: 'Contact us',
+    className: '',
     style: {
         //IF WE WILL ADD AN EDITOR
         borderRadius: '0',
@@ -93,11 +93,13 @@ const user = {
     _id: 'mongoDBId',
     username: '',
     password: '',
-    fullname: '',
+    firstName: '',
+    lastName: '',
     savedSites: [wap, wap]
 }
 
 const miniUser = {
     _id: '',
-    fullname: ''
+    firstName: '',
+    lastName: '',
 }
