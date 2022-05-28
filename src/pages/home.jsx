@@ -11,8 +11,8 @@ export function Home() {
 
         <section className="hero">
             <div className="get-started">
-                <div> Create a website with </div>
-                <div className="logo"><img src="https://res.cloudinary.com/drpqhjyvk/image/upload/v1653680277/logo-wixy_o9vwtu.png" alt="" /></div>
+                <div> Create a website with</div>
+                <div className="logo"><img src="https://res.cloudinary.com/drpqhjyvk/image/upload/v1653740284/logo-wixy_fafsy0.png" alt="" /></div>
                 <Link to="/templates"><button className="get-started-btn">Get Started</button></Link>
             </div>
             <div className="hero-img"></div>

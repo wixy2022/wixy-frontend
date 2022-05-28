@@ -44,7 +44,7 @@ export const TemplateToolBar = ({ setToolBarMode, templates, setTemplateKey, onC
 
         <div className={`tool-bar-options`}>
             {selectedTemplates && selectedTemplates.map((template, idx) => {
-                return <Draggable key={utilService.createKey() + 'template'} draggableId={template.id + 'template'} index={idx + 100}>
+                return <Draggable  key={utilService.createKey() + 'template'} draggableId={template.id + 'template'} index={idx + 100}>
                     {(provided) => {
                         return <DraggableTemplate
                             className="template-editor-display"

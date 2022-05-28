@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { EditButtons } from '../edit-buttons.jsx'
 
-export const TxtCmp = ({ cmp, onEditElement }) => {
+export const TxtCmp = ({ cmp, onEditElement, onChangeInput }) => {
 
     const [isOptionModalOpen, setIsOptionModalOpen] = useState(false)
 
@@ -11,10 +11,15 @@ export const TxtCmp = ({ cmp, onEditElement }) => {
         onEditElement()
     }
 
+    const onBlur = ({ target: { innerText } }) => {
+        setIsOptionModalOpen(false)
+        console.log('BLUR innerText', innerText)
+        onChangeInput(cmp, 'txt', innerText)
+    }
+
     return <div className="relative">
         {isOptionModalOpen && <EditButtons componentType={cmp.type} />}
-        {/* onBlur={() => { setIsOptionModalOpen(false) }} */}
-        <pre onClick={onTxtClick} className={`up-screen txt-cmp ${cmp.className}`} style={cmp.style} contentEditable suppressContentEditableWarning={true}
+        <pre onClick={onTxtClick} onBlur={onBlur} className={`up-screen txt-cmp ${cmp.className}`} style={cmp.style} contentEditable suppressContentEditableWarning={true}
         >{cmp.txt}</pre>
     </div>
 

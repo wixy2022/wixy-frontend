@@ -23,7 +23,7 @@ export const AppHeader = () => {
         <main className="flex align-center">
             {/* <Link to="/"><img src={logoImg} alt="Wixy" className="logo" /></Link> */}
             <Link className="logo-link" to="/"><div className="logo">
-                <img src="https://res.cloudinary.com/drpqhjyvk/image/upload/v1653680277/logo-wixy_o9vwtu.png" alt="" />
+                <img src="https://res.cloudinary.com/drpqhjyvk/image/upload/v1653740284/logo-wixy_fafsy0.png" alt="" />
             </div></Link>
             {/* <div className="flex"> */}
             <nav className="header-nav">

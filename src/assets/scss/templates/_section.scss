@@ -1,0 +1,54 @@
+
+
+.wap-section-02 {
+    overflow: hidden;
+    background-color: rgb(224, 213, 202);
+
+    &>.img-container {
+        overflow: hidden;
+        max-height: 250px;
+
+        &>img {
+            width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+
+    .description-section {
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+
+        .txt.title {
+            font-size: 2.5rem;
+            font-style: italic;
+        }
+
+        .txt.subtitle {
+            font-weight: bold;
+        }
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .wap-section-02 {
+        max-height: 400px;
+        display: flex;
+        max-height: unset;
+
+        &>.img-container {
+            width: 60%;
+            min-height: 400px;
+            max-height: unset;
+        }
+
+        .description-section {
+            width: 40%;
+            padding: 2rem;
+        }
+
+    }
+}
