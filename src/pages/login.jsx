@@ -15,21 +15,12 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { connect } from "react-redux"
 import { signUp, login } from '../store/actions/user.action.js'
 
+import { FacebookAuthentication } from '../cmps/facebook-authentication'
+
 class _Login extends React.Component {
 
     state = {
         isLoginForm: true
-    }
-
-    componentDidMount() {
-        const mode = this.props.match.path
-        this.setState({ isLoginForm: mode === '/login' })
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps.match.path === this.props.match.path) return
-        const mode = this.props.match.path
-        this.setState({ isLoginForm: mode === '/login' })
     }
 
     handleSubmit = async (ev, isLogin) => {
@@ -42,17 +33,22 @@ class _Login extends React.Component {
             password: data.get('password'),
         }
 
-        console.log('111')
-
         let loggedInUser
         if (isLogin) { loggedInUser = await this.props.login(user) }
         else { loggedInUser = await this.props.signUp(user) }
         if (loggedInUser) this.props.history.push('/templates')
     }
 
+    handleFacebookAuthentication = async (facebookUser) => {
+        console.log(facebookUser, 'facebookUser')
+        facebookUser.isSocial = true
+        console.log(facebookUser, 'facebookUser')
+        const loggedInUser = await this.props.login(facebookUser)
+        if (loggedInUser) this.props.history.push('/templates')
+    }
+
     onToggleLoginForm = (isLoginForm) => {
-        if (isLoginForm) this.props.history.push('/login')
-        else this.props.history.push('/signup')
+        this.setState({ isLoginForm })
     }
 
     render() {
@@ -149,62 +145,69 @@ class _Login extends React.Component {
             </ThemeProvider >}
 
             {/* ~~~~~~~~~~ LOGIN PAGE  ~~~~~~~~~~ */}
-            {isLoginForm && <ThemeProvider theme={theme}>
-                <Container component="main" maxWidth="xs">
-                    <CssBaseline />
-                    <Box
-                        sx={{
-                            marginTop: 8,
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                        }}
-                    >
-                        <Avatar sx={{ m: 1, bgcolor: '#424242' }}>
-                        </Avatar>
-                        <Typography component="h1" variant="h5">
-                            Sign in
-                        </Typography>
-                        <Box component="form" onSubmit={(ev) => this.handleSubmit(ev, true)} noValidate sx={{ mt: 1 }}>
-                            <TextField
-                                margin="normal"
-                                required
-                                fullWidth
-                                id="email"
-                                label="Email Address"
-                                name="email"
-                                autoComplete="email"
-                                autoFocus
-                            />
-                            <TextField
-                                margin="normal"
-                                required
-                                fullWidth
-                                name="password"
-                                label="Password"
-                                type="password"
-                                id="password"
-                                autoComplete="current-password"
-                            />
-                            <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                sx={{ mt: 3, mb: 2 }}
-                            >
-                                Sign In
-                            </Button>
-                            <Grid container>
-                                <Grid item>
-                                    <Link variant="body2" onClick={() => this.onToggleLoginForm(false)}>
-                                        Don't have an account? Sign Up
-                                    </Link>
+            {isLoginForm && <div className="login-page-container">
+                <ThemeProvider theme={theme}>
+                    <Container component="main" maxWidth="xs">
+                        <CssBaseline />
+                        <Box
+                            sx={{
+                                marginTop: 8,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <Avatar sx={{ m: 1, bgcolor: '#424242' }}>
+                            </Avatar>
+                            <Typography component="h1" variant="h5">
+                                Sign in
+                            </Typography>
+                            <Box component="form" onSubmit={(ev) => this.handleSubmit(ev, true)} noValidate sx={{ mt: 1 }}>
+                                <TextField
+                                    margin="normal"
+                                    required
+                                    fullWidth
+                                    id="email"
+                                    label="Email Address"
+                                    name="email"
+                                    autoComplete="email"
+                                    autoFocus
+                                />
+                                <TextField
+                                    margin="normal"
+                                    required
+                                    fullWidth
+                                    name="password"
+                                    label="Password"
+                                    type="password"
+                                    id="password"
+                                    autoComplete="current-password"
+                                />
+                                <Button
+                                    type="submit"
+                                    fullWidth
+                                    variant="contained"
+                                    sx={{ mt: 3, mb: 2 }}
+                                >
+                                    Sign In
+                                </Button>
+                                <Grid container>
+                                    <Grid item>
+                                        <Link variant="body2" onClick={() => this.onToggleLoginForm(false)}>
+                                            Don't have an account? Sign Up
+                                        </Link>
+                                    </Grid>
                                 </Grid>
-                            </Grid>
+                            </Box>
                         </Box>
-                    </Box>
-                </Container>
-            </ThemeProvider>}
+                    </Container>
+                </ThemeProvider>
+                {/* ~~~~~~~~~~ FACEBOOK  ~~~~~~~~~~ */}
+                <div className="networks-login">
+                    {/* <p>Authenticate with Facebook</p> */}
+                    <FacebookAuthentication handleFacebookAuthentication={this.handleFacebookAuthentication} />
+                </div>
+            </div>}
         </section>
     }
 

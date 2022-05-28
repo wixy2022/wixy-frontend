@@ -13,7 +13,7 @@ export function EditButtons(props) {
     const getUrl = actionType => {
         // console.log(actionType)
         switch (actionType) {
-            case 'theme': return 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653746696/icons/theme-_bvmxcd.png'
+            case 'theme': return 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653747364/icons/theme-icon_aoick6.png'
             case 'color': return 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653592961/icons/color_kjmbom.png'
             case 'clone': return 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653598367/icons/copy_exfrdo.png'
             case 'delete': return 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653598367/icons/trash_egjl8h.png'

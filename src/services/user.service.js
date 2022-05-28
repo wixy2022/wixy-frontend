@@ -22,8 +22,6 @@ function getLoggedInUser() {
 async function login(user) {
     const loggedinUser = await httpService.post(`auth/login`, user)
     sessionStorage.setItem('loggedinUser', JSON.stringify(loggedinUser))
-    console.log('login', loggedinUser)
-    console.log('login')
     return loggedinUser
 }
 

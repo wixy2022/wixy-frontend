@@ -7,19 +7,12 @@ import { setScreen } from "../store/actions/screen.action"
 // import logoImg from '../assets/img/logo.png'
 
 export const AppHeader = () => {
-    const { isOpenScreen } = useSelector(storeState => storeState.screenModule)
-    const dispatch = useDispatch()
+    const { user } = useSelector(storeState => storeState.userModule)
+    const defaultUrl = 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653772907/icons/login-image_nnfkgq.png'
+    console.log(user)
 
-    // useEffect(() => {
-
-    // }, [screen])
-
-    const onCloseScreen = () => {
-        dispatch(setScreen(false))
-    }
 
     return <section className="app-header ">
-        {/* {isOpenScreen && <div className="screen" onClick={onCloseScreen}></div>} */}
         <main className="flex align-center">
             {/* <Link to="/"><img src={logoImg} alt="Wixy" className="logo" /></Link> */}
             <Link className="logo-link" to="/"><div className="logo">
@@ -33,10 +26,10 @@ export const AppHeader = () => {
                 <NavLink to='/editor'>Editor</NavLink>
                 <NavLink to='/my-sites'>My Sites</NavLink>
             </nav>
-            <nav className="login-signup-container">
-                <Link className="login" to='/login'>Login</Link>
-                <Link className="sign-up" to='/signup'>Sign Up</Link>
-            </nav>
+            <div className="user-area">
+                {!user && <Link className="login" to='/login'>Login</Link>}
+                {user && <img src={user?.imgUrl || defaultUrl}></img>}
+            </div>
             {/* <div className="profile-button center-text" onClick={onProfileButton}>
                     {!user && <p></p>}
                     {user && <p>{getFirstLetterOfUser()}</p>}
