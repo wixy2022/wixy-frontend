@@ -19,7 +19,6 @@ export class FacebookAuthentication extends React.Component {
         const provider = new FacebookAuthProvider()
         const res = await signInWithPopup(authentication, provider)
 
-
         console.log(response)
 
         this.setState({
@@ -31,7 +30,7 @@ export class FacebookAuthentication extends React.Component {
             imgUrl: response.picture.data.url
         }, () => {
             console.log(this.state, 'this.state')
-            this.props.handleFacebookAuthentication(this.state)
+            this.props.handleSocialAuthentication(this.state)
         })
     }
 
@@ -60,6 +59,6 @@ export class FacebookAuthentication extends React.Component {
                 callback={this.responseFacebook} />)
         }
 
-        return <section className="facebook-login">{fbContent}</section>
+        return <div className="facebook-login">{fbContent}</div>
     }
 }

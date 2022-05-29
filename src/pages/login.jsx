@@ -16,12 +16,25 @@ import { connect } from "react-redux"
 import { signUp, login } from '../store/actions/user.action.js'
 
 import { FacebookAuthentication } from '../cmps/facebook-authentication'
+import { GoogleAuthentication } from '../cmps/google-authentication'
+import { gapi } from 'gapi-script'
 
-
+const clientId = '777045938185-r0hkggifahev5ccik4eairjhrv7d0kua.apps.googleusercontent.com'
 class _Login extends React.Component {
 
     state = {
         isLoginForm: true
+    }
+
+    componentDidMount() {
+        const start = () => {
+            gapi.client.init({
+                clientId,
+                scope: ''
+            })
+        }
+
+        gapi.load('client:auth2', start)
     }
 
     handleSubmit = async (ev, isLogin) => {
@@ -40,11 +53,9 @@ class _Login extends React.Component {
         if (loggedInUser) this.props.history.push('/templates')
     }
 
-    handleFacebookAuthentication = async (facebookUser) => {
-        console.log(facebookUser, 'facebookUser')
-        facebookUser.isSocial = true
-        console.log(facebookUser, 'facebookUser')
-        const loggedInUser = await this.props.login(facebookUser)
+    handleSocialAuthentication = async (user) => {
+        user.isSocial = true
+        const loggedInUser = await this.props.login(user)
         if (loggedInUser) this.props.history.push('/templates')
     }
 
@@ -203,10 +214,12 @@ class _Login extends React.Component {
                         </Box>
                     </Container>
                 </ThemeProvider>
-                {/* ~~~~~~~~~~ FACEBOOK  ~~~~~~~~~~ */}
                 <div className="networks-login">
+                    {/* ~~~~~~~~~~ FACEBOOK  ~~~~~~~~~~ */}
                     {/* <p>Authenticate with Facebook</p> */}
-                    <FacebookAuthentication handleFacebookAuthentication={this.handleFacebookAuthentication} />
+                    <FacebookAuthentication handleFacebookAuthentication={this.handleSocialAuthentication} />
+                    {/* ~~~~~~~~~~ GOOGLE  ~~~~~~~~~~ */}
+                    <GoogleAuthentication handleSocialAuthentication={this.handleSocialAuthentication} />
                 </div>
             </div>}
         </section>
