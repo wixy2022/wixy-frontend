@@ -66,6 +66,7 @@
     }
 
     .template-bar-btns {
+        margin-block-start: 5px;
         width: 360px;
         align-items: center;
         background-color: white;
@@ -186,6 +187,7 @@
         align-items: flex-start;
 
         .template-bar-btns {
+            margin-block-start:unset;
             height: 100%;
             align-items: center;
             justify-content: flex-start;

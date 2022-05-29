@@ -76,7 +76,7 @@
         display: grid;
         margin-block-end:10vh;
 
-        // padding: 20px;
+        padding:0 rem(40px) 0;
         grid-template-columns: repeat(1, minmax(0, rem(400px)));
         justify-content: center;
         align-items: center;
