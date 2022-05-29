@@ -1,4 +1,4 @@
-export function EditButtons({componentType, onOpenEditModal}) {
+export function EditButtons({ componentType, onOpenEditModal, parentEl }) {
 
     const getActions = componentType => {
         switch (componentType) {
@@ -24,9 +24,14 @@ export function EditButtons({componentType, onOpenEditModal}) {
         }
     }
 
+    const posY = parentEl.getBoundingClientRect().y
+    const style = { bottom: '' }
+    if (window.innerHeight < parentEl.offsetHeight) style.top = 30
+    else if (posY < 100) style.bottom = -80 - parentEl.offsetHeight
+    
     // const actions = [{ type: 'color', title: 'Change Color' }, { type: 'clone', title: 'Duplicate Box' }, { type: 'delete', title: 'delete' }, { type: 'txtDecoration', title: 'Change Decoration' }, { type: 'imgUrl', title: 'Change Picture' }, { type: 'borderRadius', title: 'Change Radius' }]
     const actions = getActions(componentType)
-    return <div className="edit-buttons up-screen">
+    return <div className="edit-buttons up-screen" style={{ ...style }}>
         {actions.map(action => <div className="img-container" title={action.title} key={action.type} onClick={onOpenEditModal}>
             <img title={action.title} src={getUrl(action.type)}></img>
         </div>)}

@@ -4,10 +4,11 @@ import { EditButtons } from '../edit-buttons.jsx'
 export const TxtCmp = ({ cmp, onEditElement, onChangeInput, onOpenEditModal }) => {
 
     const [isOptionModalOpen, setIsOptionModalOpen] = useState(false)
+    const [elTarget, setElTarget] = useState(null)
 
-    const onTxtClick = () => {
-        // console.log('CLICK')
+    const onTxtClick = ({target}) => {
         setIsOptionModalOpen(true)
+        setElTarget(target)
         onEditElement()
     }
 
@@ -17,7 +18,7 @@ export const TxtCmp = ({ cmp, onEditElement, onChangeInput, onOpenEditModal }) =
     }
 
     return <div className="txt-cmp relative">
-        {isOptionModalOpen && <EditButtons componentType={cmp.type} onOpenEditModal={onOpenEditModal}/>}
+        {isOptionModalOpen && <EditButtons componentType={cmp.type} onOpenEditModal={onOpenEditModal} parentEl={elTarget} />}
         <pre onClick={onTxtClick} onBlur={onBlur} className={`up-screen txt-cmp ${cmp.className}`} style={cmp.style} contentEditable suppressContentEditableWarning={true}
         >{cmp.txt}</pre>
     </div>

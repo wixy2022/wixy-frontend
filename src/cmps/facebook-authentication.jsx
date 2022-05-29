@@ -1,5 +1,8 @@
 import React from "react"
 import FacebookLogin from 'react-facebook-login';
+import { signInWithPopup, FacebookAuthProvider } from 'firebase/auth'
+import { authentication } from '../firebase-config.js'
+import { async } from "@firebase/util";
 
 export class FacebookAuthentication extends React.Component {
     state = {
@@ -12,7 +15,11 @@ export class FacebookAuthentication extends React.Component {
 
     componentClicked = () => { }
 
-    responseFacebook = response => {
+    responseFacebook = async response => {
+        const provider = new FacebookAuthProvider()
+        const res = await signInWithPopup(authentication, provider)
+
+
         console.log(response)
 
         this.setState({
