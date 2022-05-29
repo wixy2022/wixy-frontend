@@ -19,6 +19,10 @@
         }
     }
 
+    .hambrger {
+        display: none;
+    }
+
     .header-nav {
         display: flex;
         flex-grow: 1;
@@ -60,7 +64,7 @@
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        width: 700px;
+        // width: 700px;
         margin: auto;
 
         img {
@@ -81,7 +85,7 @@
     background-color: rgb(255, 0, 0);
     opacity: 0.3;
     z-index: 100;
-    // pointer-events: none;
+    pointer-events: none;
     overflow: hidden;
 }
 
@@ -89,4 +93,90 @@
     z-index: 800;
     position: relative;
 
+}
+
+@media (max-width:650px) {
+    .app-header {
+        main {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        display: flex;
+        width: 100%;
+        position: relative;
+        align-items: flex-end;
+
+        .hambrger {
+
+            display: flex;
+            align-items: center;
+            border-radius: 50%;
+            justify-content: center;
+            font-size: 22px;
+            margin-inline-end: 10px;
+            width: 31px;
+            user-select: none;
+
+            &:hover {
+                background-color: #20455e2c;
+            }
+        }
+
+        &.open {
+            .header-nav {
+                visibility: visible;
+            }
+        }
+
+        .header-nav {
+            display: flex;
+            visibility: hidden;
+            flex-direction: column;
+            position: absolute;
+            // padding: 1em 3em 1em;
+            top: 52px;
+            right: 4.5em;
+            border-radius: .5em;
+            background-color: white;
+
+            & *> {
+                width: 4em;
+            }
+        }
+
+        a:not(.logo-link) {
+            color: #20455e;
+            height: 48px;
+            width: 200px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-inline-start: 1em;
+
+            &:hover:not(.logo-link):not(.active) {}
+
+            &.active {}
+        }
+
+        & .user-area {
+            cursor: pointer;
+            //    width: 100%;
+            //    flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-inline-end: 1.5em;
+            margin: 0;
+
+            img {
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                margin-right: unset;
+            }
+        }
+    }
 }
