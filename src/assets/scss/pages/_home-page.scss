@@ -4,8 +4,8 @@
 
     .hero {
         position: relative;
-        height: 80vh;
-        margin-block-end: -17px;
+        height: 75vh;
+        margin-block-end:10vh;
 
         .get-started {
             display: flex;
@@ -51,7 +51,7 @@
 
             position: relative;
 
-            height: 90%;
+            height: 100%;
             background-image: url(https://cdn.pixabay.com/photo/2017/11/27/21/31/computer-2982270_1280.jpg);
             background-position: 0 60%;
             opacity: 0.6;
@@ -74,7 +74,9 @@
     .templates {
         // margin-block-start: 600px;
         display: grid;
-        padding: 20px;
+        margin-block-end:10vh;
+
+        // padding: 20px;
         grid-template-columns: repeat(1, minmax(0, rem(400px)));
         justify-content: center;
         align-items: center;

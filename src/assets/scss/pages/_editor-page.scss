@@ -2,8 +2,6 @@
     display: grid;
     position: relative;
     grid-template-rows: 50px 1fr;
-
-
     &.tool-bar-open {
         grid-template-rows: repeat(minmax(100%,1fr)) 50px ;
         .editor-site-container {
@@ -11,7 +9,6 @@
             
         }
     }
-
     padding: 0;
     margin: 0;
 
@@ -31,10 +28,8 @@
 }
 @media (min-width:1000px) {
     .editor {
-        display: grid;
-        position: relative;
         grid-template-columns: 50px 1fr;
-    
+        grid-template-rows: unset;
     
         &.tool-bar-open {
             grid-template-columns: 24rem 1fr;
@@ -43,22 +38,9 @@
                 
             }
         }
-    
-        padding: 0;
-        margin: 0;
-    
         .editor-site-container {
-            overflow-y: auto;
             height: $site-without-header;
-            display: flex;
-            grid-column: 2/-1;
-            flex-grow: 1;
-            flex-direction: column;
-            position: relative;
     
-            & *>:hover {
-                outline: 1px black dotted;
-            }
         }
     }
 }
