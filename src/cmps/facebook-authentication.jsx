@@ -25,7 +25,6 @@ export class FacebookAuthentication extends React.Component {
         }, () => {
             console.log(this.state, 'this.state')
             this.props.handleFacebookAuthentication(this.state)
-
         })
     }
 
@@ -49,7 +48,6 @@ export class FacebookAuthentication extends React.Component {
         } else {
             fbContent = (<FacebookLogin
                 appId="350081457193721"
-                autoLoad={true}
                 fields="email,picture,first_name,last_name"
                 onClick={this.componentClicked}
                 callback={this.responseFacebook} />)
