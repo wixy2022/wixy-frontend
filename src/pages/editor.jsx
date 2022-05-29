@@ -12,6 +12,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 import { Loader } from "../cmps/app-loader"
 import { useEffectUpdate } from "../hooks/use-effect-update"
 import { EditModal } from "../cmps/edit-modal"
+import { EditButtons } from "../cmps/edit-buttons"
 
 
 // import { temp1Wap, temp2Wap, temp3Wap } from '../templates/templates'
@@ -25,7 +26,11 @@ export const Editor = ({ setPageClass }) => {
     const templates = allTemplates
     const history = useHistory()
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
-    const [editModalSettings, setEditModalSettings] = useState(null)
+    const [editModalSettings, setEditModalSettings] = useState(null) /* FIX -  */
+
+    const [activeCmp, setActiveCmp] = useState(null)
+    const [activeCmpPos, setActiveCmpPos] = useState(null)
+    const [onActiveCmpUpdate, setOnActiveCmpUpdate] = useState(null)
 
     useEffect(() => {
         loadWap()
@@ -99,6 +104,7 @@ export const Editor = ({ setPageClass }) => {
     }
 
     const onChangeInput = (cmp) => {
+        console.log('cmp', cmp)
         const updatedCmps = wap.cmps.map(currCmp => currCmp.id === cmp.id ? cmp : currCmp)
         setWap({ ...wap, cmps: updatedCmps })
     }
@@ -107,6 +113,7 @@ export const Editor = ({ setPageClass }) => {
         dispatch(setScreen(true))
     }
 
+    /* FIX - should go into the button cmp? */
     const onOpenEditModal = (ev) => {
         ev.stopPropagation()
 
@@ -122,6 +129,24 @@ export const Editor = ({ setPageClass }) => {
 
         setEditModalSettings({ posX, posY, setIsEditModalOpen })
         setIsEditModalOpen(true)
+    }
+
+    const onSelectActiveCmp = (currCmp, elCurrCmp, onChange) => {
+        // if (isEditModalOpen) setIsEditModalOpen(false)
+        if (activeCmp?.id === currCmp.id) return
+
+        if (activeCmp) onActiveCmpUpdate('className', activeCmp.className.replace('active-cmp', ''))
+        currCmp.className += ' active-cmp'
+        setActiveCmp(currCmp)
+
+        setActiveCmpPos({
+            x: elCurrCmp.getBoundingClientRect().x,
+            y: elCurrCmp.getBoundingClientRect().y,
+            width: elCurrCmp.offsetWidth,
+            height: elCurrCmp.offsetHeight,
+        })
+
+        setOnActiveCmpUpdate(() => onChange)
     }
 
     return <section
@@ -146,9 +171,10 @@ export const Editor = ({ setPageClass }) => {
                                 {(providedDraggable) => {
                                     return <DynamicCmp key={utilService.createKey()} index={idx}
                                         cmp={cmp} forwardref={providedDraggable.innerRef}
-                                        onEditElement={onEditElement}
+                                        // onEditElement={onEditElement}
                                         onChangeInput={onChangeInput}
-                                        onOpenEditModal={onOpenEditModal}
+                                        // onOpenEditModal={onOpenEditModal}
+                                        onSelectActiveCmp={onSelectActiveCmp}
                                         draggableProps={providedDraggable.draggableProps}
                                         dragHandleProps={providedDraggable.dragHandleProps} />
                                 }}
@@ -157,7 +183,13 @@ export const Editor = ({ setPageClass }) => {
                         )}
                         {provided.placeholder}
 
-                        {isEditModalOpen && <EditModal {...editModalSettings} />}
+                        {activeCmp && <EditButtons cmpType={activeCmp.type} activeCmpPos={activeCmpPos}
+                            onOpenEditModal={onOpenEditModal} scrollHeight={editorRef.current.scrollTop}
+                            editorLeft={editorRef.current.offsetLeft} />}
+
+                        {isEditModalOpen && <EditModal {...editModalSettings}
+                            onActiveCmpUpdate={onActiveCmpUpdate} activeCmp={activeCmp}
+                        />}
                     </div>
                 </>
                 )}

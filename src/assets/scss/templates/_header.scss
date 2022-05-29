@@ -17,7 +17,7 @@
         font-family: alfa-slab-one;
     }
 
-    &>* {
+    &>*:not(.edit-buttons) {
         display: inline;
     }
 

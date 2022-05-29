@@ -1,11 +1,11 @@
-export function EditButtons({ componentType, onOpenEditModal, parentEl }) {
+export const EditButtons = ({ cmpType, activeCmpPos, onOpenEditModal, scrollHeight, editorLeft }) => {
 
-    const getActions = componentType => {
-        switch (componentType) {
+    const getActions = cmpType => {
+        switch (cmpType) {
             case 'txt': return [{ type: 'theme', title: 'Theme' }, { type: 'color', title: 'Change Color' }, { type: 'txtDecoration', title: 'Change Decoration' }, { type: 'delete', title: 'delete' }]
-            case 'container-draggable': return [{ type: 'themes', title: 'Theme' }, { type: 'clone', title: 'Duplicate Box' }, { type: 'delete', title: 'delete' }]
-            case 'anchor': return [{ type: 'themes', title: 'Theme' }, { type: 'color', title: 'Change Color' }, { type: 'txtDecoration', title: 'Change Decoration' }, { type: 'href', title: 'Change Link' }]
-            case 'img': return [{ type: 'themes', title: 'Theme' }, { type: 'imgUrl', title: 'Change Picture' }, { type: 'borderRadius', title: 'Change Radius' }]
+            case 'container-draggable': return [{ type: 'theme', title: 'Theme' }, { type: 'clone', title: 'Duplicate Box' }, { type: 'delete', title: 'delete' }]
+            case 'anchor': return [{ type: 'theme', title: 'Theme' }, { type: 'color', title: 'Change Color' }, { type: 'txtDecoration', title: 'Change Decoration' }, { type: 'href', title: 'Change Link' }]
+            case 'img': return [{ type: 'theme', title: 'Theme' }, { type: 'imgUrl', title: 'Change Picture' }, { type: 'borderRadius', title: 'Change Radius' }]
             default: return ''
         }
     }
@@ -24,22 +24,23 @@ export function EditButtons({ componentType, onOpenEditModal, parentEl }) {
         }
     }
 
-    const posY = parentEl.getBoundingClientRect().y
-    const style = { bottom: '' }
-    if (window.innerHeight < parentEl.offsetHeight) style.top = 30
-    else if (posY < 100) {
-        style.bottom = -30
-        style.top = 'unset'
+
+    if (activeCmpPos.x === 0 && activeCmpPos.y === 0) return
+
+    const left = activeCmpPos.x + (activeCmpPos.width / 2) - editorLeft
+
+    const top = scrollHeight + activeCmpPos.y - 80
+    const style = { left, top, bottom: '' }
+    if (window.innerHeight < activeCmpPos.height) style.top = 80
+    else if (top < 100) {
+        style.top += activeCmpPos.height + 40
     }
 
     // const actions = [{ type: 'color', title: 'Change Color' }, { type: 'clone', title: 'Duplicate Box' }, { type: 'delete', title: 'delete' }, { type: 'txtDecoration', title: 'Change Decoration' }, { type: 'imgUrl', title: 'Change Picture' }, { type: 'borderRadius', title: 'Change Radius' }]
-    const actions = getActions(componentType)
+    const actions = getActions(cmpType)
     return <div className="edit-buttons up-screen" style={{ ...style }}>
         {actions.map(action => <div className="img-container" title={action.title} key={action.type} onClick={onOpenEditModal}>
             <img title={action.title} src={getUrl(action.type)}></img>
         </div>)}
     </div>
 }
-
-
-
