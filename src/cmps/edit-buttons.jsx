@@ -27,8 +27,11 @@ export function EditButtons({ componentType, onOpenEditModal, parentEl }) {
     const posY = parentEl.getBoundingClientRect().y
     const style = { bottom: '' }
     if (window.innerHeight < parentEl.offsetHeight) style.top = 30
-    else if (posY < 100) style.bottom = -80 - parentEl.offsetHeight
-    
+    else if (posY < 100) {
+        style.bottom = -30
+        style.top = 'unset'
+    }
+
     // const actions = [{ type: 'color', title: 'Change Color' }, { type: 'clone', title: 'Duplicate Box' }, { type: 'delete', title: 'delete' }, { type: 'txtDecoration', title: 'Change Decoration' }, { type: 'imgUrl', title: 'Change Picture' }, { type: 'borderRadius', title: 'Change Radius' }]
     const actions = getActions(componentType)
     return <div className="edit-buttons up-screen" style={{ ...style }}>
