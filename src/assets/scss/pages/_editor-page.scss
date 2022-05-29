@@ -1,7 +1,7 @@
 .editor {
     display: grid;
     position: relative;
-    grid-template-rows: 50px 1fr;
+    grid-template-rows: 1fr 50px;
     &.tool-bar-open {
         grid-template-rows: repeat(minmax(100%,1fr)) 50px ;
         .editor-site-container {
@@ -32,6 +32,7 @@
         grid-template-rows: unset;
     
         &.tool-bar-open {
+            grid-template-rows: unset;
             grid-template-columns: 24rem 1fr;
             .editor-site-container {
                 height:$site-without-header

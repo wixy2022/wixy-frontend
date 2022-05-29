@@ -16,9 +16,11 @@
         .template-bar-btns {}
 
         .tool-bar-options {
+            padding-block-start: 0.2rem;
             display: flex;
             flex-wrap: wrap;
-            align-items: center;
+            justify-content: center;
+            align-content: start;
             min-height: 175px;
             overflow-y: auto;
 
@@ -50,12 +52,12 @@
             /* FIX - 300px */
             width: 320px;
             // right: 420px;
-            height: fit-content;
-            position: relative;
+            // height: fit-content;
+            // position: relative;
             z-index: 10;
-            box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.664);
-            border-radius: 5px;
-            overflow: hidden;
+            // box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.664);
+            // border-radius: 5px;
+            // overflow: hidden;
 
             &:not(:first-child) {
                 margin-top: 15px;
@@ -74,7 +76,7 @@
     }
 
     .editor-icon-container {
-        margin-block-start: 6px;
+        // margin-block-start: 6px;
         width: 35px;
         height: 35px;
         border: none;
@@ -148,12 +150,16 @@
         border: none;
 
         .tool-bar-template-img {
-            width: '100%';
-            object-fit: 'cover'
+            width: 100%;
+            box-shadow: 0 0 6px grey;
+            border-radius: 6px;
         }
     }
 
 }
+
+
+
 
 @media (min-width:530px) {
     .template-tool-bar {
@@ -169,7 +175,6 @@
     }
 
 }
-
 @media (min-width:1000px) {
     .template-tool-bar {
         bottom: unset;
@@ -186,8 +191,9 @@
             justify-content: flex-start;
             display: flex;
             flex-direction: column;
-        }
+            margin-inline-start: 2.3px;
 
+        }
         .tool-bar-options {
 
             padding-inline-start: rem(20px);
@@ -200,23 +206,19 @@
                 top: unset;
                 width: 300px;
                 right: 420px;
-                height: fit-content;
                 position: relative;
                 z-index: 10;
-                box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.664);
-                border-radius: 5px;
-                overflow: hidden;
-
                 &:not(:first-child) {
                     margin-top: 15px;
                 }
             }
         }
+        
 
         .editor-icon-container {
             margin-block-start: unset;
-            width: 50px;
-            height: 50px;
+            width: 47px;
+            height: 47px;
             border: none;
             background-color: transparent;
             cursor: pointer;
@@ -516,4 +518,100 @@
             }
         }
     }
+
+    // .tool-bar-template-container {
+    //     border: none;
+
+    //     .tool-bar-template-img {
+    //         width: 100%;
+    //         border-radius: 6px;
+    //         box-shadow: 0 0 6px grey;
+    //     }
+    // }
+
 }
+
+// @media (min-width:1000px) {
+//     .template-tool-bar {
+        // bottom: unset;
+        // width: 50px;
+        // height: 100%;
+        // flex-direction: row;
+        // box-shadow: 0px 4px 5px black;
+        // justify-content: flex-start;
+        // align-items: flex-start;
+
+        // .template-bar-btns {
+        //     height: 100%;
+        //     align-items: center;
+        //     justify-content: flex-start;
+        //     display: flex;
+        //     flex-direction: column;
+        // }
+
+        // .tool-bar-options {
+
+        //     padding-inline-start: rem(20px);
+        //     opacity: 1;
+        //     position: relative;
+        //     width: 400px;
+        //     top: 10px;
+
+        //     >* {
+        //         top: unset;
+        //         width: 300px;
+        //         right: 420px;
+        //         // height: fit-content;
+        //         position: relative;
+        //         z-index: 10;
+        //         // box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.664);
+        //         // border-radius: 5px;
+        //         // overflow: hidden;
+
+        //         &:not(:first-child) {
+        //             margin-top: 15px;
+        //         }
+        //     }
+        // }
+
+        // .editor-icon-container {
+        //     margin-block-start: unset;
+        //     width: 50px;
+        //     height: 50px;
+        //     border: none;
+        //     background-color: transparent;
+        //     cursor: pointer;
+        //     position: relative;
+        //     border-radius: 50%;
+        //     display: flex;
+        //     align-items: center;
+        //     justify-content: center;
+        // }
+//     }
+
+//     .editor.tool-bar-open .template-tool-bar {
+//         bottom: unset;
+
+//         .template-bar-btns {}
+
+//         .tool-bar-options {
+//             flex-direction: column;
+//             align-items: center;
+//             flex-wrap: nowrap;
+//             min-height: unset;
+//             overflow-y: unset;
+
+//             >* {
+//                 animation: toolbar-animation .5s forwards;
+
+//                 @keyframes toolbar-animation {
+//                     100% {
+//                         right: 0px;
+//                     }
+//                 }
+//             }
+//         }
+
+//     }
+
+// }
