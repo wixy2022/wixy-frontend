@@ -14,9 +14,12 @@ export const AppHeader = () => {
     const history = useHistory()
     const defaultUrl = 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653772907/icons/login-image_nnfkgq.png'
     const [headerClass, setHeaderClass] = useState('')
-    const isOpen = headerClass ? '' : 'open'
+    const [isOpen, setIsOpen] =useState('')
     const isLogin = user? 'Logout':'Login'
-
+  
+    const onOpenModal=()=>{
+        isOpen? setIsOpen(''):setIsOpen('open')
+    }
     const onSetLoginLogout =()=>{
         if(isLogin==='login'){
             dispatch(logout)
@@ -37,7 +40,10 @@ export const AppHeader = () => {
                 <NavLink to='/editor'>Editor</NavLink>
                
             </nav>
-            <div onClick={() => setHeaderClass(isOpen)} className="user-area">
+            <div onClick={() => {
+                onOpenModal()
+                setHeaderClass(isOpen)
+            }} className="user-area">
                 {!user && <Link className="login" to='/login'>Login</Link>}
                 {user && <img className="user-img-header" src={user?.imgUrl || defaultUrl}></img>}
                 <div className="hambrger">☰</div>
