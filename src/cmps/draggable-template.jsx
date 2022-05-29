@@ -8,9 +8,9 @@ export class DraggableTemplate extends React.Component {
         return <div  className='tool-bar-template-container' {...draggableProps} {...dragHandleProps} ref={forwardref}>
             <img className="tool-bar-template-img"
                 style={{
-                    width: '100%',
-                    objectFit: 'cover',
-                    height: '100%'
+                    // width: '100%',
+                    // objectFit: 'cover',
+                    // height: '100%'
                 }} src={template.imgUrl} alt="" />
         </div>
     }

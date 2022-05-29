@@ -37,6 +37,7 @@
     
     
         &.tool-bar-open {
+            grid-template-rows: unset;
             grid-template-columns: 24rem 1fr;
             .editor-site-container {
                 height:$site-without-header

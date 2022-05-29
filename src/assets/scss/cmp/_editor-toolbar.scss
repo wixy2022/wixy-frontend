@@ -19,7 +19,8 @@
         .tool-bar-options {
             display: flex;
             flex-wrap: wrap;
-            align-items: center;
+            justify-content: center;
+            align-content: start;
             min-height: 175px;
             overflow-y: auto;
 
@@ -50,12 +51,12 @@
             top: 0; /* FIX - 300px */
             width: 320px;
             // right: 420px;
-            height: fit-content;
-            position: relative;
+            // height: fit-content;
+            // position: relative;
             z-index: 10;
-            box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.664);
-            border-radius: 5px;
-            overflow: hidden;
+            // box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.664);
+            // border-radius: 5px;
+            // overflow: hidden;
 
             &:not(:first-child) {
                 margin-top: 15px;
@@ -74,7 +75,7 @@
     }
 
     .editor-icon-container {
-        margin-block-start: 6px;
+        // margin-block-start: 6px;
         width: 35px;
         height: 35px;
         border: none;
@@ -367,8 +368,10 @@
         border: none;
 
         .tool-bar-template-img {
-            width: '100%';
-            object-fit: 'cover'
+            width: 100%;
+            // object-fit: 'cover';
+            border-radius: 6px;
+            box-shadow: 0 0 6px grey;
         }
     }
 
@@ -419,12 +422,12 @@
                 top: unset;
                 width: 300px;
                 right: 420px;
-                height: fit-content;
+                // height: fit-content;
                 position: relative;
                 z-index: 10;
-                box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.664);
-                border-radius: 5px;
-                overflow: hidden;
+                // box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.664);
+                // border-radius: 5px;
+                // overflow: hidden;
 
                 &:not(:first-child) {
                     margin-top: 15px;
