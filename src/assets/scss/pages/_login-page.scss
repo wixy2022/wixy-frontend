@@ -11,12 +11,12 @@
 .login-page-container {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     flex-direction: column;
-    width: 70%;
+    width: 90%;
     margin: auto;
-    gap: 5%;
-    height: 85vh;
+    gap: 0;
+    min-height: 66vh;
 
     &>* {
         flex-grow: 1;
@@ -26,12 +26,17 @@
         align-items: center;
         justify-content: center;
         gap: 28px;
+        width: 100%;
+        max-width: 400px;
+        padding: 24px;
+        margin: 0;
 
         &>* {
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-family: open-sans;
 
             &>* {
                 width: 100%;
@@ -44,13 +49,42 @@
         border-radius: 5px;
         width: 100%;
         text-transform: capitalize;
+        font-weight: 500;
+        font-family: open-sans;
         box-shadow: rgb(0 0 0 / 24%) 0px 2px 2px 0px, rgb(0 0 0 / 24%) 0px 0px 1px 0px;
+        display: flex;
+        justify-content: start;
+        align-items: center;
     }
+
+    .css-binzgt {
+        margin-top: 0;
+    }
+
+    .networks-login {
+        border-top: 1px solid rgba(0, 0, 0, 0.185);
+    }
+
+    .MuiContainer-root.MuiContainer-maxWidthXs.css-nzinn5-MuiContainer-root {
+        margin: 0;
+    }
+
 }
 
-@media (min-width: 720px) {
+.remember-me {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (min-width: 800px) {
     .login-page-container {
         flex-direction: unset;
-        gap: unset;
+
+        .networks-login {
+            border-top: none;
+            border-left: 1px solid rgba(0, 0, 0, 0.185);
+        }
     }
 }
