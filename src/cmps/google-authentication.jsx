@@ -13,7 +13,7 @@ export class GoogleAuthentication extends React.Component {
     }
 
     onSuccess = (res) => {
-        console.log('google login success. loggedin user:', res.profileObj)
+        console.log('loggedin user:', res.profileObj)
 
         this.setState({
             googleUserId: res.profileObj.googleId,
@@ -21,17 +21,12 @@ export class GoogleAuthentication extends React.Component {
             lastName: res.profileObj.familyName,
             email: res.profileObj.email,
             imgUrl: res.profileObj.imageUrl
-        }, () => {
-            console.log(this.state, 'this.state')
-            this.props.handleSocialAuthentication(this.state)
-        })
+        }, () => { this.props.handleSocialAuthentication(this.state) })
     }
 
     onFailure = (res) => {
         console.log('google login failed. err:', res.profileObj)
     }
-
-    // const accessToken = gapi.auth.getToken().access_token
 
     render() {
         return <div className="google-login">
@@ -40,8 +35,8 @@ export class GoogleAuthentication extends React.Component {
                 buttonText='Login With Gmail'
                 onSuccess={this.onSuccess}
                 onFailure={this.onFailure}
-                coockiePolicy={'signal_host_origin'}
-                isSignedIn={true}
+                coockiePolicy={'single_host_origin'}
+                isSignedIn={false}
             />
         </div>
     }
