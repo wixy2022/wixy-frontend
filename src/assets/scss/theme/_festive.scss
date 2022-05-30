@@ -1,0 +1,30 @@
+// TXT
+
+.txt-cmp.festive-1 {
+    font-family: $font-festive-1;
+    color: rgb(223, 134, 0);
+    text-shadow: 2px 2px 3px rgb(153, 0, 0);
+}
+
+.txt-cmp.festive-2 {
+    font-family: $font-festive-2;
+    color: rgb(241, 217, 76);
+    text-shadow: 2px 2px 3px black;
+    font-style: italic;
+    background-color: rgb(212, 0, 103);
+    border-radius: 50%;
+    padding: 1%;
+    text-align: center;
+}
+
+.txt-cmp.festive-3 {
+    font-family: $font-festive-3;
+    color: rgb(157, 240, 146);
+    text-shadow: 3px 3px rgb(18, 85, 1);
+}
+
+.txt-cmp.festive-4 {
+    font-family: $font-festive-4;
+    color: rgb(0, 245, 171);
+    text-shadow: -2px -1px white;
+}

@@ -11,7 +11,14 @@ export const wapSection01 = {
             id: 'hero-dramatic-txt-123',
             type: 'txt',
             className: 'txt title',
-            txt: 'PH-STUDIO - make your dreams come true',
+            txt: 'PH-STUDIO',
+            style: {}
+        },
+        {
+            id: 'hero-dramatic-txt-123',
+            type: 'txt',
+            className: 'txt title',
+            txt: 'make your dreams come true',
             style: {}
         }
     ],
