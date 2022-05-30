@@ -19,7 +19,7 @@ export const AppHeader = () => {
     }
     const onSetLoginLogout =()=>{
         if(isLogin==='login'){
-            dispatch(logout)
+            dispatch(logout())
         }else{
             console.log(history)
             history.push('/login')

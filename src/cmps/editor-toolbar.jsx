@@ -33,10 +33,9 @@ export const TemplateToolBar = ({ setToolBarMode, templates, setTemplateKey, onC
             className='editor-icon-container'
             key={name} name={name} >
 
-            <a name={name} onClick={onHandleTemplates} className={`editor-icon-img ${name}`} ></a>
+            <a name={name} onClick={onHandleTemplates} className={`editor-icon-img ${name} ${currTopic===name?'active-tool':''} `} ></a>
             </button>)
     }
-
     return <section className="template-tool-bar" >
         <div className="template-bar-btns">
             {getToolBarButtons()}

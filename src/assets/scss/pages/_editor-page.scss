@@ -1,9 +1,9 @@
 .editor {
     display: grid;
     position: relative;
-    grid-template-rows: 1fr 50px;
+    grid-template-rows: 1fr 78px;
     &.tool-bar-open {
-        grid-template-rows: repeat(minmax(100%,1fr)) 50px ;
+        grid-template-rows: repeat(minmax(100%,1fr)) 78px ;
         .editor-site-container {
             height:calc( $site-without-header-tool-bar - 200px);
             
