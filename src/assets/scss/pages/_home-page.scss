@@ -21,6 +21,10 @@
             top: 50%;
             transform: translate(-50%, -50%);
             max-width: 37.8125em;
+            &:first-child{
+                text-shadow: 1px 1px 1px black;
+
+            }
 
             .get-started-btn {
                 background-color: $clr1;

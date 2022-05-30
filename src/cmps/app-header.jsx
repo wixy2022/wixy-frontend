@@ -43,7 +43,7 @@ export const AppHeader = () => {
                 onOpenModal()
                 setHeaderClass(isOpen)
             }} className="user-area">
-                {!user && <Link className="login" to='/login'>Login</Link>}
+                {!user && <Link onClick={(ev)=>ev.stopPropagation()} className="login" to='/login'>Login</Link>}
                 {user && <img className="user-img-header" src={user?.imgUrl || defaultUrl}></img>}
                 <div className="hambrger">☰</div>
                 {isOpen && <div className="user-modal-header">
