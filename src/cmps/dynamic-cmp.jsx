@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { AnchorCmp } from "./dynamic-cmps/anchor-cmp"
 import { ImgCmp } from "./dynamic-cmps/img-cmp"
 import { TxtCmp } from "./dynamic-cmps/txt-cmp"
@@ -76,28 +76,26 @@ export const DynamicCmp = (props) => {
     //     cmp: this.props.cmp,
     // }
 
+    const memoRef = useMemo(() => forwardref)
+
     useEffectUpdate(() => {
         console.log('useEffect cmp', ccmp)
         props.onChangeInput(ccmp)
     }, [ccmp])
 
     const onChangeInput = useCallback((cmp, key, value) => {
-        console.log('DYNAMIC', cmp, key, value)
         // queueMicrotask(() => {
         // this.setState(prevState => {
         //     console.log('HEREE!!!!!!!!!!!!!')
         if (ccmp.type.includes('container')) {
-            console.log('CONTAINER')
             const updatedCmps = ccmp.cmps.map(currCmp => currCmp.id === cmp.id ? cmp : currCmp)
             setCmp({ ...ccmp, cmps: updatedCmps })
         } else {
-            console.log('ITEM')
             // const updatedCmp = JSON.parse(JSON.stringify(ccmp))
             // updatedCmp[key] = value
             // console.log('updatedCmp', updatedCmp)
             // setCmp(updatedCmp)
             setCmp({ ...ccmp, [key]: value })
-            console.log('3',)
         }
         // console.log('4',)
         // }, () =>
@@ -128,7 +126,8 @@ export const DynamicCmp = (props) => {
 
     // const { forwardref, cmp, draggableProps, dragHandleProps } = this.props
     if (!cmp.type.includes('draggable')) return getCmp(cmp)
-    return <div {...draggableProps} {...dragHandleProps} ref={forwardref}>
+
+    return <div {...draggableProps} {...dragHandleProps} ref={memoRef}>
         {getCmp(cmp)}
     </div>
 }

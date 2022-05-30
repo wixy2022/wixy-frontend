@@ -1,4 +1,6 @@
-export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, activeCmp }) => {
+import { wapService } from "../services/wap.service"
+
+export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, activeCmp, onUpdateWap }) => {
 
     const isList = true
     const title = 'Themes'
@@ -6,9 +8,10 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, a
 
     const onClassName = (ev, value) => {
         ev.stopPropagation()
-        const updatedClassName = activeCmp.className.replace(/theme-[^\s]+/g)
+        const updatedClassName = activeCmp.className.replace(/theme-[^\s]+/g, '')
         console.log('updatedClassName', updatedClassName)
-        onActiveCmpUpdate('className', `${updatedClassName} theme-${value}`)
+        // onActiveCmpUpdate('className', `${updatedClassName} theme-${value}`)
+        onUpdateWap('className', `${updatedClassName} theme-${value}`)
         console.log('FINISHED IN MODAL', )
     }
 

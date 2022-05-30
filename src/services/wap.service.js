@@ -11,7 +11,9 @@ export const wapService = {
     getById,
     save,
     remove,
-    getEmptyWap
+    getEmptyWap,
+    updateWap,
+    createAncestors
 }
 
 async function query(filterBy = {}) {
@@ -55,9 +57,61 @@ async function remove(wapId) {
 
 function getEmptyWap() {
     return {
-        _id: 'empty-wap',
-        name: 'empty-wap',
+        _id: 'empty-wap', /* FIX - WE NEED TO REMOVE IT? */
+        name: 'empty-wap', /* FIX - ASK THE USE TO GIVE IT A NAME */
         imgUrl: '',
         cmps: []
     }
+}
+
+
+
+
+
+
+
+function createAncestors(cmp, ancestors = []) {
+
+    cmp.ancestors = [...ancestors, cmp.id]
+
+    if (cmp.cmps) {
+        cmp.cmps.forEach(currCmp => createAncestors(currCmp, cmp.ancestors))
+    }
+
+    return cmp
+}
+
+function updateWap(wap, activeCmp, key, value) {
+    const ancestorsIds = [...activeCmp.ancestors]
+    let newWap = JSON.parse(JSON.stringify(wap)) //change to cmp
+    newWap = _updateWapProperties(newWap, ancestorsIds, activeCmp, key, value)
+    // console.log(_updateWapProperties(newWap, ancestorsIds, activeCmp, key, value))
+    return newWap
+}
+
+function _updateWapProperties(cmp, ancestorsIds, activeCmp, key, value) {
+    console.log('1')
+    const currId = ancestorsIds.shift()
+
+    // if (key === 'remove' && cmp.cmps.includes(currId)) {
+    //     const updatedCmps = cmp.cmps.filter(currCmp => currCmp.id !== currId)
+    //     return { ...cmp, cmps: updatedCmps }
+    // }
+
+    console.log('2')
+    const updatedCmp = { ...cmp }
+    //if we need to update a property inside the cmp
+    if (!ancestorsIds.length) {
+        return { ...activeCmp, [key]: value }
+    }
+
+    console.log('3')
+    //if we need to update a child of the cmp
+    updatedCmp.cmps = updatedCmp.cmps.map(currCmp => {
+        if (currCmp.id !== currId) return currCmp
+        return _updateWapProperties(currCmp, ancestorsIds, activeCmp, key, value)
+    })
+
+    console.log('5')
+    return updatedCmp
 }
