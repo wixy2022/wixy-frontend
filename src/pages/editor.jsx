@@ -172,7 +172,8 @@ export const Editor = ({ setPageClass }) => {
                                     return <DynamicCmp key={utilService.createKey()} index={idx}
                                         cmp={cmp} forwardref={providedDraggable.innerRef}
                                         // onEditElement={onEditElement}
-                                        onChangeInput={onChangeInput}
+                                        onChangeInput={onChangeInput} //ori
+                                        // onChangeInputs={onChangeInputs} // alex
                                         // onOpenEditModal={onOpenEditModal}
                                         onSelectActiveCmp={onSelectActiveCmp}
                                         draggableProps={providedDraggable.draggableProps}

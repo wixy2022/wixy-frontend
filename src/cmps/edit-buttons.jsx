@@ -32,7 +32,7 @@ export const EditButtons = ({ cmpType, activeCmpPos, onOpenEditModal, scrollHeig
     const top = scrollHeight + activeCmpPos.y - 80
     const style = { left, top, bottom: '' }
     if (window.innerHeight < activeCmpPos.height) style.top = 80
-    else if (top < 100) {
+    else if (top < 80) {
         style.top += activeCmpPos.height + 40
     }
 

@@ -1,6 +1,7 @@
 const initialState = {
     isOpenScreen: false,
-    screenHeight: null
+    screenHeight: null,
+    currCmp: null
 }
 
 export function screenReducer(state = initialState, action) {
@@ -9,6 +10,8 @@ export function screenReducer(state = initialState, action) {
             return { ...state, isOpenScreen: action.isOpenScreen }
         case 'SET_HEIGHT_SCREEN':
             return { ...state, screenHeight: action.screenHeight }
+        case 'SET_CURR_CMP':
+            return { ...state, currCmp: action.currCmp }
         default:
             return state
     }

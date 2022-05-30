@@ -6,6 +6,12 @@ export const TxtCmp = ({ cmp, onEditElement, onChangeInput, onOpenEditModal, onS
     const [isOptionModalOpen, setIsOptionModalOpen] = useState(false)
     const [elTarget, setElTarget] = useState(null)
 
+    const onUpdateCmp = (key, value) => {
+        // console.log(cmp, key, value)
+        console.log('onUpdateCmp', )
+        onChangeInput(cmp, key, value)
+    }
+
     const onTxtClick = (ev) => {
         ev.stopPropagation()
         // setElTarget(ev.target)
@@ -17,13 +23,8 @@ export const TxtCmp = ({ cmp, onEditElement, onChangeInput, onOpenEditModal, onS
 
     const onBlur = ({ target: { innerText } }) => {
         // setIsOptionModalOpen(false)
-        // onChangeInput(cmp, 'txt', innerText)
-    }
-
-    const onUpdateCmp = (key, value) => {
-        console.log(cmp, key, value)
-        onChangeInput(cmp, key, value)
-    }
+        onChangeInput(cmp, 'txt', innerText)
+    }    
 
     return <div className="txt-cmp relative">
         {/* {isOptionModalOpen && <EditButtons cmpType={cmp.type} onOpenEditModal={onOpenEditModal} parentEl={elTarget} />} */}
@@ -32,5 +33,4 @@ export const TxtCmp = ({ cmp, onEditElement, onChangeInput, onOpenEditModal, onS
             {cmp.txt}
         </pre>
     </div>
-
 }

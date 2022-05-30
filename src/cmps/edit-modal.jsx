@@ -9,7 +9,7 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, a
         const updatedClassName = activeCmp.className.replace(/theme-[^\s]+/g)
         console.log('updatedClassName', updatedClassName)
         onActiveCmpUpdate('className', `${updatedClassName} theme-${value}`)
-        console.log('ONCLASSNAME', )
+        console.log('FINISHED IN MODAL', )
     }
 
     /* FIX - change idx to id */
