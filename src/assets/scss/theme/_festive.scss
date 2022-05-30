@@ -29,3 +29,17 @@
     color: rgb(0, 245, 171);
     text-shadow: -2px -1px white;
 }
+
+// IMG
+
+img.festive-1 {
+    border-radius: 50%;
+    border: 3px solid rgba(0, 233, 250, 0.829);
+    outline: 3px solid rgba(21, 177, 0, 0.829);
+}
+
+img.festive-2 {
+    border-radius: 20px;
+    border: 7px solid rgb(209, 112, 0);
+    box-shadow: 0 0 0;
+}

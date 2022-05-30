@@ -26,16 +26,12 @@ async function login(user, isRememberMode) {
 }
 
 async function logout() {
-    console.log(1)
     await httpService.post(`auth/logout`)
-    console.log(2)
     sessionStorage.removeItem('loggedinUser')
 }
 
 async function signUp(user) {
-    console.log(user, 'user from service')
     const loggedinUser = await httpService.post(`auth/signup`, user)
     sessionStorage.setItem('loggedinUser', JSON.stringify(loggedinUser))
-    console.log('signup', loggedinUser)
     return Promise.resolve(loggedinUser)
 }

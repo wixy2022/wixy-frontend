@@ -18,3 +18,30 @@
     color: rgb(59, 59, 59);
     text-shadow: 2px 2px rgb(34, 34, 34);
 }
+
+// IMG
+
+.img-cmp.classic-1 {
+    box-shadow: 1px -3px 7px white
+}
+
+.img-cmp.classic-2 {
+    box-shadow: 1px -3px 7px rgb(37, 37, 37)
+}
+
+img.classic-3 {
+    border-radius: 50%;
+    box-shadow: 1px -3px 5px rgb(37, 37, 37);
+}
+
+img.classic-4 {
+    border-radius: 50%;
+    border: 3px solid rgba(0, 0, 0, 0.829);
+    box-shadow: 0 0 9px rgb(216, 216, 216);
+}
+
+img.classic-5 {
+    border-radius: 50%;
+    border: 2px solid rgb(134, 110, 0);
+    box-shadow: 0 0 9px rgb(216, 216, 216);
+}

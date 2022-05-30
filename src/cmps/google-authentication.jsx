@@ -13,8 +13,6 @@ export class GoogleAuthentication extends React.Component {
     }
 
     onSuccess = (res) => {
-        console.log('loggedin user:', res.profileObj)
-
         this.setState({
             googleUserId: res.profileObj.googleId,
             firstName: res.profileObj.givenName,
