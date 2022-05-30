@@ -5,40 +5,51 @@ import { setScreen } from "../store/actions/screen.action"
 import {logout} from '../store/actions/user.action'
 import { useHistory } from "react-router-dom"
 
-export const AppHeader = () => {
+export const AppHeader = ({pageClass}) => {
     const { user } = useSelector(storeState => storeState.userModule)
     const dispatch = useDispatch()
     const history = useHistory()
+    const {wap} = useSelector(storeState=>storeState.wapModule)
     const defaultUrl = 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653772907/icons/login-image_nnfkgq.png'
     const [headerClass, setHeaderClass] = useState('')
     const [isOpen, setIsOpen] =useState('')
     const isLogin = user? 'Logout':'Login'
-  
-    const onOpenModal=()=>{
+
+    const onPublish=()=>{
+        // history.push(`/publish`)
+        //    const win= window.open(`/publish`)
+        /*🚀 ~~~~~~~~~~~~~~~~ FIX - CHANGE TO HIROKU  ~~~~~~~~~~~~~~~~~~~🚀 */
+       const win= window.open(`http://localhost:3000/#/publish?id=${wap._id}`)
+       win.focus()
+    }
+    const onOpenModal=(ev)=>{
+        ev.stopPropagation()
         isOpen? setIsOpen(''):setIsOpen('open')
     }
     const onSetLoginLogout =()=>{
-        if(isLogin==='login'){
+        if(isLogin==='Logout'){
             dispatch(logout())
         }else{
             console.log(history)
             history.push('/login')
         }
     }
+    console.log('pageClass', pageClass)
     return <section className={`app-header ${headerClass}`}>
+
+        
         <main className="flex align-center">
-            {/* <Link to="/"><img src={logoImg} alt="Wixy" className="logo" /></Link> */}
             <Link className="logo-link" to="/"><div className="logo">
                 <img src="https://res.cloudinary.com/drpqhjyvk/image/upload/v1653740284/logo-wixy_fafsy0.png" alt="" />
             </div></Link>
             <nav className="header-nav">
                 <NavLink to='/' exact>Home</NavLink>
                 <NavLink to='/templates'>Templates</NavLink>
-                <NavLink to='/editor'>Editor</NavLink>
+                <NavLink  to='/editor'>Editor</NavLink>
                
             </nav>
-            <div onClick={() => {
-                onOpenModal()
+           {(pageClass!=='editor-open')&& <div onClick={(ev) => {
+                onOpenModal(ev)
                 setHeaderClass(isOpen)
             }} className="user-area">
                 {!user && <Link onClick={(ev)=>ev.stopPropagation()} className="login" to='/login'>Login</Link>}
@@ -59,7 +70,10 @@ export const AppHeader = () => {
                     { <button onClick={onSetLoginLogout} className="logout-btn">{isLogin}</button>}
                     {/* NOTE 2 rows above must stay apart (logout-btn and My-sites) */}
                 </div>}
-            </div>
+            </div>}
+            {(pageClass ==='editor-open')&&<NavLink to={`/publish?id=${wap?._id}`} target={"_blank"} className="publish-btn logo-link">Publish</NavLink>}
+            {/* {(pageClass ==='editor-open')&&<button onClick={onPublish} className="publish-btn">Publish</button>} */}
+            
             {/* <div className="flex"> */}
             {/* <div className="profile-button center-text" onClick={onProfileButton}>
                     {!user && <p></p>}

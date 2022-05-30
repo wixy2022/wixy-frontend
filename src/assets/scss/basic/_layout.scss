@@ -9,6 +9,12 @@
             
         }
     }
+    &.publisher-open {
+        grid-template-rows:  1fr;
+        .app-header {
+           display: none;
+        }
+    }
     // max-height: 60vh;
     // background-color: red;
     .app {

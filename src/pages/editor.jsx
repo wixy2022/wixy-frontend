@@ -12,6 +12,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 import { Loader } from "../cmps/app-loader"
 import { useEffectUpdate } from "../hooks/use-effect-update"
 import { EditModal } from "../cmps/edit-modal"
+import { saveWap } from "../store/actions/wap.action"
 
 
 // import { temp1Wap, temp2Wap, temp3Wap } from '../templates/templates'
@@ -39,6 +40,7 @@ export const Editor = ({ setPageClass }) => {
     useEffect(() => {
         const screenHeight = editorRef.current.scrollHeight
         dispatch(setScreenHeight(screenHeight))
+        dispatch(saveWap(wap))
     }, [wap])
 
     const loadWap = async () => {
@@ -51,6 +53,7 @@ export const Editor = ({ setPageClass }) => {
                 try {
                     const wap = await wapService.getById(wapId)
                     setWap(wap)
+                    dispatch(saveWap(wap))
                     return
                 } catch (err) {
                     console.log('status', err.response.status)

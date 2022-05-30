@@ -179,6 +179,22 @@
     position: relative;
 
 }
+.publish-btn{
+    background-color: $clr1;
+    border-radius: 15px;
+    padding: 0 18px;
+    padding-block-start: 3px;
+    color: #fff;
+    border: none;
+    height: 30px;
+    margin-inline-end: 25px;
+    letter-spacing:.15px;
+    &:hover{
+        background-color: #5999ff;
+
+    }
+
+}
 
 @media (max-width:650px) {
    

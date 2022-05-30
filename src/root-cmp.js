@@ -5,6 +5,7 @@ import { AppHeader } from "./cmps/app-header";
 import { Login } from './pages/login.jsx'
 import { UserMsg } from "./cmps/user-msg";
 import { Editor } from "./pages/editor";
+import { Publish } from "./pages/publish";
 import { Home } from "./pages/home";
 
 
@@ -12,7 +13,7 @@ export function App() {
   const [pageClass, setPageClass] = useState('')
   return (
     <div className={`main-app ${pageClass}`}>
-      <AppHeader />
+      <AppHeader pageClass={pageClass} />
 
       <main className="app">
         <Switch>
@@ -20,6 +21,7 @@ export function App() {
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Login} />
           <Route path="/editor" component={() => <Editor setPageClass={setPageClass} />} />
+          <Route path="/publish" component={() => <Publish  setPageClass={setPageClass}/>} />
           <Route path="/" component={Home} />
         </Switch>
       </main>
