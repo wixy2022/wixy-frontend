@@ -4,7 +4,6 @@ export const wapFooter01 = {
     id: utilService.makeId(),
     type: 'container-draggable',
     category: 'wap-footer',
-    theme: 'dramatic',
     className: 'wap-footer-01',
     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653580954/templates/footer-t1_cmf0nd.png',
     cmps: [
@@ -22,7 +21,6 @@ export const wapFooter02 = {
     id: utilService.makeId(16), //makeId
     type: 'container-draggable',
     category: 'wap-footer-02',
-    theme: 'classic',
     className: 'template2',
     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653565595/templates/wap-footer-02_tdbpni.png',
     cmps: [{

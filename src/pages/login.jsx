@@ -24,7 +24,9 @@ class _Login extends React.Component {
 
     state = {
         isLoginForm: true,
-        isRememberMeMode: false
+        isRememberMeMode: false,
+        firstName: '',
+        lastName: ''
     }
 
     componentDidMount() {
@@ -48,12 +50,16 @@ class _Login extends React.Component {
             email: data.get('email'),
             password: data.get('password'),
         }
-
         let loggedInUser
-        console.log(this.state.isRememberMeMode)
-        if (isLogin) { loggedInUser = await this.props.login(user, this.state.isRememberMeMode) }
-        else { loggedInUser = await this.props.signUp(user) }
+        try {
+            console.log(this.state.isRememberMeMode)
+            if (isLogin) { loggedInUser = await this.props.login(user, this.state.isRememberMeMode) }
+            else { loggedInUser = await this.props.signUp(user) }
+        } catch {
+            this.setState({ firstName: '', lastName: '' }, console.log(this.state))
+        }
         if (loggedInUser) this.props.history.push('/templates')
+        else this.setState({ firstName: '', lastName: '' }, console.log(this.state))
     }
 
     handleSocialAuthentication = async (user) => {
@@ -183,6 +189,8 @@ class _Login extends React.Component {
                             </Typography>
                             <Box component="form" onSubmit={(ev) => this.handleSubmit(ev, true)} noValidate sx={{ mt: 1 }}>
                                 <TextField
+                                    value={this.state.firstName}
+                                    onChange={(e) => { this.setState({ firstName: e.target.value }) }}
                                     margin="normal"
                                     required
                                     fullWidth
@@ -193,6 +201,8 @@ class _Login extends React.Component {
                                     autoFocus
                                 />
                                 <TextField
+                                    value={this.state.lastName}
+                                    onChange={(e) => { this.setState({ lastName: e.target.value }) }}
                                     margin="normal"
                                     required
                                     fullWidth

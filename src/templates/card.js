@@ -4,15 +4,13 @@ export const wapCards01 = {
     id: utilService.makeId(),
     type: 'container-draggable',
     category: 'wap-cards',
-    theme: 'dramatic',
     className: 'wap-cards-01',
     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653581168/templates/cards-t1_pcba2x.png',
     cmps: [
         {
             id: utilService.makeId(),
             type: 'container',
-            theme: 'dramatic',
-            className: 'dramatic-team-title',
+            className: 'wap-01-team-title',
             cmps: [
                 {
                     id: utilService.makeId(),
@@ -25,21 +23,19 @@ export const wapCards01 = {
         {
             id: utilService.makeId(),
             type: 'container',
-            theme: 'dramatic',
-            className: 'dramatic-team-list',
+            className: 'wap-01-team-list',
             cmps: [
                 {
                     id: utilService.makeId(),
                     type: 'container',
                     category: 'wap-card',
-                    theme: 'dramatic',
-                    className: 'dramatic-card',
+                    className: 'wap-01-card',
                     cmps: [
                         {
                             id: utilService.makeId(),
                             type: 'img',
                             url: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653580978/templates/team1_glsspk.jpg',
-                            className: 'dramatic-team-img',
+                            className: 'wap-01-team-img',
                         },
                         {
                             id: utilService.makeId(),
@@ -53,14 +49,13 @@ export const wapCards01 = {
                     id: utilService.makeId(),
                     type: 'container',
                     category: 'wap-card',
-                    theme: 'dramatic',
-                    className: 'dramatic-card',
+                    className: 'wap-01-card',
                     cmps: [
                         {
                             id: utilService.makeId(),
                             type: 'img',
                             url: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653580978/templates/team2_whg4cx.jpg',
-                            className: 'dramatic-team-img',
+                            className: 'wap-01-team-img',
                         },
                         {
                             id: utilService.makeId(),
@@ -74,14 +69,14 @@ export const wapCards01 = {
                     id: utilService.makeId(),
                     type: 'container',
                     category: 'wap-card',
-                    theme: 'dramatic',
-                    className: 'dramatic-card',
+
+                    className: 'wap-01-card',
                     cmps: [
                         {
                             id: utilService.makeId(),
                             type: 'img',
                             url: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653580978/templates/team3_tzdckz.jpg',
-                            className: 'dramatic-team-img',
+                            className: 'wap-01-team-img',
                         },
                         {
                             id: utilService.makeId(),
@@ -100,7 +95,6 @@ export const wapCards01 = {
 export const wapCards02 = {
     id: utilService.makeId(16), //makeId
     type: 'container-draggable',
-    theme: 'classic',
     category: 'wap-cards-02',
     className: 'template2',
     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653565595/templates/wap-cards-02_t8nkzj.png',
@@ -155,7 +149,6 @@ export const wapCards03 = {
     id: utilService.makeId(16),
     type: 'container-draggable',
     category: 'wap-cards',
-    theme: 'classic',
     className: 'wap-cards-03',
     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653734951/templates/wap-cards-03_nawfbi.png',
     cmps: [
@@ -169,7 +162,6 @@ export const wapCards04 = {
     id: utilService.makeId(16),
     type: 'container-draggable',
     category: 'wap-cards',
-    theme: 'classic',
     className: 'wap-cards-04',
     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653773086/templates/wap-cards-04_ticnkc.png',
     cmps: [
@@ -235,7 +227,7 @@ export const wapCards04 = {
             }],
             isPublic: false
         },
-],
+    ],
 }
 
 function getCard(imgUrl, title, subtitle,) {

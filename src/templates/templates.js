@@ -22,7 +22,7 @@ export const allTemplates = {
 //
 export const temp1Wap = {
     _id: '62911fb25a660f6cae594bb4',
-    name: 'template-dramatic-1',
+    name: 'template 1',
     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653688477/templates/page-template-01_awthi3.png',
     createdBy: 'miniUser',
     cmps: [wapHeader01,

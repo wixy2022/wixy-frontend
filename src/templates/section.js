@@ -4,7 +4,6 @@ export const wapSection01 = {
     id: utilService.makeId(),
     type: 'container-draggable',
     category: 'wap-hero',
-    theme: 'dramatic',
     className: 'wap-hero-01',
     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653580957/templates/hero-t1_ldzw5u.png',
     cmps: [
@@ -23,7 +22,6 @@ export const wapSection02 = {
     id: utilService.makeId(16),
     type: 'container-draggable',
     category: 'wap-section',
-    theme: 'classic',
     className: 'wap-section-02',
     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653565595/templates/wap-section-02_jrcyn7.png',
     cmps: [{
@@ -59,7 +57,6 @@ export const wapSection03 = {
     id: utilService.makeId(),
     type: 'container-draggable',
     category: 'wap-section',
-    theme: 'classic',
     className: 'wap-section-03',
     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653755007/templates/section-wap-03_dli4ne.png',
     cmps: [
@@ -87,7 +84,6 @@ export const wapSection04 = {
     id: utilService.makeId(),
     type: 'container-draggable',
     category: 'wap-section',
-    theme: 'classic',
     className: 'wap-section-04',
     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653773084/templates/wap-section-04_pbeum7.png',
     cmps: [
@@ -120,7 +116,7 @@ export const wapSection04 = {
         }, {
             id: utilService.makeId(16),
             type: 'anchor',
-            className:'anchor',
+            className: 'anchor',
             txt: 'learn more',
             imgUrl: '',
             style: {
@@ -131,14 +127,11 @@ export const wapSection04 = {
             },
 
         },
-         
-        
+
+
 
 
     ],
     isPublic: true
-
-
-
 
 }
