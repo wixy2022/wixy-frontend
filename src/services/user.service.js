@@ -19,14 +19,16 @@ function getLoggedInUser() {
     return user
 }
 
-async function login(user) {
+async function login(user, isRememberMode) {
     const loggedinUser = await httpService.post(`auth/login`, user)
-    sessionStorage.setItem('loggedinUser', JSON.stringify(loggedinUser))
+    if (isRememberMode) sessionStorage.setItem('loggedinUser', JSON.stringify(loggedinUser))
     return loggedinUser
 }
 
 async function logout() {
+    console.log(1)
     await httpService.post(`auth/logout`)
+    console.log(2)
     sessionStorage.removeItem('loggedinUser')
 }
 

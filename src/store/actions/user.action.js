@@ -8,9 +8,9 @@ export function signUp(credentials) {
     }
 }
 
-export function login(credentials) {
+export function login(loggedInUser, isRememberMode) {
     return async dispatch => {
-        const user = await userService.login(credentials)
+        const user = await userService.login(loggedInUser, isRememberMode)
         dispatch({ type: 'SET_USER', user })
         return user
     }

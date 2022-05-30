@@ -23,7 +23,8 @@ const clientId = '777045938185-r0hkggifahev5ccik4eairjhrv7d0kua.apps.googleuserc
 class _Login extends React.Component {
 
     state = {
-        isLoginForm: true
+        isLoginForm: true,
+        isRememberMeMode: false
     }
 
     componentDidMount() {
@@ -36,6 +37,7 @@ class _Login extends React.Component {
 
         gapi.load('client:auth2', start)
     }
+    // const accessToken = gapi.auth.getToken().access_token
 
     handleSubmit = async (ev, isLogin) => {
         ev.preventDefault()
@@ -48,14 +50,15 @@ class _Login extends React.Component {
         }
 
         let loggedInUser
-        if (isLogin) { loggedInUser = await this.props.login(user) }
+        console.log(this.state.isRememberMeMode)
+        if (isLogin) { loggedInUser = await this.props.login(user, this.state.isRememberMeMode) }
         else { loggedInUser = await this.props.signUp(user) }
         if (loggedInUser) this.props.history.push('/templates')
     }
 
     handleSocialAuthentication = async (user) => {
         user.isSocial = true
-        const loggedInUser = await this.props.login(user)
+        const loggedInUser = await this.props.login(user, this.state.isRememberMeMode)
         if (loggedInUser) this.props.history.push('/templates')
     }
 
@@ -63,8 +66,12 @@ class _Login extends React.Component {
         this.setState({ isLoginForm })
     }
 
+    handleCheckboxChange = () => {
+        this.setState({ isRememberMeMode: !this.state.isRememberMeMode })
+    }
+
     render() {
-        const { isLoginForm } = this.state
+        const { isLoginForm, isRememberMeMode } = this.state
         const theme = createTheme()
         theme.palette.primary.main = '#424242'
         theme.palette.primary.contrastText = '#DBDBDB'
@@ -72,7 +79,7 @@ class _Login extends React.Component {
         // console.log('theme', theme)
 
         return <section>
-            {/* ~~~~~~~~~~ SIGN-IN PAGE  ~~~~~~~~~~ */}
+            {/*  SIGN-IN PAGE   */}
             {!isLoginForm && <ThemeProvider theme={theme}>
                 <Container component="main" maxWidth="xs">
                     <CssBaseline />
@@ -156,7 +163,7 @@ class _Login extends React.Component {
                 </Container>
             </ThemeProvider >}
 
-            {/* ~~~~~~~~~~ LOGIN PAGE  ~~~~~~~~~~ */}
+            {/*  LOGIN PAGE   */}
             {isLoginForm && <div className="login-page-container">
                 <ThemeProvider theme={theme}>
                     <Container component="main" maxWidth="xs">
@@ -215,13 +222,20 @@ class _Login extends React.Component {
                     </Container>
                 </ThemeProvider>
                 <div className="networks-login">
-                    {/* ~~~~~~~~~~ FACEBOOK  ~~~~~~~~~~ */}
+                    {/*  FACEBOOK   */}
                     {/* <p>Authenticate with Facebook</p> */}
-                    <FacebookAuthentication handleFacebookAuthentication={this.handleSocialAuthentication} />
-                    {/* ~~~~~~~~~~ GOOGLE  ~~~~~~~~~~ */}
+                    <FacebookAuthentication handleSocialAuthentication={this.handleSocialAuthentication} />
+                    {/*  GOOGLE   */}
                     <GoogleAuthentication handleSocialAuthentication={this.handleSocialAuthentication} />
                 </div>
             </div>}
+            {isLoginForm && <form className="remember-me" action="">
+                <label>
+                    <input type="checkbox" name="remember-me" checked={isRememberMeMode} id="remember-mode" onChange={this.handleCheckboxChange} />
+                    Remember Me
+                </label>
+            </form>
+            }
         </section>
     }
 
