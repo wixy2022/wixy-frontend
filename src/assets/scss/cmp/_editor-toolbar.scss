@@ -198,7 +198,7 @@
         }
         .tool-bar-options {
 
-            padding-inline-start: rem(20px);
+            padding-inline-start: 6.25rem;
             opacity: 1;
             position: relative;
             width: 400px;
@@ -206,7 +206,7 @@
 
             >* {
                 top: unset;
-                width: 300px;
+                width: 224px;
                 right: 420px;
                 position: relative;
                 z-index: 10;

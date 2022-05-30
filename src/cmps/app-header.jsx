@@ -4,9 +4,6 @@ import { useEffect, useState } from "react"
 import { setScreen } from "../store/actions/screen.action"
 import {logout} from '../store/actions/user.action'
 import { useHistory } from "react-router-dom"
-// import { useState } from "react"
-// import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-// import logoImg from '../assets/img/logo.png'
 
 export const AppHeader = () => {
     const { user } = useSelector(storeState => storeState.userModule)
