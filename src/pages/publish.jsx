@@ -7,7 +7,7 @@ import { utilService } from "../services/util.service"
 import { wapService } from "../services/wap.service"
 import { saveWap } from "../store/actions/wap.action"
 
-export const Publish = ({ setPageClass }) => {
+export const Publish = ({ setPageClass ,pageClass}) => {
     const savedWap = useSelector(storeState => storeState.wapModule.wap)
     const [wap, setWap] = useState(null)
     const history = useHistory()
@@ -15,7 +15,7 @@ export const Publish = ({ setPageClass }) => {
 
 
     useEffect(() => {
-        setPageClass('publisher-open')
+        if(!pageClass==='publisher-open') setPageClass('publisher-open')
         loadWap()
         return () => {
             setPageClass('')
@@ -52,9 +52,9 @@ export const Publish = ({ setPageClass }) => {
     }
     console.log(savedWap)
     if (!wap) return <></>
-    return <section className="publish">
+    return <section onClick={ev=>ev.stopPropagation()} className="publish">
         {wap.cmps.map(cmp => {
-            return <DynamicCmp cmp={cmp} key={utilService.createKey()} isPublish={true} />
+            return <DynamicCmp onClick={ev=>ev.stopPropagation()} cmp={cmp} key={utilService.createKey()} isPublish={true} />
 
         })}
     </section>
