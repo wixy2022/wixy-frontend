@@ -1,6 +1,5 @@
 .user-msg {
     position: fixed;
-    // padding-inline-start: 1em;
     z-index: 4000;
     top: 5rem;
     display: flex;
@@ -33,9 +32,6 @@
             margin: 0;
             width: 100%;
             height: 10px;
-            // -webkit-appearance: none;
-            // -moz-appearance: none;
-            // appearance: none;
 
         }
         
@@ -72,7 +68,6 @@
 }
 meter::-webkit-meter-bar {
     background: transparent;
-    // box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2) inset;
     border-radius: 0;
     border: none;
 

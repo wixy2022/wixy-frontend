@@ -13,7 +13,7 @@ export function App() {
   const [pageClass, setPageClass] = useState('')
   return (
     <div className={`main-app ${pageClass}`}>
-      <AppHeader pageClass={pageClass} />
+      <AppHeader setPageClass={setPageClass} pageClass={pageClass}  />
 
       <main className="app">
         <Switch>
@@ -21,7 +21,7 @@ export function App() {
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Login} />
           <Route path="/editor" component={() => <Editor setPageClass={setPageClass} />} />
-          <Route path="/publish" component={() => <Publish  setPageClass={setPageClass}/>} />
+          <Route path="/publish" component={() => <Publish  pageClass={pageClass} setPageClass={setPageClass}/>} />
           <Route path="/" component={Home} />
         </Switch>
       </main>

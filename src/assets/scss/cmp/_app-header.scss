@@ -4,7 +4,7 @@
     box-shadow: 0 1px 6px 0px rgba(0, 0, 0, 0.329);
     min-width: 100%;
     background-color: white;
-    z-index: 30;
+    z-index: 2000;
 
     .user-modal-header {
         display: flex;
@@ -179,7 +179,7 @@
     position: relative;
 
 }
-.publish-btn{
+.publish-btn ,.preview-btn{
     display: flex;
     align-items: center;
     justify-content: start;
