@@ -1,7 +1,7 @@
 import { utilService } from "../services/util.service"
 
 export const wapText01 = {
-    id: utilService.makeId(),
+    id: utilService.makeId(16),
     type: 'container-draggable',
     category: 'wap-text',
     className: 'wap-txt-01',

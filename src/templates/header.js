@@ -1,26 +1,26 @@
 import { utilService } from "../services/util.service"
 
 export const wapHeader01 = {
-    id: utilService.makeId(),
+    id: utilService.makeId(16),
     type: 'container-draggable',
     category: 'wap-header',
     className: 'wap-header-01',
     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653580954/templates/header-t1_yosljg.png',
     cmps: [
         {
-            id: utilService.makeId(),
+            id: utilService.makeId(16),
             type: 'txt',
             className: 'title',
             txt: 'PH-STUDIO',
         },
         {
-            id: utilService.makeId(),
+            id: utilService.makeId(16),
             type: 'container',
             category: 'wap-header-container',
             className: 'wap-01-header-links-container',
             cmps: [
                 {
-                    id: utilService.makeId(),
+                    id: utilService.makeId(16),
                     type: 'anchor',
                     url: 'https://www.facebook.com/',
                     className: 'link',
@@ -28,7 +28,7 @@ export const wapHeader01 = {
 
                 },
                 {
-                    id: utilService.makeId(),
+                    id: utilService.makeId(16),
                     type: 'anchor',
                     url: 'https://www.instagram.com/?hl=en',
                     className: 'link',
