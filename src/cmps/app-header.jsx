@@ -27,12 +27,8 @@ export const AppHeader = ({ pageClass }) => {
         isOpen ? setIsOpen('') : setIsOpen('open')
     }
     const onSetLoginLogout = () => {
-        if (isLogin === 'Logout') {
-            dispatch(logout())
-        } else {
-            console.log(history)
-            history.push('/login')
-        }
+        if (isLogin === 'Logout') dispatch(logout())
+        else history.push('/login')
     }
     return <section className={`app-header ${headerClass}`}>
 
@@ -69,7 +65,7 @@ export const AppHeader = ({ pageClass }) => {
                     {<button onClick={onSetLoginLogout} className="logout-btn">{isLogin}</button>}
                 </div>}
             </div>}
-            {(pageClass ==='editor-open')&&<NavLink to={`/publish?id=${wap?._id}`} target={"_blank"} className="publish-btn logo-link">Publish</NavLink>}
+            {(pageClass === 'editor-open') && <NavLink to={`/publish?id=${wap?._id}`} target={"_blank"} className="publish-btn logo-link">Publish</NavLink>}
             {/* {(pageClass === 'editor-open') && <NavLink to={`/publish`} target={"_blank"} className="publish-btn logo-link">Publish</NavLink>} */}
             {/* {(pageClass ==='editor-open')&&<button onClick={onPublish} className="publish-btn">Publish</button>} */}
         </main>

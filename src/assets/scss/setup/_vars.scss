@@ -1,9 +1,24 @@
 /* GLOBAL SIZES */
 $site-header-height: 48px;
 $site-without-header: calc(100vh - $site-header-height);
-$site-without-header-tool-bar: calc(100vh - 127px );
+$site-without-header-tool-bar: calc(100vh - 127px);
 
 /* COLOR PALETTE */
 $clr1 : rgb(12, 110, 252);
 $clr2 : rgb(214, 230, 254);
 $clr3 : rgba(128, 128, 128, 0.11);
+
+
+/* THEME FONT FAMILY */
+$font-dramatic-1: Lobster-dramatic;
+$font-dramatic-2: Abril_Fatface-dramatic;
+$font-dramatic-3: anton-dramatic;
+
+$font-classic-1: dancing-classic;
+$font-classic-2: Heebo-classic;
+$font-classic-3: noto-classic;
+
+$font-festive-1: blaka-festive;
+$font-festive-2: flower-festive;
+$font-festive-3: indie-festive;
+$font-festive-4: permanent-festive;

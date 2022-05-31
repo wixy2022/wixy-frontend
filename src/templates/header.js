@@ -4,7 +4,6 @@ export const wapHeader01 = {
     id: utilService.makeId(),
     type: 'container-draggable',
     category: 'wap-header',
-    theme: 'dramatic',
     className: 'wap-header-01',
     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653580954/templates/header-t1_yosljg.png',
     cmps: [
@@ -18,7 +17,7 @@ export const wapHeader01 = {
             id: utilService.makeId(),
             type: 'container',
             category: 'wap-header-container',
-            className: 'dramatic-header-links-container',
+            className: 'wap-01-header-links-container',
             cmps: [
                 {
                     id: utilService.makeId(),
