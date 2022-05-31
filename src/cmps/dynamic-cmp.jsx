@@ -2,7 +2,7 @@ import React from "react"
 import { AnchorCmp } from "./dynamic-cmps/anchor-cmp"
 import { ImgCmp } from "./dynamic-cmps/img-cmp"
 import { TxtCmp } from "./dynamic-cmps/txt-cmp"
-
+import {utilService} from '../services/util.service'
 // import { ContainerCmp } from "./dynamic-cmps/container-cmps.jsx"
 
 export class DynamicCmp extends React.Component {
@@ -34,7 +34,7 @@ export class DynamicCmp extends React.Component {
             case 'container-draggable':
             case 'container': return <section className={cmp.className}>
                 {cmp.cmps.map((currCmp) =>
-                    <DynamicCmp key={currCmp.id} isPublish={isPublish} className={currCmp.className} cmp={currCmp}
+                    <DynamicCmp key={utilService.createKey()} isPublish={isPublish} className={currCmp.className} cmp={currCmp}
                         onEditElement={onEditElement} onChangeInput={this.onChangeInput} onOpenEditModal={onOpenEditModal} />
                 )}
             </section>
