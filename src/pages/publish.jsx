@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { useHistory} from "react-router-dom"
 import { DynamicCmp } from "../cmps/dynamic-cmp"
+import { storageService } from "../services/async-storage.service"
 import { utilService } from "../services/util.service"
 import { wapService } from "../services/wap.service"
 import { saveWap } from "../store/actions/wap.action"
@@ -22,6 +23,11 @@ export const Publish = ({ setPageClass }) => {
     }, [])
 
     const loadWap = async () => {
+      const wapFromStorage = storageService.getWapFromStorage('wap')
+      if(wapFromStorage){
+          return wapFromStorage
+
+        }
         if (savedWap) return setWap(savedWap)
         console.log(wap,savedWap)
         const urlSrcPrm = new URLSearchParams(history.location.search)

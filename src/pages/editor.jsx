@@ -15,6 +15,7 @@ import { EditModal } from "../cmps/edit-modal"
 
 import { wapService } from "../services/wap.service"
 import { utilService } from '../services/util.service'
+import { storageService } from "../services/async-storage.service"
 
 export const Editor = ({ setPageClass }) => {
     const { wap } = useSelector(storeState => storeState.wapModule)
@@ -33,6 +34,7 @@ export const Editor = ({ setPageClass }) => {
 
     useEffect(() => {
         dispatch(setWap(wap))
+        storageService.saveWapToStorage(wap)
     }, [wap])
 
     useEffect(() => {
