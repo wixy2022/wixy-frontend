@@ -76,7 +76,7 @@ function createAncestors(cmp, ancestors = []) {
     if (cmp.cmps) {
         cmp.cmps.forEach(currCmp => createAncestors(currCmp, cmp.ancestors))
     }
-    
+
     return cmp
 }
 
@@ -88,6 +88,7 @@ function updateWap(wap, activeCmp, key, value) {
 
 function _updateWapProperties(cmp, ancestorsIds, activeCmp, key, value) {
     // const currId = ancestorsIds.shift() // change 
+
 
     if (key === 'remove') {
         const updatedCmps = cmp.cmps.filter(currCmp => currCmp.id !== activeCmp.id)

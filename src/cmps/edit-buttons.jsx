@@ -1,4 +1,4 @@
-export const EditButtons = ({ cmpType, activeCmpPos, onOpenEditModal, onUpdateWap, scrollHeight, editorLeft }) => {
+export const EditButtons = ({ cmpType, activeCmpSettings, onOpenEditModal, onUpdateWap, scrollHeight, editorLeft }) => {
 
     const getActions = cmpType => {
         const getDetails = (type) => {
@@ -30,15 +30,15 @@ export const EditButtons = ({ cmpType, activeCmpPos, onOpenEditModal, onUpdateWa
     }
 
     //Positioning the modal
-    if (activeCmpPos.x === 0 && activeCmpPos.y === 0) return
+    if (activeCmpSettings.x === 0 && activeCmpSettings.y === 0) return
 
-    const left = activeCmpPos.x + (activeCmpPos.width / 2) - editorLeft
+    const left = activeCmpSettings.x + (activeCmpSettings.width / 2) - editorLeft
 
-    const top = scrollHeight + activeCmpPos.y - 80
+    const top = scrollHeight + activeCmpSettings.y - 80
     const style = { left, top, bottom: '' }
-    if (window.innerHeight < activeCmpPos.height) style.top = 80
+    if (window.innerHeight < activeCmpSettings.height) style.top = 80
     else if (top < 80) {
-        style.top += activeCmpPos.height + 40
+        style.top += activeCmpSettings.height + 40
     }
 
     //Adding buttons
@@ -47,7 +47,7 @@ export const EditButtons = ({ cmpType, activeCmpPos, onOpenEditModal, onUpdateWa
     console.log('actions', actions)
 
     return <div className="edit-buttons up-screen" style={{ ...style }}>
-        {actions.map(action => <div className="img-container" title={action.title}
+        {actions?.map(action => <div className="img-container" title={action.title}
             key={action.type} onClick={(ev) => onClick(ev, action.type)}>
             <img title={action.title} src={action.img}></img>
         </div>)}

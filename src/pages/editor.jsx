@@ -23,13 +23,14 @@ export const Editor = ({ setPageClass }) => {
     const history = useHistory()
     const [toolBarMode, setToolBarMode] = useState('')
     const [templateKey, setTemplateKey] = useState(null)
+    const [editMode, setEditMode] = useState('inline') //* FIX - setEditMode -> props to child */
     const editorRef = useRef()
     const templates = allTemplates
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const [editModalSettings, setEditModalSettings] = useState(null) /* FIX -  */
 
     const [activeCmp, setActiveCmp] = useState(null)
-    const [activeCmpPos, setActiveCmpPos] = useState(null)
+    const [activeCmpSettings, setActiveCmpSettings] = useState(null)
     const [onActiveCmpUpdate, setOnActiveCmpUpdate] = useState(null)
 
     useEffect(() => {
@@ -61,7 +62,7 @@ export const Editor = ({ setPageClass }) => {
             if (wapId) {
                 try {
                     const wap = await wapService.getById(wapId)
-                    
+
                     dispatch(setWap(wap))
                     return
                 } catch (err) {
@@ -102,9 +103,9 @@ export const Editor = ({ setPageClass }) => {
         if (result.draggableId.includes('template')) {
             let template = JSON.parse(JSON.stringify(templates[templateKey][result.source.index - 100]))
             template.id = utilService.makeId(16)
-            template =wapService.createAncestors(template)
+            template = wapService.createAncestors(template)
             console.log('template', template)
-            const idx = result.destination.index    
+            const idx = result.destination.index
             const copiedCmps = JSON.parse(JSON.stringify(wap.cmps))
             copiedCmps.splice(idx, 0, template)
 
@@ -151,11 +152,14 @@ export const Editor = ({ setPageClass }) => {
         // currCmp.className += ' active-cmp'
         setActiveCmp(currCmp)
 
-        setActiveCmpPos({
+        setActiveCmpSettings({
             x: elCurrCmp.getBoundingClientRect().x,
             y: elCurrCmp.getBoundingClientRect().y,
             width: elCurrCmp.offsetWidth,
             height: elCurrCmp.offsetHeight,
+            fontWeight: getComputedStyle(elCurrCmp).fontWeight,
+            textDecoration: getComputedStyle(elCurrCmp).textDecoration,
+            fontStyle: getComputedStyle(elCurrCmp).fontStyle
         })
 
         // setOnActiveCmpUpdate(() => onChange)
@@ -183,15 +187,15 @@ export const Editor = ({ setPageClass }) => {
                     <TemplateToolBar setToolBarMode={setToolBarMode} templates={templates} setTemplateKey={setTemplateKey} />
                     <div {...providedDroppable.droppableProps}
                         className='editor-site-container'
-                       style={(wap?.cmps.length===0)?{backgroundColor: '(128, 128, 128, 0.09)'}:{}}
+                        style={(wap?.cmps.length === 0) ? { backgroundColor: '(128, 128, 128, 0.09)' } : {}}
                         ref={el => { editorRef.current = el; providedDroppable.innerRef(el); }}
-                        >
-                            {(wap?.cmps.length===0)&&<>
+                    >
+                        {(wap?.cmps.length === 0) && <>
                             <h1 className="editor-empty-msg"> →  Drag here to create your own website  ←</h1>
                             <div className="editor-empty-gif"><img src="https://j.gifs.com/oZ909K.gif" alt="" /></div>
-                            </>
-                            }
-                            
+                        </>
+                        }
+
                         <Screen />
                         {wap && wap.cmps.map((cmp, idx) => (
                             <Draggable key={utilService.createKey()} draggableId={cmp.id} index={idx}>
@@ -209,12 +213,16 @@ export const Editor = ({ setPageClass }) => {
                         )}
                         {providedDroppable.placeholder}
 
-                        {activeCmp && <EditButtons cmpType={activeCmp.type} activeCmpPos={activeCmpPos}
+                        {activeCmp && <EditButtons cmpType={activeCmp.type} activeCmpSettings={activeCmpSettings}
                             onOpenEditModal={onOpenEditModal} onUpdateWap={onUpdateWap}
                             scrollHeight={editorRef.current.scrollTop}
                             editorLeft={editorRef.current.offsetLeft} />}
 
                         {isEditModalOpen && <EditModal {...editModalSettings}
+                            activeCmpSettings={activeCmpSettings}
+                            editMode={editMode}
+                            setActiveCmp={setActiveCmp}
+                            // onChangeStyle={onChangeStyle}
                             onActiveCmpUpdate={onActiveCmpUpdate} activeCmp={activeCmp}
                             onUpdateWap={onUpdateWap}
                         />}
