@@ -1,6 +1,6 @@
 const initialState = {
     isOpenScreen: false,
-    screenHeight: null
+    screenHeight: null,
 }
 
 export function screenReducer(state = initialState, action) {
