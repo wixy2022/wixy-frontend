@@ -98,11 +98,11 @@ export const Editor = ({ setPageClass }) => {
         }
 
         if (result.draggableId.includes('template')) {
-            const template = JSON.parse(JSON.stringify(templates[templateKey][result.source.index - 100]))
+            let template = JSON.parse(JSON.stringify(templates[templateKey][result.source.index - 100]))
             template.id = utilService.makeId(16)
-            wapService.createAncestors(template)
-
-            const idx = result.destination.index
+            template =wapService.createAncestors(template)
+            console.log('template', template)
+            const idx = result.destination.index    
             const copiedCmps = JSON.parse(JSON.stringify(wap.cmps))
             copiedCmps.splice(idx, 0, template)
 

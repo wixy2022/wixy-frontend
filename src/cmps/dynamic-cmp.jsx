@@ -4,6 +4,7 @@ import { ImgCmp } from "./dynamic-cmps/img-cmp"
 import { TxtCmp } from "./dynamic-cmps/txt-cmp"
 import { EditButtons } from "./edit-buttons"
 import { useEffectUpdate } from '../hooks/use-effect-update'
+import { utilService } from "../services/util.service"
 
 // import { ContainerCmp } from "./dynamic-cmps/container-cmps.jsx"
 
@@ -43,7 +44,7 @@ export class DynamicCmp extends React.Component {
             case 'container':
                 return <section className={`${cmp.className} relative`} onClick={(ev) => onSelectActiveCmp(cmp, ev.target)}>
                     {cmp.cmps.map((currCmp) =>
-                        <DynamicCmp key={currCmp.id} className={currCmp.className} cmp={currCmp}
+                        <DynamicCmp key={utilService.createKey()} className={currCmp.className} cmp={currCmp}
                             onUpdateWap={onUpdateWap} onSelectActiveCmp={onSelectActiveCmp} onChangeInput={this.onChangeInput} />
                     )}
                 </section>
