@@ -37,23 +37,19 @@ export const Editor = ({ setPageClass }) => {
     const [onActiveCmpUpdate, setOnActiveCmpUpdate] = useState(null)
 
     useEffect(() => {
-        console.log('IM RUNNING MICHAEL!!!!!',)
         dispatch(setWap(wap))
     }, [wap])
 
     useEffect(() => {
         loadWap()
         setPageClass('editor-open')
-        onSetHeight()
+        // onSetHeight()
         return () => {
             setPageClass('')
         }
     }, [history.location.search])
 
-    useEffect(() => {
-        const screenHeight = editorRef.current.scrollHeight
-        dispatch(setScreenHeight(screenHeight))
-    }, [wap])
+
 
     const loadWap = async () => {
         /* FIX - remove timeout */
@@ -78,14 +74,23 @@ export const Editor = ({ setPageClass }) => {
         }, 1000)
     }
 
-    const onCloseScreen = () => {
-        dispatch(setScreen(false))
-    }
+    // useEffect(() => {
+    //     const screenHeight = editorRef.current.scrollHeight
+    //     dispatch(setScreenHeight(screenHeight))
+    // }, [wap])
 
-    const onSetHeight = () => {
-        const screenHeight = editorRef.current.scrollHeight
-        dispatch(setScreenHeight(screenHeight))
-    }
+    // const onCloseScreen = () => {
+    //     dispatch(setScreen(false))
+    // }
+
+    // const onSetHeight = () => {
+    //     const screenHeight = editorRef.current.scrollHeight
+    //     dispatch(setScreenHeight(screenHeight))
+    // }
+
+    // const onEditElement = () => {
+    //     dispatch(setScreen(true))
+    // }
 
     const handleOnDragEnd = (result) => {
         if (!result.destination) {
@@ -101,7 +106,7 @@ export const Editor = ({ setPageClass }) => {
             const copiedCmps = JSON.parse(JSON.stringify(wap.cmps))
             copiedCmps.splice(idx, 0, template)
 
-            onCloseScreen()
+            // onCloseScreen()
             dispatch(setWap({ ...wap, cmps: copiedCmps }))
         } else {
             const copiedCmps = JSON.parse(JSON.stringify(wap.cmps))
@@ -115,10 +120,6 @@ export const Editor = ({ setPageClass }) => {
         console.log('cmp', cmp)
         const updatedCmps = wap.cmps.map(currCmp => currCmp.id === cmp.id ? cmp : currCmp)
         setWap({ ...wap, cmps: updatedCmps })
-    }
-
-    const onEditElement = () => {
-        dispatch(setScreen(true))
     }
 
     const onOpenEditModal = (ev, action) => {
@@ -137,12 +138,12 @@ export const Editor = ({ setPageClass }) => {
         setEditModalSettings({ posX, posY, setIsEditModalOpen })
 
         /* FIX - ADD BUTTONS BY ACTION */
-        
+
         setIsEditModalOpen(true)
     }
 
     const onSelectActiveCmp = (currCmp, elCurrCmp, onChange) => {
-        // if (isEditModalOpen) setIsEditModalOpen(false)
+        if (isEditModalOpen) setIsEditModalOpen(false)
         if (activeCmp?.id === currCmp.id) return
 
         // if (activeCmp) onActiveCmpUpdate('className', activeCmp.className.replace('active-cmp', ''))
@@ -178,7 +179,8 @@ export const Editor = ({ setPageClass }) => {
         <DragDropContext onDragEnd={handleOnDragEnd}>
             <Droppable droppableId={wap?._id || 'no-wap'}>
                 {(providedDroppable) => <>
-                    <TemplateToolBar onSetHeight={onSetHeight} onCloseScreen={onCloseScreen} setToolBarMode={setToolBarMode} templates={templates} setTemplateKey={setTemplateKey} />
+                    {/* onSetHeight={onSetHeight} onCloseScreen={onCloseScreen}  <== was on template toolbar */}
+                    <TemplateToolBar setToolBarMode={setToolBarMode} templates={templates} setTemplateKey={setTemplateKey} />
                     <div {...providedDroppable.droppableProps}
                         className='editor-site-container'
                         ref={el => { editorRef.current = el; providedDroppable.innerRef(el); }}>

@@ -41,15 +41,15 @@ export class DynamicCmp extends React.Component {
 
             case 'container-draggable':
             case 'container':
-                return <section className={`${cmp.className} relative`} >
+                return <section className={`${cmp.className} relative`} onClick={(ev) => onSelectActiveCmp(cmp, ev.target)}>
                     {cmp.cmps.map((currCmp) =>
                         <DynamicCmp key={currCmp.id} className={currCmp.className} cmp={currCmp}
                             onUpdateWap={onUpdateWap} onSelectActiveCmp={onSelectActiveCmp} onChangeInput={this.onChangeInput} />
                     )}
                 </section>
 
-            case 'anchor': return <AnchorCmp cmp={cmp} />
-            case 'img': return <ImgCmp cmp={cmp} />
+            case 'anchor': return <AnchorCmp cmp={cmp} onSelectActiveCmp={onSelectActiveCmp} />
+            case 'img': return <ImgCmp cmp={cmp} onSelectActiveCmp={onSelectActiveCmp} />
             default: return ''
         }
     }

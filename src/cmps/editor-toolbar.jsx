@@ -10,8 +10,8 @@ export const TemplateToolBar = ({ setToolBarMode, templates, setTemplateKey, onC
     const onHandleTemplates = async (ev) => {
         // ev.stopPropagation()
         const { name } = ev.target
-        onCloseScreen()
-        await onSetHeight()
+        // onCloseScreen()
+        // await onSetHeight()
 
         if (currTopic === name) {
             setCurrTopic(null)
