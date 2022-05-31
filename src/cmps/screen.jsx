@@ -19,9 +19,10 @@ export const Screen = () => {
     }
 
     const onCloseScreen = () => {
+        
         dispatch(setScreen(false))
     }
-
+    
     return <>
         {isOpenScreen && <div ref={screenRef} className="screen" onClick={onCloseScreen}></div>}
     </>

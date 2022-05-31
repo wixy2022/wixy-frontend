@@ -19,9 +19,9 @@ function getLoggedInUser() {
     return user
 }
 
-async function login(user) {
+async function login(user, isRememberMode) {
     const loggedinUser = await httpService.post(`auth/login`, user)
-    sessionStorage.setItem('loggedinUser', JSON.stringify(loggedinUser))
+    if (isRememberMode) sessionStorage.setItem('loggedinUser', JSON.stringify(loggedinUser))
     return loggedinUser
 }
 
@@ -31,9 +31,7 @@ async function logout() {
 }
 
 async function signUp(user) {
-    console.log(user, 'user from service')
     const loggedinUser = await httpService.post(`auth/signup`, user)
     sessionStorage.setItem('loggedinUser', JSON.stringify(loggedinUser))
-    console.log('signup', loggedinUser)
     return Promise.resolve(loggedinUser)
 }

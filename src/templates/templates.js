@@ -22,7 +22,7 @@ export const allTemplates = {
 //
 export const temp1Wap = {
     _id: '62911fb25a660f6cae594bb4',
-    name: 'template-dramatic-1',
+    name: 'template 1',
     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653688477/templates/page-template-01_awthi3.png',
     createdBy: 'miniUser',
     cmps: [wapHeader01,
@@ -43,7 +43,7 @@ export const temp2Wap = {
 }
 
 export const temp3Wap = {
-    _id: '629120385a660f6cae594bb6',
+    _id: '629294fbf04ad0403c9fe2ee',
     name: 'template 3',
     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653774405/templates/page-template-03_yiq4qw.png',
     cmps: [wapSection03, wapSection04, wapCards04]

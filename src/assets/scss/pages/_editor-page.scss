@@ -1,18 +1,64 @@
 .editor {
     display: grid;
     position: relative;
-    grid-template-rows: 1fr 50px;
+    grid-template-rows: 1fr 78px;
+
     &.tool-bar-open {
-        grid-template-rows: repeat(minmax(100%,1fr)) 50px ;
+        grid-template-rows: repeat(minmax(100%, 1fr)) 78px;
+
         .editor-site-container {
-            height:calc( $site-without-header-tool-bar - 200px);
-            
+            height: calc($site-without-header-tool-bar - 200px);
+
         }
     }
+
     padding: 0;
     margin: 0;
 
+    .editor-empty-gif {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        opacity: 0.4;
+        border: 2px dashed black;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .editor-empty-msg {
+        // background-color: rgba(128, 128, 128, 0.09);
+        width: 100%;
+        height: 20%;
+        z-index: 10;
+        font-size: 18px;
+        color: rgb(67, 67, 67);
+        text-shadow: 1px 0px 1px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -53%);
+        display: flex;
+        justify-content: center;
+        padding-block-start: 80px;
+        align-items: flex-start;
+        align-self: center;
+        // border: 2px dashed black;
+
+    }
+    @media (min-width:750px) {
+        .editor-empty-msg {
+            font-size: 2em;
+        }
+        
+    }
+   
     .editor-site-container {
+        box-shadow: 1px 1px 2px;
+
         overflow-y: auto;
         height: $site-without-header-tool-bar;
         display: flex;
@@ -26,22 +72,25 @@
         }
     }
 }
+
 @media (min-width:1000px) {
     .editor {
         grid-template-columns: 50px 1fr;
         grid-template-rows: unset;
-    
+        box-shadow: 1px 1px 3px;
+
         &.tool-bar-open {
             grid-template-rows: unset;
             grid-template-columns: 24rem 1fr;
+
             .editor-site-container {
-                height:$site-without-header
-                
+                height: $site-without-header
             }
         }
+
         .editor-site-container {
             height: $site-without-header;
-    
+
         }
     }
 }

@@ -12,6 +12,8 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 import { Loader } from "../cmps/app-loader"
 import { useEffectUpdate } from "../hooks/use-effect-update"
 import { EditModal } from "../cmps/edit-modal"
+import { saveWap } from "../store/actions/wap.action"
+const defaultUrl = 'https://j.gifs.com/oZ909K.gif'
 
 
 // import { temp1Wap, temp2Wap, temp3Wap } from '../templates/templates'
@@ -39,6 +41,7 @@ export const Editor = ({ setPageClass }) => {
     useEffect(() => {
         const screenHeight = editorRef.current.scrollHeight
         dispatch(setScreenHeight(screenHeight))
+        dispatch(saveWap(wap))
     }, [wap])
 
     const loadWap = async () => {
@@ -51,6 +54,7 @@ export const Editor = ({ setPageClass }) => {
                 try {
                     const wap = await wapService.getById(wapId)
                     setWap(wap)
+                    dispatch(saveWap(wap))
                     return
                 } catch (err) {
                     console.log('status', err.response.status)
@@ -124,7 +128,7 @@ export const Editor = ({ setPageClass }) => {
         setIsEditModalOpen(true)
     }
 
-    return <section
+    return <section 
         onMouseUp={({ target }) => {
             setTimeout(() => {
                 target.scrollTop = target.scrollTop + 2
@@ -139,7 +143,15 @@ export const Editor = ({ setPageClass }) => {
                     <TemplateToolBar onSetHeight={onSetHeight} onCloseScreen={onCloseScreen} setToolBarMode={setToolBarMode} templates={templates} setTemplateKey={setTemplateKey} />
                     <div {...provided.droppableProps}
                         className='editor-site-container'
-                        ref={el => { editorRef.current = el; provided.innerRef(el); }}>
+                       style={(wap?.cmps.length===0)?{backgroundColor: '(128, 128, 128, 0.09)'}:{}}
+                        ref={el => { editorRef.current = el; provided.innerRef(el); }}
+                        >
+                            {(wap?.cmps.length===0)&&<>
+                            <h1 className="editor-empty-msg">Drag Here to create your own website</h1>
+                            <div className="editor-empty-gif"><img src="https://j.gifs.com/oZ909K.gif" alt="" /></div>
+                            </>
+                            }
+                            
                         <Screen />
                         {wap && wap.cmps.map((cmp, idx) => (
                             <Draggable key={utilService.createKey()} draggableId={cmp.id} index={idx}>

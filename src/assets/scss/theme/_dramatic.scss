@@ -1,0 +1,28 @@
+// TXT
+
+.txt-cmp.dramatic-1 {
+    font-family: $font-dramatic-1;
+    color: rgb(94, 7, 7);
+}
+
+.txt-cmp.dramatic-2 {
+    font-family: $font-dramatic-2;
+    color: rgb(7, 1, 87);
+    text-shadow: 2px 2px 3px black;
+    font-style: italic;
+
+}
+
+.txt-cmp.dramatic-3 {
+    font-family: $font-dramatic-3;
+    color: rgb(53, 2, 27);
+    text-shadow: -2px -1px black;
+}
+
+// IMG
+
+img.dramatic-1 {
+    border-radius: 50%;
+    border: 7px solid rgb(14, 14, 14);
+    box-shadow: 0 0 0;
+}
