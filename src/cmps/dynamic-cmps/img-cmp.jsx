@@ -1,10 +1,12 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { uploadService } from '../../services/upload.service'
 export const ImgCmp = ({ cmp, isPublish, onSelectActiveCmp }) => {
-
+    const elRef = useRef()
     const [image, setImage] = useState(cmp.url)
+
     const onDrop = useCallback(async (acceptedFiles) => {
+        elRef.current.click()
         const url = await uploadService.uploadImg((acceptedFiles[0]))
         setImage(url)
     }, [])
@@ -22,7 +24,7 @@ export const ImgCmp = ({ cmp, isPublish, onSelectActiveCmp }) => {
     </section>
 
     return <section {...getRootProps()} className={`img-cmp ${cmp.className}`}
-        onClick={(ev) => onSelectActiveCmp(cmp, ev.target)}>
+        onClick={(ev) => onSelectActiveCmp(cmp, ev.target)} ref={elRef}>
         <img {...getInputProps()} src={image} style={{ ...cmp.style, width: '100%' }} alt={cmp.alt} />
     </section>
 
@@ -37,7 +39,4 @@ export const ImgCmp = ({ cmp, isPublish, onSelectActiveCmp }) => {
     //     onClick={(ev) => onSelectActiveCmp(cmp, ev.target)}>
     //     <img src={cmp.url} style={cmp.style} alt={cmp.alt} />
     // </section>
-
 }
-
-

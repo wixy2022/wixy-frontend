@@ -96,7 +96,7 @@ function _updateWapProperties(cmp, ancestorsIds, activeCmp, key, value) {
     }
 
     const updatedCmp = { ...cmp }
-    //the item itself wont hapve more ancestors (he shift his own id in the last round)
+    //the item itself wont have more ancestors (his parent removed his id in the last round)
     if (!ancestorsIds.length) {
         return { ...activeCmp, [key]: value }
     }
