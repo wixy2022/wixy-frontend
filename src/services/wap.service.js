@@ -11,7 +11,9 @@ export const wapService = {
     getById,
     save,
     remove,
-    getEmptyWap
+    getEmptyWap,
+    updateWap,
+    createAncestors
 }
 
 async function query(filterBy = {}) {
@@ -55,9 +57,55 @@ async function remove(wapId) {
 
 function getEmptyWap() {
     return {
-        _id: 'empty-wap',
-        name: 'empty-wap',
+        _id: 'empty-wap', /* FIX - WE NEED TO REMOVE IT? */
+        name: 'empty-wap', /* FIX - ASK THE USE TO GIVE IT A NAME */
         imgUrl: '',
         cmps: []
     }
+}
+
+
+
+
+
+
+
+function createAncestors(cmp, ancestors = []) {
+    cmp.ancestors = [...ancestors, cmp.id]
+
+    if (cmp.cmps) {
+        cmp.cmps.forEach(currCmp => createAncestors(currCmp, cmp.ancestors))
+    }
+    
+    return cmp
+}
+
+function updateWap(wap, activeCmp, key, value) {
+    const ancestorsIds = [...activeCmp.ancestors]
+    let newWap = JSON.parse(JSON.stringify(wap)) /* FIX - Try not using JSON.parse */
+    return _updateWapProperties(newWap, ancestorsIds, activeCmp, key, value)
+}
+
+function _updateWapProperties(cmp, ancestorsIds, activeCmp, key, value) {
+    // const currId = ancestorsIds.shift() // change 
+
+    if (key === 'remove') {
+        const updatedCmps = cmp.cmps.filter(currCmp => currCmp.id !== activeCmp.id)
+        //if we filtered one out (remove), we return
+        if (updatedCmps.length < cmp.cmps.length) return { ...cmp, cmps: updatedCmps }
+    }
+
+    const updatedCmp = { ...cmp }
+    //the item itself wont hapve more ancestors (he shift his own id in the last round)
+    if (!ancestorsIds.length) {
+        return { ...activeCmp, [key]: value }
+    }
+    const currId = ancestorsIds.shift()
+    //if we need to update a child of the cmp
+    updatedCmp.cmps = updatedCmp.cmps.map(currCmp => {
+        if (currCmp.id !== currId) return currCmp
+        return _updateWapProperties(currCmp, ancestorsIds, activeCmp, key, value)
+    })
+
+    return updatedCmp
 }

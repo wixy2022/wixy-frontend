@@ -1,11 +1,16 @@
 import { userService } from '../../services/user.service.js'
-export function saveWap(wap) {
-    return  dispatch => {
-        // const user = await userService.signUp(credentials)
+
+export function setWap(wap) {
+    return dispatch => {
         dispatch({ type: 'SET_WAP', wap })
         return wap
     }
 }
 
-
-
+export function saveWap(wap) {
+    return dispatch => {
+        /* FIX - need to save in the backend (wait with it) */
+        dispatch({ type: 'SAVE_WAP', wap })
+        return wap
+    }
+}
