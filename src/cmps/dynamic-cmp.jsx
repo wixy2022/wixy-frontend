@@ -63,8 +63,8 @@ export class DynamicCmp extends React.Component {
                     )}
                 </section>
 
-            case 'anchor': return <AnchorCmp  isPublish={isPublish} cmp={cmp} onSelectActiveCmp={onSelectActiveCmp} />
-            case 'img': return <ImgCmp  isPublish={isPublish} cmp={cmp} onSelectActiveCmp={onSelectActiveCmp} />
+            case 'anchor': return <AnchorCmp  cmp={cmp} isPublish={isPublish} onUpdateWap={onUpdateWap} onSelectActiveCmp={onSelectActiveCmp} />
+            case 'img': return <ImgCmp  cmp={cmp} isPublish={isPublish} onUpdateWap={onUpdateWap} onSelectActiveCmp={onSelectActiveCmp} />
             default: return ''
         }
     }

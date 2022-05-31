@@ -81,6 +81,7 @@ function createAncestors(cmp, ancestors = []) {
 }
 
 function updateWap(wap, activeCmp, key, value) {
+    console.log('activeCmp', activeCmp)
     const ancestorsIds = [...activeCmp.ancestors]
     let newWap = JSON.parse(JSON.stringify(wap)) /* FIX - Try not using JSON.parse */
     return _updateWapProperties(newWap, ancestorsIds, activeCmp, key, value)
@@ -98,6 +99,7 @@ function _updateWapProperties(cmp, ancestorsIds, activeCmp, key, value) {
     const updatedCmp = { ...cmp }
     //the item itself wont have more ancestors (his parent removed his id in the last round)
     if (!ancestorsIds.length) {
+        console.log('UPDATINGGGGGGGGGGGGGGGGGGGG', )
         return { ...activeCmp, [key]: value }
     }
     const currId = ancestorsIds.shift()

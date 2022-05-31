@@ -1,14 +1,13 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
+import { useEffectUpdate } from '../../hooks/use-effect-update'
 import { uploadService } from '../../services/upload.service'
-export const ImgCmp = ({ cmp, isPublish, onSelectActiveCmp }) => {
-    const elRef = useRef()
-    const [image, setImage] = useState(cmp.url)
+
+export const ImgCmp = ({ cmp, isPublish, onSelectActiveCmp, onUpdateWap }) => {
 
     const onDrop = useCallback(async (acceptedFiles) => {
-        elRef.current.click()
         const url = await uploadService.uploadImg((acceptedFiles[0]))
-        setImage(url)
+        onUpdateWap('url', url)
     }, [])
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop,
@@ -19,28 +18,15 @@ export const ImgCmp = ({ cmp, isPublish, onSelectActiveCmp }) => {
         },
         multiple: false
     })
-    // useEffect(() => {
-
-    // }, [image])
 
     if (isPublish) return <section className={`img-cmp ${cmp.className}`}>
         <img src={cmp.url} style={cmp.style} alt={cmp.alt} />
     </section>
 
-    return <section {...getRootProps()} className={`img-cmp ${cmp.className}`}
-        onClick={(ev) => onSelectActiveCmp(cmp, ev.target)} ref={elRef}>
-        <img {...getInputProps()} src={image} style={{ ...cmp.style, width: '100%' }} alt={cmp.alt} />
+    return <section className={`img-cmp ${cmp.className}`}>
+        <img {...getInputProps()}
+            {...getRootProps({ onClick: ev => { ev.stopPropagation(); onSelectActiveCmp(cmp, ev.target) } })}
+            onDragEnter={(ev => { ev.stopPropagation(); onSelectActiveCmp(cmp, ev.target) })}
+            src={cmp.url} style={{ ...cmp.style, width: '100%' }} alt={cmp.alt} />
     </section>
-
-
-    // Unassigend q99nkkuo
-
-    // if (isPublish) return <section className={`img-cmp ${cmp.className}`}>
-    //       <img src={cmp.url} style={cmp.style} alt={cmp.alt} />
-    // </section>
-
-    // return <section className={`img-cmp ${cmp.className}`}
-    //     onClick={(ev) => onSelectActiveCmp(cmp, ev.target)}>
-    //     <img src={cmp.url} style={cmp.style} alt={cmp.alt} />
-    // </section>
 }
