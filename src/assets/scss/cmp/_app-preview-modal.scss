@@ -1,0 +1,148 @@
+
+
+.editor-preview {
+    position: fixed;
+    left: 0;
+    top: 50px;
+    width: 85%;
+    max-height: $site-without-header;
+    overflow-y: auto;
+    z-index: 2300;
+    // top: 50%;
+    left: 50%;
+    transform: translate(-50%);
+    &.tablet-screen{
+        width:rem(850px);
+        height: 80vh;
+    top: 50%;
+    transform: translate(-50%,-50%);
+
+    }
+    &.phone-screen{
+        width: 365px;
+        height: 55vh;
+    top: 50%;
+    transform: translate(-50%,-50%);
+        
+    }
+    
+
+   
+}
+.preview-size-options {
+    z-index: 2400;
+    position: absolute;
+    top: 0;
+    width: 230px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    padding-block: .5em;
+    border-radius: .3em;
+    // background-color: rgba(255, 255, 255, 0.528);
+    justify-content: space-between;
+    left: 50%;
+    transform: translate(-50%);
+
+    // > *.active-mode{
+    //     // color:back;
+        
+    // }
+    img{
+        width: 100%;
+    }
+    >*{
+        cursor: pointer;
+    }
+    .computer-screen{
+        position: relative;
+        width: 36px;
+        height: 34px;
+        &::before{
+            content: '';
+            position: absolute;
+            left: 2px;
+            top:4.2px;
+            width: 88%;
+            height: 55%;
+            background-color: rgba(128, 128, 128, 0.396);
+            border-radius:.1em ;
+
+        }
+        &.active-mode::before{
+          
+            background-color:white;
+
+        }
+      
+    }
+
+    .tablet-screen{
+        width: 32px;
+        height: 32px;
+        position: relative;
+        &::before{
+            content: '';
+            position: absolute;
+            left: 6.4px;
+            top:2.2px;
+            border-radius:.1em ;
+            width:60%;
+            height: 82%;
+            background-color: rgba(128, 128, 128, 0.396);
+
+        }
+        &.active-mode::before{
+          
+            background-color: white;
+
+        }
+      
+    }
+    .phone-screen{
+        position: relative;
+
+        width: 32px;
+        height: 32px;
+        &::before{
+            content: '';
+            position: absolute;
+            left: 8.56px;
+            top:3.6px;
+            width: 46%;
+            height: 68%;
+            background-color: rgba(128, 128, 128, 0.396);
+            border-radius:.1em ;
+
+        }
+        &.active-mode::before{
+            background-color: white;
+
+        }
+      
+    }
+    
+}
+.black-screen {
+    position: fixed;
+    z-index: 2100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.882);
+}
+
+.phone-background{
+    position: fixed;
+    top: 54.28%;
+    left:46%;
+    transform: translate(-50%,-50%);
+    z-index:2200;
+    width: 600px;
+    height: 740px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(https://res.cloudinary.com/drpqhjyvk/image/upload/v1654032752/smartphone-big_i7oh4d.png);
+}

@@ -147,8 +147,6 @@ export const Editor = ({ setPageClass }) => {
         if (isEditModalOpen) setIsEditModalOpen(false)
         if (activeCmp?.id === currCmp.id) return
         
-        console.log('activeCmp', activeCmp)
-        
         // if (activeCmp) onActiveCmpUpdate('className', activeCmp.className.replace('active-cmp', ''))
         // currCmp.className += ' active-cmp'
         setActiveCmp(currCmp)
