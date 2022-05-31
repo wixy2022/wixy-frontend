@@ -10,12 +10,16 @@ export const ImgCmp = ({ cmp, isPublish, onSelectActiveCmp }) => {
     }, [])
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop,
-        accept: 'image/*',
+        maxFiles: 1,
+        accept: {
+            'image/png': ['.png'],
+            'image/jpeg': ['.jpg', '.jpeg']
+        },
         multiple: false
     })
-    useEffect(() => {
+    // useEffect(() => {
 
-    }, [image])
+    // }, [image])
 
     if (isPublish) return <section className={`img-cmp ${cmp.className}`}>
         <img src={cmp.url} style={cmp.style} alt={cmp.alt} />

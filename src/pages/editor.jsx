@@ -167,20 +167,16 @@ export const Editor = ({ setPageClass }) => {
     }
 
 
-    return <section
-        onMouseUp={({ target }) => {
-            setTimeout(() => {
-                target.scrollTop = target.scrollTop + 2
-                target.scrollTop = target.scrollTop - 1
-            }, 20);
-        }}
-        className={`editor ${toolBarMode}`}>
+    return <section className={`editor ${toolBarMode}`}>
         {!wap && <Loader />}
         <DragDropContext onDragEnd={handleOnDragEnd}>
+        
+                      <TemplateToolBar  setToolBarMode={setToolBarMode} templates={templates} setTemplateKey={setTemplateKey} />
+                      
             <Droppable droppableId={wap?._id || 'no-wap'}>
                 {(providedDroppable) => <>
                     {/* onSetHeight={onSetHeight} onCloseScreen={onCloseScreen}  <== was on template toolbar */}
-                    <TemplateToolBar setToolBarMode={setToolBarMode} templates={templates} setTemplateKey={setTemplateKey} />
+                    {/* <TemplateToolBar setToolBarMode={setToolBarMode} templates={templates} setTemplateKey={setTemplateKey} /> */}
                     <div {...providedDroppable.droppableProps}
                         className='editor-site-container'
                        style={(wap?.cmps.length===0)?{backgroundColor: '(128, 128, 128, 0.09)'}:{}}
@@ -196,6 +192,17 @@ export const Editor = ({ setPageClass }) => {
                         {wap && wap.cmps.map((cmp, idx) => (
                             <Draggable key={utilService.createKey()} draggableId={cmp.id} index={idx}>
                                 {(providedDraggable) => {
+                                      if (
+                                        typeof (
+                                            providedDraggable.draggableProps.onTransitionEnd
+                                        ) === 'function'
+                                    ) {
+                                        window?.requestAnimationFrame(() =>
+                                        providedDraggable.draggableProps.onTransitionEnd({
+                                                propertyName: 'transform',
+                                            })
+                                        );
+                                    } 
                                     return <DynamicCmp key={utilService.createKey()} index={idx}
                                         cmp={cmp} forwardref={providedDraggable.innerRef}
                                         onChangeInput={onChangeInput} //ori
