@@ -9,14 +9,12 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, a
     const onClassName = (ev, value) => {
         ev.stopPropagation()
         const updatedClassName = activeCmp.className.replace(/theme-[^\s]+/g, '')
-        console.log('updatedClassName', updatedClassName)
         // onActiveCmpUpdate('className', `${updatedClassName} theme-${value}`)
         onUpdateWap('className', `${updatedClassName} theme-${value}`)
-        console.log('FINISHED IN MODAL', )
     }
 
     /* FIX - change idx to id */
-    /* FIX - islist should be by the object we send */
+    /* FIX - isList should be by the object we send */
 
     return <section className="edit-modal" style={{ left: posX, top: posY }}>
         <header>

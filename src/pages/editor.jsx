@@ -1,33 +1,34 @@
 import { useEffect, useRef, useState } from "react"
-import { DynamicCmp } from "../cmps/dynamic-cmp"
+import { useDispatch, useSelector } from "react-redux"
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+
+import { setScreen, setScreenHeight } from "../store/actions/screen.action"
+import { setWap } from "../store/actions/wap.action"
+
+import { DynamicCmp } from "../cmps/dynamic-cmp"
 import { TemplateToolBar } from "../cmps/editor-toolbar"
-import { utilService } from '../services/util.service'
 import { allTemplates } from "../templates/templates"
-import { setCurrCmp, setScreen, setScreenHeight } from "../store/actions/screen.action"
-import { useDispatch } from "react-redux"
 import { Screen } from '../cmps/screen'
 import { wapService } from "../services/wap.service"
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 import { Loader } from "../cmps/app-loader"
-import { useEffectUpdate } from "../hooks/use-effect-update"
 import { EditModal } from "../cmps/edit-modal"
 import { EditButtons } from "../cmps/edit-buttons"
-import { useSelector } from "react-redux"
+import { utilService } from '../services/util.service'
 
 // import { temp1Wap, temp2Wap, temp3Wap } from '../templates/templates'
 
 export const Editor = ({ setPageClass }) => {
-    const { currCmp } = useSelector(storeState => storeState.screenModule)
-    const [wap, setWap] = useState(null)
-    const curr = currCmp || wap
+    const { wap } = useSelector(storeState => storeState.wapModule)
+    // const [wap, setWap] = useState(null)
+    // const curr = currCmp || wap
 
+    const dispatch = useDispatch()
+    const history = useHistory()
     const [toolBarMode, setToolBarMode] = useState('')
     const [templateKey, setTemplateKey] = useState(null)
-    const dispatch = useDispatch()
     const editorRef = useRef()
     const templates = allTemplates
-    const history = useHistory()
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const [editModalSettings, setEditModalSettings] = useState(null) /* FIX -  */
 
@@ -37,8 +38,8 @@ export const Editor = ({ setPageClass }) => {
 
     useEffect(() => {
         console.log('IM RUNNING MICHAEL!!!!!',)
-        setWap(currCmp)
-    }, [currCmp])
+        dispatch(setWap(wap))
+    }, [wap])
 
     useEffect(() => {
         loadWap()
@@ -63,7 +64,7 @@ export const Editor = ({ setPageClass }) => {
             if (wapId) {
                 try {
                     const wap = await wapService.getById(wapId)
-                    setWap(wap)
+                    dispatch(setWap(wap))
                     return
                 } catch (err) {
                     console.log('status', err.response.status)
@@ -73,7 +74,7 @@ export const Editor = ({ setPageClass }) => {
                 }
             }
 
-            setWap(wapService.getEmptyWap())
+            dispatch(setWap(wapService.getEmptyWap()))
         }, 1000)
     }
 
@@ -90,25 +91,23 @@ export const Editor = ({ setPageClass }) => {
         if (!result.destination) {
             return;
         }
+
         if (result.draggableId.includes('template')) {
             const template = JSON.parse(JSON.stringify(templates[templateKey][result.source.index - 100]))
-            template.id = utilService.makeId()
+            template.id = utilService.makeId(16)
             wapService.createAncestors(template)
-            const idx = result.destination.index
-            let copiedCmps = JSON.parse(JSON.stringify(wap.cmps))
-            copiedCmps.splice(idx, 0, template)
-            // const updatedCmp = wap.cmps.map((currCmp, currIdx) => currIdx === idx ? template : currCmp)
-            // wap.cmps.splice(idx, 0, template)
-            onCloseScreen()
-            setWap({ ...wap, cmps: copiedCmps })
-            // updateCmps(cmps)
 
+            const idx = result.destination.index
+            const copiedCmps = JSON.parse(JSON.stringify(wap.cmps))
+            copiedCmps.splice(idx, 0, template)
+
+            onCloseScreen()
+            dispatch(setWap({ ...wap, cmps: copiedCmps }))
         } else {
-            let copiedCmps = JSON.parse(JSON.stringify(wap.cmps))
+            const copiedCmps = JSON.parse(JSON.stringify(wap.cmps))
             const [selectedCmp] = copiedCmps.splice(result.source.index, 1)
             copiedCmps.splice(result.destination.index, 0, selectedCmp)
-            setWap({ ...wap, cmps: copiedCmps })
-            // updateCmps(copiedCmps)
+            dispatch(setWap({ ...wap, cmps: copiedCmps }))
         }
     }
 
@@ -122,8 +121,7 @@ export const Editor = ({ setPageClass }) => {
         dispatch(setScreen(true))
     }
 
-    /* FIX - should go into the button cmp? */
-    const onOpenEditModal = (ev) => {
+    const onOpenEditModal = (ev, action) => {
         ev.stopPropagation()
 
         /* FIX - 250 is the width of the modal */
@@ -137,6 +135,9 @@ export const Editor = ({ setPageClass }) => {
         if (posY - editorRef.current.scrollTop - 280 <= 16) posY += 280 // if it cant open above, it will open below
 
         setEditModalSettings({ posX, posY, setIsEditModalOpen })
+
+        /* FIX - ADD BUTTONS BY ACTION */
+        
         setIsEditModalOpen(true)
     }
 
@@ -160,8 +161,7 @@ export const Editor = ({ setPageClass }) => {
 
     const onUpdateWap = (key, value) => {
         const updatedWap = wapService.updateWap(wap, activeCmp, key, value)
-        console.log('updatedWap', updatedWap)
-        dispatch(setCurrCmp(JSON.parse(JSON.stringify(updatedWap))))
+        dispatch(setWap(updatedWap))
     }
 
     console.log('wap', wap)
@@ -181,10 +181,9 @@ export const Editor = ({ setPageClass }) => {
                     <TemplateToolBar onSetHeight={onSetHeight} onCloseScreen={onCloseScreen} setToolBarMode={setToolBarMode} templates={templates} setTemplateKey={setTemplateKey} />
                     <div {...providedDroppable.droppableProps}
                         className='editor-site-container'
-                        ref={el => { editorRef.current = el; providedDroppable.innerRef(el); console.log('el', el) }}>
+                        ref={el => { editorRef.current = el; providedDroppable.innerRef(el); }}>
                         <Screen />
-                        {/* {wap && wap.cmps.map((cmp, idx) => ( */}
-                        {curr && curr.cmps.map((cmp, idx) => (
+                        {wap && wap.cmps.map((cmp, idx) => (
                             <Draggable key={utilService.createKey()} draggableId={cmp.id} index={idx}>
                                 {(providedDraggable) => {
                                     return <DynamicCmp key={utilService.createKey()} index={idx}
@@ -194,6 +193,7 @@ export const Editor = ({ setPageClass }) => {
                                         // onChangeInputs={onChangeInputs} // alex
                                         // onOpenEditModal={onOpenEditModal}
                                         onSelectActiveCmp={onSelectActiveCmp}
+                                        onUpdateWap={onUpdateWap}
                                         draggableProps={providedDraggable.draggableProps}
                                         dragHandleProps={providedDraggable.dragHandleProps} />
                                 }}
@@ -203,7 +203,8 @@ export const Editor = ({ setPageClass }) => {
                         {providedDroppable.placeholder}
 
                         {activeCmp && <EditButtons cmpType={activeCmp.type} activeCmpPos={activeCmpPos}
-                            onOpenEditModal={onOpenEditModal} scrollHeight={editorRef.current.scrollTop}
+                            onOpenEditModal={onOpenEditModal} onUpdateWap={onUpdateWap}
+                            scrollHeight={editorRef.current.scrollTop}
                             editorLeft={editorRef.current.offsetLeft} />}
 
                         {isEditModalOpen && <EditModal {...editModalSettings}
@@ -215,6 +216,5 @@ export const Editor = ({ setPageClass }) => {
                 }
             </Droppable>
         </DragDropContext>
-
     </section>
 }
