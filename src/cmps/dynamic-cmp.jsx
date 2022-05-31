@@ -51,7 +51,7 @@ export class DynamicCmp extends React.Component {
     //     }
     // }
             /* FIX - onChangeInput is the old 1 - worked for text, rest failed */
-            case 'txt': return <TxtCmp cmp={cmp} onSelectActiveCmp={onSelectActiveCmp}
+            case 'txt': return <TxtCmp cmp={cmp} isPublish={isPublish} onSelectActiveCmp={onSelectActiveCmp}
                 onUpdateWap={onUpdateWap} onChangeInput={this.onChangeInput} />
 
             case 'container-draggable':
