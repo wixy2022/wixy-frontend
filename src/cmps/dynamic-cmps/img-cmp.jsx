@@ -9,6 +9,7 @@ export const ImgCmp = ({ cmp, isPublish, onSelectActiveCmp, onUpdateWap }) => {
         const url = await uploadService.uploadImg((acceptedFiles[0]))
         onUpdateWap('url', url)
     }, [])
+    
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop,
         maxFiles: 1,
