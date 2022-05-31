@@ -61,7 +61,7 @@ export const Editor = ({ setPageClass }) => {
             if (wapId) {
                 try {
                     const wap = await wapService.getById(wapId)
-                    
+
                     dispatch(setWap(wap))
                     return
                 } catch (err) {
@@ -102,9 +102,9 @@ export const Editor = ({ setPageClass }) => {
         if (result.draggableId.includes('template')) {
             let template = JSON.parse(JSON.stringify(templates[templateKey][result.source.index - 100]))
             template.id = utilService.makeId(16)
-            template =wapService.createAncestors(template)
+            template = wapService.createAncestors(template)
             console.log('template', template)
-            const idx = result.destination.index    
+            const idx = result.destination.index
             const copiedCmps = JSON.parse(JSON.stringify(wap.cmps))
             copiedCmps.splice(idx, 0, template)
 
@@ -167,35 +167,42 @@ export const Editor = ({ setPageClass }) => {
     }
 
 
-    return <section
-        onMouseUp={({ target }) => {
-            setTimeout(() => {
-                target.scrollTop = target.scrollTop + 2
-                target.scrollTop = target.scrollTop - 1
-            }, 20);
-        }}
-        className={`editor ${toolBarMode}`}>
+    return <section className={`editor ${toolBarMode}`}>
         {!wap && <Loader />}
         <DragDropContext onDragEnd={handleOnDragEnd}>
+
+            <TemplateToolBar setToolBarMode={setToolBarMode} templates={templates} setTemplateKey={setTemplateKey} />
+
             <Droppable droppableId={wap?._id || 'no-wap'}>
                 {(providedDroppable) => <>
                     {/* onSetHeight={onSetHeight} onCloseScreen={onCloseScreen}  <== was on template toolbar */}
-                    <TemplateToolBar setToolBarMode={setToolBarMode} templates={templates} setTemplateKey={setTemplateKey} />
+                    {/* <TemplateToolBar setToolBarMode={setToolBarMode} templates={templates} setTemplateKey={setTemplateKey} /> */}
                     <div {...providedDroppable.droppableProps}
                         className='editor-site-container'
-                       style={(wap?.cmps.length===0)?{backgroundColor: '(128, 128, 128, 0.09)'}:{}}
+                        style={(wap?.cmps.length === 0) ? { backgroundColor: '(128, 128, 128, 0.09)' } : {}}
                         ref={el => { editorRef.current = el; providedDroppable.innerRef(el); }}
-                        >
-                            {(wap?.cmps.length===0)&&<>
+                    >
+                        {(wap?.cmps.length === 0) && <>
                             <h1 className="editor-empty-msg"> →  Drag here to create your own website  ←</h1>
                             <div className="editor-empty-gif"><img src="https://j.gifs.com/oZ909K.gif" alt="" /></div>
-                            </>
-                            }
-                            
+                        </>
+                        }
+
                         <Screen />
                         {wap && wap.cmps.map((cmp, idx) => (
                             <Draggable key={utilService.createKey()} draggableId={cmp.id} index={idx}>
                                 {(providedDraggable) => {
+                                    if (
+                                        typeof (
+                                            providedDraggable.draggableProps.onTransitionEnd
+                                        ) === 'function'
+                                    ) {
+                                        window?.requestAnimationFrame(() =>
+                                            providedDraggable.draggableProps.onTransitionEnd({
+                                                propertyName: 'transform',
+                                            })
+                                        );
+                                    }
                                     return <DynamicCmp key={utilService.createKey()} index={idx}
                                         cmp={cmp} forwardref={providedDraggable.innerRef}
                                         onChangeInput={onChangeInput} //ori
