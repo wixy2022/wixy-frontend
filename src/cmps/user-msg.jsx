@@ -1,41 +1,67 @@
-// import { useEffect, useRef } from 'react';
-// import { useDispatch, useSelector } from "react-redux";
-// import { setUserMsg } from '../store/actions/user.action.js';
+import { useEffect, useRef, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setMsg } from '../store/actions/msg.action';
 
-// export const UserMsg = () => {
+export const UserMsg = () => {
+    // const intialMeterValue = 200
+    const [value, setValue] = useState(200)
+    const dispatch = useDispatch()
+    const {msg} = useSelector(storeState => storeState.msgModule)
+    const timeoutId = useRef();
+    const intrevalId = useRef()
+    let meterValue = useRef(200)
+    
+    useEffect(() => {
+        if (timeoutId.current || intrevalId.current) {
+            clearTimeout(timeoutId.current)
+            clearInterval(intrevalId.current)
+        }
+        intrevalId.current = setInterval(() => {
+            // setMeterValue(meterValue - 0.3)
+             meterValue.current-=0.411
+             setValue(meterValue.current)
+        }, 2)
+        timeoutId.current = setTimeout(() => {
+            onCloseMsg()
+        }, 2000)
+    }, [msg])
+    // const setMeterValue =()=>{
 
-//   const dispatch = useDispatch()
-//   const msg = useSelector(storeState => storeState.userModule.msg)
-//   const timeoutId = useRef();
+    // }
 
-//   useEffect(() => {
-//     if (timeoutId.current) clearTimeout(timeoutId.current)
-//     timeoutId.current = setTimeout(() => {
-//       onCloseMsg()
-//     }, 3000)
-//   }, [msg])
+    useEffect(() => {
+        console.log(msg)
+    }, [])
+    const onCloseMsg = () => {
+        dispatch(setMsg(null))
+        meterValue.current=200
+        // setMeterValue(200)
+        clearTimeout(timeoutId.current)
+        clearInterval(intrevalId.current)
+    }
 
-//   const onCloseMsg = () => {
-//     dispatch(setUserMsg(null))
-//     clearTimeout(timeoutId.current)
-//   }
+    const getSymbol = (type) => {
+        switch (type) {
+            case 'success': return '✔'
+            case 'danger': return '✖'
+            default: return '!'
+        }
+    }
 
-//   const getSymbol = (type) => {
-//     switch (type) {
-//       case 'success': return '✔'
-//       case 'danger': return '✖'
-//       default: return '!'
-//     }
-//   }
+    if (!msg) return <span></span>
+    const msgClass = msg.type || ''
+    const symbol = getSymbol(msg.type)
 
-//   if (!msg) return <span></span>
-//   const msgClass = msg.type || ''
-//   const symbol = getSymbol(msg.type)
+    return (
+        <section className={`user-msg flex align-center ${msgClass}`} onClick={onCloseMsg}>
+            <div className="msg-content">
+                <p>
+                    {msg.txt}
+                </p>
+                <meter value={value} min={0} max={200} ></meter>
+            </div>
+            <span>{symbol}</span>
 
-//   return (
-//     <section className={`user-msg flex align-center gap1 ${msgClass}`} onClick={onCloseMsg}>
-//       {msg.txt}
-//       <span>{symbol}</span>
-//     </section>
-//   )
-// }
+        </section>
+    )
+}

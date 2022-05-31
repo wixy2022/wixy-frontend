@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { useEffectUpdate } from '../../hooks/use-effect-update'
 import { uploadService } from '../../services/upload.service'
 
 export const ImgCmp = ({ cmp, isPublish, onSelectActiveCmp, onUpdateWap }) => {
@@ -14,7 +13,8 @@ export const ImgCmp = ({ cmp, isPublish, onSelectActiveCmp, onUpdateWap }) => {
         maxFiles: 1,
         accept: {
             'image/png': ['.png'],
-            'image/jpeg': ['.jpg', '.jpeg']
+            'image/jpeg': ['.jpg', '.jpeg'],
+            'image/gif':['.gif','.mp3','.mp4','.GIF']
         },
         multiple: false
     })

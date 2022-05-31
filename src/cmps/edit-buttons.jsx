@@ -43,8 +43,8 @@ export const EditButtons = ({ cmpType, activeCmpPos, onOpenEditModal, onUpdateWa
 
     //Adding buttons
     const actions = getActions(cmpType)
-    console.log('cmpType', cmpType)
-    console.log('actions', actions)
+    // console.log('cmpType', cmpType)
+    // console.log('actions', actions)
 
     return <div className="edit-buttons up-screen" style={{ ...style }}>
         {actions.map(action => <div className="img-container" title={action.title}

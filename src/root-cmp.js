@@ -25,6 +25,7 @@ export function App() {
           <Route path="/" component={Home} />
         </Switch>
       </main>
+      <UserMsg/>
     </div>
   )
 

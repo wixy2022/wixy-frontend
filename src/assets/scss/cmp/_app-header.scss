@@ -180,10 +180,14 @@
 
 }
 .publish-btn{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-size: rem(14px);
     background-color: $clr1;
     border-radius: 15px;
     padding: 0 18px;
-    padding-block-start: 3px;
+    padding-block-end: rem(1px);
     color: #fff;
     border: none;
     height: 30px;
