@@ -13,7 +13,8 @@ export const wapService = {
     remove,
     getEmptyWap,
     updateWap,
-    createAncestors
+    createAncestors,
+    getThemeList
 }
 
 async function query(filterBy = {}) {
@@ -68,7 +69,7 @@ function getEmptyWap() {
 
 
 
-
+/* RECURSIONS */
 
 function createAncestors(cmp, ancestors = []) {
     cmp.ancestors = [...ancestors, cmp.id]
@@ -76,7 +77,7 @@ function createAncestors(cmp, ancestors = []) {
     if (cmp.cmps) {
         cmp.cmps.forEach(currCmp => createAncestors(currCmp, cmp.ancestors))
     }
-    
+
     return cmp
 }
 
@@ -88,7 +89,6 @@ function updateWap(wap, activeCmp, key, value) {
 }
 
 function _updateWapProperties(cmp, ancestorsIds, activeCmp, key, value) {
-    // const currId = ancestorsIds.shift() // change 
 
     if (key === 'remove') {
         const updatedCmps = cmp.cmps.filter(currCmp => currCmp.id !== activeCmp.id)
@@ -99,7 +99,7 @@ function _updateWapProperties(cmp, ancestorsIds, activeCmp, key, value) {
     const updatedCmp = { ...cmp }
     //the item itself wont have more ancestors (his parent removed his id in the last round)
     if (!ancestorsIds.length) {
-        console.log('UPDATINGGGGGGGGGGGGGGGGGGGG', )
+        if (key === 'className') return { ...activeCmp, style: {}, [key]: value }
         return { ...activeCmp, [key]: value }
     }
     const currId = ancestorsIds.shift()
@@ -110,4 +110,34 @@ function _updateWapProperties(cmp, ancestorsIds, activeCmp, key, value) {
     })
 
     return updatedCmp
+}
+
+/* EDITOR MODAL */
+
+function getThemeList(type) {
+    //this function returns an array of objects that looks like:
+    //{ title: 'classic', themes: ['classic-1', 'classic-2', 'classic-3'], isActive: false },
+
+    const getThemeByType = (type) => {
+        switch (type) {
+            case 'txt': return { classic: 3, dark: 0, dramatic: 3, festive: 4, light: 0 }
+            case 'anchor': return { classic: 0, dark: 0, dramatic: 0, festive: 0, light: 0 }
+            case 'img': return { classic: 5, dark: 0, dramatic: 1, festive: 2, light: 0 }
+            case 'container-draggable':
+            case 'container': return { classic: 0, dark: 0, dramatic: 0, festive: 0, light: 0 }
+            default: return { classic: 0, dark: 0, dramatic: 0, festive: 0, light: 0 }
+        }
+    }
+
+    const themeMap = getThemeByType(type)
+    const themeList = []
+
+    for (const [key, value] of Object.entries(themeMap)) {
+        if (!value) continue
+        const themes = []
+        for (let i = 0; i < value; i++) themes.push(`theme-${key}-${i + 1}`)
+        themeList.push({ title: key, themes, isActive: false })
+    }
+
+    return themeList
 }

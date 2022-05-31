@@ -9,17 +9,11 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, a
         ev.stopPropagation()
         const updatedClassName = activeCmp.className.replace(/theme-[^\s]+/g, '')
         // onActiveCmpUpdate('className', `${updatedClassName} theme-${value}`)
-        onUpdateWap('className', `${updatedClassName} theme-${value}`)
+        onUpdateWap('className', `${updatedClassName} ${value}`)
     }
 
     /* FIX - STATE SHOULD BE DEFINED IN THE SERVICE */
-    const [themeList, setThemeList] = useState([
-        { title: 'classic', themes: ['classic-1', 'classic-2', 'classic-3'], isActive: false },
-        { title: 'dark', themes: ['one', 'two', 'three'], isActive: false },
-        { title: 'dramatic', themes: ['dramatic-1', 'dramatic-2', 'dramatic-3'], isActive: false },
-        { title: 'festive', themes: ['festive-1', 'festive-2', 'festive-3', 'festive-4'], isActive: false },
-        { title: 'light', themes: ['one', 'two', 'three', 'four'], isActive: false }
-    ])
+    const [themeList, setThemeList] = useState(wapService.getThemeList(activeCmp.type))
 
     const onOpenThemeHeader = (item) => {
         const updatedList = themeList.map(currItem => currItem.title === item.title ? { ...item, isActive: !item.isActive } : currItem)
@@ -27,7 +21,19 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, a
     }
 
     const getThemeModal = () => {
-        /* FIX - not all should be txt-cmp (line 39) - make it dynamic */
+
+        if (!Object.keys(themeList)) return
+
+        const type = activeCmp.type
+        let cmpClass = `${type}-cmp`
+        if (cmpClass.includes('draggable')) cmpClass = cmpClass.replace('-draggable', '')
+
+        let btnText = ''
+        if (type === 'txt') btnText = 'Text'
+        else if (type === 'anchor') btnText = 'Link'
+
+        const style = btnText ? {} : { minHeight: '40px' }
+
         return <ul className="theme-modal">
             {themeList.map((item, idx) =>
                 <li key={idx} className={`list-item ${item.title}`}>
@@ -36,7 +42,7 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, a
                     </header>
                     <main>
                         {item.themes.map((theme, idx) =>
-                            <div key={idx} className={`txt-cmp ${theme}`} onClick={(ev) => onClassName(ev, theme)}>Button</div>)}
+                            <div key={idx} className={`${cmpClass} ${theme}`} style={style} onClick={(ev) => onClassName(ev, theme)}>{btnText}</div>)}
                     </main>
                 </li>)}
         </ul>

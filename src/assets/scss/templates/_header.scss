@@ -56,10 +56,11 @@
 
         pre {
             padding: 2rem 1rem;
+
+            &:hover {
+                color: orange;
+            }
         }
 
-        &:hover {
-            color: orange;
-        }
     }
 }
