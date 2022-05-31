@@ -1,19 +1,19 @@
 import { utilService } from "../services/util.service"
 
 export const wapCards01 = {
-    id: utilService.makeId(),
+    id: utilService.makeId(16),
     type: 'container-draggable',
     category: 'wap-cards',
     className: 'wap-cards-01',
     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653581168/templates/cards-t1_pcba2x.png',
     cmps: [
         {
-            id: utilService.makeId(),
+            id: utilService.makeId(16),
             type: 'container',
             className: 'wap-01-team-title',
             cmps: [
                 {
-                    id: utilService.makeId(),
+                    id: utilService.makeId(16),
                     type: 'txt',
                     className: 'team-container',
                     txt: 'Our Team',
@@ -21,24 +21,24 @@ export const wapCards01 = {
             ],
         },
         {
-            id: utilService.makeId(),
+            id: utilService.makeId(16),
             type: 'container',
             className: 'wap-01-team-list',
             cmps: [
                 {
-                    id: utilService.makeId(),
+                    id: utilService.makeId(16),
                     type: 'container',
                     category: 'wap-card',
                     className: 'wap-01-card',
                     cmps: [
                         {
-                            id: utilService.makeId(),
+                            id: utilService.makeId(16),
                             type: 'img',
                             url: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653580978/templates/team1_glsspk.jpg',
                             className: 'wap-01-team-img',
                         },
                         {
-                            id: utilService.makeId(),
+                            id: utilService.makeId(16),
                             type: 'txt',
                             className: 'txt',
                             txt: 'Rey Rose',
@@ -46,19 +46,19 @@ export const wapCards01 = {
                     ]
                 },
                 {
-                    id: utilService.makeId(),
+                    id: utilService.makeId(16),
                     type: 'container',
                     category: 'wap-card',
                     className: 'wap-01-card',
                     cmps: [
                         {
-                            id: utilService.makeId(),
+                            id: utilService.makeId(16),
                             type: 'img',
                             url: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653580978/templates/team2_whg4cx.jpg',
                             className: 'wap-01-team-img',
                         },
                         {
-                            id: utilService.makeId(),
+                            id: utilService.makeId(16),
                             type: 'txt',
                             className: 'txt',
                             txt: 'Mishel Yang',
@@ -66,20 +66,20 @@ export const wapCards01 = {
                     ]
                 },
                 {
-                    id: utilService.makeId(),
+                    id: utilService.makeId(16),
                     type: 'container',
                     category: 'wap-card',
 
                     className: 'wap-01-card',
                     cmps: [
                         {
-                            id: utilService.makeId(),
+                            id: utilService.makeId(16),
                             type: 'img',
                             url: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653580978/templates/team3_tzdckz.jpg',
                             className: 'wap-01-team-img',
                         },
                         {
-                            id: utilService.makeId(),
+                            id: utilService.makeId(16),
                             type: 'txt',
                             className: 'txt',
                             txt: 'Kim Cohen',
@@ -93,7 +93,7 @@ export const wapCards01 = {
 }
 
 export const wapCards02 = {
-    id: utilService.makeId(16), //makeId
+    id: utilService.makeId(16),
     type: 'container-draggable',
     category: 'wap-cards-02',
     className: 'template2',
@@ -135,7 +135,7 @@ function _getCard02(title, subtitle, details, anchorUrl, anchorTxt, className = 
     })
 
     if (anchorUrl) card.cmps.push({
-        id: null, //makeId
+        id: utilService.makeId(16),
         type: 'anchor',
         url: anchorUrl,
         txt: anchorTxt,
@@ -158,6 +158,7 @@ export const wapCards03 = {
         getCard('https://res.cloudinary.com/drpqhjyvk/image/upload/v1653734835/templates/team4_itowlp.png', 'Don Fancis', 'Tech Lead'),
     ],
 }
+
 export const wapCards04 = {
     id: utilService.makeId(16),
     type: 'container-draggable',
@@ -169,7 +170,7 @@ export const wapCards04 = {
             id: utilService.makeId(16),
             type: 'container',
             className: 'card flex right-card',
-            imgUrl: '', //ONLY MAIN CONTAINERS WILL USE THIS KEY
+            imgUrl: '',
             cmps: [{
                 id: utilService.makeId(16),
                 type: 'txt',
@@ -200,7 +201,7 @@ export const wapCards04 = {
             id: utilService.makeId(16),
             type: 'container',
             className: 'card flex left-card',
-            imgUrl: '', //ONLY MAIN CONTAINERS WILL USE THIS KEY
+            imgUrl: '',
             cmps: [{
                 id: utilService.makeId(16),
                 type: 'txt',
@@ -230,12 +231,12 @@ export const wapCards04 = {
     ],
 }
 
-function getCard(imgUrl, title, subtitle,) {
+function getCard(imgUrl, title) {
     const card = {
         id: utilService.makeId(16),
         type: 'container',
         className: 'card flex',
-        imgUrl: '', //ONLY MAIN CONTAINERS WILL USE THIS KEY
+        imgUrl: '',
         cmps: [{
             id: utilService.makeId(16),
             type: 'img',

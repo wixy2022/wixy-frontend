@@ -65,8 +65,8 @@ export const AppHeader = ({ pageClass }) => {
                     {<button onClick={onSetLoginLogout} className="logout-btn">{isLogin}</button>}
                 </div>}
             </div>}
-            {(pageClass === 'editor-open') && <NavLink to={`/publish?id=${wap?._id}`} target={"_blank"} className="publish-btn logo-link">Publish</NavLink>}
-            {/* {(pageClass === 'editor-open') && <NavLink to={`/publish`} target={"_blank"} className="publish-btn logo-link">Publish</NavLink>} */}
+            {/* {(pageClass === 'editor-open') && <NavLink to={`/publish?id=${wap?._id}`} target={"_blank"} className="publish-btn logo-link">Publish</NavLink>} */}
+            {(pageClass === 'editor-open') && <NavLink to={`/publish`} target={"_blank"} className="publish-btn logo-link">Publish</NavLink>}
             {/* {(pageClass ==='editor-open')&&<button onClick={onPublish} className="publish-btn">Publish</button>} */}
         </main>
     </section>

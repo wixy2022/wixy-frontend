@@ -4,9 +4,9 @@ import { TempleteCard } from '../cmps/template-card.jsx'
 
 export function Home() {
 
-    const wap1 = { _id: '6295b8d7d433c1503a30cb2c', imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653689226/templates/page-template-02_aknlvb.png' }
-    const wap2 = { _id: '6295bd7bd433c1503a30cb30', imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653688477/templates/page-template-01_awthi3.png' }
-    const wap3 = { _id: '6295be16d433c1503a30cb32', imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653774405/templates/page-template-03_yiq4qw.png' }
+    const wap1 = { _id: '6295d704d433c1503a30cb35', imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653689226/templates/page-template-02_aknlvb.png' }
+    const wap2 = { _id: '6295d811d433c1503a30cb37', imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653688477/templates/page-template-01_awthi3.png' }
+    const wap3 = { _id: '6295d93ed433c1503a30cb39', imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653774405/templates/page-template-03_yiq4qw.png' }
 
     return <section className="home-page">
 

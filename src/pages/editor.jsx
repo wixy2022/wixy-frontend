@@ -166,7 +166,7 @@ export const Editor = ({ setPageClass }) => {
         dispatch(setWap(updatedWap))
     }
 
-    console.log('wap', wap ,JSON.stringify(wap))
+    console.log('wap', JSON.stringify(wap))
 
     return <section
         onMouseUp={({ target }) => {

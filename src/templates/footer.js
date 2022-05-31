@@ -1,14 +1,14 @@
 import { utilService } from "../services/util.service"
 
 export const wapFooter01 = {
-    id: utilService.makeId(),
+    id: utilService.makeId(16),
     type: 'container-draggable',
     category: 'wap-footer',
     className: 'wap-footer-01',
     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653580954/templates/footer-t1_cmf0nd.png',
     cmps: [
         {
-            id: utilService.makeId(),
+            id: utilService.makeId(16),
             type: 'txt',
             className: 'title',
             txt: 'PH-STUDIO',
@@ -18,7 +18,7 @@ export const wapFooter01 = {
 }
 
 export const wapFooter02 = {
-    id: utilService.makeId(16), //makeId
+    id: utilService.makeId(16),
     type: 'container-draggable',
     category: 'wap-footer-02',
     className: 'template2',

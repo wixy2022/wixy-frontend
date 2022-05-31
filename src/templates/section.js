@@ -1,21 +1,21 @@
 import { utilService } from "../services/util.service"
 
 export const wapSection01 = {
-    id: utilService.makeId(),
+    id: utilService.makeId(16),
     type: 'container-draggable',
     category: 'wap-hero',
     className: 'wap-hero-01',
     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653580957/templates/hero-t1_ldzw5u.png',
     cmps: [
         {
-            id: 'hero-dramatic-txt-123',
+            id: utilService.makeId(16),
             type: 'txt',
             className: 'txt title',
             txt: 'PH-STUDIO',
             style: {}
         },
         {
-            id: 'hero-dramatic-txt-123',
+            id: utilService.makeId(16),
             type: 'txt',
             className: 'txt title',
             txt: 'make your dreams come true',
@@ -61,7 +61,7 @@ export const wapSection02 = {
 }
 
 export const wapSection03 = {
-    id: utilService.makeId(),
+    id: utilService.makeId(16),
     type: 'container-draggable',
     category: 'wap-section',
     className: 'wap-section-03',
@@ -81,14 +81,10 @@ export const wapSection03 = {
 
     ],
     isPublic: true
-
-
-
-
 }
 
 export const wapSection04 = {
-    id: utilService.makeId(),
+    id: utilService.makeId(16),
     type: 'container-draggable',
     category: 'wap-section',
     className: 'wap-section-04',
@@ -134,11 +130,6 @@ export const wapSection04 = {
             },
 
         },
-
-
-
-
     ],
     isPublic: true
-
 }
