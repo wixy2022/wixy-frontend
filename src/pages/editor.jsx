@@ -166,7 +166,6 @@ export const Editor = ({ setPageClass }) => {
         dispatch(setWap(updatedWap))
     }
 
-    console.log('wap', wap ,JSON.stringify(wap))
 
     return <section
         onMouseUp={({ target }) => {
@@ -188,7 +187,7 @@ export const Editor = ({ setPageClass }) => {
                         ref={el => { editorRef.current = el; providedDroppable.innerRef(el); }}
                         >
                             {(wap?.cmps.length===0)&&<>
-                            <h1 className="editor-empty-msg">Drag Here to create your own website</h1>
+                            <h1 className="editor-empty-msg"> →  Drag here to create your own website  ←</h1>
                             <div className="editor-empty-gif"><img src="https://j.gifs.com/oZ909K.gif" alt="" /></div>
                             </>
                             }

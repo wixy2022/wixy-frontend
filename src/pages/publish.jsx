@@ -25,7 +25,7 @@ export const Publish = ({ setPageClass }) => {
     const loadWap = async () => {
       const wapFromStorage = storageService.getWapFromStorage('wap')
       if(wapFromStorage){
-          return wapFromStorage
+          return setWap(wapFromStorage)
 
         }
         if (savedWap) return setWap(savedWap)
