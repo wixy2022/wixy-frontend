@@ -1,15 +1,14 @@
-    
-export const ImgCmp = ({ cmp,isPublish }) => {
 
-      /*🚀 ~~~~~~~~~~~~~~~~ When in Publish is True ~~~~~~~~~~~~~~~~~~~🚀 */
-      if(isPublish) return <section className={`img-cmp ${cmp.className}`}>
-    <img src={cmp.url} style={cmp.style} alt={cmp.alt} />
-</section>
+export const ImgCmp = ({ cmp, isPublish ,onSelectActiveCmp }) => {
 
 
-/* FIX - add options */
-// when in editor mode
-    return <section className={`img-cmp ${cmp.className}`}>
+    if (isPublish) return <section className={`img-cmp ${cmp.className}`}>
+          <img src={cmp.url} style={cmp.style} alt={cmp.alt} />
+    </section>
+
+    return <section className={`img-cmp ${cmp.className}`}
+        onClick={(ev) => onSelectActiveCmp(cmp, ev.target)}>
         <img src={cmp.url} style={cmp.style} alt={cmp.alt} />
     </section>
+
 }

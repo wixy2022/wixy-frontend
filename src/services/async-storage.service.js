@@ -6,6 +6,8 @@ export const storageService = {
     post,
     put,
     remove,
+    saveWapToStorage,
+    getWapFromStorage
 }
 
 function query(entityType, delay = 1200) {
@@ -54,8 +56,14 @@ function remove(entityType, entityId) {
             _save(entityType, entities)
         })
 }
+// dev use
+function saveWapToStorage(wap) {
+    localStorage.setItem('wap', JSON.stringify(wap))
+}
+function getWapFromStorage() {
+  return JSON.parse(localStorage.getItem('wap'))
 
-
+}
 function _save(entityType, entities) {
     // console.log('entityType FROM SAVE!', entityType)
     localStorage.setItem(entityType, JSON.stringify(entities))
