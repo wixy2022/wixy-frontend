@@ -3,13 +3,16 @@ import React, { useState } from "react"
 import { wapService } from "../services/wap.service"
 
 export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, activeCmp, onUpdateWap, editMode, elementType, setActiveCmp, activeCmpSettings }) => {
-    console.log(activeCmp?.style, activeCmpSettings, 'initialOpacity')
+    const { borderRadius: borderRadiusInlineStyle, opacity: opacityInlineStyle } = activeCmp.style
+    const { borderRadius: borderRadiusScss, opacity: opacityScss } = activeCmpSettings
 
     const [themeList, setThemeList] = useState(wapService.getThemeList(activeCmp.type))
     const [linkUrl, setLinkUrl] = useState('')
     const [imgUrl, setImgUrl] = useState('')
     const [borderRadiusVal, setBorderRadiusVal] = useState('')
     const [opacityVal, setOpacityVal] = useState(100)
+    // const [borderRadiusVal, setBorderRadiusVal] = useState(borderRadiusInlineStyle || borderRadiusScss || '')
+    // const [opacityVal, setOpacityVal] = useState(opacityInlineStyle || opacityScss || 100)
 
     const title = editMode === "inline" ? 'Editor' : 'Themes'
 
@@ -151,34 +154,25 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, a
 
     const onSubmit = (ev) => {
         ev.preventDefault()
-        const { name } = ev.target[0]
-        let type, value, key
-
-        switch (name) {
+        const type = ev.target[0].name
+        switch (type) {
             case 'url':
+                return onSetProperty('url', linkUrl, 'url')
             case 'imgUrl':
-                type = 'url'
-                value = name === 'url' ? linkUrl : imgUrl
-                key = 'url'
-                break
+                return onSetProperty('url', imgUrl, 'url')
+            case 'imgUrl':
+                return onSetProperty('url', imgUrl, 'url')
             case 'borderRadius':
-                type = 'borderRadius'
-                value = borderRadiusVal + '%'
-                key = 'style'
-                break
+                return onSetProperty('borderRadius', borderRadiusVal + '%', 'style')
             case 'opacity':
-                type = 'opacity'
-                value = opacityVal + '%'
-                key = 'style'
-                break
+                return onSetProperty('opacity', opacityVal + '%', 'style')
         }
-        onSetProperty(type, value, key)
     }
 
     const getInput = (title, name, placeholder, value, type, min = '', max = '') => {
         console.log(name, 'GETINP')
         return <form className='link-edit-container' onSubmit={onSubmit} >
-            <label><h4>{title}</h4>
+            <label><h3>{title}</h3>
                 <input type={type} placeholder={placeholder} name={name} min={min} max={max}
                     value={value} onChange={handleChange} />
             </label>
@@ -196,7 +190,7 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, a
             </main>
         }
 
-        {editMode === 'inline' && (elementType === 'txt' || elementType === 'link') && <main className="edit-modal-container">
+        {editMode === 'inline' && elementType === 'txt' || elementType === 'link' && <main className="edit-modal-container">
             {getColorPalette('Text Color', 'color')} {/* TEXT-COLOR */}
 
             {getColorPalette('Text Background', 'backgroundColor')} {/* BCG-COLOR */}

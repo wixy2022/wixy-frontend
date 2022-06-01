@@ -24,6 +24,7 @@ export const Editor = ({ setPageClass }) => {
     const [toolBarMode, setToolBarMode] = useState('')
     const [templateKey, setTemplateKey] = useState(null)
     const [editMode, setEditMode] = useState('inline') //* FIX - setEditMode -> props to child */
+    const [elementType, setElementType] = useState('img') //* FIX - setEditMode -> props to child */
     const editorRef = useRef()
     const templates = allTemplates
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
@@ -147,7 +148,7 @@ export const Editor = ({ setPageClass }) => {
     const onSelectActiveCmp = (currCmp, elCurrCmp, onChange) => {
         if (isEditModalOpen) setIsEditModalOpen(false)
         if (activeCmp?.id === currCmp.id) return
-        
+
         // if (activeCmp) onActiveCmpUpdate('className', activeCmp.className.replace('active-cmp', ''))
         // currCmp.className += ' active-cmp'
         setActiveCmp(currCmp)
@@ -167,6 +168,7 @@ export const Editor = ({ setPageClass }) => {
 
     const onUpdateWap = (key, value) => {
         const updatedWap = wapService.updateWap(wap, activeCmp, key, value)
+        console.log(updatedWap, 'updatedWap!')
         dispatch(setWap(updatedWap))
     }
 
@@ -228,6 +230,7 @@ export const Editor = ({ setPageClass }) => {
                         {isEditModalOpen && <EditModal {...editModalSettings}
                             activeCmpSettings={activeCmpSettings}
                             editMode={editMode}
+                            elementType={elementType}
                             setActiveCmp={setActiveCmp}
                             // onChangeStyle={onChangeStyle}
                             onActiveCmpUpdate={onActiveCmpUpdate} activeCmp={activeCmp}
