@@ -1,19 +1,52 @@
+import { useState } from "react"
 import { wapService } from "../services/wap.service"
-import { useEffect, useRef, useState } from "react"
 
 export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, activeCmp, onUpdateWap, editMode, setActiveCmp, activeCmpSettings }) => {
 
-    const isList = true
     const title = editMode === "inline" ? 'Editor' : 'Themes'
-    const list = ['classic', 'dark', 'dramatic', 'festive', 'light'] /* FIX - THIS SHOULDN'T BE HERE */
-
     const colors = ['#141010', '#FFFFFF', '#42240c', '#835806', '#295f4e', '#6db193', '#272e6e', '#7ed3b2', '#c81912', '#ff9234', '#ffcd3c', '#FDCFE8']
 
     const onClassName = (ev, value) => {
         ev.stopPropagation()
         const updatedClassName = activeCmp.className.replace(/theme-[^\s]+/g, '')
         // onActiveCmpUpdate('className', `${updatedClassName} theme-${value}`)
-        onUpdateWap('className', `${updatedClassName} theme-${value}`)
+        onUpdateWap('className', `${updatedClassName} ${value}`)
+    }
+
+    /* FIX - STATE SHOULD BE DEFINED IN THE SERVICE */
+    const [themeList, setThemeList] = useState(wapService.getThemeList(activeCmp.type))
+
+    const onOpenThemeHeader = (item) => {
+        const updatedList = themeList.map(currItem => currItem.title === item.title ? { ...item, isActive: !item.isActive } : currItem)
+        setThemeList(updatedList)
+    }
+
+    const getThemeModal = () => {
+
+        if (!Object.keys(themeList)) return
+
+        const type = activeCmp.type
+        let cmpClass = `${type}-cmp`
+        if (cmpClass.includes('draggable')) cmpClass = cmpClass.replace('-draggable', '')
+
+        let btnText = ''
+        if (type === 'txt') btnText = 'Text'
+        else if (type === 'anchor') btnText = 'Link'
+
+        const style = btnText ? {} : { minHeight: '40px' }
+
+        return <ul className="theme-modal">
+            {themeList.map((item, idx) =>
+                <li key={idx} className={`list-item ${item.title}`}>
+                    <header className={item.isActive ? 'active' : ''} onClick={() => onOpenThemeHeader(item)}>
+                        <span className={`img-container ${item.title}`}></span><span>{item.title}</span>
+                    </header>
+                    <main>
+                        {item.themes.map((theme, idx) =>
+                            <div key={idx} className={`${cmpClass} ${theme}`} style={style} onClick={(ev) => onClassName(ev, theme)}>{btnText}</div>)}
+                    </main>
+                </li>)}
+        </ul>
     }
 
     /* FIX - change idx to id */
@@ -51,91 +84,52 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, a
             <h2>{title}</h2>
             <div className="close-btn" onClick={() => setIsEditModalOpen(false)}><button>✖</button></div>
         </header>
-        {editMode === 'themes' && <main>
-            {isList && list.map((item, idx) => <div key={idx} className={`list-item ${item}`} onClick={(ev) => onClassName(ev, item)}>
-                <span className={`img-container ${item}`}></span><span>{item}</span>
-            </div>)}
-        </main>}
-        {editMode === 'inline' && <main>
-            {isList && <div className="edit-modal-container">
+        {
+            editMode === 'themes' && <main>
+                {getThemeModal()}
+            </main>
+        }
+        {editMode === 'inline' && <main className="edit-modal-container">
+            {/* TEXT-COLOR */}
+            <h3>Text color</h3>
+            <div className='color-palette'>
+                {colors.map((color, idx) => (
+                    <span
+                        className='color-ball'
+                        key={idx}
+                        style={{ backgroundColor: color }}
+                        onClick={() => {
+                            onSetStyle('color', color)
+                        }}
+                    ></span>
+                ))}
+            </div>
 
-                {/* TEXT-COLOR */}
-                <h3>Text color</h3>
-                <div className='color-palette'>
-                    {colors.map((color, idx) => (
-                        <span
-                            className='color-ball'
-                            key={idx}
-                            style={{ backgroundColor: color }}
-                            onClick={() => {
-                                onSetStyle('color', color)
-                            }}
-                        ></span>
-                    ))}
+            {/* BCG-COLOR */}
+            <h3>Background color</h3>
+            <div className='color-palette'>
+                {colors.map((color, idx) => (
+                    <span
+                        className='color-ball'
+                        key={idx}
+                        style={{ backgroundColor: color }}
+                        onClick={() => {
+                            onSetStyle('backgroundColor', color)
+                        }}
+                    ></span>
+                ))}
+            </div>
+
+            {/* TEXT-DECORATION */}
+            <div className='edit-decoration-container'>
+                <h3>Decoration</h3>
+                <div className="edit-btns">
+                    <span className='edit-icon' onClick={() => onSetStyle('textDecoration', 'underline')}><img src="https://res.cloudinary.com/drpqhjyvk/image/upload/v1654037335/icons/underline-icon_eavmff.jpg" /></span>
+                    <span className='edit-icon' onClick={() => onSetStyle('fontWeight', 'bold')}><img src="https://res.cloudinary.com/drpqhjyvk/image/upload/v1654036866/icons/bold-icon_w3zbi0.jpg" /></span>
+                    <span className='edit-icon' onClick={() => onSetStyle('fontStyle', 'italic')}><img src="https://res.cloudinary.com/drpqhjyvk/image/upload/v1654036866/icons/italic-icon_lyw0w2.jpg" /></span>
                 </div>
-
-                {/* BCG-COLOR */}
-                <h3>Background color</h3>
-                <div className='color-palette'>
-                    {colors.map((color, idx) => (
-                        <span
-                            className='color-ball'
-                            key={idx}
-                            style={{ backgroundColor: color }}
-                            onClick={() => {
-                                onSetStyle('backgroundColor', color)
-                            }}
-                        ></span>
-                    ))}
-                </div>
-
-                {/* TEXT-DECORATION */}
-                <div className='edit-decoration-container'>
-                    <h3>Decoration</h3>
-                    <div className="edit-btns">
-                        <span className='edit-icon underline' onClick={() => onSetStyle('textDecoration', 'underline')}><img src="https://res.cloudinary.com/drpqhjyvk/image/upload/v1654037335/icons/underline-icon_eavmff.jpg" /></span>
-                        <span className='edit-icon' onClick={() => onSetStyle('fontWeight', 'bold')}><img src="https://res.cloudinary.com/drpqhjyvk/image/upload/v1654036866/icons/bold-icon_w3zbi0.jpg" /></span>
-                        <span className='edit-icon' onClick={() => onSetStyle('fontStyle', 'italic')}><img src="https://res.cloudinary.com/drpqhjyvk/image/upload/v1654036866/icons/italic-icon_lyw0w2.jpg" /></span>
-                    </div>
-                </div>
-
-                {/* //////////////////////////////////////////////////////////////////// */}
-
-                {/* TEXT-COLOR */}
-                {/* <h3>Text color</h3>
-                <div className='color-palette'>
-                    {colors.map((color, idx) => (
-                        <span
-                            className='color-ball'
-                            key={idx}
-                            style={{ backgroundColor: color }}
-                            onClick={() => {
-                                onSetStyle('color', color)
-                            }}
-                        ></span>
-                    ))}
-                </div> */}
-
-                {/* TEXT-DECORATION */}
-                {/* <h3>Decoration</h3>
-                <div className='edit-decoration-container'>
-                    <span className='edit-icon' onClick={() => onSetStyle('textDecoration', 'none')}></span>
-                    <span className='edit-icon' onClick={() => onSetStyle('textDecoration', 'overline')}></span>
-                    <span className='edit-icon' onClick={() => onSetStyle('textDecoration', 'underline')}></span>
-                </div> */}
-
-                {/* <h3>Weight</h3>
-                <div className='edit-style-container'>
-                    <span className='edit-icon' onClick={() => onSetStyle('font-weight', 'bold')}></span>
-                    <span className='edit-icon' onClick={() => onSetStyle('font-weight', 'normal')}></span>
-                </div> */}
-
-                {/* <h3>Style</h3>
-                <div className='edit-style-container'>
-                    <span className='edit-icon' onClick={() => onSetStyle('fontStyle', 'normal')}></span>
-                    <span className='edit-icon' onClick={() => onSetStyle('fontStyle', 'italic')}></span>
-                </div> */}
-            </div>}
-        </main>}
-    </section>
+            </div>
+        </main>
+        }
+    </section >
 }

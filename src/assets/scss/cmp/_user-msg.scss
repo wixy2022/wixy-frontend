@@ -1,35 +1,78 @@
 .user-msg {
     position: fixed;
-    padding-inline-start: 1em;
-    bottom: 1rem;
-    right: 1rem;
+    z-index: 4000;
+    top: 5rem;
+    display: flex;
+    right: 1.5rem;
     background-color: lightgray;
     border-radius: 6px;
     box-shadow: inset 0 0 1px black;
     overflow: hidden;
     cursor: pointer;
 
+    .msg-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 33px;
+        width: 100%;
+        position: relative;
+        padding-inline: 14px;
+
+        p {
+            width: 100%;
+        }
+
+        meter {
+            -webkit-transform: rotateY(180deg);
+            position: absolute;
+            top: -9px;
+            left: 1px;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 10px;
+
+        }
+        
+    }
+    
     span {
-        display: inline-block;
-        padding: 1em;
+        padding: .7em;
         color: whitesmoke;
         background-color: grey;
     }
-
+    
     &.danger {
-        background-color: #f5dcdd;
-
+        background-color: white;
+        meter::-webkit-meter-optimum-value {
+            background-color:#ba141a;
+        }
+        
         span {
             background-color: #ba141a;
         }
     }
-
+    
     &.success {
-        background-color: #dbebdb;
-
+        background-color: white;
+        
         span {
-            background-color: #107c10;
+            background-color: $clr1;
+        }
+        meter::-webkit-meter-optimum-value {
+            background-color: $clr1;
         }
     }
-
+    
 }
+meter::-webkit-meter-bar {
+    background: transparent;
+    border-radius: 0;
+    border: none;
+
+  }
+
+ 
+ 
+  

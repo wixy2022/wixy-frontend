@@ -4,8 +4,9 @@ import { useEffect, useState } from "react"
 import { setScreen } from "../store/actions/screen.action"
 import { logout } from '../store/actions/user.action'
 import { useHistory } from "react-router-dom"
+import { PreviewModal } from '../cmps/preview-modal.jsx'
 
-export const AppHeader = ({ pageClass }) => {
+export const AppHeader = ({ pageClass ,setPageClass}) => {
     const { user } = useSelector(storeState => storeState.userModule)
     const dispatch = useDispatch()
     const history = useHistory()
@@ -14,14 +15,10 @@ export const AppHeader = ({ pageClass }) => {
     const [headerClass, setHeaderClass] = useState('')
     const [isOpen, setIsOpen] = useState('')
     const isLogin = user ? 'Logout' : 'Login'
+    const [isPreview, setIsPreview] = useState(false)
+    //    const  =()=>{
 
-    // const onPublish=()=>{
-    //     // history.push(`/publish`)
-    //     //    const win= window.open(`/publish`)
-    //     /*🚀 ~~~~~~~~~~~~~~~~ FIX - CHANGE TO HIROKU  ~~~~~~~~~~~~~~~~~~~🚀 */
-    //    const win= window.open(`http://localhost:3000/#/publish?id=${wap._id}`)
-    //    win.focus()
-    // }
+    //    }
     const onOpenModal = (ev) => {
         ev.stopPropagation()
         isOpen ? setIsOpen('') : setIsOpen('open')
@@ -65,9 +62,16 @@ export const AppHeader = ({ pageClass }) => {
                     {<button onClick={onSetLoginLogout} className="logout-btn">{isLogin}</button>}
                 </div>}
             </div>}
-            {/* {(pageClass === 'editor-open') && <NavLink to={`/publish?id=${wap?._id}`} target={"_blank"} className="publish-btn logo-link">Publish</NavLink>} */}
-            {(pageClass === 'editor-open') && <NavLink to={`/publish`} target={"_blank"} className="publish-btn logo-link">Publish</NavLink>}
-            {/* {(pageClass ==='editor-open')&&<button onClick={onPublish} className="publish-btn">Publish</button>} */}
+            {(pageClass === 'editor-open') && <>
+
+                <button onClick={() => setIsPreview(true)} className="preview-btn logo-link">Preview</button>
+                <NavLink to={`/publish`} target={"_blank"} className="publish-btn logo-link">Publish</NavLink>
+            </>}
         </main>
+        {isPreview &&<>
+         <PreviewModal setPageClass={setPageClass} setIsPreview={setIsPreview}/>
+         <div onClick={(ev) => {ev.stopPropagation(); setIsPreview(false)}} className="black-screen"></div>
+        </>
+         }
     </section>
 }

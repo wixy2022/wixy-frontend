@@ -6,6 +6,7 @@ export class DraggableTemplate extends React.Component {
 
         const { forwardref, template, draggableProps, dragHandleProps } = this.props
         return <div  className='tool-bar-template-container' {...draggableProps} {...dragHandleProps} ref={forwardref}>
+        {/* return <div  className='tool-bar-template-container' {...draggableProps} {...dragHandleProps} ref={forwardref}> */}
             <img className="tool-bar-template-img"
                 style={{
                     // width: '100%',

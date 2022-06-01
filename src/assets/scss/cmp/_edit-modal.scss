@@ -52,6 +52,7 @@
 
 
 .edit-modal {
+
     position: absolute;
     transform: translate(-100%, calc(-100% - 50px));
     z-index: 1010;
@@ -102,16 +103,35 @@
         max-height: 200px;
         overflow-y: auto;
     }
+}
 
-    .list-item {
+/* MOBILE ONLY */
+@media screen and (max-width: 500px) {
+    .edit-modal {
+        left: 50%;
+        transform: translate(-50%, calc(-100% - 50px));
+    }
+}
+
+/*ORIIIIIIIIIIIIIIIIIIIIIII*/
+.edit-modal .theme-modal {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+
+    /* Fix theme-modal */
+    .list-item header {
         display: flex;
         align-items: center;
         gap: 0.8rem;
         padding: 0.8rem 1rem;
         cursor: pointer;
+        border-bottom: 1px solid lightgray;
+        position: relative;
 
         &:hover {
-            background-color: $clr2;
+            // background-color: $clr2;
         }
 
         >.img-container {
@@ -140,14 +160,50 @@
                 background-image: url(https://res.cloudinary.com/drpqhjyvk/image/upload/v1653756620/icons/light-icon_kqgpse.png);
             }
         }
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%) rotate(0.25turn);
+            right: 20px;
+            width: 12px;
+            height: 6px;
+            background-image: url('data:image/svg+xml;utf8,<svg width="100" height="50" xmlns="http://www.w3.org/2000/svg"><polygon points="0,0 100,0 50,50" style="fill:%23d3d3d3;" /></svg>');
+            background-size: contain;
+            transition: transform 0.4s;
+        }
+
+        &.active::after {
+            transform: translateY(-50%) rotate(0turn);
+        }
+    }
+
+    .list-item main {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5em;
+
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.3s, padding 0.3s;
+
+        &>* {
+            width: 60px;
+            margin: 0;
+            padding: 0.2em;
+            cursor: pointer;
+        }
+    }
+
+    .list-item .active {
+
+        &+main {
+            border-bottom: 1px solid lightgray;
+            max-height: 1000px;
+            padding: 8px 0;
+        }
     }
 }
-
-
-/* MOBILE ONLY */
-@media screen and (max-width: 500px) {
-    .edit-modal {
-        left: 50%;
-        transform: translate(-50%, calc(-100% - 50px));
-    }
-}
+/*ORIIIIIIIIIIIIIIIIIIIIIII - END*/
