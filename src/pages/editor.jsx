@@ -35,14 +35,14 @@ export const Editor = ({ setPageClass }) => {
     const [onActiveCmpUpdate, setOnActiveCmpUpdate] = useState(null)
 
     useEffect(() => {
-        dispatch(setWap(wap))
         storageService.saveWapToStorage(wap)
+        console.log('renderd-cuz-wap')
     }, [wap])
 
     useEffect(() => {
         loadWap()
+        console.log('history')
         setPageClass('editor-open')
-        // onSetHeight()
         return () => {
             setPageClass('')
         }
@@ -172,7 +172,7 @@ export const Editor = ({ setPageClass }) => {
         dispatch(setWap(updatedWap))
     }
 
-
+    console.log('renderd')
     return <section className={`editor ${toolBarMode}`}>
         {!wap && <Loader />}
         <DragDropContext onDragEnd={handleOnDragEnd}>
