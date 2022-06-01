@@ -5,7 +5,7 @@
     .hero {
         position: relative;
         height: 75vh;
-        margin-block-end:10vh;
+        margin-block-end: 10vh;
 
         .get-started {
             display: flex;
@@ -15,13 +15,14 @@
             align-items: center;
             z-index: 10;
             position: absolute;
-            font-size:3em;
+            font-size: 3em;
             font-weight: 900;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
             max-width: 37.8125em;
-            &:first-child{
+
+            &:first-child {
                 text-shadow: 1px 1px 1px black;
 
             }
@@ -75,12 +76,29 @@
         }
     }
 
+    .show-more-btn {
+        background-color: $clr1;
+        width: rem(150px);
+        height: rem(40px);
+        border: none;
+        color: #fff;
+        border-radius: 10em;
+        font-size: 20px;
+        letter-spacing: 1px;
+        margin-top: -1%;
+
+        &:hover {
+            background-color: lighten(rgb(12, 110, 252), 7%);
+        }
+
+    }
+
     .templates {
         // margin-block-start: 600px;
         display: grid;
-        margin-block-end:10vh;
+        margin-block-end: -2.3%;
 
-        padding:0 rem(40px) 0;
+        padding: 0 rem(40px) 0;
         grid-template-columns: repeat(1, minmax(0, rem(400px)));
         justify-content: center;
         align-items: center;
@@ -113,7 +131,6 @@
         left: 20px;
         color: black;
         padding-inline-start: 15px
-
     }
 }
 
@@ -122,6 +139,7 @@
         & .templates {
             grid-template-columns: repeat(3, minmax(0, rem(400px)));
             gap: 3em;
+            margin-bottom: -0.3%;
         }
     }
 }

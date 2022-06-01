@@ -35,7 +35,13 @@
         .wap-description {
             color: $clr4;
             font-weight: 400;
+            text-align: left;
         }
+    }
+
+    .last-template {
+        -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
+        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0));
     }
 
     .card-hover-screen {
@@ -82,6 +88,15 @@
                     color: #fff;
                 }
             }
+        }
+    }
+}
+
+@media (min-width:1000px) {
+    .template-card {
+        .second-row {
+            -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
+            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0));
         }
     }
 }
