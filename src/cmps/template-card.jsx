@@ -17,11 +17,12 @@ export const TempleteCard = ({ wap }) => {
         </div>
         <div className={`template-card-img-container`}>
             {isMouseIn && <div className="card-hover-screen">
-                <Link to={wap? getTemplatePath(wap._id) : '/editor'}><button className="edit">Edit</button></Link>
+                <Link to={wap ? getTemplatePath(wap._id) : '/editor'}><button className="edit">Edit</button></Link>
                 <button className="view">View</button>
             </div>}
             <img src={wap?.imgUrl ? wap.imgUrl : defaultImg}
                 alt="" className={`template-card-img ${isMouseIn ? 'smoke' : ''}`} />
+            <h4 className="wap-description">{wap?.description}</h4>
         </div>
     </div>
 }
