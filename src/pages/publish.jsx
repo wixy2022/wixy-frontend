@@ -50,7 +50,6 @@ export const Publish = ({ setPageClass ,pageClass}) => {
 
         // setWap(wapService.getEmptyWap())
     }
-    console.log(savedWap)
     if (!wap) return <></>
     return <section onClick={ev=>ev.stopPropagation()} className="publish">
         {wap.cmps.map(cmp => {

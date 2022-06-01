@@ -23,7 +23,8 @@ export const Editor = ({ setPageClass }) => {
     const history = useHistory()
     const [toolBarMode, setToolBarMode] = useState('')
     const [templateKey, setTemplateKey] = useState(null)
-    const [editMode, setEditMode] = useState('inline') //* FIX - setEditMode -> props to child */
+    const [editMode, setEditMode] = useState('themes') //* FIX - setEditMode -> props to child */
+    // const [editMode, setEditMode] = useState('inline') //* FIX - setEditMode -> props to child */
     const editorRef = useRef()
     const templates = allTemplates
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
