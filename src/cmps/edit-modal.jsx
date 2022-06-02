@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import { wapService } from "../services/wap.service"
 import { useSelector } from "react-redux"
 
-export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, onUpdateWap, editMode, elementType, setActiveCmp, activeCmpSettings, updateActiveCmp, target }) => {
+export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, onUpdateWap, elementType, setActiveCmp, activeCmpSettings, updateActiveCmp, target, editModalMode }) => {
     // console.log(activeCmp?.style, activeCmpSettings, 'initialOpacity')
 
     const { activeCmp } = useSelector(storeState => storeState.wapModule)
@@ -14,7 +14,9 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
     const [borderRadiusVal, setBorderRadiusVal] = useState('')
     const [opacityVal, setOpacityVal] = useState(100)
 
-    const title = editMode === "inline" ? 'Editor' : 'Themes'
+    // const title = editMode === "inline" ? 'Editor' : 'Themes'
+
+    const { type: editMode } = editModalMode
 
     const onClassName = (ev, value) => {
         ev.stopPropagation()
@@ -23,7 +25,6 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
 
         // onActiveCmpUpdate('className', `${updatedClassName} theme-${value}`)
         // onUpdateWap('className', `${updatedClassName} ${value}`)
-        const { type } = activeCmp
         if (activeCmp.category) updatedClassName += ' ' + activeCmp.category
         target.className = `active-cmp ${activeCmp.type}-cmp ${updatedClassName}`
         target.style = ''
@@ -63,27 +64,34 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
     }
 
     const onSetProperty = (type, value, key = 'style') => {
-        const { textDecoration, fontWeight, fontStyle } = activeCmpSettings
+        // const { textDecoration, fontWeight, fontStyle } = activeCmpSettings
+        const textDecoration = getComputedStyle(target).textDecoration
+        const fontWeight = getComputedStyle(target).fontWeight
+        const fontStyle = getComputedStyle(target).fontStyle
         let valueToSet
 
         if (key === 'style') {
             switch (type) {
                 case 'textDecoration':
                     if (!textDecoration ||
-                        textDecoration !== 'underline' &&
-                        activeCmp.style?.textDecoration !== 'underline') value = 'underline'
-                    else value = 'normal'
+                        !textDecoration.includes('underline')
+                        // textDecoration !== 'underline'
+                        // && activeCmp.style?.textDecoration !== 'underline'
+                    ) value = 'underline'
+                    else value = 'none'
                     break
                 case 'fontWeight':
                     if (!fontWeight ||
                         fontWeight !== 'bold' &&
-                        fontWeight < 700 &&
-                        activeCmp.style?.fontWeight !== '800') value = '800'
+                        fontWeight < 700
+                        // && activeCmp.style?.fontWeight !== '800'
+                    ) value = '800'
                     else value = 'normal'
                     break
                 case 'fontStyle':
-                    if ((!fontStyle || fontStyle !== 'italic') &&
-                        !activeCmp.style || activeCmp.style?.fontStyle !== 'italic') value = 'italic'
+                    if ((!fontStyle || fontStyle !== 'italic')
+                        //&& !activeCmp.style || activeCmp.style?.fontStyle !== 'italic'
+                    ) value = 'italic'
                     else value = 'normal'
                 // default:
                 // setBorderRadiusVal('')
@@ -91,15 +99,20 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
             }
 
             valueToSet = { ...activeCmp.style, [type]: value }
+            updateActiveCmp({ ...activeCmp, style: valueToSet })
+            if (type === 'opacity') target.children[0].style.opacity = value
+            else target.style[type] = value
 
         } else if (key === 'url') {
-            valueToSet = value
+            target.children[0].src = value
+            updateActiveCmp({ ...activeCmp, url: value })
+            // valueToSet = value
             setLinkUrl('')
             setImgUrl('')
         }
 
         // setActiveCmp({ ...activeCmp, [key]: valueToSet })
-        onUpdateWap(key, valueToSet)
+        // onUpdateWap(key, valueToSet)
     }
 
     const getColorPalette = (title, type) => {
@@ -196,16 +209,16 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
 
     return <section className="edit-modal" style={{ left: posX, top: posY }}>
         <header>
-            <h2>{title}</h2>
+            <h2>{editModalMode.title}</h2>
             <div className="close-btn" onClick={() => setIsEditModalOpen(false)}><button>✖</button></div>
         </header>
         {
-            editMode === 'themes' && <main>
+            editMode === 'theme' && <main>
                 {getThemeModal()}
             </main>
         }
 
-        {editMode === 'inline' && (activeCmp.type === 'txt' || activeCmp.type === 'anchor') && <main className="edit-modal-container">
+        {editMode === 'style' && (activeCmp.type === 'txt' || activeCmp.type === 'anchor') && <main className="edit-modal-container">
             {getColorPalette('Text Color', 'color')} {/* TEXT-COLOR */}
 
             {getColorPalette('Text Background', 'backgroundColor')} {/* BCG-COLOR */}
@@ -216,9 +229,9 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
         </main>
         }
 
-        {editMode === 'inline' && activeCmp.type === 'img' && <main className="edit-modal-container">
+        {editMode === 'style' && activeCmp.type === 'img' && <main className="edit-modal-container">
 
-            {getInput('Change Image', 'imgUrl', 'Url', imgUrl, 'text')} {/* IMG-URL */}
+            {getInput('Change Image', 'imgUrl', 'Enter URL and press Enter', imgUrl, 'text')} {/* IMG-URL */}
 
             {getInput('Border Radius', 'borderRadius', 'Border Radius Size', borderRadiusVal, 'number', 0, 50)} {/* / BORDER-RADIUS */}
 

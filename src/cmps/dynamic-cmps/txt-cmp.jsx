@@ -33,8 +33,6 @@ export const TxtCmp = ({ cmp, onChangeInput, onSelectActiveCmp, onUpdateWap, isP
 
     if (isPublish) return <pre className={`txt-cmp ${cmp.className}`} style={cmp.style}>{cmp.txt}</pre>
 
-    console.log('RENDEERRRRRRRR TEXT',)
-
     return <div className="txt-cmp relative">
         {/* {isOptionModalOpen && <EditButtons cmpType={cmp.type} onOpenEditModal={onOpenEditModal} parentEl={elTarget} />} */}
         <pre onFocus={onFocusIn} onBlur={onBlur} className={`txt-cmp ${cmp.className}`}

@@ -10,6 +10,7 @@ export const EditButtons = React.memo(({ cmpType, activeCmpSettings, onUpdateWap
     const { activeCmp, activeCmpPos } = useSelector(storeState => storeState.wapModule)
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const [editModalPosition, setEditModalPosition] = useState(null)
+    const [editModalMode, setEditModalMode] = useState(null)
     const [buttonsPosition, setButtonsPosition] = useState({})
 
     const dispatch = useDispatch()
@@ -41,27 +42,24 @@ export const EditButtons = React.memo(({ cmpType, activeCmpSettings, onUpdateWap
         setButtonsPosition(activeCmpPos ? getButtonsPosition() : {})
     }, [activeCmpPos])
 
-    // useEffect(() => {
-    //     if (activeCmp) {
-    //         cmp = { ...activeCmp.cmp }
-    //     }
-    // }, [activeCmp])
-
     if (!activeCmp || !activeCmpPos) return
-    let { target, editorOffsetLeft, editorScrollTop } = activeCmpPos
-    // if (activeCmp.type === 'txt' || activeCmp.type === 'anchor') target.classList.add('up-screen')
+    const { editorOffsetLeft, editorScrollTop } = activeCmpPos
+    let { target } = activeCmpPos
     if (activeCmp.type === 'img') target = target.parentElement
     target.classList.add('active-cmp')
 
     const getActions = cmpType => {
         const getDetails = (type) => {
             switch (type) {
-                case 'theme': return { type: 'theme', title: 'Theme', img: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653747364/icons/theme-icon_aoick6.png' }
-                case 'color': return { type: 'color', title: 'Change Color', img: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653592961/icons/color_kjmbom.png' }
-                case 'txtDecoration': return { type: 'txtDecoration', title: 'Change Decoration', img: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653676964/icons/textDecoration_p7ttgd.png' }
-                case 'href': return { type: 'href', title: 'Change Link' }
-                case 'img': return { type: 'img', title: 'Change Picture', img: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653676914/icons/img-url_wtsr9e.png' }
-                case 'borderRadius': return { type: 'borderRadius', title: 'Change border shape', img: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653676954/icons/border-radius_k0jugr.png' }
+                // case 'theme': return { type: 'theme', title: 'Themes', img: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653747364/icons/theme-icon_aoick6.png' }
+                case 'theme': return { type: 'theme', title: 'Themes', img: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654205439/icons/stars_xapg9v.png' }
+                case 'style': return { type: 'style', title: 'Custom style', img: "https://res.cloudinary.com/drpqhjyvk/image/upload/v1654204281/icons/paintbrush_zraxt1.png" }
+                /* FIX -  */
+                // case 'color': return { type: 'color', title: 'Change Color', img: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653592961/icons/color_kjmbom.png' }
+                // case 'txtDecoration': return { type: 'txtDecoration', title: 'Change Decoration', img: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653676964/icons/textDecoration_p7ttgd.png' }
+                // case 'href': return { type: 'href', title: 'Change Link' }
+                // case 'img': return { type: 'img', title: 'Change Picture', img: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653676914/icons/img-url_wtsr9e.png' }
+                // case 'borderRadius': return { type: 'borderRadius', title: 'Change border shape', img: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653676954/icons/border-radius_k0jugr.png' }
                 case 'clone': return { type: 'clone', title: 'Duplicate', img: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653598367/icons/copy_exfrdo.png' }
                 case 'delete': return { type: 'delete', title: 'Delete', img: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653598367/icons/trash_egjl8h.png' }
                 default: return ''
@@ -69,10 +67,10 @@ export const EditButtons = React.memo(({ cmpType, activeCmpSettings, onUpdateWap
         }
 
         switch (cmpType) {
-            case 'txt': return [getDetails('theme'), getDetails('color'), getDetails('txtDecoration'), getDetails('delete'), getDetails('borderRadius')]
+            case 'txt': return [getDetails('theme'), getDetails('style'), getDetails('delete')]
             case 'container-draggable': return [getDetails('theme'), getDetails('clone'), getDetails('delete')]
-            case 'anchor': return [getDetails('theme'), getDetails('color'), getDetails('txtDecoration'), getDetails('href'), getDetails('borderRadius')]
-            case 'img': return [getDetails('theme'), getDetails('img'), getDetails('borderRadius')]
+            case 'anchor': return [getDetails('theme'), getDetails('style'), getDetails('delete')]
+            case 'img': return [getDetails('theme'), getDetails('style'), getDetails('delete')]
             default: return ''
         }
     }
@@ -94,17 +92,19 @@ export const EditButtons = React.memo(({ cmpType, activeCmpSettings, onUpdateWap
         setEditModalPosition({ posX, posY })
 
         /* FIX - ADD BUTTONS BY ACTION */
-
+        setEditModalMode(action)
         setIsEditModalOpen(true)
     }
 
     const onClick = (ev, action) => {
         ev.stopPropagation()
-        if (action === 'delete') return onUpdateWap('remove')
+        if (action.type === 'delete') return onUpdateWap('remove')
+        /* FIX - HANDLE DUPLICATE HERE AS WELL */
         onOpenEditModal(ev, action)
     }
 
     const updateActiveCmp = (update) => {
+        /* FIX - move to editor? */
         dispatch(setActiveCmp(update))
     }
 
@@ -115,7 +115,7 @@ export const EditButtons = React.memo(({ cmpType, activeCmpSettings, onUpdateWap
         {/* <div className="edit-buttons up-screen" style={{ ...style }}> */}
         <div className="edit-buttons up-screen" style={{ ...buttonsPosition }}>
             {actions?.map(action => <div className="img-container" title={action.title}
-                key={action.type} onClick={(ev) => onClick(ev, action.type)}>
+                key={action.type} onClick={(ev) => onClick(ev, action)}>
                 <img title={action.title} src={action.img}></img>
             </div>)}
         </div>
@@ -130,6 +130,7 @@ export const EditButtons = React.memo(({ cmpType, activeCmpSettings, onUpdateWap
             editMode='themes'
             cmp={activeCmp}
             updateActiveCmp={updateActiveCmp}
+            editModalMode={editModalMode}
         />}
     </>
 })

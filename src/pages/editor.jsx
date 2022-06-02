@@ -46,10 +46,6 @@ export const Editor = React.memo(({ setPageClass }) => {
     // }, [wap])
 
     useEffect(() => {
-        return console.log('CMP DIED')
-    }, [])
-
-    useEffect(() => {
         loadWap()
         setPageClass('editor-open')
         // onSetHeight()
@@ -202,6 +198,7 @@ export const Editor = React.memo(({ setPageClass }) => {
     }
 
     const onUpdateWap = (key, value) => {
+        /* FIX - NEED TO TAKE CARE OF REMOVE AND DUPLICATE */
         // const updatedWap = wapService.updateWap(wap, activeCmp, key, value)
         // console.log(updatedWap, 'updatedWap!')
         // dispatch(setWap(updatedWap))
@@ -246,9 +243,9 @@ export const Editor = React.memo(({ setPageClass }) => {
                                     }
                                     return <DynamicCmp key={utilService.createKey()} index={idx}
                                         cmp={cmp} forwardref={providedDraggable.innerRef}
-                                        // onChangeInput={onChangeInput} //ori
+                                        // onChangeInput={onChangeInput}
                                         onSelectActiveCmp={onSelectActiveCmp}
-                                        onUpdateWap={onUpdateWap}
+                                        // onUpdateWap={onUpdateWap}
                                         draggableProps={providedDraggable.draggableProps}
                                         dragHandleProps={providedDraggable.dragHandleProps}
                                         onUpdateCmpTxt={onUpdateCmpTxt}
