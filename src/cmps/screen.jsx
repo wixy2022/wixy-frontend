@@ -3,7 +3,7 @@ import { setScreen } from "../store/actions/screen.action"
 import { useDispatch, useSelector } from "react-redux"
 import { setActiveCmp, updateWapByActiveCmp } from "../store/actions/wap.action"
 
-export const Screen = () => {
+export const Screen = ({ onCloseScreen }) => {
 
     const { isOpenScreen, screenHeight } = useSelector(storeState => storeState.screenModule)
     const dispatch = useDispatch()
@@ -19,11 +19,11 @@ export const Screen = () => {
         screenRef.current?.style.setProperty('--screen-height', screenHeight + 'px')
     }
 
-    const onCloseScreen = () => {
-        dispatch(updateWapByActiveCmp())
-        dispatch(setActiveCmp(null))
-        dispatch(setScreen(false))
-    }
+    // const onCloseScreen = () => {
+    //     dispatch(updateWapByActiveCmp())
+    //     dispatch(setActiveCmp(null))
+    //     dispatch(setScreen(false))
+    // }
 
     return <>
         {isOpenScreen && <div ref={screenRef} className="screen" onClick={onCloseScreen}></div>}

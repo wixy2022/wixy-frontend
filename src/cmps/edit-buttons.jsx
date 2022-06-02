@@ -13,6 +13,10 @@ export const EditButtons = React.memo(({ cmpType, activeCmpSettings, onUpdateWap
 
     const dispatch = useDispatch()
 
+    useEffect(() => {
+        setIsEditModalOpen(false)
+    }, [activeCmpPos])
+
     // useEffect(() => {
     //     if (activeCmp) {
     //         cmp = { ...activeCmp.cmp }

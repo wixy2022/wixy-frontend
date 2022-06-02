@@ -17,7 +17,7 @@ import { wapService } from "../services/wap.service"
 import { utilService } from '../services/util.service'
 import { storageService } from "../services/async-storage.service"
 
-import { setActiveCmp, setActiveCmpPos, updateWapByActiveCmp } from "../store/actions/wap.action" /* FIX - move to line 6 */
+import { setActiveCmp, setActiveCmpTxt, setActiveCmpPos, updateWapByActiveCmp } from "../store/actions/wap.action" /* FIX - move to line 6 */
 import { setScreenHeight, setScreen } from "../store/actions/screen.action"
 
 export const Editor = React.memo(({ setPageClass }) => {
@@ -194,6 +194,10 @@ export const Editor = React.memo(({ setPageClass }) => {
         }))
     }
 
+    const onUpdateCmpTxt = (txt) => {
+        dispatch(setActiveCmpTxt(txt))
+    }
+
     const onUpdateWap = (key, value) => {
         // const updatedWap = wapService.updateWap(wap, activeCmp, key, value)
         // console.log(updatedWap, 'updatedWap!')
@@ -222,7 +226,7 @@ export const Editor = React.memo(({ setPageClass }) => {
                         </>
                         }
 
-                        <Screen />
+                        <Screen onCloseScreen={onCloseScreen} />
                         {wap && wap.cmps.map((cmp, idx) => (
                             <Draggable key={utilService.createKey()} draggableId={cmp.id} index={idx}>
                                 {(providedDraggable) => {
@@ -244,6 +248,7 @@ export const Editor = React.memo(({ setPageClass }) => {
                                         onUpdateWap={onUpdateWap}
                                         draggableProps={providedDraggable.draggableProps}
                                         dragHandleProps={providedDraggable.dragHandleProps}
+                                        onUpdateCmpTxt={onUpdateCmpTxt}
                                     />
                                 }}
                             </Draggable>
