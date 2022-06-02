@@ -27,7 +27,7 @@ export const Editor = ({ setPageClass }) => {
     const [toolBarMode, setToolBarMode] = useState('')
     const [templateKey, setTemplateKey] = useState(null)
     const [editMode, setEditMode] = useState('inline') //* FIX - setEditMode -> props to child */
-    const [elementType, setElementType] = useState('img') //* FIX - setEditMode -> props to child */
+    const [elementType, setElementType] = useState('txt') //* FIX - setEditMode -> props to child */
     const editorRef = useRef()
     const templates = allTemplates
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
@@ -42,8 +42,8 @@ export const Editor = ({ setPageClass }) => {
         // socketService.setup()
         socketService.emit('wap id', wapId)
         socketService.on('wap changed', (wap) => dispatch(setWap(wap)))
+        // socketService.off('wap changed');
 
-        // socketService.off('chat addMsg');
         return () => {
             socketService.off('wap changed')
             // socketService.terminate()
@@ -128,11 +128,13 @@ export const Editor = ({ setPageClass }) => {
             copiedCmps.splice(idx, 0, template)
 
             dispatch(setWap({ ...wap, cmps: copiedCmps }))
+            socketService.emit('edit wap', { ...wap, cmps: copiedCmps })
         } else {
             const copiedCmps = JSON.parse(JSON.stringify(wap.cmps))
             const [selectedCmp] = copiedCmps.splice(result.source.index, 1)
             copiedCmps.splice(result.destination.index, 0, selectedCmp)
             dispatch(setWap({ ...wap, cmps: copiedCmps }))
+            socketService.emit('edit wap', { ...wap, cmps: copiedCmps })
         }
     }
 
