@@ -1,36 +1,51 @@
-.template-card{
+.template-card {
+
     // background-color: red;
-    .template-header{
+    .template-header {
         display: flex;
         height: 14px;
-        background-color: #ebedef ;
+        background-color: #ebedef;
         flex-direction: row;
         align-items: center;
-        padding-inline-start: 6px ;
+        padding-inline-start: 6px;
         gap: 4px;
-        & .circle{
+
+        & .circle {
             width: 4px;
             height: 4px;
             border-radius: 50%;
             background-color: rgba(255, 255, 255, 0.937);
         }
 
-        
+
     }
-    .template-card-img-container{
+
+    .template-card-img-container {
         position: relative;
 
-        
-        .template-card-img{
+        .template-card-img {
             aspect-ratio: 16/9;
             width: 100%;
-            &.smoke{
+
+            &.smoke {
                 opacity: 0.16;
             }
         }
+
+        .wap-description {
+            color: $clr4;
+            font-weight: 400;
+            text-align: left;
+        }
     }
-    .card-hover-screen{
-        position:absolute ;
+
+    .last-template {
+        -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
+        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0));
+    }
+
+    .card-hover-screen {
+        position: absolute;
         left: 0;
         top: 0;
         display: flex;
@@ -40,7 +55,8 @@
         justify-content: center;
         flex-direction: column;
         row-gap: 1em;
-        & button{
+
+        & button {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -52,23 +68,35 @@
             font-weight: 400;
             font-size: 15px;
             letter-spacing: 1px;
-            
-            &.edit{
+
+            &.edit {
                 background: rgb(12, 110, 252);
                 color: #fff;
                 border: none;
-                &:hover{
-                   background-color:  lighten(rgb(12, 110, 252),10%);
+
+                &:hover {
+                    background-color: lighten(rgb(12, 110, 252), 10%);
                 }
             }
-            &.view{
-                border: 1px solid #0c6efc ;
+
+            &.view {
+                border: 1px solid #0c6efc;
                 color: #0c6efc;
-                &:hover{
+
+                &:hover {
                     background: #0c6efc;
                     color: #fff;
                 }
             }
+        }
+    }
+}
+
+@media (min-width:1000px) {
+    .template-card {
+        .second-row {
+            -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
+            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0));
         }
     }
 }
