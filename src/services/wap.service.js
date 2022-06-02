@@ -1,6 +1,7 @@
 // import { storageService } from './async-storage.service.js'
 // import { utilService } from './util.service.js'
 import { httpService } from './http.service.js'
+import { socketService } from './socket.service.js'
 
 const STORAGE_KEY = 'wixyDB'
 
@@ -84,7 +85,9 @@ function createAncestors(cmp, ancestors = []) {
 function updateWap(wap, activeCmp, key, value) {
     const ancestorsIds = [...activeCmp.ancestors]
     let newWap = JSON.parse(JSON.stringify(wap)) /* FIX - Try not using JSON.parse */
-    return _updateWapProperties(newWap, ancestorsIds, activeCmp, key, value)
+    const updatedWap = _updateWapProperties(newWap, ancestorsIds, activeCmp, key, value)
+    socketService.emit('edit wap', updatedWap)
+    return updatedWap
 }
 
 function _updateWapProperties(cmp, ancestorsIds, activeCmp, key, value) {

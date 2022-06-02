@@ -107,7 +107,7 @@ export const Editor = React.memo(({ setPageClass }) => {
 
     const onCloseScreen = () => {
         dispatch(updateWapByActiveCmp())
-        socketService.emit('edit wap', wap)
+        // socketService.emit('edit wap', wap)
         dispatch(setActiveCmp(null))
         dispatch(setActiveCmpPos(null))
         dispatch(setScreen(false))

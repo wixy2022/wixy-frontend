@@ -100,7 +100,7 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
 
             valueToSet = { ...activeCmp.style, [type]: value }
             updateActiveCmp({ ...activeCmp, style: valueToSet })
-            if (type === 'opacity') target.children[0].style.opacity = value
+            if (type === 'opacity' || type === 'borderRadius') target.children[0].style[type] = value
             else target.style[type] = value
 
         } else if (key === 'url') {
@@ -198,7 +198,6 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
     }
 
     const getInput = (title, name, placeholder, value, type, min = '', max = '') => {
-        console.log(name, 'GETINP')
         return <form className='link-edit-container' onSubmit={onSubmit} >
             <label><h4>{title}</h4>
                 <input type={type} placeholder={placeholder} name={name} min={min} max={max}

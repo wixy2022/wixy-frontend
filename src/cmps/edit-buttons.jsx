@@ -86,7 +86,6 @@ export const EditButtons = React.memo(({ cmpType, activeCmpSettings, onUpdateWap
         else if (posX - 250 <= 16) posX += 250 //if it cant open to the left, it will open to the right
 
         let posY = ev.clientY + editorScrollTop - 10 //mouse position plus editor scroll position
-        console.log('posY', posY)
         if (posY - editorScrollTop - 280 <= 16) posY += 280 // if it cant open above, it will open below
 
         setEditModalPosition({ posX, posY })
