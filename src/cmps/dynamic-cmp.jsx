@@ -29,47 +29,48 @@ export class DynamicCmp extends React.Component {
 
     getCmp = (cmp) => {
         // const { onEditElement, onOpenEditModal, isPublish } = this.props
-        const { onSelectActiveCmp, onUpdateWap,isPublish } = this.props
+        const { onSelectActiveCmp, onUpdateWap, isPublish, onUpdateCmpTxt } = this.props
 
         if (cmp.category) cmp.className += ' ' + cmp.category
         if (cmp.theme) cmp.className += ' ' + cmp.theme
 
         switch (cmp.type) {
-    //         case 'txt': return <TxtCmp cmp={cmp} isPublish={isPublish} onEditElement={onEditElement} onChangeInput={this.onChangeInput} onOpenEditModal={onOpenEditModal} />
+            //         case 'txt': return <TxtCmp cmp={cmp} isPublish={isPublish} onEditElement={onEditElement} onChangeInput={this.onChangeInput} onOpenEditModal={onOpenEditModal} />
 
-    //         case 'container-draggable':
-    //         case 'container': return <section className={cmp.className}>
-    //             {cmp.cmps.map((currCmp) =>
-    //                 <DynamicCmp key={utilService.createKey()} className={currCmp.className} cmp={currCmp}
-    //                     onEditElement={onEditElement} onChangeInput={this.onChangeInput} onOpenEditModal={onOpenEditModal} />
-    //             )}
-    //         </section>
+            //         case 'container-draggable':
+            //         case 'container': return <section className={cmp.className}>
+            //             {cmp.cmps.map((currCmp) =>
+            //                 <DynamicCmp key={utilService.createKey()} className={currCmp.className} cmp={currCmp}
+            //                     onEditElement={onEditElement} onChangeInput={this.onChangeInput} onOpenEditModal={onOpenEditModal} />
+            //             )}
+            //         </section>
 
-    //         case 'anchor': return <AnchorCmp isPublish={isPublish} cmp={cmp} onEditElement={onEditElement} />
-    //         case 'img': return <ImgCmp isPublish={isPublish} cmp={cmp} onEditElement={onEditElement} />
-    //         default: return ''
-    //     }
-    // }
+            //         case 'anchor': return <AnchorCmp isPublish={isPublish} cmp={cmp} onEditElement={onEditElement} />
+            //         case 'img': return <ImgCmp isPublish={isPublish} cmp={cmp} onEditElement={onEditElement} />
+            //         default: return ''
+            //     }
+            // }
             /* FIX - onChangeInput is the old 1 - worked for text, rest failed */
             case 'txt': return <TxtCmp cmp={cmp} isPublish={isPublish} onSelectActiveCmp={onSelectActiveCmp}
-                onUpdateWap={onUpdateWap} onChangeInput={this.onChangeInput} />
+                onUpdateCmpTxt={onUpdateCmpTxt} onUpdateWap={onUpdateWap} onChangeInput={this.onChangeInput} />
 
             case 'container-draggable':
             case 'container':
-                return <section className={`${cmp.className} relative`} onClick={(ev) => {if(!isPublish)onSelectActiveCmp(cmp, ev.target)}}>
+                return <section className={`${cmp.className} relative`} onClick={(ev) => { if (!isPublish) onSelectActiveCmp(cmp, ev.target) }}>
                     {cmp.cmps.map((currCmp) =>
-                        <DynamicCmp  isPublish={isPublish} key={utilService.createKey()} className={currCmp.className} cmp={currCmp}
-                            onUpdateWap={onUpdateWap} onSelectActiveCmp={onSelectActiveCmp} onChangeInput={this.onChangeInput} />
+                        <DynamicCmp isPublish={isPublish} key={utilService.createKey()} className={currCmp.className} cmp={currCmp}
+                            // onUpdateWap={onUpdateWap} onChangeInput={this.onChangeInput}
+                            onSelectActiveCmp={onSelectActiveCmp} onUpdateCmpTxt={onUpdateCmpTxt} />
                     )}
                 </section>
 
-            case 'anchor': return <AnchorCmp  cmp={cmp} isPublish={isPublish} onUpdateWap={onUpdateWap} onSelectActiveCmp={onSelectActiveCmp} />
-            case 'img': return <ImgCmp  cmp={cmp} isPublish={isPublish} onUpdateWap={onUpdateWap} onSelectActiveCmp={onSelectActiveCmp} />
+            case 'anchor': return <AnchorCmp cmp={cmp} isPublish={isPublish} onUpdateWap={onUpdateWap} onSelectActiveCmp={onSelectActiveCmp} onUpdateCmpTxt={onUpdateCmpTxt} />
+            case 'img': return <ImgCmp cmp={cmp} isPublish={isPublish} onUpdateWap={onUpdateWap} onSelectActiveCmp={onSelectActiveCmp} />
             default: return ''
         }
     }
 
-    
+
 
     render() {
         const { forwardref, cmp, draggableProps, dragHandleProps, isPublish } = this.props

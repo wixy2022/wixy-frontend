@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
+import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min"
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 import { setWap } from "../store/actions/wap.action"
@@ -16,27 +16,45 @@ import { EditModal } from "../cmps/edit-modal"
 import { wapService } from "../services/wap.service"
 import { utilService } from '../services/util.service'
 import { storageService } from "../services/async-storage.service"
+import { socketService } from '../services/socket.service'
 
-export const Editor = ({ setPageClass }) => {
-    const { wap } = useSelector(storeState => storeState.wapModule)
+import { setActiveCmp, setActiveCmpTxt, setActiveCmpPos, updateWapByActiveCmp } from "../store/actions/wap.action" /* FIX - move to line 6 */
+import { setScreenHeight, setScreen } from "../store/actions/screen.action"
+
+export const Editor = React.memo(({ setPageClass }) => {
+    const wap = useSelector(storeState => storeState.wapModule.wap)
     const dispatch = useDispatch()
     const history = useHistory()
+    const params = useParams()
+
     const [toolBarMode, setToolBarMode] = useState('')
     const [templateKey, setTemplateKey] = useState(null)
-    const [editMode, setEditMode] = useState('inline') //* FIX - setEditMode -> props to child */
-    const [elementType, setElementType] = useState('img') //* FIX - setEditMode -> props to child */
     const editorRef = useRef()
     const templates = allTemplates
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const [editModalSettings, setEditModalSettings] = useState(null) /* FIX -  */
 
-    const [activeCmp, setActiveCmp] = useState(null)
-    const [activeCmpSettings, setActiveCmpSettings] = useState(null)
-    const [onActiveCmpUpdate, setOnActiveCmpUpdate] = useState(null)
+    // const [activeCmp, setActiveCmp] = useState(null)
+    // const [activeCmpSettings, setActiveCmpSettings] = useState(null)
+    // const [onActiveCmpUpdate, setOnActiveCmpUpdate] = useState(null)
 
     useEffect(() => {
+        const { wapId } = params
+        // socketService.setup()
+        socketService.emit('wap id', wapId)
+        socketService.on('wap changed', (wap) => dispatch(setWap(wap)))
+        // socketService.off('wap changed');
+
+        return () => {
+            socketService.off('wap changed')
+            // socketService.terminate()
+        }
+    }, [])
+
+    useEffect(() => {
+        // dispatch(setWap(wap))
         storageService.saveWapToStorage(wap)
-        console.log('renderd-cuz-wap')
+        // socketService.emit('edit wap', wap)
     }, [wap])
 
     useEffect(() => {
@@ -71,30 +89,40 @@ export const Editor = ({ setPageClass }) => {
                     console.log('data', err.response.data)
                     /* FIX -  */
                     // this.props.setUserMsg({ type: 'danger', txt: 'Failed loading your page. Please try again later' })
-                }
-            }
 
-            dispatch(setWap(wapService.getEmptyWap()))
+                    dispatch(setWap(wapService.getEmptyWap()))
+                }
+            } else {
+                dispatch(setWap(wapService.getEmptyWap()))
+            }
         }, 1000)
     }
 
-    // useEffect(() => {
-    //     const screenHeight = editorRef.current.scrollHeight
-    //     dispatch(setScreenHeight(screenHeight))
-    // }, [wap])
+    /* SCREEN */
 
-    // const onCloseScreen = () => {
-    //     dispatch(setScreen(false))
-    // }
+    useEffect(() => {
+        const screenHeight = editorRef.current.scrollHeight
+        dispatch(setScreenHeight(screenHeight))
+    }, [wap])
 
-    // const onSetHeight = () => {
-    //     const screenHeight = editorRef.current.scrollHeight
-    //     dispatch(setScreenHeight(screenHeight))
-    // }
+    const onCloseScreen = () => {
+        dispatch(updateWapByActiveCmp())
+        // socketService.emit('edit wap', wap)
+        dispatch(setActiveCmp(null))
+        dispatch(setActiveCmpPos(null))
+        dispatch(setScreen(false))
+    }
+
+    const onSetHeight = () => {
+        const screenHeight = editorRef.current.scrollHeight
+        dispatch(setScreenHeight(screenHeight))
+    }
 
     // const onEditElement = () => {
     //     dispatch(setScreen(true))
     // }
+
+    /* SCREEN */
 
     const handleOnDragEnd = (result) => {
         if (!result.destination) {
@@ -111,73 +139,95 @@ export const Editor = ({ setPageClass }) => {
             copiedCmps.splice(idx, 0, template)
 
             dispatch(setWap({ ...wap, cmps: copiedCmps }))
+            socketService.emit('edit wap', { ...wap, cmps: copiedCmps })
         } else {
             const copiedCmps = JSON.parse(JSON.stringify(wap.cmps))
             const [selectedCmp] = copiedCmps.splice(result.source.index, 1)
             copiedCmps.splice(result.destination.index, 0, selectedCmp)
             dispatch(setWap({ ...wap, cmps: copiedCmps }))
+            socketService.emit('edit wap', { ...wap, cmps: copiedCmps })
         }
     }
 
-    const onChangeInput = (cmp) => {
-        console.log('cmp', cmp)
-        const updatedCmps = wap.cmps.map(currCmp => currCmp.id === cmp.id ? cmp : currCmp)
-        setWap({ ...wap, cmps: updatedCmps })
-    }
+    // const onChangeInput = (cmp) => {
+    //     console.log('onChangeInput', cmp)
+    //     const updatedCmps = wap.cmps.map(currCmp => currCmp.id === cmp.id ? cmp : currCmp)
+    //     // setWap({ ...wap, cmps: updatedCmps })
+    //     socketService.emit('edit wap', { ...wap, cmps: updatedCmps })
+    // }
 
-    const onOpenEditModal = (ev, action) => {
-        ev.stopPropagation()
+    // const onOpenEditModal = (ev, action) => {
+    //     ev.stopPropagation()
 
-        /* FIX - 250 is the width of the modal */
-        /* FIX - 280 = height of modal 200 and 80 i've added */
+    //     /* FIX - 250 is the width of the modal */
+    //     /* FIX - 280 = height of modal 200 and 80 i've added */
 
-        let posX = ev.clientX - editorRef.current.offsetLeft //mouse position less editor posX
-        if (window.innerWidth < 500) posX = '' //if mobile, CSS will make it centered to screen
-        else if (posX - 250 <= 16) posX += 250 //if it cant open to the left, it will open to the right
+    //     let posX = ev.clientX - editorRef.current.offsetLeft //mouse position less editor posX
+    //     if (window.innerWidth < 500) posX = '' //if mobile, CSS will make it centered to screen
+    //     else if (posX - 250 <= 16) posX += 250 //if it cant open to the left, it will open to the right
 
-        let posY = ev.clientY + editorRef.current.scrollTop //mouse position plus editor scroll position
-        if (posY - editorRef.current.scrollTop - 280 <= 16) posY += 280 // if it cant open above, it will open below
+    //     let posY = ev.clientY + editorRef.current.scrollTop //mouse position plus editor scroll position
+    //     if (posY - editorRef.current.scrollTop - 280 <= 16) posY += 280 // if it cant open above, it will open below
 
-        setEditModalSettings({ posX, posY, setIsEditModalOpen })
+    //     setEditModalSettings({ posX, posY, setIsEditModalOpen })
 
-        /* FIX - ADD BUTTONS BY ACTION */
+    //     /* FIX - ADD BUTTONS BY ACTION */
 
-        setIsEditModalOpen(true)
-    }
+    //     setIsEditModalOpen(true)
+    // }
 
     const onSelectActiveCmp = (currCmp, elCurrCmp, onChange) => {
-        if (isEditModalOpen) setIsEditModalOpen(false)
-        if (activeCmp?.id === currCmp.id) return
+        // if (isEditModalOpen) setIsEditModalOpen(false)
+        // if (activeCmp?.id === currCmp.id) return
 
-        // if (activeCmp) onActiveCmpUpdate('className', activeCmp.className.replace('active-cmp', ''))
-        // currCmp.className += ' active-cmp'
-        setActiveCmp(currCmp)
+        // // if (activeCmp) onActiveCmpUpdate('className', activeCmp.className.replace('active-cmp', ''))
+        // // currCmp.className += ' active-cmp'
+        // setActiveCmp(currCmp)
 
-        setActiveCmpSettings({
-            x: elCurrCmp.getBoundingClientRect().x,
-            y: elCurrCmp.getBoundingClientRect().y,
-            width: elCurrCmp.offsetWidth,
-            height: elCurrCmp.offsetHeight,
-            fontWeight: getComputedStyle(elCurrCmp).fontWeight,
-            textDecoration: getComputedStyle(elCurrCmp).textDecoration,
-            fontStyle: getComputedStyle(elCurrCmp).fontStyle
-        })
+        // setActiveCmpSettings({
+        //     x: elCurrCmp.getBoundingClientRect().x,
+        //     y: elCurrCmp.getBoundingClientRect().y,
+        //     width: elCurrCmp.offsetWidth,
+        //     height: elCurrCmp.offsetHeight,
+        //     fontWeight: getComputedStyle(elCurrCmp).fontWeight,
+        //     textDecoration: getComputedStyle(elCurrCmp).textDecoration,
+        //     fontStyle: getComputedStyle(elCurrCmp).fontStyle
+        // })
 
         // setOnActiveCmpUpdate(() => onChange)
+
+        // if (isEditModalOpen) return
+        // setIsEditModalOpen(true)
+
+        onSetHeight()
+        dispatch(setScreen(true))
+
+        dispatch(setActiveCmp({ ...currCmp })) /* FIX - change names of parameters to cmp and target */
+
+        dispatch(setActiveCmpPos({
+            target: elCurrCmp,
+            editorOffsetLeft: editorRef.current.offsetLeft,
+            editorScrollTop: editorRef.current.scrollTop
+        }))
+    }
+
+    const onUpdateCmpTxt = (txt) => {
+        dispatch(setActiveCmpTxt(txt))
     }
 
     const onUpdateWap = (key, value) => {
-        const updatedWap = wapService.updateWap(wap, activeCmp, key, value)
-        console.log(updatedWap, 'updatedWap!')
-        dispatch(setWap(updatedWap))
+        /* FIX - NEED TO TAKE CARE OF REMOVE AND DUPLICATE */
+        // const updatedWap = wapService.updateWap(wap, activeCmp, key, value)
+        // console.log(updatedWap, 'updatedWap!')
+        // dispatch(setWap(updatedWap))
     }
 
-    console.log('renderd')
     return <section className={`editor ${toolBarMode}`}>
         {!wap && <Loader />}
         <DragDropContext onDragEnd={handleOnDragEnd}>
 
-            <TemplateToolBar setToolBarMode={setToolBarMode} templates={templates} setTemplateKey={setTemplateKey} />
+            <TemplateToolBar setToolBarMode={setToolBarMode} templates={templates} setTemplateKey={setTemplateKey}
+                onCloseScreen={onCloseScreen} />
 
             <Droppable droppableId={wap?._id || 'no-wap'}>
                 {(providedDroppable) => <>
@@ -194,7 +244,7 @@ export const Editor = ({ setPageClass }) => {
                         </>
                         }
 
-                        <Screen />
+                        <Screen onCloseScreen={onCloseScreen} />
                         {wap && wap.cmps.map((cmp, idx) => (
                             <Draggable key={utilService.createKey()} draggableId={cmp.id} index={idx}>
                                 {(providedDraggable) => {
@@ -211,35 +261,44 @@ export const Editor = ({ setPageClass }) => {
                                     }
                                     return <DynamicCmp key={utilService.createKey()} index={idx}
                                         cmp={cmp} forwardref={providedDraggable.innerRef}
-                                        onChangeInput={onChangeInput} //ori
+                                        // onChangeInput={onChangeInput}
                                         onSelectActiveCmp={onSelectActiveCmp}
-                                        onUpdateWap={onUpdateWap}
+                                        // onUpdateWap={onUpdateWap}
                                         draggableProps={providedDraggable.draggableProps}
-                                        dragHandleProps={providedDraggable.dragHandleProps} />
+                                        dragHandleProps={providedDraggable.dragHandleProps}
+                                        onUpdateCmpTxt={onUpdateCmpTxt}
+                                    />
                                 }}
                             </Draggable>
                         )
                         )}
                         {providedDroppable.placeholder}
 
-                        {activeCmp && <EditButtons cmpType={activeCmp.type} activeCmpSettings={activeCmpSettings}
-                            onOpenEditModal={onOpenEditModal} onUpdateWap={onUpdateWap}
+                        {/* {activeCmp && <EditButtons cmpType={activeCmp.type} activeCmpSettings={activeCmpSettings} */}
+                        {/* {activeCmp && <EditButtons
+                            // onOpenEditModal={onOpenEditModal} 
+                            onUpdateWap={onUpdateWap}
                             scrollHeight={editorRef.current.scrollTop}
-                            editorLeft={editorRef.current.offsetLeft} />}
+                            editorLeft={editorRef.current.offsetLeft} />} */}
 
-                        {isEditModalOpen && <EditModal {...editModalSettings}
-                            activeCmpSettings={activeCmpSettings}
+                        {<EditButtons
+                        // onOpenEditModal={onOpenEditModal} 
+                        // onUpdateWap={onUpdateWap} 
+                        />}
+
+                        {/* {isEditModalOpen && <EditModal {...editModalSettings}
+                            // activeCmpSettings={activeCmpSettings}
                             editMode={editMode}
                             elementType={elementType}
-                            setActiveCmp={setActiveCmp}
+                            // setActiveCmp={setActiveCmp}
                             // onChangeStyle={onChangeStyle}
-                            onActiveCmpUpdate={onActiveCmpUpdate} activeCmp={activeCmp}
+                            // onActiveCmpUpdate={onActiveCmpUpdate} activeCmp={activeCmp}
                             onUpdateWap={onUpdateWap}
-                        />}
+                        />} */}
                     </div>
                 </>
                 }
             </Droppable>
         </DragDropContext>
     </section>
-}
+})
