@@ -133,3 +133,169 @@ export const wapSection04 = {
     ],
     isPublic: true
 }
+export const wapSection05 = {
+    id: utilService.makeId(16),
+    type: 'container-draggable',
+    category: 'wap-section',
+    className: 'wap-section-05',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654190568/templates/Capture_bzixyk.png',
+    cmps: [
+
+        {
+            id: utilService.makeId(16),
+            type: 'container',
+            className: 'txt-container',
+            cmps: [{
+                id: utilService.makeId(16),
+                type: 'anchor',
+                className: 'anchor',
+                txt: 'FREE WEBINAR',
+                imgUrl: '',
+                style: {
+                    borderRadius: '',
+                    backgroundColor: '',
+                    color: '',
+                    fontFamily: ''
+                }
+            }, {
+                id: utilService.makeId(16),
+                type: 'txt',
+                className: 'txt title',
+                txt: 'How to Grow Your Instagram NOW and Create an Engaged  Following ',
+            }, {
+                id: utilService.makeId(16),
+                type: 'txt',
+                className: 'txt description',
+                txt: ''
+            }, {
+                id: utilService.makeId(16),
+                type: 'txt',
+                className: 'txt subtitle',
+                txt: 'AUGUST 10, 11, & 12 '
+            }, {
+                id: utilService.makeId(16),
+                type: 'txt',
+                className: 'txt subtitle second',
+                txt: 'CHOOSE A DATE'
+
+
+            },
+            {
+                id: utilService.makeId(16),
+                type: 'anchor',
+                className: 'anchor-second',
+                txt: 'Sign Up Now',
+                imgUrl: '',
+                style: {
+                    borderRadius: '',
+                    backgroundColor: '',
+                    color: '',
+                    fontFamily: ''
+                }
+            }],
+        },
+        {
+            id: utilService.makeId(16),
+            type: 'img',
+            url: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654181605/templates/unnamed_vmqupw.png',
+            className: 'wap-section-05-img',
+            style: {
+                borderRadius: '',
+                border: '',
+                boxShadow: ''
+            }
+        }
+
+    ],
+    isPublic: true
+}
+export const wapSection07 = {
+
+    id: utilService.makeId(16),
+    type: 'container-draggable',
+    category: 'wap-section',
+    className: 'wap-section-07',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654190568/templates/Capture_bzixyk.png',
+    cmps: [
+        {
+            id: utilService.makeId(16),
+            type: 'txt',
+            className: 'txt title',
+            txt: 'About the Webinar'
+        },
+        {
+            id: utilService.makeId(16),
+            type: 'container',
+            className: 'txt-container',
+            cmps: [
+                {
+                    id: utilService.makeId(16),
+                    type: 'container',
+                    className: 'txt-container-second',
+                    cmps: [{
+                        id: utilService.makeId(16),
+                        type: 'txt',
+                        className: 'txt description',
+                        txt: 'This intensive training combines thousands of hours of practical research, years of experience in growing Instagram, and the coaching power of two social media experts rolled into one easy investment.'
+                    }, {
+                        id: utilService.makeId(16),
+                        type: 'txt',
+                        className: 'txt subtitle',
+                        txt: `If you've looked at Instagram coaching programs and e-courses which cost hundreds of dollars and struggled to commit to that amount financially, this is a great opportunity to learn SO MUCH in one short two hour live seminar`
+                    }
+                    ]
+                },
+                {
+                    id: utilService.makeId(16),
+                    type: 'img',
+                    url: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654199983/templates/unnamed_e30lyj.jpg',
+                    className: 'wap-section-07-img',
+                    style: {
+                        borderRadius: '',
+                        border: '',
+                        boxShadow: ''
+                    }
+                }
+            ],
+        }
+    ],
+    isPublic: true
+
+
+}
+// {
+//     id: utilService.makeId(16),
+//     type: 'txt',
+//     className: 'txt title',
+//     txt: 'How to Grow Your Instagram NOW and Create an Engaged  Following ',
+// }, {
+//     id: utilService.makeId(16),
+//     type: 'txt',
+//     className: 'txt description',
+//     txt: ''
+// }, {
+//     id: utilService.makeId(16),
+//     type: 'txt',
+//     className: 'txt subtitle',
+//     txt: 'AUGUST 10, 11, & 12 '
+// }, {
+//     id: utilService.makeId(16),
+//     type: 'txt',
+//     className: 'txt subtitle second',
+//     txt: 'CHOOSE A DATE'
+
+
+// },
+// {
+//     id: utilService.makeId(16),
+//     type: 'anchor',
+//     className: 'anchor-second',
+//     txt: 'Sign Up Now',
+//     imgUrl: '',
+//     style: {
+//         borderRadius: '',
+//         backgroundColor: '',
+//         color: '',
+//         fontFamily: ''
+//     }
+// }

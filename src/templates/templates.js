@@ -1,15 +1,15 @@
 import { wapHeader01, wapHeader02 } from './header'
-import { wapSection01, wapSection02, wapSection03, wapSection04 } from './section'
-import { wapCards01, wapCards02, wapCards03, wapCards04 } from './card'
+import { wapSection01, wapSection02, wapSection03, wapSection04,wapSection05,wapSection07 } from './section'
+import { wapCards01, wapCards02, wapCards03, wapCards04,wapCards05 } from './card'
 import { wapFooter01, wapFooter02 } from './footer'
 import { wapText01 } from './text'
 import { wapGallery01 } from './gallery'
 
 export const allTemplates = {
     header: [wapHeader01, wapHeader02],
-    section: [wapSection01, wapSection02, wapSection03, wapSection04],
+    section: [wapSection01,wapSection05, wapSection02, wapSection03, wapSection04,wapSection07],
     text: [wapText01],
-    cards: [wapCards01, wapCards02, wapCards03, wapCards04],
+    cards: [wapCards01, wapCards02, wapCards03, wapCards04,wapCards05],
     gallery: [wapGallery01],
     form: [],
     map: [],

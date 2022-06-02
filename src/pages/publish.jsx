@@ -15,7 +15,7 @@ export const Publish = ({ setPageClass ,pageClass}) => {
 
 
     useEffect(() => {
-        if(!pageClass==='publisher-open') setPageClass('publisher-open')
+         setPageClass('publisher-open')
         loadWap()
         return () => {
             setPageClass('')

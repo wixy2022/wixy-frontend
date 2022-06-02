@@ -191,15 +191,15 @@
     }
 
     &>.img-cmp {
-        
+
         width: 356px;
         height: 300px;
         margin: 0 auto 0;
-        padding-block-end:20px ;
+        padding-block-end: 20px;
 
         &>img {
             width: 100%;
-        height: 100%;
+            height: 100%;
 
         }
     }
@@ -278,3 +278,299 @@
     }
 
 }
+
+.wap-section-05 {
+    background-image: url(https://res.cloudinary.com/drpqhjyvk/image/upload/v1654181598/templates/download_v5mjp7.jpg);
+    display: flex;
+    // height: 60rem;
+    justify-content: center;
+    gap: 4em;
+    align-items: center;
+    padding: 1em;
+    flex-direction: column;
+
+    .anchor {
+        border-color: rgb(15, 12, 9);
+        background: rgb(15, 12, 9);
+        color: rgba(255, 255, 255, 1);
+        font-weight: bold;
+        padding: 8px 18px;
+        width: 170px !important;
+        font-family: "Karla", sans-serif;
+        border-radius: .2em;
+        text-align: center;
+
+        &:hover {
+            color: white;
+            background-color: rgba(0, 0, 0, 0.676);
+        }
+    }
+
+    .anchor-second {
+        border-color: rgb(255, 255, 255);
+        background: rgb(255, 255, 255);
+        color: rgb(154, 35, 179);
+        padding: 20px 32px;
+        font-family: "Karla", sans-serif;
+        font-size: 1.4em;
+        border-radius: .4em;
+        width: 240px !important;
+        text-align: center;
+
+        &:hover {
+            color: rgb(154, 85, 200);
+            background-color: whitesmoke;
+        }
+
+    }
+
+    .txt-container {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        gap: 2em;
+
+        .txt.title {
+            color: white;
+            font-weight: bold;
+            font-size: 1.6em;
+            max-width: 550px;
+
+
+        }
+
+    }
+
+    .txt.description {
+        width: 65%;
+        height: 1px;
+        background-color: white;
+    }
+
+    .txt.subtitle {
+        color: white;
+        font-size: 1.4em;
+    }
+
+    .txt.subtitle.second {
+        color: white;
+        font-size: 1.5em;
+        margin-block-end: 1em;
+    }
+
+    &>.img-cmp {
+
+        width: 70%;
+        height: 25%;
+        margin: 0 auto 0;
+        padding-block-end: 20px;
+        aspect-ratio: 1/1;
+
+
+        &>img {
+            width: 100%;
+            height: 100%;
+
+        }
+    }
+
+}
+
+
+@media (min-width:1200px) {
+    .wap-section-05 {
+        align-items: unset;
+
+        flex-direction: row;
+        padding: 4em;
+
+        &>.img-cmp {
+
+            width: 74%;
+
+            height: 80%;
+            margin: 0 auto 0;
+            padding-block-end: 20px;
+            aspect-ratio: 1/1;
+            display: flex;
+            align-items: center;
+            
+
+
+            &>img {
+                width: 60%;
+                height: 100%;
+
+            }
+        }
+
+        .txt-container {
+            max-width: 800px;
+            .txt.title {
+                color: white;
+                font-weight: bold;
+                font-size: 3.1em;
+                max-width: 550px;
+
+
+            }
+
+            .txt.subtitle {
+                color: white;
+                font-size: 1.4em;
+            }
+
+            .txt.subtitle.second {
+                color: white;
+                font-size: 1.5em;
+                margin-block-end: 1em;
+            }
+        }
+    }
+}
+
+.wap-section-07 {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    font-family: Karla;
+    padding: 2em;
+    background-color: white;
+
+
+    .txt.title {
+        font-size: 1.875rem;
+        text-align: center;
+        white-space: pre-wrap;
+        // font-weight: 600;
+        color: rgb(36, 36, 36);
+
+    }
+
+    .txt-container {
+        
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        color: rgba(0, 0, 0, 0.451);
+        &>.img-cmp{
+            flex-grow: 1;
+            max-width: 100%;
+            // width: 2000px;
+            img{
+                width: 100%;
+                // height: 100%;
+                object-fit: cover;
+            }
+        }
+        
+        .txt-container-second {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+        }
+    }
+
+}
+@media (min-width:800px) {
+    .wap-section-07 {
+        
+        .txt-container {
+            &>.img-cmp{
+            }
+            .txt-container-second {
+                flex-direction: row;
+            }
+        }
+    
+    }
+}
+@media (min-width:1000px) {
+    .wap-section-07 {
+        display: flex;
+    
+        .txt.title {
+            font-size: 2.875rem;
+            text-align: center;
+            white-space: pre-wrap;
+            // font-weight: 600;
+            color: rgb(36, 36, 36);
+    
+        }
+    
+        .txt-container {
+            display: flex;
+            flex-direction: row;
+            gap: 1em;
+            font-size: 1.4rem;
+           width: 100%;
+    
+            &>.img-cmp{
+                flex-grow: 1;
+                width: 2000px;
+                img{
+                    width: 100%;
+                    
+                    object-fit: cover;
+                }
+                
+            }
+            
+            .txt-container-second {
+                display: flex;
+                flex-direction: column;
+                gap: 1em;
+            }
+        }
+    
+    }
+}
+// export const wapSection07 = {
+
+//     id: utilService.makeId(16),
+//     type: 'container-draggable',
+//     category: 'wap-section',
+//     className: 'wap-section-07',
+//     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654190568/templates/Capture_bzixyk.png',
+//     cmps: [
+//         
+//         {
+//             id: utilService.makeId(16),
+//             type: 'container',
+//             className: 'txt-container',
+//             cmps: [
+//                 {
+//                     id: utilService.makeId(16),
+//                     type: 'container',
+//                     className: 'txt-container',
+//                     cmps: [{
+//                         id: utilService.makeId(16),
+//                         type: 'txt',
+//                         className: 'txt title',
+//                         txt: 'This intensive training combines thousands of hours of practical research, years of experience in growing Instagram, and the coaching power of two social media experts rolled into one easy investment.'
+//                     }, {
+//                         id: utilService.makeId(16),
+//                         type: 'txt',
+//                         className: 'txt subtitle',
+//                         txt: `If you've looked at Instagram coaching programs and e-courses which cost hundreds of dollars and struggled to commit to that amount financially, this is a great opportunity to learn SO MUCH in one short two hour live seminar`
+//                     }
+//                     ]
+//                 },
+//                 {
+//                     id: utilService.makeId(16),
+//                     type: 'img',
+//                     url: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654199983/templates/unnamed_e30lyj.jpg',
+//                     className: 'wap-section-07-img',
+//                     style: {
+//                         borderRadius: '',
+//                         border: '',
+//                         boxShadow: ''
+//                     }
+//                 }
+//             ],
+//         }
+//     ],
+//     isPublic: true
+
+
+// }
