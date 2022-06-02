@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { DynamicCmp } from "../dynamic-cmp";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import  { Node } from 'react'
@@ -15,7 +15,7 @@ import  { Node } from 'react'
 // };
 
 
-export const ContainerCmp = React.memo(({ innerCmps, style, id }) => {
+export const ContainerCmp = ({ innerCmps, style, id }) => {
 
     const [cmps, updateCmps] = useState(innerCmps)
 
@@ -60,4 +60,4 @@ export const ContainerCmp = React.memo(({ innerCmps, style, id }) => {
         </DragDropContext>
 
     </section>
-})
+}

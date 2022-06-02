@@ -17,10 +17,11 @@ import { wapService } from "../services/wap.service"
 import { utilService } from '../services/util.service'
 import { storageService } from "../services/async-storage.service"
 
-import { setActiveCmp } from "../store/actions/wap.action" /* FIX - move to line 6 */
+import { setActiveCmp, setActiveCmpPos, updateWapByActiveCmp } from "../store/actions/wap.action" /* FIX - move to line 6 */
+import { setScreenHeight, setScreen } from "../store/actions/screen.action"
 
 export const Editor = React.memo(({ setPageClass }) => {
-    const { wap } = useSelector(storeState => storeState.wapModule)
+    const wap = useSelector(storeState => storeState.wapModule.wap)
     const dispatch = useDispatch()
     const history = useHistory()
     const [toolBarMode, setToolBarMode] = useState('')
@@ -36,13 +37,13 @@ export const Editor = React.memo(({ setPageClass }) => {
     // const [activeCmpSettings, setActiveCmpSettings] = useState(null)
     // const [onActiveCmpUpdate, setOnActiveCmpUpdate] = useState(null)
 
-    // const { activeCmp } = useSelector(storeState => storeState.wapModule)
+    // const activeCmp = useSelector(storeState => storeState.wapModule.activeCmp)
 
-    useEffect(() => {
-        // dispatch(setWap(wap))
-        storageService.saveWapToStorage(wap)
-        console.log('UPDATE WAP effect',)
-    }, [wap])
+    // useEffect(() => {
+    //     // dispatch(setWap(wap))
+    //     storageService.saveWapToStorage(wap)
+    //     console.log('UPDATE WAP effect',)
+    // }, [wap])
 
     useEffect(() => {
         return console.log('CMP DIED')
@@ -66,8 +67,6 @@ export const Editor = React.memo(({ setPageClass }) => {
     const loadWap = async () => {
         /* FIX - remove timeout */
         setTimeout(async () => {
-            // ; (async () => {
-
             const urlSrcPrm = new URLSearchParams(history.location.search)
             const wapId = urlSrcPrm.get('id')
 
@@ -86,24 +85,26 @@ export const Editor = React.memo(({ setPageClass }) => {
                     dispatch(setWap(wapService.getEmptyWap()))
                 }
             }
-            // })()
-
         }, 1000)
     }
 
-    // useEffect(() => {
-    //     const screenHeight = editorRef.current.scrollHeight
-    //     dispatch(setScreenHeight(screenHeight))
-    // }, [wap])
+    /* SCREEN */
 
-    // const onCloseScreen = () => {
-    //     dispatch(setScreen(false))
-    // }
+    useEffect(() => {
+        const screenHeight = editorRef.current.scrollHeight
+        dispatch(setScreenHeight(screenHeight))
+    }, [wap])
 
-    // const onSetHeight = () => {
-    //     const screenHeight = editorRef.current.scrollHeight
-    //     dispatch(setScreenHeight(screenHeight))
-    // }
+    const onCloseScreen = () => {
+        dispatch(updateWapByActiveCmp())
+        dispatch(setActiveCmp(null))
+        dispatch(setScreen(false))
+    }
+
+    const onSetHeight = () => {
+        const screenHeight = editorRef.current.scrollHeight
+        dispatch(setScreenHeight(screenHeight))
+    }
 
     // const onEditElement = () => {
     //     dispatch(setScreen(true))
@@ -123,20 +124,20 @@ export const Editor = React.memo(({ setPageClass }) => {
             const copiedCmps = JSON.parse(JSON.stringify(wap.cmps))
             copiedCmps.splice(idx, 0, template)
 
-            // dispatch(setWap({ ...wap, cmps: copiedCmps }))
+            dispatch(setWap({ ...wap, cmps: copiedCmps }))
         } else {
             const copiedCmps = JSON.parse(JSON.stringify(wap.cmps))
             const [selectedCmp] = copiedCmps.splice(result.source.index, 1)
             copiedCmps.splice(result.destination.index, 0, selectedCmp)
-            // dispatch(setWap({ ...wap, cmps: copiedCmps }))
+            dispatch(setWap({ ...wap, cmps: copiedCmps }))
         }
     }
 
-    const onChangeInput = (cmp) => {
-        console.log('cmp', cmp)
-        const updatedCmps = wap.cmps.map(currCmp => currCmp.id === cmp.id ? cmp : currCmp)
-        // setWap({ ...wap, cmps: updatedCmps })
-    }
+    // const onChangeInput = (cmp) => {
+    //     console.log('onChangeInput', cmp)
+    //     const updatedCmps = wap.cmps.map(currCmp => currCmp.id === cmp.id ? cmp : currCmp)
+    //     // setWap({ ...wap, cmps: updatedCmps })
+    // }
 
     // const onOpenEditModal = (ev, action) => {
     //     ev.stopPropagation()
@@ -178,11 +179,19 @@ export const Editor = React.memo(({ setPageClass }) => {
 
         // setOnActiveCmpUpdate(() => onChange)
 
-        dispatch(setActiveCmp({
-            cmp: currCmp, target: elCurrCmp,
+        // if (isEditModalOpen) return
+        // setIsEditModalOpen(true)
+
+        onSetHeight()
+        dispatch(setScreen(true))
+
+        dispatch(setActiveCmp({ ...currCmp })) /* FIX - change names of parameters to cmp and target */
+
+        dispatch(setActiveCmpPos({
+            target: elCurrCmp,
             editorOffsetLeft: editorRef.current.offsetLeft,
             editorScrollTop: editorRef.current.scrollTop
-        })) /* FIX - change names of parameters to cmp and target */
+        }))
     }
 
     const onUpdateWap = (key, value) => {
@@ -191,13 +200,12 @@ export const Editor = React.memo(({ setPageClass }) => {
         // dispatch(setWap(updatedWap))
     }
 
-    console.log('RENDERING EDITOR')
-
     return <section className={`editor ${toolBarMode}`}>
         {!wap && <Loader />}
         <DragDropContext onDragEnd={handleOnDragEnd}>
 
-            <TemplateToolBar setToolBarMode={setToolBarMode} templates={templates} setTemplateKey={setTemplateKey} />
+            <TemplateToolBar setToolBarMode={setToolBarMode} templates={templates} setTemplateKey={setTemplateKey}
+                onCloseScreen={onCloseScreen} />
 
             <Droppable droppableId={wap?._id || 'no-wap'}>
                 {(providedDroppable) => <>
@@ -235,7 +243,8 @@ export const Editor = React.memo(({ setPageClass }) => {
                                         onSelectActiveCmp={onSelectActiveCmp}
                                         onUpdateWap={onUpdateWap}
                                         draggableProps={providedDraggable.draggableProps}
-                                        dragHandleProps={providedDraggable.dragHandleProps} />
+                                        dragHandleProps={providedDraggable.dragHandleProps}
+                                    />
                                 }}
                             </Draggable>
                         )
@@ -250,8 +259,9 @@ export const Editor = React.memo(({ setPageClass }) => {
                             editorLeft={editorRef.current.offsetLeft} />} */}
 
                         {<EditButtons
-                            // onOpenEditModal={onOpenEditModal} 
-                            onUpdateWap={onUpdateWap} />}
+                        // onOpenEditModal={onOpenEditModal} 
+                        // onUpdateWap={onUpdateWap} 
+                        />}
 
                         {/* {isEditModalOpen && <EditModal {...editModalSettings}
                             // activeCmpSettings={activeCmpSettings}

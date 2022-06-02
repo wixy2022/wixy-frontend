@@ -169,13 +169,13 @@
     height: var(--screen-height);
     background-color: rgb(255, 0, 0);
     opacity: 0.3;
-    z-index: 100;
-    pointer-events: none;
+    z-index: 1000;
+    // pointer-events: none;
     overflow: hidden;
 }
 
 .up-screen {
-    z-index: 800;
+    z-index: 1001;
     position: relative;
 
 }

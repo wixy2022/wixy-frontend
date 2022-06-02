@@ -3,14 +3,12 @@ import React, { useState } from "react"
 import { wapService } from "../services/wap.service"
 import { useSelector } from "react-redux"
 
-export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, onUpdateWap, editMode, elementType, setActiveCmp, activeCmpSettings }) => {
+export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, onUpdateWap, editMode, elementType, setActiveCmp, activeCmpSettings, updateActiveCmp, target }) => {
     // console.log(activeCmp?.style, activeCmpSettings, 'initialOpacity')
 
     const { activeCmp } = useSelector(storeState => storeState.wapModule)
-    const cmp = useState(activeCmp?.cmp)[0] /* FIX - maby we don't need state? */
-    const target = useState(activeCmp?.target)[0] /* FIX - maby we don't need state? */
 
-    const [themeList, setThemeList] = useState(wapService.getThemeList(cmp.type))
+    const [themeList, setThemeList] = useState(wapService.getThemeList(activeCmp.type))
     const [linkUrl, setLinkUrl] = useState('')
     const [imgUrl, setImgUrl] = useState('')
     const [borderRadiusVal, setBorderRadiusVal] = useState('')
@@ -20,12 +18,15 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
 
     const onClassName = (ev, value) => {
         ev.stopPropagation()
-        const updatedClassName = cmp.className.replace(/\stheme-[^\s]+/g, '') + ` theme-${value}`
+        const updatedClassName = activeCmp.className.replace(/\stheme-[^\s]+/g, '') + ` ${value}`
+        updateActiveCmp({ ...activeCmp, className: updatedClassName, style: {} })
+
         // onActiveCmpUpdate('className', `${updatedClassName} theme-${value}`)
         // onUpdateWap('className', `${updatedClassName} ${value}`)
-        console.log('target', updatedClassName.split(' '))
-        target.classList = updatedClassName.split(' ')
-        // cmp.className = updatedClassName
+        const { type } = activeCmp
+        if (activeCmp.category) updatedClassName += ' ' + activeCmp.category
+        target.className = `${activeCmp.type}-cmp ${updatedClassName}`
+        target.style = ''
     }
 
     const onOpenThemeHeader = (item) => {
@@ -37,7 +38,7 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
 
         if (!Object.keys(themeList)) return
 
-        const type = cmp.type
+        const type = activeCmp.type
         let cmpClass = `${type}-cmp`
         if (cmpClass.includes('draggable')) cmpClass = cmpClass.replace('-draggable', '')
 
@@ -193,7 +194,7 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
         </form>
     }
 
-    console.log('EDIT MODALLLL', )
+    console.log('EDIT MODALLLL',)
     return <section className="edit-modal" style={{ left: posX, top: posY }}>
         <header>
             <h2>{title}</h2>
@@ -205,18 +206,18 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
             </main>
         }
 
-        {editMode === 'inline' && (cmp.type === 'txt' || cmp.type === 'anchor') && <main className="edit-modal-container">
+        {editMode === 'inline' && (activeCmp.type === 'txt' || activeCmp.type === 'anchor') && <main className="edit-modal-container">
             {getColorPalette('Text Color', 'color')} {/* TEXT-COLOR */}
 
             {getColorPalette('Text Background', 'backgroundColor')} {/* BCG-COLOR */}
 
             {getTxtStyleBtns()} {/* TEXT-DECORATION */}
 
-            {cmp.type === 'anchor' && getInput('Link To', 'linkUrl', 'Add link here', linkUrl, 'text')} {/* LINK */}
+            {activeCmp.type === 'anchor' && getInput('Link To', 'linkUrl', 'Add link here', linkUrl, 'text')} {/* LINK */}
         </main>
         }
 
-        {editMode === 'inline' && cmp.type === 'img' && <main className="edit-modal-container">
+        {editMode === 'inline' && activeCmp.type === 'img' && <main className="edit-modal-container">
 
             {getInput('Change Image', 'imgUrl', 'Url', imgUrl, 'text')} {/* IMG-URL */}
 

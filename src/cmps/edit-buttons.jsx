@@ -1,12 +1,17 @@
-import { useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
+import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import { EditModal } from "./edit-modal"
 
-export const EditButtons = ({ cmpType, activeCmpSettings, onUpdateWap, scrollHeight, editorLeft }) => {
+import { setActiveCmp } from "../store/actions/wap.action"
 
-    const { activeCmp } = useSelector(storeState => storeState.wapModule)
+export const EditButtons = React.memo(({ cmpType, activeCmpSettings, onUpdateWap, scrollHeight, editorLeft }) => {
+
+    const { activeCmp, activeCmpPos } = useSelector(storeState => storeState.wapModule)
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const [editModalPosition, setEditModalPosition] = useState(null)
+
+    const dispatch = useDispatch()
 
     // useEffect(() => {
     //     if (activeCmp) {
@@ -14,8 +19,9 @@ export const EditButtons = ({ cmpType, activeCmpSettings, onUpdateWap, scrollHei
     //     }
     // }, [activeCmp])
 
-    if (!activeCmp) return
-    const { cmp, target, editorOffsetLeft, editorScrollTop } = activeCmp
+    if (!activeCmp || !activeCmpPos) return
+    const { target, editorOffsetLeft, editorScrollTop } = activeCmpPos
+    // if (activeCmp.type === 'txt' || activeCmp.type === 'anchor') target.classList.add('up-screen')
 
     const getActions = cmpType => {
         const getDetails = (type) => {
@@ -68,13 +74,15 @@ export const EditButtons = ({ cmpType, activeCmpSettings, onUpdateWap, scrollHei
     }
 
     //Positioning the modal
+
     const x = target.getBoundingClientRect().x
     const y = target.getBoundingClientRect().y
     const width = target.offsetWidth
     const height = target.offsetHeight
     if (x === 0 && y === 0) return
 
-    const left = x + (width / 2) - editorOffsetLeft
+    // const left = x + (width / 2) - editorOffsetLeft
+    const left = x + editorOffsetLeft
 
     const top = editorScrollTop + y - 80
     const style = { left, top, bottom: '' }
@@ -83,8 +91,14 @@ export const EditButtons = ({ cmpType, activeCmpSettings, onUpdateWap, scrollHei
         style.top += height + 40
     }
 
+    const updateActiveCmp = (update) => {
+        dispatch(setActiveCmp(update))
+    }
+
     //Adding buttons
-    const actions = getActions(cmp.type)
+    const actions = getActions(activeCmp.type)
+    console.log('ACTIONS', actions)
+    console.log('ACTIVE CMP', activeCmp)
 
     return <>
         <div className="edit-buttons up-screen" style={{ ...style }}>
@@ -97,12 +111,13 @@ export const EditButtons = ({ cmpType, activeCmpSettings, onUpdateWap, scrollHei
             {...editModalPosition}
             // editMode={editMode}
             // elementType={elementType}
-            onUpdateWap={onUpdateWap}
+            // onUpdateWap={onUpdateWap}
 
             target={target}
             setIsEditModalOpen={setIsEditModalOpen}
             editMode='themes'
-            cmp={cmp}
+            cmp={activeCmp}
+            updateActiveCmp={updateActiveCmp}
         />}
     </>
-}
+})
