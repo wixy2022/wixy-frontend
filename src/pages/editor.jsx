@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
+import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min"
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 import { setWap } from "../store/actions/wap.action"
@@ -16,6 +16,7 @@ import { EditModal } from "../cmps/edit-modal"
 import { wapService } from "../services/wap.service"
 import { utilService } from '../services/util.service'
 import { storageService } from "../services/async-storage.service"
+import { socketService } from '../services/socket.service'
 
 import { setActiveCmp, setActiveCmpTxt, setActiveCmpPos, updateWapByActiveCmp } from "../store/actions/wap.action" /* FIX - move to line 6 */
 import { setScreenHeight, setScreen } from "../store/actions/screen.action"
@@ -24,10 +25,10 @@ export const Editor = React.memo(({ setPageClass }) => {
     const wap = useSelector(storeState => storeState.wapModule.wap)
     const dispatch = useDispatch()
     const history = useHistory()
+    const params = useParams()
+
     const [toolBarMode, setToolBarMode] = useState('')
     const [templateKey, setTemplateKey] = useState(null)
-    const [editMode, setEditMode] = useState('themes') //* FIX - setEditMode -> props to child */
-    const [elementType, setElementType] = useState('img') //* FIX - setEditMode -> props to child */
     const editorRef = useRef()
     const templates = allTemplates
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
@@ -37,13 +38,24 @@ export const Editor = React.memo(({ setPageClass }) => {
     // const [activeCmpSettings, setActiveCmpSettings] = useState(null)
     // const [onActiveCmpUpdate, setOnActiveCmpUpdate] = useState(null)
 
-    // const activeCmp = useSelector(storeState => storeState.wapModule.activeCmp)
+    useEffect(() => {
+        const { wapId } = params
+        // socketService.setup()
+        socketService.emit('wap id', wapId)
+        socketService.on('wap changed', (wap) => dispatch(setWap(wap)))
+        // socketService.off('wap changed');
 
-    // useEffect(() => {
-    //     // dispatch(setWap(wap))
-    //     storageService.saveWapToStorage(wap)
-    //     console.log('UPDATE WAP effect',)
-    // }, [wap])
+        return () => {
+            socketService.off('wap changed')
+            // socketService.terminate()
+        }
+    }, [])
+
+    useEffect(() => {
+        // dispatch(setWap(wap))
+        storageService.saveWapToStorage(wap)
+        // socketService.emit('edit wap', wap)
+    }, [wap])
 
     useEffect(() => {
         loadWap()
@@ -80,6 +92,8 @@ export const Editor = React.memo(({ setPageClass }) => {
 
                     dispatch(setWap(wapService.getEmptyWap()))
                 }
+            } else {
+                dispatch(setWap(wapService.getEmptyWap()))
             }
         }, 1000)
     }
@@ -93,6 +107,7 @@ export const Editor = React.memo(({ setPageClass }) => {
 
     const onCloseScreen = () => {
         dispatch(updateWapByActiveCmp())
+        socketService.emit('edit wap', wap)
         dispatch(setActiveCmp(null))
         dispatch(setActiveCmpPos(null))
         dispatch(setScreen(false))
@@ -124,11 +139,13 @@ export const Editor = React.memo(({ setPageClass }) => {
             copiedCmps.splice(idx, 0, template)
 
             dispatch(setWap({ ...wap, cmps: copiedCmps }))
+            socketService.emit('edit wap', { ...wap, cmps: copiedCmps })
         } else {
             const copiedCmps = JSON.parse(JSON.stringify(wap.cmps))
             const [selectedCmp] = copiedCmps.splice(result.source.index, 1)
             copiedCmps.splice(result.destination.index, 0, selectedCmp)
             dispatch(setWap({ ...wap, cmps: copiedCmps }))
+            socketService.emit('edit wap', { ...wap, cmps: copiedCmps })
         }
     }
 
@@ -136,6 +153,7 @@ export const Editor = React.memo(({ setPageClass }) => {
     //     console.log('onChangeInput', cmp)
     //     const updatedCmps = wap.cmps.map(currCmp => currCmp.id === cmp.id ? cmp : currCmp)
     //     // setWap({ ...wap, cmps: updatedCmps })
+    //     socketService.emit('edit wap', { ...wap, cmps: updatedCmps })
     // }
 
     // const onOpenEditModal = (ev, action) => {

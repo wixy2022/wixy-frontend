@@ -1,3 +1,4 @@
+import { socketService } from "../../services/socket.service"
 import { wapService } from "../../services/wap.service"
 
 const initialState = {
