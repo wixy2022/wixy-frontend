@@ -25,7 +25,7 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
         // onUpdateWap('className', `${updatedClassName} ${value}`)
         const { type } = activeCmp
         if (activeCmp.category) updatedClassName += ' ' + activeCmp.category
-        target.className = `${activeCmp.type}-cmp ${updatedClassName}`
+        target.className = `active-cmp ${activeCmp.type}-cmp ${updatedClassName}`
         target.style = ''
     }
 

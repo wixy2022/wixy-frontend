@@ -48,8 +48,10 @@ export const EditButtons = React.memo(({ cmpType, activeCmpSettings, onUpdateWap
     // }, [activeCmp])
 
     if (!activeCmp || !activeCmpPos) return
-    const { target, editorOffsetLeft, editorScrollTop } = activeCmpPos
+    let { target, editorOffsetLeft, editorScrollTop } = activeCmpPos
     // if (activeCmp.type === 'txt' || activeCmp.type === 'anchor') target.classList.add('up-screen')
+    if (activeCmp.type === 'img') target = target.parentElement
+    target.classList.add('active-cmp')
 
     const getActions = cmpType => {
         const getDetails = (type) => {
@@ -85,8 +87,9 @@ export const EditButtons = React.memo(({ cmpType, activeCmpSettings, onUpdateWap
         if (window.innerWidth < 500) posX = '' //if mobile, CSS will make it centered to screen
         else if (posX - 250 <= 16) posX += 250 //if it cant open to the left, it will open to the right
 
-        let posY = ev.clientY + editorScrollTop //mouse position plus editor scroll position
-        if (posY - editorScrollTop - 230 <= 16) posY += 230 // if it cant open above, it will open below
+        let posY = ev.clientY + editorScrollTop - 10 //mouse position plus editor scroll position
+        console.log('posY', posY)
+        if (posY - editorScrollTop - 280 <= 16) posY += 280 // if it cant open above, it will open below
 
         setEditModalPosition({ posX, posY })
 

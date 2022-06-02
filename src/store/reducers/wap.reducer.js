@@ -19,8 +19,10 @@ export function wapReducer(state = initialState, action) {
             console.log('activeCmp text', state.activeCmp)
             return { ...state, activeCmp: { ...state.activeCmp, txt: action.txt } }
         case 'UPDATE_WAP_BY_ACTIVE_CMP':
-            const wap = wapService.updateWap(state.wap, state.activeCmp)
-            return { ...state, wap }
+            if (state.activeCmp) {
+                const wap = wapService.updateWap(state.wap, state.activeCmp)
+                return { ...state, wap }
+            }
         default:
             return state
     }

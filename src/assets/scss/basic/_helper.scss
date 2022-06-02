@@ -81,6 +81,12 @@
     content: "\f023";
 }
 
+/* ACTIVE CMP */
+.active-cmp {
+    outline: 3px solid blue !important;
+    z-index: 10;
+}
+
 /* DEBUG */
 // * {
 //     border: 1px solid red;

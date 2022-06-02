@@ -98,6 +98,7 @@ export const Editor = React.memo(({ setPageClass }) => {
     const onCloseScreen = () => {
         dispatch(updateWapByActiveCmp())
         dispatch(setActiveCmp(null))
+        dispatch(setActiveCmpPos(null))
         dispatch(setScreen(false))
     }
 
@@ -109,6 +110,8 @@ export const Editor = React.memo(({ setPageClass }) => {
     // const onEditElement = () => {
     //     dispatch(setScreen(true))
     // }
+
+    /* SCREEN */
 
     const handleOnDragEnd = (result) => {
         if (!result.destination) {
