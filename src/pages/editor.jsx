@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
@@ -17,27 +17,36 @@ import { wapService } from "../services/wap.service"
 import { utilService } from '../services/util.service'
 import { storageService } from "../services/async-storage.service"
 
-export const Editor = ({ setPageClass }) => {
+import { setActiveCmp } from "../store/actions/wap.action" /* FIX - move to line 6 */
+
+export const Editor = React.memo(({ setPageClass }) => {
     const { wap } = useSelector(storeState => storeState.wapModule)
     const dispatch = useDispatch()
     const history = useHistory()
     const [toolBarMode, setToolBarMode] = useState('')
     const [templateKey, setTemplateKey] = useState(null)
-    const [editMode, setEditMode] = useState('inline') //* FIX - setEditMode -> props to child */
+    const [editMode, setEditMode] = useState('themes') //* FIX - setEditMode -> props to child */
     const [elementType, setElementType] = useState('img') //* FIX - setEditMode -> props to child */
     const editorRef = useRef()
     const templates = allTemplates
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const [editModalSettings, setEditModalSettings] = useState(null) /* FIX -  */
 
-    const [activeCmp, setActiveCmp] = useState(null)
-    const [activeCmpSettings, setActiveCmpSettings] = useState(null)
-    const [onActiveCmpUpdate, setOnActiveCmpUpdate] = useState(null)
+    // const [activeCmp, setActiveCmp] = useState(null)
+    // const [activeCmpSettings, setActiveCmpSettings] = useState(null)
+    // const [onActiveCmpUpdate, setOnActiveCmpUpdate] = useState(null)
+
+    // const { activeCmp } = useSelector(storeState => storeState.wapModule)
 
     useEffect(() => {
-        dispatch(setWap(wap))
+        // dispatch(setWap(wap))
         storageService.saveWapToStorage(wap)
+        console.log('UPDATE WAP effect',)
     }, [wap])
+
+    useEffect(() => {
+        return console.log('CMP DIED')
+    }, [])
 
     useEffect(() => {
         loadWap()
@@ -57,6 +66,8 @@ export const Editor = ({ setPageClass }) => {
     const loadWap = async () => {
         /* FIX - remove timeout */
         setTimeout(async () => {
+            // ; (async () => {
+
             const urlSrcPrm = new URLSearchParams(history.location.search)
             const wapId = urlSrcPrm.get('id')
 
@@ -71,10 +82,12 @@ export const Editor = ({ setPageClass }) => {
                     console.log('data', err.response.data)
                     /* FIX -  */
                     // this.props.setUserMsg({ type: 'danger', txt: 'Failed loading your page. Please try again later' })
+
+                    dispatch(setWap(wapService.getEmptyWap()))
                 }
             }
+            // })()
 
-            dispatch(setWap(wapService.getEmptyWap()))
         }, 1000)
     }
 
@@ -110,68 +123,75 @@ export const Editor = ({ setPageClass }) => {
             const copiedCmps = JSON.parse(JSON.stringify(wap.cmps))
             copiedCmps.splice(idx, 0, template)
 
-            dispatch(setWap({ ...wap, cmps: copiedCmps }))
+            // dispatch(setWap({ ...wap, cmps: copiedCmps }))
         } else {
             const copiedCmps = JSON.parse(JSON.stringify(wap.cmps))
             const [selectedCmp] = copiedCmps.splice(result.source.index, 1)
             copiedCmps.splice(result.destination.index, 0, selectedCmp)
-            dispatch(setWap({ ...wap, cmps: copiedCmps }))
+            // dispatch(setWap({ ...wap, cmps: copiedCmps }))
         }
     }
 
     const onChangeInput = (cmp) => {
         console.log('cmp', cmp)
         const updatedCmps = wap.cmps.map(currCmp => currCmp.id === cmp.id ? cmp : currCmp)
-        setWap({ ...wap, cmps: updatedCmps })
+        // setWap({ ...wap, cmps: updatedCmps })
     }
 
-    const onOpenEditModal = (ev, action) => {
-        ev.stopPropagation()
+    // const onOpenEditModal = (ev, action) => {
+    //     ev.stopPropagation()
 
-        /* FIX - 250 is the width of the modal */
-        /* FIX - 280 = height of modal 200 and 80 i've added */
+    //     /* FIX - 250 is the width of the modal */
+    //     /* FIX - 280 = height of modal 200 and 80 i've added */
 
-        let posX = ev.clientX - editorRef.current.offsetLeft //mouse position less editor posX
-        if (window.innerWidth < 500) posX = '' //if mobile, CSS will make it centered to screen
-        else if (posX - 250 <= 16) posX += 250 //if it cant open to the left, it will open to the right
+    //     let posX = ev.clientX - editorRef.current.offsetLeft //mouse position less editor posX
+    //     if (window.innerWidth < 500) posX = '' //if mobile, CSS will make it centered to screen
+    //     else if (posX - 250 <= 16) posX += 250 //if it cant open to the left, it will open to the right
 
-        let posY = ev.clientY + editorRef.current.scrollTop //mouse position plus editor scroll position
-        if (posY - editorRef.current.scrollTop - 280 <= 16) posY += 280 // if it cant open above, it will open below
+    //     let posY = ev.clientY + editorRef.current.scrollTop //mouse position plus editor scroll position
+    //     if (posY - editorRef.current.scrollTop - 280 <= 16) posY += 280 // if it cant open above, it will open below
 
-        setEditModalSettings({ posX, posY, setIsEditModalOpen })
+    //     setEditModalSettings({ posX, posY, setIsEditModalOpen })
 
-        /* FIX - ADD BUTTONS BY ACTION */
+    //     /* FIX - ADD BUTTONS BY ACTION */
 
-        setIsEditModalOpen(true)
-    }
+    //     setIsEditModalOpen(true)
+    // }
 
     const onSelectActiveCmp = (currCmp, elCurrCmp, onChange) => {
-        if (isEditModalOpen) setIsEditModalOpen(false)
-        if (activeCmp?.id === currCmp.id) return
+        // if (isEditModalOpen) setIsEditModalOpen(false)
+        // if (activeCmp?.id === currCmp.id) return
 
-        // if (activeCmp) onActiveCmpUpdate('className', activeCmp.className.replace('active-cmp', ''))
-        // currCmp.className += ' active-cmp'
-        setActiveCmp(currCmp)
+        // // if (activeCmp) onActiveCmpUpdate('className', activeCmp.className.replace('active-cmp', ''))
+        // // currCmp.className += ' active-cmp'
+        // setActiveCmp(currCmp)
 
-        setActiveCmpSettings({
-            x: elCurrCmp.getBoundingClientRect().x,
-            y: elCurrCmp.getBoundingClientRect().y,
-            width: elCurrCmp.offsetWidth,
-            height: elCurrCmp.offsetHeight,
-            fontWeight: getComputedStyle(elCurrCmp).fontWeight,
-            textDecoration: getComputedStyle(elCurrCmp).textDecoration,
-            fontStyle: getComputedStyle(elCurrCmp).fontStyle
-        })
+        // setActiveCmpSettings({
+        //     x: elCurrCmp.getBoundingClientRect().x,
+        //     y: elCurrCmp.getBoundingClientRect().y,
+        //     width: elCurrCmp.offsetWidth,
+        //     height: elCurrCmp.offsetHeight,
+        //     fontWeight: getComputedStyle(elCurrCmp).fontWeight,
+        //     textDecoration: getComputedStyle(elCurrCmp).textDecoration,
+        //     fontStyle: getComputedStyle(elCurrCmp).fontStyle
+        // })
 
         // setOnActiveCmpUpdate(() => onChange)
+
+        dispatch(setActiveCmp({
+            cmp: currCmp, target: elCurrCmp,
+            editorOffsetLeft: editorRef.current.offsetLeft,
+            editorScrollTop: editorRef.current.scrollTop
+        })) /* FIX - change names of parameters to cmp and target */
     }
 
     const onUpdateWap = (key, value) => {
-        const updatedWap = wapService.updateWap(wap, activeCmp, key, value)
-        console.log(updatedWap, 'updatedWap!')
-        dispatch(setWap(updatedWap))
+        // const updatedWap = wapService.updateWap(wap, activeCmp, key, value)
+        // console.log(updatedWap, 'updatedWap!')
+        // dispatch(setWap(updatedWap))
     }
 
+    console.log('RENDERING EDITOR')
 
     return <section className={`editor ${toolBarMode}`}>
         {!wap && <Loader />}
@@ -211,7 +231,7 @@ export const Editor = ({ setPageClass }) => {
                                     }
                                     return <DynamicCmp key={utilService.createKey()} index={idx}
                                         cmp={cmp} forwardref={providedDraggable.innerRef}
-                                        onChangeInput={onChangeInput} //ori
+                                        // onChangeInput={onChangeInput} //ori
                                         onSelectActiveCmp={onSelectActiveCmp}
                                         onUpdateWap={onUpdateWap}
                                         draggableProps={providedDraggable.draggableProps}
@@ -222,24 +242,30 @@ export const Editor = ({ setPageClass }) => {
                         )}
                         {providedDroppable.placeholder}
 
-                        {activeCmp && <EditButtons cmpType={activeCmp.type} activeCmpSettings={activeCmpSettings}
-                            onOpenEditModal={onOpenEditModal} onUpdateWap={onUpdateWap}
+                        {/* {activeCmp && <EditButtons cmpType={activeCmp.type} activeCmpSettings={activeCmpSettings} */}
+                        {/* {activeCmp && <EditButtons
+                            // onOpenEditModal={onOpenEditModal} 
+                            onUpdateWap={onUpdateWap}
                             scrollHeight={editorRef.current.scrollTop}
-                            editorLeft={editorRef.current.offsetLeft} />}
+                            editorLeft={editorRef.current.offsetLeft} />} */}
 
-                        {isEditModalOpen && <EditModal {...editModalSettings}
-                            activeCmpSettings={activeCmpSettings}
+                        {<EditButtons
+                            // onOpenEditModal={onOpenEditModal} 
+                            onUpdateWap={onUpdateWap} />}
+
+                        {/* {isEditModalOpen && <EditModal {...editModalSettings}
+                            // activeCmpSettings={activeCmpSettings}
                             editMode={editMode}
                             elementType={elementType}
-                            setActiveCmp={setActiveCmp}
+                            // setActiveCmp={setActiveCmp}
                             // onChangeStyle={onChangeStyle}
-                            onActiveCmpUpdate={onActiveCmpUpdate} activeCmp={activeCmp}
+                            // onActiveCmpUpdate={onActiveCmpUpdate} activeCmp={activeCmp}
                             onUpdateWap={onUpdateWap}
-                        />}
+                        />} */}
                     </div>
                 </>
                 }
             </Droppable>
         </DragDropContext>
     </section>
-}
+})

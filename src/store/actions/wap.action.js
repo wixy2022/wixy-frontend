@@ -14,3 +14,11 @@ export function saveWap(wap) {
         return wap
     }
 }
+
+export function setActiveCmp(cmp) {
+    return dispatch => {
+        console.log('action', )
+        dispatch({ type: 'SET_ACTIVE_CMP', cmp })
+        // return cmp
+    }
+}

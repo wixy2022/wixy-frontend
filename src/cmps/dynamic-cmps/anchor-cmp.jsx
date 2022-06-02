@@ -1,5 +1,6 @@
+import React from "react"
 
-export const AnchorCmp = ({ cmp, onSelectActiveCmp, isPublish }) => {
+export const AnchorCmp = React.memo(({ cmp, onSelectActiveCmp, isPublish }) => {
   if (isPublish) return <a className={`anchor-cmp up-screen ${cmp.className}`} style={cmp.style}>{cmp.txt}</a>
   
   return <a className={`anchor-cmp up-screen ${cmp.className}`}
@@ -7,4 +8,4 @@ export const AnchorCmp = ({ cmp, onSelectActiveCmp, isPublish }) => {
     onClick={(ev) => onSelectActiveCmp(cmp, ev.target)}>
     {cmp.txt}
   </a>
-}
+})

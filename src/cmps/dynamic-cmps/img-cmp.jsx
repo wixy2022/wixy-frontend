@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { uploadService } from '../../services/upload.service'
 
-export const ImgCmp = ({ cmp, isPublish, onSelectActiveCmp, onUpdateWap }) => {
+export const ImgCmp = React.memo(({ cmp, isPublish, onSelectActiveCmp, onUpdateWap }) => {
 
     const onDrop = useCallback(async (acceptedFiles) => {
         const url = await uploadService.uploadImg((acceptedFiles[0]))
@@ -30,4 +30,4 @@ export const ImgCmp = ({ cmp, isPublish, onSelectActiveCmp, onUpdateWap }) => {
             onDragEnter={(ev => { ev.stopPropagation(); onSelectActiveCmp(cmp, ev.target) })}
             src={cmp.url} style={{ ...cmp.style, width: '100%' }} alt={cmp.alt} />
     </section>
-}
+})
