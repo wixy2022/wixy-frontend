@@ -215,7 +215,7 @@ export const wapSection07 = {
     type: 'container-draggable',
     category: 'wap-section',
     className: 'wap-section-07',
-    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654190568/templates/Capture_bzixyk.png',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654210620/templates/Capture_cf4mgg.png',
     cmps: [
         {
             id: utilService.makeId(16),
