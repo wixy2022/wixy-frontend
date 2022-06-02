@@ -2,7 +2,7 @@ import io from 'socket.io-client'
 import { userService } from './user.service'
 
 /* FIX - remove/add comments */
-// export const SOCKET_EMIT_SEND_MSG = 'chat addMsg'; 
+export const SOCKET_EMIT_EDIT_WAP = 'edit wap'
 // export const SOCKET_EMIT_USER_WATCH = 'user-watch';
 // export const SOCKET_EVENT_USER_UPDATED = 'user-updated';
 // export const SOCKET_EVENT_REVIEW_ADDED = 'review-added';
@@ -20,7 +20,7 @@ export const socketService = createSocketService()
 // window.socketService = socketService
 
 /* FIX - uncomment the next line when using sockets */
-// socketService.setup()
+socketService.setup()
 
 function createSocketService() {
   var socket = null;

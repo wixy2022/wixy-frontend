@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
+import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min"
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 import { setWap } from "../store/actions/wap.action"
@@ -16,11 +16,14 @@ import { EditModal } from "../cmps/edit-modal"
 import { wapService } from "../services/wap.service"
 import { utilService } from '../services/util.service'
 import { storageService } from "../services/async-storage.service"
+import { socketService } from '../services/socket.service'
 
 export const Editor = ({ setPageClass }) => {
     const { wap } = useSelector(storeState => storeState.wapModule)
     const dispatch = useDispatch()
     const history = useHistory()
+    const params = useParams()
+
     const [toolBarMode, setToolBarMode] = useState('')
     const [templateKey, setTemplateKey] = useState(null)
     const [editMode, setEditMode] = useState('inline') //* FIX - setEditMode -> props to child */
@@ -35,8 +38,22 @@ export const Editor = ({ setPageClass }) => {
     const [onActiveCmpUpdate, setOnActiveCmpUpdate] = useState(null)
 
     useEffect(() => {
-        dispatch(setWap(wap))
+        const { wapId } = params
+        // socketService.setup()
+        socketService.emit('wap id', wapId)
+        socketService.on('wap changed', (wap) => dispatch(setWap(wap)))
+
+        // socketService.off('chat addMsg');
+        return () => {
+            socketService.off('wap changed')
+            // socketService.terminate()
+        }
+    }, [])
+
+    useEffect(() => {
+        // dispatch(setWap(wap))
         storageService.saveWapToStorage(wap)
+        // socketService.emit('edit wap', wap)
     }, [wap])
 
     useEffect(() => {
@@ -72,9 +89,9 @@ export const Editor = ({ setPageClass }) => {
                     /* FIX -  */
                     // this.props.setUserMsg({ type: 'danger', txt: 'Failed loading your page. Please try again later' })
                 }
+            } else {
+                dispatch(setWap(wapService.getEmptyWap()))
             }
-
-            dispatch(setWap(wapService.getEmptyWap()))
         }, 1000)
     }
 
@@ -123,6 +140,7 @@ export const Editor = ({ setPageClass }) => {
         console.log('cmp', cmp)
         const updatedCmps = wap.cmps.map(currCmp => currCmp.id === cmp.id ? cmp : currCmp)
         setWap({ ...wap, cmps: updatedCmps })
+        socketService.emit('edit wap', { ...wap, cmps: updatedCmps })
     }
 
     const onOpenEditModal = (ev, action) => {
@@ -170,6 +188,7 @@ export const Editor = ({ setPageClass }) => {
         const updatedWap = wapService.updateWap(wap, activeCmp, key, value)
         console.log(updatedWap, 'updatedWap!')
         dispatch(setWap(updatedWap))
+        socketService.emit('edit wap', updatedWap)
     }
 
 
