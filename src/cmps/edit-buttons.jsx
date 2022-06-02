@@ -10,11 +10,35 @@ export const EditButtons = React.memo(({ cmpType, activeCmpSettings, onUpdateWap
     const { activeCmp, activeCmpPos } = useSelector(storeState => storeState.wapModule)
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const [editModalPosition, setEditModalPosition] = useState(null)
+    const [buttonsPosition, setButtonsPosition] = useState({})
 
     const dispatch = useDispatch()
 
+    //Positioning the modal
+    const getButtonsPosition = () => {
+        const { target, editorOffsetLeft, editorScrollTop } = activeCmpPos
+        const x = target.getBoundingClientRect().x
+        const y = target.getBoundingClientRect().y
+        const width = target.offsetWidth
+        const height = target.offsetHeight
+        if (x === 0 && y === 0) return
+
+        const left = x + (width / 2) - editorOffsetLeft
+        // const left = x + editorOffsetLeft
+
+        const top = editorScrollTop + y - 80
+        const style = { left, top, bottom: '' }
+        if (window.innerHeight < height) style.top = 80
+        else if (top < 80) {
+            style.top += height + 40
+        }
+
+        return style
+    }
+
     useEffect(() => {
         setIsEditModalOpen(false)
+        setButtonsPosition(activeCmpPos ? getButtonsPosition() : {})
     }, [activeCmpPos])
 
     // useEffect(() => {
@@ -62,7 +86,7 @@ export const EditButtons = React.memo(({ cmpType, activeCmpSettings, onUpdateWap
         else if (posX - 250 <= 16) posX += 250 //if it cant open to the left, it will open to the right
 
         let posY = ev.clientY + editorScrollTop //mouse position plus editor scroll position
-        if (posY - editorScrollTop - 280 <= 16) posY += 280 // if it cant open above, it will open below
+        if (posY - editorScrollTop - 230 <= 16) posY += 230 // if it cant open above, it will open below
 
         setEditModalPosition({ posX, posY })
 
@@ -77,35 +101,16 @@ export const EditButtons = React.memo(({ cmpType, activeCmpSettings, onUpdateWap
         onOpenEditModal(ev, action)
     }
 
-    //Positioning the modal
-
-    const x = target.getBoundingClientRect().x
-    const y = target.getBoundingClientRect().y
-    const width = target.offsetWidth
-    const height = target.offsetHeight
-    if (x === 0 && y === 0) return
-
-    // const left = x + (width / 2) - editorOffsetLeft
-    const left = x + editorOffsetLeft
-
-    const top = editorScrollTop + y - 80
-    const style = { left, top, bottom: '' }
-    if (window.innerHeight < height) style.top = 80
-    else if (top < 80) {
-        style.top += height + 40
-    }
-
     const updateActiveCmp = (update) => {
         dispatch(setActiveCmp(update))
     }
 
     //Adding buttons
     const actions = getActions(activeCmp.type)
-    console.log('ACTIONS', actions)
-    console.log('ACTIVE CMP', activeCmp)
 
     return <>
-        <div className="edit-buttons up-screen" style={{ ...style }}>
+        {/* <div className="edit-buttons up-screen" style={{ ...style }}> */}
+        <div className="edit-buttons up-screen" style={{ ...buttonsPosition }}>
             {actions?.map(action => <div className="img-container" title={action.title}
                 key={action.type} onClick={(ev) => onClick(ev, action.type)}>
                 <img title={action.title} src={action.img}></img>

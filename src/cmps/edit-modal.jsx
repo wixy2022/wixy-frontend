@@ -194,7 +194,6 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
         </form>
     }
 
-    console.log('EDIT MODALLLL',)
     return <section className="edit-modal" style={{ left: posX, top: posY }}>
         <header>
             <h2>{title}</h2>
