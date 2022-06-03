@@ -83,9 +83,11 @@ function createAncestors(cmp, ancestors = []) {
 }
 
 function updateWap(wap, activeCmp, key, value) {
+    if (!activeCmp) return wap
     const ancestorsIds = [...activeCmp.ancestors]
-    let newWap = JSON.parse(JSON.stringify(wap)) /* FIX - Try not using JSON.parse */
-    const updatedWap = _updateWapProperties(newWap, ancestorsIds, activeCmp, key, value)
+    // let newWap = JSON.parse(JSON.stringify(wap)) /* FIX - Try not using JSON.parse */
+    // const updatedWap = _updateWapProperties(newWap, ancestorsIds, activeCmp, key, value)
+    const updatedWap = _updateWapProperties(wap, ancestorsIds, activeCmp, key, value)
     socketService.emit('edit wap', updatedWap)
     return updatedWap
 }
