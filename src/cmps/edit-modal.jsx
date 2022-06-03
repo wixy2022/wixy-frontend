@@ -20,7 +20,7 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
 
     const onClassName = (ev, value) => {
         ev.stopPropagation()
-        const updatedClassName = activeCmp.className.replace(/\stheme-[^\s]+/g, '') + ` ${value}`
+        let updatedClassName = activeCmp.className.replace(/\stheme-[^\s]+/g, '') + ` ${value}`
         updateActiveCmp({ ...activeCmp, className: updatedClassName.trim(), style: {} })
 
         // onActiveCmpUpdate('className', `${updatedClassName} theme-${value}`)
@@ -41,7 +41,7 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
 
         const type = activeCmp.type
         let cmpClass = `${type}-cmp`
-        if (cmpClass.includes('draggable')) cmpClass = cmpClass.replace('-draggable', '')
+        // if (cmpClass.includes('draggable')) cmpClass = cmpClass.replace('-draggable', '')
 
         let btnText = ''
         if (type === 'txt') btnText = 'Text'

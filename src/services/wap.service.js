@@ -131,7 +131,7 @@ function getThemeList(type) {
             case 'anchor': return { classic: 5, dark: 5, dramatic: 5, festive: 5, light: 4 }
             case 'img': return { classic: 5, dark: 6, dramatic: 4, festive: 7, light: 6 }
             case 'container-draggable':
-            case 'container': return { classic: 0, dark: 0, dramatic: 0, festive: 0, light: 0 }
+            case 'container': return { classic: 3, dark: 5, dramatic: 3, festive: 6, light: 6 }
             default: return { classic: 0, dark: 0, dramatic: 0, festive: 0, light: 0 }
         }
     }

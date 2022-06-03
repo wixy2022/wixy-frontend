@@ -75,7 +75,6 @@
 }
 
 // IMG
-
 .img-cmp.theme-classic-1 {
     box-shadow: 1px -3px 7px rgb(232, 232, 232)
 }
@@ -99,4 +98,29 @@
     border-radius: 50%;
     border: 2px solid rgb(134, 110, 0);
     box-shadow: 0 0 9px rgb(216, 216, 216);
+}
+
+//CONTAINER
+.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-classic-1,
+.container-cmp.container-cmp.container-cmp.container-cmp.theme-classic-1 {
+    background-image: url(https://cdn.pixabay.com/photo/2016/01/09/18/27/camera-1130731_1280.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-classic-2,
+.container-cmp.container-cmp.container-cmp.container-cmp.theme-classic-2 {
+    background-image: url(https://cdn.pixabay.com/photo/2019/03/11/22/14/vintage-4049642_1280.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-classic-3,
+.container-cmp.container-cmp.container-cmp.container-cmp.theme-classic-3 {
+    background-image: url(https://cdn.pixabay.com/photo/2016/03/26/13/09/workspace-1280538_1280.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
