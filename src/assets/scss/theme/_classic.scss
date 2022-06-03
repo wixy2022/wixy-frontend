@@ -106,7 +106,7 @@
     background-image: url(https://cdn.pixabay.com/photo/2016/01/09/18/27/camera-1130731_1280.jpg);
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+    background-attachment: scroll;
 }
 
 .container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-classic-2,
@@ -120,6 +120,14 @@
 .container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-classic-3,
 .container-cmp.container-cmp.container-cmp.container-cmp.theme-classic-3 {
     background-image: url(https://cdn.pixabay.com/photo/2016/03/26/13/09/workspace-1280538_1280.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: scroll;
+}
+
+.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-classic-4,
+.container-cmp.container-cmp.container-cmp.container-cmp.theme-classic-4 {
+    background-image: url(https://lh3.googleusercontent.com/lV8syMH2xZ3aDSVXK-IAXa0oLaS1-zmKDYpTlQFcChCTRPdQ9nqS0BYjsu5xFGRjcYkgf_7uBEyJi8cBsaMfBr57hRdMC-zSIkO_=w864);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

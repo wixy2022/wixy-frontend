@@ -115,5 +115,22 @@
     background-image: url(https://cdn.pixabay.com/photo/2022/04/06/16/11/alley-7115878_1280.jpg);
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+    background-attachment: scroll;
+}
+
+.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-dramatic-4,
+.container-cmp.container-cmp.container-cmp.container-cmp.theme-dramatic-4 {
+    background-image: url(https://lh3.googleusercontent.com/Yq76CYot1_oiEWfq5kc8cdI9A4L6hqmzFlkJlyPRqDMSfVBnOdP7r02m6ZjVm4lk-oxqSM6Of3EIQSkETt4E=w1922);
+    background-size: cover;
+    background-position: right;
+    background-attachment: scroll;
+}
+
+.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-dramatic-5,
+.container-cmp.container-cmp.container-cmp.container-cmp.theme-dramatic-5 {
+    background-image: url(https://lh3.googleusercontent.com/oZvouu3tkyk1S3ro35qJ2DTlSfUorJ9jGaxYyDcDbMMrzGWBEheuDYuTLwipwv3xOUKpoFJ9m4AVDuUaCoTH=w1064);
+    background-color: rgb(17,21,32);
+    background-size: contain;
+    background-position: center;
+    background-attachment: scroll;
 }
