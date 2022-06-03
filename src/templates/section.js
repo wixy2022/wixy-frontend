@@ -133,3 +133,133 @@ export const wapSection04 = {
     ],
     isPublic: true
 }
+
+export const wapSection06 = {
+    id: utilService.makeId(16),
+    type: 'container-draggable',
+    category: 'wap-section',
+    className: 'wap-section-06',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654185836/templates/hero-section-5_lwwnxq.jpg', //CHANGE
+    cmps: [{
+        id: utilService.makeId(16),
+        type: 'container',
+        className: 'txt-container',
+        cmps: [{
+            id: utilService.makeId(16),
+            type: 'txt',
+            className: 'txt title',
+            txt: 'Animal & Veterinary Service',
+        }, {
+            id: utilService.makeId(16),
+            type: 'txt',
+            className: 'txt subtitle',
+            txt: 'The Animal & Veterinary Service (AVS) is the main touch-point on animal and veterinary matters in Singapore and the first responder for all animal-related feedback',
+        }]
+    }],
+}
+
+export const wapSection07 = {
+    id: utilService.makeId(16),
+    type: 'container-draggable',
+    category: 'wap-section',
+    className: 'wap-section-07',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654251136/templates/wap-5-background_fyaxsj.png', //CHANGE
+    cmps: [
+        {
+            id: utilService.makeId(16),
+            type: 'txt',
+            className: 'txt top-circle',
+            txt: '',
+        },
+        {
+            id: utilService.makeId(16),
+            type: 'txt',
+            className: 'txt title',
+            txt: 'NEWS & EVENTS',
+        },
+        {
+            id: utilService.makeId(16),
+            type: 'container',
+            className: 'container',
+            cmps: [{
+                id: utilService.makeId(16),
+                type: 'container',
+                className: 'container',
+                cmps: [
+                    {
+                        id: utilService.makeId(16),
+                        type: 'txt',
+                        className: 'txt date',
+                        txt: '01 June 2022',
+                    },
+                    {
+                        id: utilService.makeId(16),
+                        type: 'txt',
+                        className: 'txt title',
+                        txt: 'Public consultation for pet breeders and boarders',
+                    },
+                    {
+                        id: utilService.makeId(16),
+                        type: 'txt',
+                        className: 'txt subtitle',
+                        txt: 'The Animal &Veterinary Service (AVS), a cluster of the National Parks Board (NParks), is launching a second public consultation before finalising the revised licensing conditions for the dog breeders and pet boarders. These revised conditions follow months of engagement and finetuning with the industry stakeholders, to ensure that these conditions can be implemented effectively. The public consultation will be conducted online through a survey and will be held for a month, starting today, 1 July 2021 and ending on 31 July 2021. To partake in the survey, please visit https://go.gov.sg/bnb.',
+                    }]
+            },
+            {
+                id: utilService.makeId(16),
+                type: 'container',
+                className: 'container',
+                cmps: [
+                    {
+                        id: utilService.makeId(16),
+                        type: 'txt',
+                        className: 'txt date',
+                        txt: '09 May 2022',
+                    },
+                    {
+                        id: utilService.makeId(16),
+                        type: 'txt',
+                        className: 'txt title',
+                        txt: 'Public Consultation on Adoption and Training of Dogs',
+                    },
+                    {
+                        id: utilService.makeId(16),
+                        type: 'txt',
+                        className: 'txt subtitle',
+                        txt: 'A rehoming and adoption workgroup (RAWG) was set up in October 2020 to raise the standards of rehoming and adoption of stray dogs in Singapore. The RAWG consisted of various stakeholders from the pet industry i.e. veterinarians, dog trainers, and animal welfare groups (AWGs). Improving rehoming and adoption practices in Singapore requires a multi-stakeholder effort. The RAWG carried out a series of focus group discussions to develop guidelines to address areas identified by RAWG. This was followed by a month-long public consultation which concluded on 8 November 2021.  The results from the public consultation are currently undergoing review by the RAWG and the RAWG’s recommendations will be shared soon.',
+                    }]
+            },
+            {
+                id: utilService.makeId(16),
+                type: 'container',
+                className: 'container',
+                cmps: [
+                    {
+                        id: utilService.makeId(16),
+                        type: 'txt',
+                        className: 'txt date',
+                        txt: '05 Apr 2022',
+                    },
+                    {
+                        id: utilService.makeId(16),
+                        type: 'txt',
+                        className: 'txt title',
+                        txt: 'Science behind Animal Behavior Series: Feline Ethology',
+                    },
+                    {
+                        id: utilService.makeId(16),
+                        type: 'txt',
+                        className: 'txt subtitle',
+                        txt: 'Join Prof Danielle Gunn-Moore, a Professor in Feline Medicine, and Dr Jenna Kiddie, an Animal Behaviour and Welfare Consultant, both based in the UK, who will be sharing about the science and history behind feline domestication as well as the social behaviour of cats at the upcoming AVS webinar on Feline Ethology. Visit www.go.gov.sg/avsfreewebinar to sign-up!',
+                    }]
+            }
+            ]
+        },
+        {
+            id: utilService.makeId(16),
+            type: 'txt',
+            className: 'txt bottom-circle',
+            txt: '',
+        }
+    ],
+}

@@ -19,7 +19,7 @@ import { storageService } from "../services/async-storage.service"
 import { socketService } from '../services/socket.service'
 
 export const Editor = ({ setPageClass }) => {
-    const { wap } = useSelector(storeState => storeState.wapModule)
+    const wap = useSelector(storeState => storeState.wapModule.wap)
     const dispatch = useDispatch()
     const history = useHistory()
     const params = useParams()
