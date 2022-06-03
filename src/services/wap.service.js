@@ -2,6 +2,7 @@
 // import { utilService } from './util.service.js'
 import { httpService } from './http.service.js'
 import { socketService } from './socket.service.js'
+import { utilService } from './util.service.js'
 
 const STORAGE_KEY = 'wixyDB'
 
@@ -94,22 +95,35 @@ function updateWap(wap, activeCmp, key, value) {
 
 function _updateWapProperties(cmp, ancestorsIds, activeCmp, key, value) {
 
+    if (key === 'clone' && activeCmp.type === 'container-draggable') {
+        const activeCmpIdx = cmp.cmps.findIndex(currCmp => currCmp.id === activeCmp.id)
+        let cloneCmp = JSON.parse(JSON.stringify(activeCmp))
+        cloneCmp.id = utilService.makeId(16)
+        cloneCmp = createAncestors(cloneCmp)
 
-    if (key === 'remove') {
+        const cloneCmps = [...cmp.cmps]
+        cloneCmps.splice(activeCmpIdx, 0, cloneCmp)
+
+        return { ...cmp, cmps: cloneCmps }
+    }
+
+    if (key === 'delete') {
         const updatedCmps = cmp.cmps.filter(currCmp => currCmp.id !== activeCmp.id)
         //if we filtered one out (remove), we return
         if (updatedCmps.length < cmp.cmps.length) return { ...cmp, cmps: updatedCmps }
     }
 
-    if (!ancestorsIds.length) return activeCmp
-
+    //the current cmp won't have more ancestors (his parent removed his id in the last round)
+    //if we send an updated active cmp, we can send it back
+    if (!ancestorsIds.length && !value) return activeCmp
 
     const updatedCmp = { ...cmp }
-    //the item itself wont have more ancestors (his parent removed his id in the last round)
-    // if (!ancestorsIds.length) {
-    //     if (key === 'className') return { ...activeCmp, style: {}, [key]: value }
-    //     return { ...activeCmp, [key]: value }
-    // }
+    //if we want to change a specific value in the current cmp
+    if (!ancestorsIds.length) {
+        console.log('GOT HERE', )
+        if (key === 'className') return { ...activeCmp, style: {}, [key]: value }
+        return { ...activeCmp, [key]: value }
+    }
 
     const currId = ancestorsIds.shift()
     //if we need to update a child of the cmp
