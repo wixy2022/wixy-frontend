@@ -3,15 +3,14 @@
 .txt-cmp.theme-festive-1 {
     font-family: $font-festive-1;
     color: rgb(223, 134, 0);
-    text-shadow: 2px 2px 3px rgb(153, 0, 0);
+    text-shadow: 1px 1px 3px rgb(153, 0, 0);
 }
 
 .txt-cmp.theme-festive-2 {
     font-family: $font-festive-2;
     color: rgb(241, 217, 76);
-    text-shadow: 2px 2px 3px black;
     font-style: italic;
-    text-shadow: 2px 2px rgb(212, 0, 103);
+    text-shadow: 1px 1px rgb(212, 0, 103);
     // background-color: rgb(212, 0, 103);
     // border-radius: 50%;
     // padding: 1%;
@@ -21,13 +20,64 @@
 .txt-cmp.theme-festive-3 {
     font-family: $font-festive-3;
     color: rgb(157, 240, 146);
-    text-shadow: 3px 3px rgb(18, 85, 1);
+    text-shadow: 1px 1px rgb(18, 85, 1);
 }
 
 .txt-cmp.theme-festive-4 {
     font-family: $font-festive-4;
     color: rgb(0, 245, 171);
-    text-shadow: -2px -1px white;
+    text-shadow: -1px -1px white;
+}
+
+//ANCHOR
+.anchor-cmp.theme-festive-1 {
+    font-family: $font-festive-1;
+    padding: 0.25em;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 4px;
+    color: whitesmoke;    
+    background-color: rgb(0, 152, 223);
+}
+
+.anchor-cmp.theme-festive-2 {
+    font-family: $font-festive-2;
+    padding: 0.25em;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 4px;
+    color: rgb(82, 82, 82);    
+    background-color: rgb(241, 217, 76);
+}
+
+.anchor-cmp.theme-festive-3 {
+    font-family: $font-festive-3;
+    padding: 0.25em;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 4px;
+    color: whitesmoke; 
+    background-color: rgb(212, 0, 103);
+}
+
+.anchor-cmp.theme-festive-4 {
+    font-family: $font-festive-4;
+    padding: 0.25em;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 4px;
+    color: whitesmoke;    
+    background-color: rgb(157, 240, 146);
+}
+
+.anchor-cmp.theme-festive-5 {
+    font-family: $font-festive-1;
+    padding: 0.25em;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 4px;
+    color: whitesmoke;    
+    background-color: rgb(0, 245, 171);
 }
 
 // IMG
@@ -35,11 +85,35 @@
 .img-cmp.theme-festive-1 {
     border-radius: 50%;
     border: 3px solid rgba(0, 233, 250, 0.829);
-    outline: 3px solid rgba(21, 177, 0, 0.829);
+    box-shadow: 0 0 6px rgba(21, 177, 0, 0.829);
 }
 
 .img-cmp.theme-festive-2 {
     border-radius: 20px;
-    border: 7px solid rgb(209, 112, 0);
-    box-shadow: 0 0 0;
+    border: 3px solid rgb(241, 217, 76);
+    box-shadow: 0 0 6px rgb(241, 169, 76);
+}
+
+.img-cmp.theme-festive-3 {
+    border-radius: 6px;
+    box-shadow: 0 0 6px rgb(212, 0, 103);
+}
+
+.img-cmp.theme-festive-4 {
+    border-radius: 20%;
+    box-shadow: 0 0 8px rgb(0, 152, 223);
+}
+
+.img-cmp.theme-festive-5 {
+    border-radius: 20%;
+    box-shadow: 0 0 8px rgb(0, 223, 59);
+}
+
+.img-cmp.theme-festive-6 {
+    box-shadow: 0 0 8px rgb(141, 0, 223);
+}
+
+.img-cmp.theme-festive-7 {
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgb(223, 0, 197);
 }

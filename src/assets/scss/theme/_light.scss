@@ -1,0 +1,98 @@
+//TXT
+.txt-cmp.theme-light-1 {
+    font-family: $font-light-1;
+    color: rgb(4, 185, 222);
+}
+
+.txt-cmp.theme-light-2 {
+    font-family: $font-light-2;
+    color: rgb(244, 197, 8);
+    text-shadow: 1px 1px rgb(196, 161, 23);
+}
+
+.txt-cmp.theme-light-3 {
+    font-family: $font-light-3;
+    color: rgb(180, 94, 241);
+}
+
+.txt-cmp.theme-light-4 {
+    font-family: $font-light-4;
+    color: rgb(250, 149, 83);
+}
+
+//ANCHOR
+.anchor-cmp.theme-light-1 {
+    font-family: $font-light-1;
+    padding: 0.25em;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 4px;
+    color: whitesmoke;
+    background-color: rgb(136, 232, 251);
+}
+
+.anchor-cmp.theme-light-2 {
+    font-family: $font-light-2;
+    padding: 0.25em;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 4px;
+    color: rgb(248, 191, 1);
+    background-color: rgb(240, 244, 8);
+}
+
+.anchor-cmp.theme-light-3 {
+    font-family: $font-light-3;
+    padding: 0.25em;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 4px;
+    color: whitesmoke;
+    background-color: rgb(255, 148, 234);
+}
+
+.anchor-cmp.theme-light-4 {
+    font-family: $font-light-4;
+    padding: 0.25em;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 4px;
+    color: whitesmoke;
+    background-color: rgb(213, 124, 253);
+}
+
+//ING
+.img-cmp.theme-light-1 {
+    box-shadow: 0 0 8px rgb(207, 151, 240);
+}
+
+.img-cmp.theme-light-2 {
+    border-radius: 20%;
+    box-shadow: 0 0 8px rgb(137, 244, 166);
+}
+
+.img-cmp.theme-light-3 {
+    border-radius: 20px;
+    border: 3px solid rgb(250, 235, 148);
+    box-shadow: 0 0 6px rgb(255, 211, 154);
+}
+
+.img-cmp.theme-light-4 {
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgb(247, 160, 237);
+}
+
+
+.img-cmp.theme-light-5 {
+    border-radius: 20%;
+    box-shadow: 0 0 15px rgb(145, 220, 255);
+}
+
+.img-cmp.theme-light-6 {
+    border-radius: 6px;
+    box-shadow: 0 0 6px rgb(186, 104, 143);
+}

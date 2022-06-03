@@ -79,14 +79,14 @@ export const EditButtons = React.memo(({ cmpType, activeCmpSettings, onUpdateWap
         ev.stopPropagation()
 
         /* FIX - 250 is the width of the modal */
-        /* FIX - 280 = height of modal 200 and 80 i've added */
+        /* FIX - 325 = height of modal 245 and 80 i've added */
 
         let posX = ev.clientX - editorOffsetLeft //mouse position less editor posX
         if (window.innerWidth < 500) posX = '' //if mobile, CSS will make it centered to screen
         else if (posX - 250 <= 16) posX += 250 //if it cant open to the left, it will open to the right
 
         let posY = ev.clientY + editorScrollTop - 10 //mouse position plus editor scroll position
-        if (posY - editorScrollTop - 280 <= 16) posY += 280 // if it cant open above, it will open below
+        if (posY - editorScrollTop - 325 <= 16) posY += 325 // if it cant open above, it will open below
 
         setEditModalPosition({ posX, posY })
 

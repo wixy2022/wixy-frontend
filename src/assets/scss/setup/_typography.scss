@@ -52,6 +52,16 @@
     src: url(../../fonts/Noto_Sans_JP-classic/NotoSansJP-Medium.otf);
 }
 
+@font-face {
+    font-family: cinzel-decorative;
+    src: url(../../fonts/Cinzel-Decorative/CinzelDecorative-Regular.ttf);
+}
+
+@font-face {
+    font-family: parisienne;
+    src: url(../../fonts/Parisienne/Parisienne-Regular.ttf);
+}
+
 
 //festive
 
@@ -73,4 +83,58 @@
 @font-face {
     font-family: permanent-festive;
     src: url(../../fonts/Permanent_Marker-festive/PermanentMarker-Regular.ttf);
+}
+
+//dark
+@font-face {
+    font-family: help-me;
+    src: url(../../fonts/Help-me/HelpMe-owODB.ttf);
+}
+
+@font-face {
+    font-family: stranger-creature;
+    src: url(../../fonts/Stranger-creature/StrangerCreature-MVpBr.ttf);
+}
+
+
+@font-face {
+    font-family: unifraktur-maguntia;
+    src: url(../../fonts/UnifrakturMaguntia/UnifrakturMaguntia-Regular.ttf);
+}
+
+@font-face {
+    font-family: butcherman;
+    src: url(../../fonts/Butcherman/Butcherman-Regular.ttf);
+}
+
+@font-face {
+    font-family: nosifer;
+    src: url(../../fonts/Nosifer/Nosifer-Regular.ttf);
+}
+
+//light
+
+@font-face {
+    font-family: roboto;
+    src: url(../../fonts/Roboto/Roboto-Regular.ttf);
+}
+
+@font-face {
+    font-family: bad-script;
+    src: url(../../fonts/Bad_Script/BadScript-Regular.ttf);
+}
+
+@font-face {
+    font-family: dynalight;
+    src: url(../../fonts/Dynalight/Dynalight-Regular.ttf);
+}
+
+@font-face {
+    font-family: shadows-into-light;
+    src: url(../../fonts/Shadows_Into_Light/ShadowsIntoLight-Regular.ttf);
+}
+
+@font-face {
+    font-family: shadows-into-light-two;
+    src: url(../../fonts/Shadows_Into_Light_Two/ShadowsIntoLightTwo-Regular.ttf);
 }

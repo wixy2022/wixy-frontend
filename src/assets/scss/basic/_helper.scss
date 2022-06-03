@@ -83,6 +83,7 @@
 
 /* ACTIVE CMP */
 .active-cmp {
+    position: relative;
     outline: 3px solid blue !important;
     z-index: 999;
 }
