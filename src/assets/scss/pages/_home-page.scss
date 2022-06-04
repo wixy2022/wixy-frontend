@@ -24,13 +24,14 @@
 
             &:first-child {
                 text-shadow: 1px 1px 1px black;
+                // color: b;
 
             }
 
             .get-started-btn {
                 background-color: $clr1;
-                width: rem(209px);
-                height: rem(60px);
+                width: 12.0625rem;
+                height: 3.75rem;
                 border: none;
                 color: #fff;
                 border-radius: 10em;
@@ -55,11 +56,13 @@
         .hero-img {
 
             position: relative;
-
             height: 100%;
-            background-image: url(https://cdn.pixabay.com/photo/2017/11/27/21/31/computer-2982270_1280.jpg);
+            opacity: .4;
+            background-image: url(https://cdn.pixabay.com/photo/2018/05/04/20/01/website-3374825_960_720.jpg            );
+            // background-image: url(https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
+            // background-image: url();
             background-position: 0 60%;
-            opacity: 0.6;
+            // opacity: 0.6;
             background-repeat: no-repeat;
             background-size: cover;
 
@@ -85,7 +88,6 @@
         border-radius: 10em;
         font-size: 20px;
         letter-spacing: 1px;
-        margin-top: -1%;
 
         &:hover {
             background-color: lighten(rgb(12, 110, 252), 7%);
@@ -94,9 +96,9 @@
     }
 
     .templates {
-        // margin-block-start: 600px;
+
         display: grid;
-        margin-block-end: -2.3%;
+        // margin-block-end: 200px;;
 
         padding: 0 rem(40px) 0;
         grid-template-columns: repeat(1, minmax(0, rem(400px)));
@@ -108,6 +110,188 @@
     .about {}
 
     text-align: center;
+
+    .show-more {
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1em;
+        margin-block-start: 10vh;
+
+        .line {
+            width: 33%;
+            height: 1px;
+            border: 1px solid rgba(0, 0, 0, 0.268);
+        }
+    }
+
+    .freedom {
+        margin-block-start: 10vh;
+
+        padding: 13% 10rem 0;
+        padding-inline-start: 10em;
+        display: flex;
+        flex-direction: column;
+        background-color: #14348e;
+        height: rem(600px);
+        justify-content: center;
+        gap: 4em;
+        position: relative;
+
+        // align-items: flex-start;
+
+        >& {
+            flex-grow: 1;
+            display: flex;
+
+        }
+
+        pre {
+            white-space: unset;
+            max-width: rem(600px);
+            color: white;
+            overflow-wrap: break-word;
+            text-align: start;
+            position: relative;
+            z-index: 20;
+
+        }
+
+        .left-pre {
+            font-size: rem(48px);
+            font-weight: bold;
+
+        }
+
+        .right-pre {
+            font-size: rem(22px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            gap: 2em;
+
+            // font-weight: bold;
+            .link-to-templates {
+                max-width: 300px;
+                display: flex;
+                // margin-top: 20px;
+                gap: 1em;
+                justify-content: center;
+                align-items: center;
+            }
+
+            a {
+                color: white;
+                font-weight: bold;
+                text-decoration: underline;
+                position: relative;
+                z-index: 20;
+
+            }
+
+            span {
+                color: white;
+                font-size: 32px;
+                padding-block-end: 4px;
+                position: relative;
+                z-index: 20;
+                // font-weight: bold;
+            }
+
+            &:hover {
+                color: #030b20;
+
+                span {
+
+                    position: relative;
+                    left: 6px;
+                }
+            }
+
+        }
+
+    }
+
+    .build-unique {
+        background-color: #14348e;
+        height: rem(600px);
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        // gap: 2em;
+
+        .developer-img {
+            border-top-left-radius: 1em;
+            width: 50%;
+            background-image: url('https://static.wixstatic.com/media/311dce_3945bf5d06e344c4a70b134fd3dc46d3~mv2.jpg/v1/fill/w_680,h_980,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/311dce_3945bf5d06e344c4a70b134fd3dc46d3~mv2.jpg');
+            //    flex-basis: 0;
+            background-position: 50% 30%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            img {
+                width: 62%;
+                height: 70%;
+            }
+        }
+
+        .presence {
+            padding-inline-start: 10%;
+            padding-block-start: 1rem;
+            margin-inline-start: 8.3em;
+            max-width: 600px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+
+            h2 {
+                font-size: rem(48px);
+
+            }
+            .features{
+                gap: 1em;
+                display: flex;
+                article{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1em;
+                    min-width: 200px;
+                }
+            }
+
+            .lines {
+                display: flex;
+                gap: 1em;
+                padding: 1em 0 1em;
+
+                .line-black {
+                    width: 80%;
+                    height: 1px;
+                    border: 1px solid black;
+                }
+            }
+        }
+
+    }
+
+   
+
+//     <section className="section-footer">
+//     <div className="card">
+//         <img src="https://res.cloudinary.com/drpqhjyvk/image/upload/v1654378384/Capture_ddwqld.png" alt="" />
+//     </div>
+//     <div className="link-to-templates">
+
+//         <Link to='/templates' className="get-started"> Get Started
+//         </Link>
+//         <span className=".slide-right">→</span>
+//     </div>
+// </section>>
 }
 
 .app-footer {
@@ -140,6 +324,13 @@
             grid-template-columns: repeat(3, minmax(0, rem(400px)));
             gap: 3em;
             margin-bottom: -0.3%;
+        }
+
+        .freedom {
+
+            flex-direction: row;
+            background-color: #14348e;
+
         }
     }
 }

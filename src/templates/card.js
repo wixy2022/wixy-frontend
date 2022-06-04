@@ -100,9 +100,9 @@ export const wapCards02 = {
     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653565595/templates/wap-cards-02_t8nkzj.png',
     cmps: [
         _getCard('Dine-in', 'call us for reservations', '163 Tanglin Rd, #01-28/33,\nSingapore 247933'),
-        _getCard('Home delivery', null, '12 pm to 3 pm\n6.30 pm to 10 pm\Pre-orders accepted', 'https://www.yantra.com.sg/order-here', 'Click here to order'),
+        _getCard('Home delivery', null, '12 pm to 3 pm\n6.30 pm to 10 pm\nPre-orders accepted', 'https://www.yantra.com.sg/order-here', 'Click here to order'),
         _getCard('Reach us', null, '163 Tanglin Rd, #01-28/33\nSingapore 247933\n\nyantra@restobars.com.sg\n+65 6836 3088', 'https://form.jotform.com/200841028897056', 'Phone Orders'),
-    ],
+    ]
 }
 
 export const wapCards03 = {
@@ -231,7 +231,6 @@ export const wapCards05 = {
         _getCard('img-card', 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654205627/templates/img1-wap5_hut6wa.jpg', 'Getting A Pet'),
         _getCard('img-card', 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654205627/templates/img2-wap5_dt4vh5.jpg', 'Code Of Animal Welfare (for pet owners)'),
         _getCard('img-card', 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654205627/templates/img3-wap5_sc1zfv.jpg', 'Dogs in HDB flats'),
-        // _getCard('txt-card', null, 'E-SERVICES', 'Dog Licensing e-Services \n Dog Licence Enquiry \n Microchip Number Enquiry \n Guidance document and FAQs for veterinary and animal-related services during Covid-19')
         {
             id: utilService.makeId(16),
             type: 'container',

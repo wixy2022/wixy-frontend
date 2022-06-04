@@ -62,11 +62,11 @@ export const AppHeader = ({ pageClass ,setPageClass}) => {
                     {<button onClick={onSetLoginLogout} className="logout-btn">{isLogin}</button>}
                 </div>}
             </div>}
-            {(pageClass === 'editor-open') && <>
+            {(pageClass === 'editor-open') && <div className="show-site-links">
 
                 <button onClick={() => setIsPreview(true)} className="preview-btn logo-link">Preview</button>
                 <NavLink to={`/publish`} target={"_blank"} className="publish-btn logo-link">Publish</NavLink>
-            </>}
+            </div>}
         </main>
         {isPreview &&<>
          <PreviewModal setPageClass={setPageClass} setIsPreview={setIsPreview}/>

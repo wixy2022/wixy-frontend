@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min"
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
-import { setWap } from "../store/actions/wap.action"
+import { setWap, saveWap } from "../store/actions/wap.action"
 
 import { DynamicCmp } from "../cmps/dynamic-cmp"
 import { TemplateToolBar } from "../cmps/editor-toolbar"
@@ -50,6 +50,8 @@ export const Editor = React.memo(({ setPageClass }) => {
 
         return () => {
             socketService.off('wap changed')
+            if (wap?.cmp?.length === 0) wapService.remove(wap?._id)
+            else dispatch(saveWap(wap))
             // socketService.terminate()
         }
     }, [])
@@ -62,7 +64,6 @@ export const Editor = React.memo(({ setPageClass }) => {
 
     useEffect(() => {
         loadWap()
-        console.log('history')
         setPageClass('editor-open')
         return () => {
             setPageClass('')
@@ -77,6 +78,7 @@ export const Editor = React.memo(({ setPageClass }) => {
 
     const loadWap = async () => {
         /* FIX - remove timeout */
+        if(wap) return
         setTimeout(async () => {
             const urlSrcPrm = new URLSearchParams(history.location.search)
             const wapId = urlSrcPrm.get('id')
@@ -86,6 +88,7 @@ export const Editor = React.memo(({ setPageClass }) => {
                     const wap = await wapService.getById(wapId)
 
                     dispatch(setWap(wap))
+                    wapService.save(wap)
                     return
                 } catch (err) {
                     console.log('status', err.response.status)
@@ -93,7 +96,8 @@ export const Editor = React.memo(({ setPageClass }) => {
                     /* FIX -  */
                     dispatch(setMsg({ type: 'danger', txt: 'Failed loading your page.' }))
 
-                    dispatch(setWap(wapService.getEmptyWap()))
+                    const newWap = dispatch(saveWap(wapService.getEmptyWap()))
+                    history.push(`/editor?id=${newWap._id}`)
                 }
             } else {
                 dispatch(setWap(wapService.getEmptyWap()))
@@ -140,7 +144,6 @@ export const Editor = React.memo(({ setPageClass }) => {
             let template = JSON.parse(JSON.stringify(templates[templateKey][result.source.index - 100]))
             template.id = utilService.makeId(16)
             template = wapService.createAncestors(template)
-            console.log('template', template)
             const idx = result.destination.index
             const copiedCmps = JSON.parse(JSON.stringify(wap.cmps))
             copiedCmps.splice(idx, 0, template)

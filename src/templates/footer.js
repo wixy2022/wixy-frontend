@@ -41,7 +41,7 @@ export const wapFooter03 = {
     type: 'container-draggable',
     category: 'wap-footer',
     className: 'wap-footer-03',
-    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654264209/templates/img1-footer-wap5_htfkje.png',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654367911/templates/Capture_soyrws.png',
     cmps: [
         {
             id: utilService.makeId(16),

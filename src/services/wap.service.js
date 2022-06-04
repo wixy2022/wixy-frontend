@@ -36,8 +36,7 @@ async function getById(wapId) {
 async function save(wap) {
     /* Next line should be in the BACKEND */
     // wap.createdAt = Date.now()
-
-    if (wap._id) {
+    if (wap?._id) {
         return await httpService.put(BASE_PATH, wap)
 
         /* Next line should be in the BACKEND */
@@ -60,7 +59,6 @@ async function remove(wapId) {
 
 function getEmptyWap() {
     return {
-        _id: 'empty-wap', /* FIX - WE NEED TO REMOVE IT? */
         name: 'empty-wap', /* FIX - ASK THE USE TO GIVE IT A NAME */
         imgUrl: '',
         cmps: []

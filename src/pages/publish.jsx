@@ -7,7 +7,7 @@ import { utilService } from "../services/util.service"
 import { wapService } from "../services/wap.service"
 import { saveWap } from "../store/actions/wap.action"
 
-export const Publish = ({ setPageClass ,pageClass}) => {
+export const Publish = ({ setPageClass ,pageClass,wapToLoad}) => {
     const savedWap = useSelector(storeState => storeState.wapModule.wap)
     const [wap, setWap] = useState(null)
     const history = useHistory()
@@ -23,7 +23,8 @@ export const Publish = ({ setPageClass ,pageClass}) => {
     }, [])
 
     const loadWap = async () => {
-        const wapFromStorage = storageService.getWapFromStorage('wap')
+        if(wapToLoad) return setWap(wapToLoad)
+        const wapFromStorage = storageService.getWapFromStorage()
         if (wapFromStorage) {
             return setWap(wapFromStorage)
         }

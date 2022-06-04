@@ -4,7 +4,9 @@
     min-width: 100%;
     background-color: white;
     z-index: 2000;
-
+    .show-site-links{
+        display: flex;
+    }
     .user-modal-header {
         display: flex;
         flex-direction: column;

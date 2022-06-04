@@ -1,10 +1,11 @@
+/* We duplicate class in order to give higher score to themes (since they are not specific) */
 // TXT
-.txt-cmp.theme-dramatic-1 {
+.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.theme-dramatic-1 {
     font-family: $font-dramatic-1;
     color: rgb(94, 7, 7);
 }
 
-.txt-cmp.theme-dramatic-2 {
+.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.theme-dramatic-2 {
     font-family: $font-dramatic-2;
     color: rgb(7, 1, 87);
     text-shadow: 2px 2px 3px black;
@@ -12,14 +13,14 @@
 
 }
 
-.txt-cmp.theme-dramatic-3 {
+.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.theme-dramatic-3 {
     font-family: $font-dramatic-3;
     color: rgb(53, 2, 27);
     text-shadow: -2px -1px black;
 }
 
 //ANCHOR
-.anchor-cmp.theme-dramatic-1 {
+.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.theme-dramatic-1 {
     font-family: $font-dramatic-1;
     padding: 0.25em;
     text-decoration: none;
@@ -29,7 +30,7 @@
     background-color: rgb(42, 3, 96);
 }
 
-.anchor-cmp.theme-dramatic-2 {
+.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.theme-dramatic-2 {
     font-family: $font-dramatic-2;
     padding: 0.25em;
     text-decoration: none;
@@ -39,7 +40,7 @@
     background-color: rgb(42, 69, 120);
 }
 
-.anchor-cmp.theme-dramatic-3 {
+.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.theme-dramatic-3 {
     font-family: $font-dramatic-3;
     padding: 0.25em;
     text-decoration: none;
@@ -49,7 +50,7 @@
     background-color: rgb(16, 15, 15);
 }
 
-.anchor-cmp.theme-dramatic-4 {
+.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.theme-dramatic-4 {
     font-family: $font-dramatic-1;
     padding: 0.25em;
     text-decoration: none;
@@ -59,7 +60,7 @@
     background-color: rgb(71, 3, 35);
 }
 
-.anchor-cmp.theme-dramatic-5 {
+.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.theme-dramatic-5 {
     font-family: $font-dramatic-2;
     padding: 0.25em;
     text-decoration: none;
@@ -70,65 +71,65 @@
 }
 
 // IMG
-.img-cmp.theme-dramatic-1 {
+.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.theme-dramatic-1 {
     border-radius: 50%;
     border: 7px solid rgb(14, 14, 14);
     box-shadow: 0 0 0;
 }
 
-.img-cmp.theme-dramatic-2 {
+.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.theme-dramatic-2 {
     border-radius: 8px;
     border: 4px solid rgb(163, 4, 4);
     box-shadow: 0 0 2px rgb(42, 69, 120);
 }
 
-.img-cmp.theme-dramatic-3 {
+.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.theme-dramatic-3 {
     border: 4px solid rgb(176, 95, 2);
     box-shadow: 2px 2px 6px rgb(27, 27, 28);
 }
 
-.img-cmp.theme-dramatic-4 {
+.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.theme-dramatic-4 {
     border-radius: 10px;
     border: 1px solid black;
     box-shadow: 0 0 10px rgb(77, 3, 20);
 }
 
 //CONTAINER
-.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-dramatic-1,
-.container-cmp.container-cmp.container-cmp.container-cmp.theme-dramatic-1 {
-    background-image: url(https://cdn.pixabay.com/photo/2018/02/07/10/57/abandoned-3136813_1280.jpg);
+.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-dramatic-1,
+.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.theme-dramatic-1 {
+    background-image: url(../../img/theme-backgrounds/dramatic1.jpg);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 }
 
-.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-dramatic-2,
-.container-cmp.container-cmp.container-cmp.container-cmp.theme-dramatic-2 {
-    background-image: url(https://cdn.pixabay.com/photo/2018/01/05/02/41/volcanic-rock-3062016_1280.jpg);
+.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-dramatic-2,
+.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.theme-dramatic-2 {
+    background-image: url(../../img/theme-backgrounds/dramatic2.jpg);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 }
 
-.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-dramatic-3,
-.container-cmp.container-cmp.container-cmp.container-cmp.theme-dramatic-3 {
-    background-image: url(https://cdn.pixabay.com/photo/2022/04/06/16/11/alley-7115878_1280.jpg);
+.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-dramatic-3,
+.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.theme-dramatic-3 {
+    background-image: url(../../img/theme-backgrounds/dramatic3.png);
     background-size: cover;
     background-position: center;
     background-attachment: scroll;
 }
 
-.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-dramatic-4,
-.container-cmp.container-cmp.container-cmp.container-cmp.theme-dramatic-4 {
-    background-image: url(https://lh3.googleusercontent.com/Yq76CYot1_oiEWfq5kc8cdI9A4L6hqmzFlkJlyPRqDMSfVBnOdP7r02m6ZjVm4lk-oxqSM6Of3EIQSkETt4E=w1922);
+.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-dramatic-4,
+.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.theme-dramatic-4 {
+    background-image: url(../../img/theme-backgrounds/dramatic4.jpg);
     background-size: cover;
     background-position: right;
     background-attachment: scroll;
 }
 
-.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-dramatic-5,
-.container-cmp.container-cmp.container-cmp.container-cmp.theme-dramatic-5 {
-    background-image: url(https://lh3.googleusercontent.com/oZvouu3tkyk1S3ro35qJ2DTlSfUorJ9jGaxYyDcDbMMrzGWBEheuDYuTLwipwv3xOUKpoFJ9m4AVDuUaCoTH=w1064);
+.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-dramatic-5,
+.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.theme-dramatic-5 {
+    background-image: url(../../img/theme-backgrounds/dramatic5.png);
     background-color: rgb(17,21,32);
     background-size: cover;
     background-position: center;

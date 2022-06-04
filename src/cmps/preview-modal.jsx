@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { Publish } from "../pages/publish"
 
 
-export const PreviewModal =({setPageClass})=>{
+export const PreviewModal =({setPageClass,wapToLoad})=>{
 const [screenMode,setScreenMode] = useState()
 
 useEffect(()=>{
@@ -17,7 +17,7 @@ useEffect(()=>{
                 <div onClick={()=>setScreenMode('computer-screen')} className={ ` computer-screen ${screenMode==='computer-screen'? 'active-mode':''}`}><img src="https://res.cloudinary.com/drpqhjyvk/image/upload/v1654037171/imac_2_nbyvlc.png" alt="" /></div>
             </div>
   <section className={`editor-preview ${screenMode}`}>
-            <Publish setPageClass={setPageClass} />
+            <Publish  wapToLoad={wapToLoad} setPageClass={setPageClass} />
         </section >
   </> 
 }
