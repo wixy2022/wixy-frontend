@@ -20,8 +20,8 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
 
     const onClassName = (ev, value) => {
         ev.stopPropagation()
-        const updatedClassName = activeCmp.className.replace(/\stheme-[^\s]+/g, '') + ` ${value}`
-        updateActiveCmp({ ...activeCmp, className: updatedClassName, style: {} })
+        let updatedClassName = activeCmp.className.replace(/\stheme-[^\s]+/g, '') + ` ${value}`
+        updateActiveCmp({ ...activeCmp, className: updatedClassName.trim(), style: {} })
 
         // onActiveCmpUpdate('className', `${updatedClassName} theme-${value}`)
         // onUpdateWap('className', `${updatedClassName} ${value}`)
@@ -41,7 +41,7 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
 
         const type = activeCmp.type
         let cmpClass = `${type}-cmp`
-        if (cmpClass.includes('draggable')) cmpClass = cmpClass.replace('-draggable', '')
+        // if (cmpClass.includes('draggable')) cmpClass = cmpClass.replace('-draggable', '')
 
         let btnText = ''
         if (type === 'txt') btnText = 'Text'
@@ -64,6 +64,13 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
     }
 
     const onSetProperty = (type, value, key = 'style') => {
+
+        if (type === 'clear') {
+            updateActiveCmp({ ...activeCmp, style: {} })
+            target.style = {}
+            return
+        }
+
         // const { textDecoration, fontWeight, fontStyle } = activeCmpSettings
         const textDecoration = getComputedStyle(target).textDecoration
         const fontWeight = getComputedStyle(target).fontWeight
@@ -208,7 +215,10 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
 
     return <section className="edit-modal" style={{ left: posX, top: posY }}>
         <header>
-            <h2>{editModalMode.title}</h2>
+            <div>
+                <h2>{editModalMode.title}</h2>
+                <button className="clear-btn" onClick={(ev) => editMode === 'theme' ? onClassName(ev, '') : onSetProperty('clear', {})}>clear</button>
+            </div>
             <div className="close-btn" onClick={() => setIsEditModalOpen(false)}><button>✖</button></div>
         </header>
         {

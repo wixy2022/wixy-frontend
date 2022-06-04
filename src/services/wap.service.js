@@ -83,9 +83,11 @@ function createAncestors(cmp, ancestors = []) {
 }
 
 function updateWap(wap, activeCmp, key, value) {
+    if (!activeCmp) return wap
     const ancestorsIds = [...activeCmp.ancestors]
-    let newWap = JSON.parse(JSON.stringify(wap)) /* FIX - Try not using JSON.parse */
-    const updatedWap = _updateWapProperties(newWap, ancestorsIds, activeCmp, key, value)
+    // let newWap = JSON.parse(JSON.stringify(wap)) /* FIX - Try not using JSON.parse */
+    // const updatedWap = _updateWapProperties(newWap, ancestorsIds, activeCmp, key, value)
+    const updatedWap = _updateWapProperties(wap, ancestorsIds, activeCmp, key, value)
     socketService.emit('edit wap', updatedWap)
     return updatedWap
 }
@@ -127,11 +129,11 @@ function getThemeList(type) {
 
     const getThemeByType = (type) => {
         switch (type) {
-            case 'txt': return { classic: 3, dark: 0, dramatic: 3, festive: 4, light: 0 }
-            case 'anchor': return { classic: 0, dark: 0, dramatic: 0, festive: 0, light: 0 }
-            case 'img': return { classic: 5, dark: 0, dramatic: 1, festive: 2, light: 0 }
+            case 'txt': return { classic: 6, dark: 5, dramatic: 3, festive: 4, light: 4 }
+            case 'anchor': return { classic: 5, dark: 5, dramatic: 5, festive: 5, light: 4 }
+            case 'img': return { classic: 5, dark: 6, dramatic: 4, festive: 7, light: 6 }
             case 'container-draggable':
-            case 'container': return { classic: 0, dark: 0, dramatic: 0, festive: 0, light: 0 }
+            case 'container': return { classic: 4, dark: 5, dramatic: 5, festive: 6, light: 6 }
             default: return { classic: 0, dark: 0, dramatic: 0, festive: 0, light: 0 }
         }
     }

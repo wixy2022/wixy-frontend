@@ -1,0 +1,158 @@
+//TXT
+
+.txt-cmp.theme-dark-1 {
+    font-family: $font-dark-1;
+    color: rgb(34, 34, 33);
+}
+
+.txt-cmp.theme-dark-2 {
+    font-family: $font-dark-2;
+    color: rgb(34, 34, 33);
+}
+
+.txt-cmp.theme-dark-3 {
+    font-family: $font-dark-3;
+    color: rgb(34, 34, 33);
+}
+
+.txt-cmp.theme-dark-4 {
+    font-family: $font-dark-4;
+    color: rgb(191, 35, 35);
+    text-shadow: 1px 1px rgb(96, 15, 15);
+}
+
+.txt-cmp.theme-dark-5 {
+    font-family: $font-dark-5;
+    color: rgb(191, 35, 35);
+    text-shadow: 1px 1px rgb(96, 15, 15);
+}
+
+//ANCHOR
+.anchor-cmp.theme-dark-1 {
+    font-family: $font-dark-1;
+    padding: 0.25em;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(76, 16, 16);
+}
+
+.anchor-cmp.theme-dark-2 {
+    font-family: $font-dark-2;
+    padding: 0.25em;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(6, 37, 69);
+}
+
+.anchor-cmp.theme-dark-3 {
+    font-family: $font-dark-3;
+    padding: 0.25em;
+    text-decoration: underline;
+    text-align: center;
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(38, 34, 34);
+}
+
+.anchor-cmp.theme-dark-4 {
+    font-family: $font-dark-4;
+    padding: 0.25em;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(96, 63, 3);
+}
+
+.anchor-cmp.theme-dark-5 {
+    font-family: $font-dark-5;
+    padding: 0.25em;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(108, 1, 78);
+}
+
+//IMG
+.img-cmp.theme-dark-1 {
+    border-radius: 20%;
+    border: 4px solid rgb(76, 16, 16);
+    box-shadow: 1px -1px 5px rgb(37, 37, 37);
+    filter: brightness(95%);
+}
+
+.img-cmp.theme-dark-2 {
+    border-radius: 50%;
+    border: 2px solid black;
+    box-shadow: 0 0 8px rgb(37, 37, 37);
+    filter: brightness(95%);
+}
+
+.img-cmp.theme-dark-3 {
+    border: 4px solid rgb(104, 3, 63);
+    box-shadow: 1px -1px 5px rgb(37, 37, 37);
+    filter: brightness(95%);
+}
+
+.img-cmp.theme-dark-4 {
+    border-radius: 8px;
+    border: 4px solid rgb(102, 13, 13);
+    box-shadow: 0 0 4px rgb(114, 31, 31);
+}
+
+.img-cmp.theme-dark-5 {
+    border-radius: 10%;
+    border: 4px solid black;
+    box-shadow: 1px -3px 5px rgb(37, 37, 37);
+}
+
+.img-cmp.theme-dark-6 {
+    border: 3px solid rgb(154, 1, 1);
+    box-shadow: 0px 0 10px rgb(101, 8, 8);
+}
+
+//CONTAINER
+.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-dark-1,
+.container-cmp.container-cmp.container-cmp.container-cmp.theme-dark-1 {
+    background-image: url(https://cdn.pixabay.com/photo/2014/06/24/17/38/smoke-376543_1280.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-dark-2,
+.container-cmp.container-cmp.container-cmp.container-cmp.theme-dark-2 {
+    background-image: url(https://cdn.pixabay.com/photo/2016/03/31/08/49/man-1292269_1280.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-dark-3,
+.container-cmp.container-cmp.container-cmp.container-cmp.theme-dark-3 {
+    background-image: url(https://cdn.pixabay.com/photo/2016/08/31/19/00/sunset-1634374_1280.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-dark-4,
+.container-cmp.container-cmp.container-cmp.container-cmp.theme-dark-4 {
+    background-image: url(https://cdn.pixabay.com/photo/2019/12/13/09/46/umbrella-4692572_1280.jpg);
+    background-size: fill;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-dark-5,
+.container-cmp.container-cmp.container-cmp.container-cmp.theme-dark-5 {
+    background-image: url(https://cdn.pixabay.com/photo/2018/01/04/20/52/dark-3061610_1280.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: scroll;
+}
