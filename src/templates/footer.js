@@ -36,6 +36,52 @@ export const wapFooter02 = {
     }]
 }
 
+export const wapFooter03 = {
+    id: utilService.makeId(16),
+    type: 'container-draggable',
+    category: 'wap-footer',
+    className: 'wap-footer-03',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654264209/templates/img1-footer-wap5_htfkje.png',
+    cmps: [
+        {
+            id: utilService.makeId(16),
+            type: 'container',
+            className: 'container',
+            cmps: [{
+                id: utilService.makeId(16),
+                type: 'txt',
+                className: 'txt title',
+                txt: 'OTHER WEBSITES',
+            },
+            {
+                id: utilService.makeId(16),
+                type: 'container',
+                className: 'container',
+                cmps: [
+                    {
+                        id: utilService.makeId(16),
+                        type: 'img',
+                        url: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654264209/templates/img2-footer-wap5_wzcg2z.png',
+                        className: 'wap-05-footer-img',
+                    },
+                    {
+                        id: utilService.makeId(16),
+                        type: 'img',
+                        url: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654264209/templates/img1-footer-wap5_htfkje.png',
+                        className: 'wap-05-footer-img',
+                    },
+                ]
+            }]
+        },
+        {
+            id: utilService.makeId(16),
+            type: 'txt',
+            className: 'txt subtitle',
+            txt: '© 2019 Government of Singapore. Last updated 02 June 2022.',
+        }
+    ],
+}
+
 
 
 

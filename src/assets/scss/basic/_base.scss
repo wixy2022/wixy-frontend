@@ -14,7 +14,7 @@ pre {
     font-family: unset;
     white-space: pre-wrap;
 
-    &:focus-visible{
+    &:focus-visible {
         outline: none;
     }
 }
@@ -48,4 +48,14 @@ textarea {
     &:focus-visible {
         outline: 1px solid black;
     }
+}
+
+img {
+    min-height: '100%';
+    min-width: '100%';
+    object-fit: 'cover';
+}
+
+.img-cmp {
+    overflow: hidden;
 }

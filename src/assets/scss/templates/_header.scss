@@ -64,3 +64,33 @@
 
     }
 }
+
+.wap-header-03 {
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    align-items: center;
+    position: static;
+    width: 100%;
+    padding: 5px 22px;
+
+    img {
+        max-width: 140px;
+        vertical-align: initial;
+    }
+}
+
+.wap-05-header-txt-container {
+    width: 12%;
+    display: flex;
+    justify-content: space-between;
+    font-family: Source Sans Pro, sans-serif;
+    align-items: center;
+    gap: 10px;
+
+    .txt {
+        color: rgb(83, 109, 33);
+        font-weight: 600;
+        flex-grow: 1;
+    }
+}
