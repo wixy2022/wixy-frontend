@@ -108,6 +108,10 @@ export const Editor = React.memo(({ setPageClass }) => {
     const onCloseScreen = () => {
         dispatch(updateWapByActiveCmp())
         // socketService.emit('edit wap', wap)
+        onEndEditMode()
+    }
+
+    const onEndEditMode = () => {
         dispatch(setActiveCmp(null))
         dispatch(setActiveCmpPos(null))
         dispatch(setScreen(false))
@@ -215,11 +219,18 @@ export const Editor = React.memo(({ setPageClass }) => {
         dispatch(setActiveCmpTxt(txt))
     }
 
-    const onUpdateWap = (key, value) => {
-        /* FIX - NEED TO TAKE CARE OF REMOVE AND DUPLICATE */
-        // const updatedWap = wapService.updateWap(wap, activeCmp, key, value)
-        // console.log(updatedWap, 'updatedWap!')
-        // dispatch(setWap(updatedWap))
+    // const onUpdateWap = (key, value) => {
+    //     /* FIX - NEED TO TAKE CARE OF REMOVE AND DUPLICATE */
+    //     // const updatedWap = wapService.updateWap(wap, activeCmp, key, value)
+    //     // console.log(updatedWap, 'updatedWap!')
+    //     // dispatch(setWap(updatedWap))
+    // }
+
+    const onUpdateWap = (activeCmp, key, value = null) => {
+        /* This function takes care of remove, duplicate cmp and DnD image */
+        const updatedWap = wapService.updateWap(wap, activeCmp, key, value)
+        dispatch(setWap(updatedWap))
+        onEndEditMode()
     }
 
     return <section className={`editor ${toolBarMode}`}>
@@ -263,7 +274,7 @@ export const Editor = React.memo(({ setPageClass }) => {
                                         cmp={cmp} forwardref={providedDraggable.innerRef}
                                         // onChangeInput={onChangeInput}
                                         onSelectActiveCmp={onSelectActiveCmp}
-                                        // onUpdateWap={onUpdateWap}
+                                        onUpdateWap={onUpdateWap}
                                         draggableProps={providedDraggable.draggableProps}
                                         dragHandleProps={providedDraggable.dragHandleProps}
                                         onUpdateCmpTxt={onUpdateCmpTxt}
@@ -282,8 +293,8 @@ export const Editor = React.memo(({ setPageClass }) => {
                             editorLeft={editorRef.current.offsetLeft} />} */}
 
                         {<EditButtons
-                        // onOpenEditModal={onOpenEditModal} 
-                        // onUpdateWap={onUpdateWap} 
+                            // onOpenEditModal={onOpenEditModal} 
+                            onUpdateWap={onUpdateWap}
                         />}
 
                         {/* {isEditModalOpen && <EditModal {...editModalSettings}

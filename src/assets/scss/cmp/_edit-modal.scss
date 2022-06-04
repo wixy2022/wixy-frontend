@@ -83,11 +83,14 @@
 
             .clear-btn {
                 font-size: 0.8em;
-                text-decoration: underline;
                 cursor: pointer;
                 background-color: unset;
                 border: unset;
                 color: $clr4;
+
+                &:hover {
+                    text-decoration: underline;
+                }
             }
         }
 
