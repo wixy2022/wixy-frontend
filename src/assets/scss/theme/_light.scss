@@ -1,27 +1,28 @@
+/* We duplicate class in order to give higher score to themes (since they are not specific) */
 //TXT
-.txt-cmp.theme-light-1 {
+.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.theme-light-1 {
     font-family: $font-light-1;
     color: rgb(4, 185, 222);
 }
 
-.txt-cmp.theme-light-2 {
+.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.theme-light-2 {
     font-family: $font-light-2;
     color: rgb(244, 197, 8);
     text-shadow: 1px 1px rgb(196, 161, 23);
 }
 
-.txt-cmp.theme-light-3 {
+.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.theme-light-3 {
     font-family: $font-light-3;
     color: rgb(180, 94, 241);
 }
 
-.txt-cmp.theme-light-4 {
+.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.txt-cmp.theme-light-4 {
     font-family: $font-light-4;
     color: rgb(250, 149, 83);
 }
 
 //ANCHOR
-.anchor-cmp.theme-light-1 {
+.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.theme-light-1 {
     font-family: $font-light-1;
     padding: 0.25em;
     text-decoration: none;
@@ -32,7 +33,7 @@
     background-color: rgb(136, 232, 251);
 }
 
-.anchor-cmp.theme-light-2 {
+.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.theme-light-2 {
     font-family: $font-light-2;
     padding: 0.25em;
     text-decoration: none;
@@ -43,7 +44,7 @@
     background-color: rgb(240, 244, 8);
 }
 
-.anchor-cmp.theme-light-3 {
+.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.theme-light-3 {
     font-family: $font-light-3;
     padding: 0.25em;
     text-decoration: none;
@@ -54,7 +55,7 @@
     background-color: rgb(255, 148, 234);
 }
 
-.anchor-cmp.theme-light-4 {
+.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.anchor-cmp.theme-light-4 {
     font-family: $font-light-4;
     padding: 0.25em;
     text-decoration: none;
@@ -66,81 +67,81 @@
 }
 
 //ING
-.img-cmp.theme-light-1 {
+.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.theme-light-1 {
     box-shadow: 0 0 8px rgb(207, 151, 240);
 }
 
-.img-cmp.theme-light-2 {
+.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.theme-light-2 {
     border-radius: 20%;
     box-shadow: 0 0 8px rgb(137, 244, 166);
 }
 
-.img-cmp.theme-light-3 {
+.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.theme-light-3 {
     border-radius: 20px;
     border: 3px solid rgb(250, 235, 148);
     box-shadow: 0 0 6px rgb(255, 211, 154);
 }
 
-.img-cmp.theme-light-4 {
+.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.theme-light-4 {
     border-radius: 10px;
     box-shadow: 0 0 8px rgb(247, 160, 237);
 }
 
 
-.img-cmp.theme-light-5 {
+.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.theme-light-5 {
     border-radius: 20%;
     box-shadow: 0 0 15px rgb(145, 220, 255);
 }
 
-.img-cmp.theme-light-6 {
+.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.img-cmp.theme-light-6 {
     border-radius: 6px;
     box-shadow: 0 0 6px rgb(186, 104, 143);
 }
 
 //CONTAINER
-.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-light-1,
-.container-cmp.container-cmp.container-cmp.container-cmp.theme-light-1 {
-    background-image: url(https://cdn.pixabay.com/photo/2016/03/27/07/32/clouds-1282314_1280.jpg);
+.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-light-1,
+.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.theme-light-1 {
+    background-image: url(../../img/theme-backgrounds/light1.jpg);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 }
 
-.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-light-2,
-.container-cmp.container-cmp.container-cmp.container-cmp.theme-light-2 {
-    background-image: url(https://cdn.pixabay.com/photo/2015/11/11/03/47/evening-1038148_1280.jpg);
+.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-light-2,
+.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.theme-light-2 {
+    background-image: url(../../img/theme-backgrounds/light2.jpg);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 }
 
-.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-light-3,
-.container-cmp.container-cmp.container-cmp.container-cmp.theme-light-3 {
-    background-image: url(https://cdn.pixabay.com/photo/2019/10/23/20/40/landscape-4572804_1280.jpg);
+.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-light-3,
+.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.theme-light-3 {
+    background-image: url(../../img/theme-backgrounds/light3.jpg);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 }
 
-.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-light-4,
-.container-cmp.container-cmp.container-cmp.container-cmp.theme-light-4 {
-    background-image: url(https://cdn.pixabay.com/photo/2018/04/26/10/54/mountain-3351653_1280.jpg);
+.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-light-4,
+.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.theme-light-4 {
+    background-image: url(../../img/theme-backgrounds/light4.jpg);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 }
 
-.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-light-5,
-.container-cmp.container-cmp.container-cmp.container-cmp.theme-light-5 {
-    background-image: url(https://cdn.pixabay.com/photo/2016/12/01/20/18/blur-1876100__480.jpg);
+.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-light-5,
+.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.theme-light-5 {
+    background-image: url(../../img/theme-backgrounds/light5.jpg);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 }
 
-.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-light-6,
-.container-cmp.container-cmp.container-cmp.container-cmp.theme-light-6 {
-    background-image: url(https://cdn.pixabay.com/photo/2015/04/04/11/55/wave-706397_1280.jpg);
+.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-light-6,
+.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.container-cmp.theme-light-6 {
+    background-image: url(../../img/theme-backgrounds/light6.jpg);
     background-size: cover;
     background-position: center;
     background-attachment: scroll;
