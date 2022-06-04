@@ -21,7 +21,7 @@ export const allTemplates = {
 
 //
 export const temp1Wap = {
-    _id: '62911fb25a660f6cae594bb4',
+    // _id: '62911fb25a660f6cae594bb4',
     name: 'template 1',
     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653688477/templates/page-template-01_awthi3.png',
     createdBy: 'miniUser',
@@ -38,7 +38,7 @@ export const temp1Wap = {
 }
 
 export const temp2Wap = {
-    _id: '629120385a660f6cae594bb5',
+    // _id: '629120385a660f6cae594bb5',
     name: 'template 2',
     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653689226/templates/page-template-02_aknlvb.png',
     description: 'Restaurant',
@@ -46,15 +46,23 @@ export const temp2Wap = {
 }
 
 export const temp3Wap = {
-    _id: '629294fbf04ad0403c9fe2ee',
+    // _id: '629294fbf04ad0403c9fe2ee',
     name: 'template 3',
     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653774405/templates/page-template-03_yiq4qw.png',
     description: 'Construction Company',
     cmps: [wapSection03, wapSection04, wapCards04]
 }
 
+export const temp4Wap = {
+    // _id: '629294fbf04ad0403c9fe2ff',
+    name: 'template 4',
+    imgUrl: '',
+    description: 'Social media',
+    cmps: [wapSection05, wapSection071, wapCards051]
+}
+
 export const temp5Wap = {
-    _id: '629294fbf04ad0403c9fe2ff',
+    // _id: '629294fbf04ad0403c9fe2ff',
     name: 'template 5',
     imgUrl: '',
     description: 'Animal & Veterinary Service',
@@ -63,4 +71,4 @@ export const temp5Wap = {
 
 
 // /////////////// DEV ONLY
-export const allWaps = [temp1Wap, temp2Wap, temp3Wap]
+export const allWaps = [temp1Wap, temp2Wap, temp3Wap, temp4Wap, temp5Wap]

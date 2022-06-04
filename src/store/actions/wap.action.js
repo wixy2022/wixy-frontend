@@ -1,5 +1,6 @@
 import { socketService } from '../../services/socket.service.js'
 import { userService } from '../../services/user.service.js'
+import { wapService } from '../../services/wap.service.js'
 
 export function setWap(wap) {
     return dispatch => {
@@ -9,10 +10,10 @@ export function setWap(wap) {
 }
 
 export function saveWap(wap) {
-    return dispatch => {
-        /* FIX - need to save in the backend (wait with it) */
-        dispatch({ type: 'SAVE_WAP', wap })
-        return wap
+    return async dispatch => {
+        const savedWap = await wapService.save(wap)
+        dispatch({ type: 'SAVE_WAP', savedWap })
+        return savedWap
     }
 }
 

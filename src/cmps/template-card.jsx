@@ -1,11 +1,24 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { Link, useHistory } from "react-router-dom"
+import { wapService } from "../services/wap.service"
+import { saveWap } from "../store/actions/wap.action"
 
-export const TempleteCard = ({ wap, secondRow, lastTemplate }) => {
+export const TemplateCard = ({ wap, secondRow, lastTemplate }) => {
+    const dispatch = useDispatch()
+    const history = useHistory()
     const [isMouseIn, setIsMouseIn] = useState(false)
     const defaultImg = "https://images-wixmp-530a50041672c69d335ba4cf.wixmp.com/templates/image/36fc2659a252c8be3f9a98f30373c2ba911981c742e617551b1eccd529eaf3c11626607773139.jpg/v1/fill/w_472%2Ch_266%2Cq_90%2Cusm_0.60_1.00_0.01/36fc2659a252c8be3f9a98f30373c2ba911981c742e617551b1eccd529eaf3c11626607773139.webp"
-    const getTemplatePath = (id) => {
-        return `/editor?id=${id}`
+
+    const getTemplatePath = async () => {
+        // const wapJoneyDep = wapService.createAncestors(wap)
+        const cloneWap = JSON.parse(JSON.stringify(wap))
+        cloneWap.cmps.forEach(cmp => wapService.createAncestors(cmp))
+
+        const savedWap = await wapService.save(cloneWap)
+        // dispatch(saveWap(newWap))
+        history.push(`/editor?id=${savedWap._id}`)
+        // return `/editor?id=${newWap._id}`
     }
 
     if (!secondRow) secondRow = ''
@@ -20,7 +33,7 @@ export const TempleteCard = ({ wap, secondRow, lastTemplate }) => {
         </div>
         <div className={`template-card-img-container`}>
             {isMouseIn && <div className="card-hover-screen">
-                <Link to={wap ? getTemplatePath(wap._id) : '/editor'}><button className="edit">Edit</button></Link>
+                <button className="edit" onClick={getTemplatePath}>Edit</button>
                 <button className="view">View</button>
             </div>}
             <img src={wap?.imgUrl ? wap.imgUrl : defaultImg}
