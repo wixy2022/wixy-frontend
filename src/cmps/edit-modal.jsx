@@ -4,17 +4,14 @@ import { wapService } from "../services/wap.service"
 import { useSelector } from "react-redux"
 
 export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, onUpdateWap, elementType, setActiveCmp, activeCmpSettings, updateActiveCmp, target, editModalMode }) => {
-    // console.log(activeCmp?.style, activeCmpSettings, 'initialOpacity')
 
     const { activeCmp } = useSelector(storeState => storeState.wapModule)
 
     const [themeList, setThemeList] = useState(wapService.getThemeList(activeCmp.type))
     const [linkUrl, setLinkUrl] = useState('')
     const [imgUrl, setImgUrl] = useState('')
-    const [borderRadiusVal, setBorderRadiusVal] = useState('')
-    const [opacityVal, setOpacityVal] = useState(100)
-
-    // const title = editMode === "inline" ? 'Editor' : 'Themes'
+    const [borderRadiusVal, setBorderRadiusVal] = useState(getComputedStyle(target).borderRadius)
+    const [opacityVal, setOpacityVal] = useState(getComputedStyle(target).opacity * 100)
 
     const { type: editMode } = editModalMode
 
@@ -104,8 +101,10 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
                 // setOpacityVal('')
             }
 
+            if(type === 'opacity' || type === 'borderRadius') value += '%'
             valueToSet = { ...activeCmp.style, [type]: value }
             updateActiveCmp({ ...activeCmp, style: valueToSet })
+            
             if (type === 'opacity' || type === 'borderRadius') target.children[0].style[type] = value
             else target.style[type] = value
 
@@ -122,9 +121,9 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
     }
 
     const getColorPalette = (title, type) => {
-        const colors = ['#141010', '#FFFFFF', '#42240c', '#835806', '#295f4e', '#6db193', '#272e6e', '#7ed3b2', '#c81912', '#ff9234', '#ffcd3c', '#FDCFE8']
-        return <React.Fragment>
-            <h3>{title}</h3>
+        const colors = ['#141010', '#42240c', '#c81912', '#295f4e', '#272e6e', '#7932bb', '#96820c', '#FFFFFF', '#c19032', '#ff9234', '#7ed3b2', '#80baf1', '#FDCFE8', '#f1d94c']
+        return <div>
+            <h4>{title}</h4>
             <div className='color-palette'>
 
                 {colors.map((color, idx) => (
@@ -138,7 +137,7 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
                     ></span>
                 ))}
             </div>
-        </React.Fragment>
+        </div>
     }
 
     const getTxtStyleBtns = () => {
@@ -146,21 +145,21 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
             {
                 type: 'textDecoration',
                 value: 'underline',
-                src: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654037335/icons/underline-icon_eavmff.jpg'
+                src: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654378162/icons/underline_uz7hwx.png'
             },
             {
                 type: 'fontWeight',
                 value: '800',
-                src: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654036866/icons/bold-icon_w3zbi0.jpg'
+                src: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654378162/icons/bold_juctrp.png'
             },
             {
                 type: 'fontStyle',
                 value: 'italic',
-                src: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654036866/icons/italic-icon_lyw0w2.jpg'
+                src: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654378162/icons/italic_paef2n.png'
             }
         ]
         return <div className='edit-decoration-container'>
-            <h3>Decoration</h3>
+            <h4>Decoration</h4>
             <div className="edit-btns">
                 {btns.map((btn, idx) => {
                     return <span className='edit-icon' key={idx} onClick={() => onSetProperty(btn.type, btn.value)}><img src={btn.src} />
@@ -173,8 +172,8 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
     const handleChange = ({ target: { value, name } }) => {
         if (name === 'linkUrl') setLinkUrl(value)
         else if (name === 'imgUrl') setImgUrl(value)
-        else if (name === 'borderRadius') setBorderRadiusVal(value)
-        else if (name === 'opacity') setOpacityVal(value)
+        else if (name === 'borderRadius') { setBorderRadiusVal(value); onSetProperty(name, value, 'style') }
+        else if (name === 'opacity') { setOpacityVal(value); onSetProperty(name, value, 'style') }
     }
 
     const onSubmit = (ev) => {
@@ -212,6 +211,37 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
         </form>
     }
 
+    const getInputRange = (title, name, placeholder, value, min = '', max = '') => {
+        const getValue = (name, value) => {
+            if (name === 'borderRadius') {
+                if (value.includes('px')) value = '5px'.replace(/px/g, '')
+                    return `${value}${value.includes('%') ? '' : '%'}`
+            }
+            value = Math.floor(value)
+            return value
+        }
+
+        return <label className='edit-modal-range-input'><h4>{title}</h4>
+            <div>
+                <input type='range' placeholder={placeholder} name={name} min={min} max={max}
+                    value={value} onChange={handleChange} title={value} />
+                <span>{getValue(name, value)}</span>
+            </div>
+        </label>
+    }
+
+    const getInputUrl = (title, name, placeholder, value, type, min = '', max = '') => {
+        return <form className='edit-modal-url-input' onSubmit={onSubmit} >
+            <label><h4>{title}</h4>
+                <div>
+                    <input type={type} placeholder={placeholder} name={name} min={min} max={max}
+                        value={value} onChange={handleChange} />
+                    <button>Go</button>
+                </div>
+            </label>
+        </form>
+    }
+
     return <section className="edit-modal" style={{ left: posX, top: posY }}>
         <header>
             <div>
@@ -227,23 +257,25 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
         }
 
         {editMode === 'style' && (activeCmp.type === 'txt' || activeCmp.type === 'anchor') && <main className="edit-modal-container">
+            {getTxtStyleBtns()} {/* TEXT-DECORATION */}
+
             {getColorPalette('Text Color', 'color')} {/* TEXT-COLOR */}
 
             {getColorPalette('Text Background', 'backgroundColor')} {/* BCG-COLOR */}
 
-            {getTxtStyleBtns()} {/* TEXT-DECORATION */}
-
-            {activeCmp.type === 'anchor' && getInput('Link To', 'linkUrl', 'Add link here', linkUrl, 'text')} {/* LINK */}
+            {activeCmp.type === 'anchor' && getInputUrl('Link To', 'linkUrl', 'Enter URL', linkUrl, 'text')} {/* LINK */}
         </main>
         }
 
         {editMode === 'style' && activeCmp.type === 'img' && <main className="edit-modal-container">
 
-            {getInput('Change Image', 'imgUrl', 'Enter URL and press Enter', imgUrl, 'text')} {/* IMG-URL */}
+            {/* {getInput('Change Image', 'imgUrl', 'Enter URL and press Enter', imgUrl, 'text')} IMG-URL */}
+            {getInputUrl('Change Image', 'imgUrl', 'Enter URL', imgUrl, 'text')} {/* IMG-URL */}
 
-            {getInput('Border Radius', 'borderRadius', 'Border Radius Size', borderRadiusVal, 'number', 0, 50)} {/* / BORDER-RADIUS */}
+            {/* {getInput('Border Radius', 'borderRadius', 'Border Radius Size', borderRadiusVal, 'number', 0, 50)} / BORDER-RADIUS */}
+            {getInputRange('Border Radius', 'borderRadius', 'Border Radius Size', borderRadiusVal, 0, 50)} {/* / BORDER-RADIUS */}
 
-            {getInput('Opacity', 'opacity', 'Image Opacity', opacityVal, 'number', 0, 100)} {/* / OPACITY */}
+            {getInputRange('Opacity', 'opacity', 'Image Opacity', opacityVal, 0, 100)} {/* / OPACITY */}
 
         </main>
         }
