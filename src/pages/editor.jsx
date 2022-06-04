@@ -74,31 +74,31 @@ export const Editor = React.memo(({ setPageClass }) => {
     // }, [wap])
 
     const loadWap = async () => {
-        /* FIX - remove timeout */
-        setTimeout(async () => {
-            const urlSrcPrm = new URLSearchParams(history.location.search)
-            const wapId = urlSrcPrm.get('id')
 
-            if (wapId) {
-                try {
-                    const wap = await wapService.getById(wapId)
+        if (wap) return
 
-                    dispatch(setWap(wap))
-                    wapService.save(wap)
-                    return
-                } catch (err) {
-                    console.log('status', err.response.status)
-                    console.log('data', err.response.data)
-                    /* FIX -  */
-                    // this.props.setUserMsg({ type: 'danger', txt: 'Failed loading your page. Please try again later' })
+        const urlSrcPrm = new URLSearchParams(history.location.search)
+        const wapId = urlSrcPrm.get('id')
 
-                    const newWap = dispatch(saveWap(wapService.getEmptyWap()))
-                    history.push(`/editor?id=${newWap._id}`)
-                }
-            } else {
-                dispatch(setWap(wapService.getEmptyWap()))
+        if (wapId) {
+            try {
+                const wap = await wapService.getById(wapId)
+
+                dispatch(setWap(wap))
+                wapService.save(wap)
+                return
+            } catch (err) {
+                console.log('status', err.response.status)
+                console.log('data', err.response.data)
+                /* FIX -  */
+                // this.props.setUserMsg({ type: 'danger', txt: 'Failed loading your page. Please try again later' })
+
+                const newWap = dispatch(saveWap(wapService.getEmptyWap()))
+                history.push(`/editor?id=${newWap._id}`)
             }
-        }, 1000)
+        } else {
+            dispatch(setWap(wapService.getEmptyWap()))
+        }
     }
 
     /* SCREEN */
