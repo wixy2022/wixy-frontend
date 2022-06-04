@@ -1,9 +1,10 @@
 // TXT
 
-.txt-cmp.theme-classic-1 {
+.txt-cmp.theme-classic-1,
+.anchor-cmp.theme-classic-1 {
     font-family: $font-classic-1;
-    color: rgb(245, 209, 156);
-    text-shadow: 2px 2px 3px rgb(0, 0, 0);
+    color: rgb(34, 34, 33);
+    text-decoration: none;
 }
 
 .txt-cmp.theme-classic-2 {
@@ -19,8 +20,61 @@
     text-shadow: 2px 2px rgb(34, 34, 34);
 }
 
-// IMG
+.txt-cmp.theme-classic-4 {
+    font-family: $font-classic-4;
+    font-weight: bold;
+    color: rgb(31, 99, 95)
+}
 
+.txt-cmp.theme-classic-5 {
+    font-family: $font-classic-5;
+    color: rgb(38, 37, 37);
+}
+
+.txt-cmp.theme-classic-6 {
+    font-family: $font-classic-6;
+    color: rgb(245, 209, 156);
+    text-shadow: 2px 2px 3px rgb(0, 0, 0);
+}
+
+//ANCHOR
+.anchor-cmp.theme-classic-2 {
+    font-family: $font-classic-2;
+    color: rgb(34, 34, 33);
+    text-decoration: underline;
+    text-align: center;
+}
+
+.anchor-cmp.theme-classic-3 {
+    font-family: $font-classic-3;
+    padding: 0.5em;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(245, 183, 183);
+}
+
+.anchor-cmp.theme-classic-4 {
+    font-family: $font-classic-4;
+    padding: 0.5em;
+    text-decoration: none;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    background-color: rgb(86, 192, 253);
+}
+
+.anchor-cmp.theme-classic-5 {
+    font-family: $font-classic-5;
+    padding: 0.5em;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 10px;
+    background-color: rgb(127, 228, 186);
+    color: rgb(255, 255, 255);
+}
+
+// IMG
 .img-cmp.theme-classic-1 {
     box-shadow: 1px -3px 7px rgb(232, 232, 232)
 }
@@ -44,4 +98,37 @@
     border-radius: 50%;
     border: 2px solid rgb(134, 110, 0);
     box-shadow: 0 0 9px rgb(216, 216, 216);
+}
+
+//CONTAINER
+.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-classic-1,
+.container-cmp.container-cmp.container-cmp.container-cmp.theme-classic-1 {
+    background-image: url(https://cdn.pixabay.com/photo/2016/01/09/18/27/camera-1130731_1280.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: scroll;
+}
+
+.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-classic-2,
+.container-cmp.container-cmp.container-cmp.container-cmp.theme-classic-2 {
+    background-image: url(https://cdn.pixabay.com/photo/2019/03/11/22/14/vintage-4049642_1280.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-classic-3,
+.container-cmp.container-cmp.container-cmp.container-cmp.theme-classic-3 {
+    background-image: url(https://cdn.pixabay.com/photo/2016/03/26/13/09/workspace-1280538_1280.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: scroll;
+}
+
+.container-draggable-cmp.container-draggable-cmp.container-draggable-cmp.theme-classic-4,
+.container-cmp.container-cmp.container-cmp.container-cmp.theme-classic-4 {
+    background-image: url(https://lh3.googleusercontent.com/lV8syMH2xZ3aDSVXK-IAXa0oLaS1-zmKDYpTlQFcChCTRPdQ9nqS0BYjsu5xFGRjcYkgf_7uBEyJi8cBsaMfBr57hRdMC-zSIkO_=w864);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
