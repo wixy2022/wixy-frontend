@@ -41,7 +41,6 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
 
         const type = activeCmp.type
         let cmpClass = `${type}-cmp`
-        // if (cmpClass.includes('draggable')) cmpClass = cmpClass.replace('-draggable', '')
 
         let btnText = ''
         if (type === 'txt') btnText = 'Text'

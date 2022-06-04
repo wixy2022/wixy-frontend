@@ -64,7 +64,8 @@ export class DynamicCmp extends React.Component {
                 return <section className={`${cmp.type}-cmp ${cmp.className} relative`} onClick={ev => this.onClickContainer(ev, cmp, isPublish, onSelectActiveCmp)}>
                     {cmp.cmps.map((currCmp) =>
                         <DynamicCmp isPublish={isPublish} key={utilService.createKey()} className={currCmp.className} cmp={currCmp}
-                            // onUpdateWap={onUpdateWap} onChangeInput={this.onChangeInput}
+                            onUpdateWap={onUpdateWap} 
+                            //onChangeInput={this.onChangeInput}
                             onSelectActiveCmp={onSelectActiveCmp} onUpdateCmpTxt={onUpdateCmpTxt} />
                     )}
                 </section>
