@@ -7,19 +7,19 @@ export const wapCards01 = {
     className: 'wap-cards-01',
     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653581168/templates/cards-t1_pcba2x.png',
     cmps: [
-        {
-            id: utilService.makeId(16),
-            type: 'container',
-            className: 'wap-01-team-title',
-            cmps: [
-                {
-                    id: utilService.makeId(16),
-                    type: 'txt',
-                    className: 'team-container',
-                    txt: 'Our Team',
-                },
-            ],
-        },
+        // {
+        //     id: utilService.makeId(16),
+        //     type: 'container',
+        //     className: 'wap-01-team-title',
+        //     cmps: [
+        //         {
+        //             id: utilService.makeId(16),
+        //             type: 'txt',
+        //             className: 'team-container',
+        //             txt: 'Our Team',
+        //         },
+        //     ],
+        // },
         {
             id: utilService.makeId(16),
             type: 'container',
@@ -190,6 +190,36 @@ export const wapCards04 = {
         },
     ],
 }
+export const wapCards051 = {
+    id: utilService.makeId(16),
+    type: 'container-draggable',
+    category: 'wap-cards',
+    className: 'wap-cards-051',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654197538/templates/Capture_xdt847.png',
+    cmps: [{
+        id: utilService.makeId(16),
+        type: 'container',
+        className: 'txt-container',
+        cmps: [{
+            id: utilService.makeId(16),
+            type: 'txt',
+            className: 'txt subtitle',
+            txt: 'During this live webinar, you will learn:',
+        }, {
+            id: utilService.makeId(16),
+            type: 'container',
+            className: 'txt-container-second',
+            cmps: [_getCard_03('How to Get Your First 1000 Followers and Beyond', 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654190707/templates/unnamed_rr3kmw.png'),
+            _getCard_03('How to Create an Instagram Content Plan', 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654190711/templates/unnamed_xnnv02.png'),
+            _getCard_03('How to Increase Engagement & Followers with Instagram Reels', 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654190713/templates/unnamed_csvjay.png'),
+            _getCard_03('How to Create Your Instagram Aesthetic', 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654190715/templates/unnamed_ipzivz.png'),
+            _getCard_03('How to Design Instagram Stories That Captivate Your Audience', 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654190715/templates/unnamed_arcahh.png'),
+            _getCard_03('How to Write Engaging Instagram Captions', 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654190717/templates/unnamed_jiig8p.png')
+
+            ]
+        }]
+    },]
+}
 
 export const wapCards05 = {
     id: utilService.makeId(16),
@@ -320,4 +350,29 @@ function getImgCard(imgUrl, title) {
     }
 
     return card
+}
+function _getCard_03(title, imgUrl) {
+    return {
+        id: utilService.makeId(16),
+        type: 'container',
+        className: 'card',
+        imgUrl: '',
+        cmps: [{
+            id: utilService.makeId(16),
+            type: 'img',
+            url: imgUrl,
+            className: 'img',
+        },
+        {
+
+            id: utilService.makeId(16),
+            type: 'txt',
+            className: 'txt title',
+            txt: title,
+
+
+        }
+        ]
+    }
+
 }

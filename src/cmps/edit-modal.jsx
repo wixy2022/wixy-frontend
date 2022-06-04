@@ -1,9 +1,12 @@
 import { borderRadius } from "@mui/system"
 import React, { useState } from "react"
 import { wapService } from "../services/wap.service"
+import { useSelector } from "react-redux"
 
-export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, activeCmp, onUpdateWap, editMode, elementType, setActiveCmp, activeCmpSettings }) => {
-    console.log(activeCmp?.style, activeCmpSettings, 'initialOpacity')
+export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, onUpdateWap, elementType, setActiveCmp, activeCmpSettings, updateActiveCmp, target, editModalMode }) => {
+    // console.log(activeCmp?.style, activeCmpSettings, 'initialOpacity')
+
+    const { activeCmp } = useSelector(storeState => storeState.wapModule)
 
     const [themeList, setThemeList] = useState(wapService.getThemeList(activeCmp.type))
     const [linkUrl, setLinkUrl] = useState('')
@@ -11,13 +14,20 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, a
     const [borderRadiusVal, setBorderRadiusVal] = useState('')
     const [opacityVal, setOpacityVal] = useState(100)
 
-    const title = editMode === "inline" ? 'Editor' : 'Themes'
+    // const title = editMode === "inline" ? 'Editor' : 'Themes'
+
+    const { type: editMode } = editModalMode
 
     const onClassName = (ev, value) => {
         ev.stopPropagation()
-        const updatedClassName = activeCmp.className.replace(/theme-[^\s]+/g, '')
+        const updatedClassName = activeCmp.className.replace(/\stheme-[^\s]+/g, '') + ` ${value}`
+        updateActiveCmp({ ...activeCmp, className: updatedClassName, style: {} })
+
         // onActiveCmpUpdate('className', `${updatedClassName} theme-${value}`)
         // onUpdateWap('className', `${updatedClassName} ${value}`)
+        if (activeCmp.category) updatedClassName += ' ' + activeCmp.category
+        target.className = `active-cmp ${activeCmp.type}-cmp ${updatedClassName}`
+        target.style = ''
     }
 
     const onOpenThemeHeader = (item) => {
@@ -54,27 +64,34 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, a
     }
 
     const onSetProperty = (type, value, key = 'style') => {
-        const { textDecoration, fontWeight, fontStyle } = activeCmpSettings
+        // const { textDecoration, fontWeight, fontStyle } = activeCmpSettings
+        const textDecoration = getComputedStyle(target).textDecoration
+        const fontWeight = getComputedStyle(target).fontWeight
+        const fontStyle = getComputedStyle(target).fontStyle
         let valueToSet
 
         if (key === 'style') {
             switch (type) {
                 case 'textDecoration':
                     if (!textDecoration ||
-                        textDecoration !== 'underline' &&
-                        activeCmp.style?.textDecoration !== 'underline') value = 'underline'
-                    else value = 'normal'
+                        !textDecoration.includes('underline')
+                        // textDecoration !== 'underline'
+                        // && activeCmp.style?.textDecoration !== 'underline'
+                    ) value = 'underline'
+                    else value = 'none'
                     break
                 case 'fontWeight':
                     if (!fontWeight ||
                         fontWeight !== 'bold' &&
-                        fontWeight < 700 &&
-                        activeCmp.style?.fontWeight !== '800') value = '800'
+                        fontWeight < 700
+                        // && activeCmp.style?.fontWeight !== '800'
+                    ) value = '800'
                     else value = 'normal'
                     break
                 case 'fontStyle':
-                    if ((!fontStyle || fontStyle !== 'italic') &&
-                        !activeCmp.style || activeCmp.style?.fontStyle !== 'italic') value = 'italic'
+                    if ((!fontStyle || fontStyle !== 'italic')
+                        //&& !activeCmp.style || activeCmp.style?.fontStyle !== 'italic'
+                    ) value = 'italic'
                     else value = 'normal'
                 // default:
                 // setBorderRadiusVal('')
@@ -82,15 +99,20 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, a
             }
 
             valueToSet = { ...activeCmp.style, [type]: value }
+            updateActiveCmp({ ...activeCmp, style: valueToSet })
+            if (type === 'opacity' || type === 'borderRadius') target.children[0].style[type] = value
+            else target.style[type] = value
 
         } else if (key === 'url') {
-            valueToSet = value
+            target.children[0].src = value
+            updateActiveCmp({ ...activeCmp, url: value })
+            // valueToSet = value
             setLinkUrl('')
             setImgUrl('')
         }
 
-        setActiveCmp({ ...activeCmp, [key]: valueToSet })
-        onUpdateWap(key, valueToSet)
+        // setActiveCmp({ ...activeCmp, [key]: valueToSet })
+        // onUpdateWap(key, valueToSet)
     }
 
     const getColorPalette = (title, type) => {
@@ -176,7 +198,6 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, a
     }
 
     const getInput = (title, name, placeholder, value, type, min = '', max = '') => {
-        console.log(name, 'GETINP')
         return <form className='link-edit-container' onSubmit={onSubmit} >
             <label><h4>{title}</h4>
                 <input type={type} placeholder={placeholder} name={name} min={min} max={max}
@@ -187,29 +208,29 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, a
 
     return <section className="edit-modal" style={{ left: posX, top: posY }}>
         <header>
-            <h2>{title}</h2>
+            <h2>{editModalMode.title}</h2>
             <div className="close-btn" onClick={() => setIsEditModalOpen(false)}><button>✖</button></div>
         </header>
         {
-            editMode === 'themes' && <main>
+            editMode === 'theme' && <main>
                 {getThemeModal()}
             </main>
         }
 
-        {editMode === 'inline' && (elementType === 'txt' || elementType === 'link') && <main className="edit-modal-container">
+        {editMode === 'style' && (activeCmp.type === 'txt' || activeCmp.type === 'anchor') && <main className="edit-modal-container">
             {getColorPalette('Text Color', 'color')} {/* TEXT-COLOR */}
 
             {getColorPalette('Text Background', 'backgroundColor')} {/* BCG-COLOR */}
 
             {getTxtStyleBtns()} {/* TEXT-DECORATION */}
 
-            {elementType === 'link' && getInput('Link To', 'linkUrl', 'Add link here', linkUrl, 'text')} {/* LINK */}
+            {activeCmp.type === 'anchor' && getInput('Link To', 'linkUrl', 'Add link here', linkUrl, 'text')} {/* LINK */}
         </main>
         }
 
-        {editMode === 'inline' && elementType === 'img' && <main className="edit-modal-container">
+        {editMode === 'style' && activeCmp.type === 'img' && <main className="edit-modal-container">
 
-            {getInput('Change Image', 'imgUrl', 'Url', imgUrl, 'text')} {/* IMG-URL */}
+            {getInput('Change Image', 'imgUrl', 'Enter URL and press Enter', imgUrl, 'text')} {/* IMG-URL */}
 
             {getInput('Border Radius', 'borderRadius', 'Border Radius Size', borderRadiusVal, 'number', 0, 50)} {/* / BORDER-RADIUS */}
 

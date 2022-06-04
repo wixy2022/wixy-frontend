@@ -1,3 +1,13 @@
+// .publish{
+//     display: grid;
+//     width: 200px;
+//     // grid-column: 2/-1;
+//     flex-grow: 1;
+//     flex-direction: column;
+//     position: relative;
+// }
+
+
 .editor {
     display: grid;
     position: relative;
@@ -68,9 +78,9 @@
         flex-direction: column;
         position: relative;
 
-        & *>:hover {
-            outline: 1px black dotted;
-        }
+        // & *>:hover {
+        //     outline: 1px black dotted;
+        // }
     }
 }
 

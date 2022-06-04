@@ -1,15 +1,15 @@
 import { wapHeader01, wapHeader02, wapHeader03 } from './header'
-import { wapSection01, wapSection02, wapSection03, wapSection04, wapSection06, wapSection07 } from './section'
-import { wapCards01, wapCards02, wapCards03, wapCards04, wapCards05 } from './card'
+import { wapSection01, wapSection02, wapSection03, wapSection05, wapSection04, wapSection06, wapSection07, wapSection071 } from './section'
+import { wapCards01, wapCards02, wapCards03, wapCards04, wapCards05, wapCards051 } from './card'
 import { wapFooter01, wapFooter02, wapFooter03 } from './footer'
 import { wapText01 } from './text'
 import { wapGallery01 } from './gallery'
 
 export const allTemplates = {
     header: [wapHeader01, wapHeader02, wapHeader03],
-    section: [wapSection01, wapSection02, wapSection03, wapSection04, wapSection06, wapSection07],
+    section: [wapSection01, wapSection02, wapSection05, wapSection03, wapSection04, wapSection06, wapSection07, wapSection071],
     text: [wapText01],
-    cards: [wapCards01, wapCards02, wapCards03, wapCards04, wapCards05],
+    cards: [wapCards01, wapCards02, wapCards03, wapCards04, wapCards05, wapCards051],
     gallery: [wapGallery01],
     form: [],
     map: [],
@@ -32,6 +32,7 @@ export const temp1Wap = {
         wapGallery01,
         wapGallery01,
         wapGallery01,
+        wapText01,
         wapCards01,
         wapFooter01]
 }
