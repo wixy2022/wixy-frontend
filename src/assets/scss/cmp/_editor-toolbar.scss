@@ -270,7 +270,7 @@
             >* {
                 top: unset;
                 width: 230px;
-                right: 12px;
+                right: 0px;
                 position: relative;
                 z-index: 10;
 
@@ -675,7 +675,12 @@
             align-items: center;
             flex-wrap: nowrap;
             min-height: unset;
-            overflow-y: unset;
+            max-height: 80vh;
+            min-width: 336px;
+            display: block;
+            &::-webkit-scrollbar{
+                width: 3px;
+            }
 
             >* {
                 animation: toolbar-animation .5s forwards;

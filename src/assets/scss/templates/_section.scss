@@ -279,6 +279,239 @@
 
 }
 
+.wap-section-06 {
+    font-family: Source Sans Pro, sans-serif;
+    background-position: 80% 100%;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4em;
+    height: 420px;
+    background-image: url(https://res.cloudinary.com/drpqhjyvk/image/upload/v1654185836/templates/hero-section-5_lwwnxq.jpg);
+    overflow: hidden;
+
+    .txt-container {
+        opacity: 1;
+        transform: translateZ(0) scale(1);
+        height: 100%;
+        width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        line-height: 1.5;
+        font-weight: 400;
+        -webkit-text-size-adjust: 100%;
+        gap: 8%;
+
+        .txt.title {
+            font-size: 2em;
+            display: block;
+            font-size: 1.8em;
+            font-weight: 700;
+            word-break: break-word;
+            line-height: normal;
+            color: white;
+            width: 100%;
+            background-color: rgba(83, 109, 33);
+            border-radius: 15px;
+        }
+
+        .txt.subtitle {
+            padding: 10px;
+            font-size: 1em;
+            font-family: Source Sans Pro, sans-serif;
+            font-weight: 400;
+            line-height: 1.5em;
+            width: 100%;
+            background-color: rgba(83, 109, 33);
+            border-radius: 15px;
+        }
+    }
+
+    .txt.title {
+        letter-spacing: 2px;
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: #f0f0f0;
+        margin-inline-end: .2em;
+    }
+
+    .txt.subtitle {
+        font-family: Roboto, sans-serif;
+        font-size: 3rem;
+        font-weight: 100;
+        height: 80px;
+        color: #f0f0f0;
+        width: unset;
+    }
+}
+
+@media (min-width:740px) {
+    .wap-section-06 {
+        padding: 2em;
+
+        .txt-container {
+            position: absolute;
+            padding-bottom: 45px;
+            padding-left: 100px;
+            text-align: unset;
+            height: 450px;
+            width: 450px;
+            border-radius: 450PX;
+            justify-content: flex-end;
+            top: -128.571428571px;
+            left: -75px;
+            align-items: flex-end;
+            background-color: rgba(83, 109, 33, .88);
+
+            .txt.title {
+                width: unset;
+                background: none;
+                font-size: 2.3em;
+                border-radius: unset;
+            }
+
+            .txt.subtitle {
+                width: unset;
+                padding: unset;
+                padding-left: 0;
+                padding-right: 75px;
+                background: none;
+                border-radius: unset;
+            }
+        }
+    }
+
+    .txt.subtitle {
+        margin-block-end: 60px;
+    }
+}
+
+
+.wap-section-07 {
+    font-family: Source Sans Pro, sans-serif;
+    padding: 55px 22px;
+    position: relative;
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    &>* {
+        width: 100%;
+    }
+
+    .top-circle {
+        width: 256px;
+        height: 256px;
+        border-radius: 256px;
+        background-color: rgba(241, 199, 16, .7);
+        z-index: 1;
+        position: absolute;
+        right: -51.2px;
+        top: -25.6px;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+
+    .bottom-circle {
+        width: 380px;
+        height: 380px;
+        border-radius: 380px;
+        background-color: #536d21;
+        position: absolute;
+        right: -257.142857143px;
+        bottom: -96.5px;
+        z-index: 1;
+    }
+
+    .txt.title {
+        color: #536d21;
+        font-weight: 900;
+        font-size: 1.75em;
+        margin-bottom: 15px;
+        margin-top: 15px;
+    }
+
+    &>.container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        max-width: 1240px;
+        gap: 3%;
+        z-index: 10;
+
+
+
+        &>* {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            flex-basis: 0;
+            flex-grow: 1;
+            background-color: #ffffff;
+            color: rgb(14 14 14);
+            padding: 20px;
+            // box-shadow: 0 10px 0 #799a05;
+            border-bottom: 10px solid #799a05;
+            box-shadow: 2px -1px 10px transparent;
+
+        }
+
+        .txt.title {
+            color: #536d21;
+            font-weight: 600;
+            font-size: 1.1em;
+            margin: 25px 0;
+
+        }
+
+        .txt.subtitle {
+            flex-grow: 1;
+            height: max-content;
+
+        }
+    }
+
+
+    pre {
+        position: relative;
+        line-height: 1.2;
+    }
+
+}
+
+.wap-section-07::before {
+    content: "";
+    background-image: url(https://res.cloudinary.com/drpqhjyvk/image/upload/v1654251136/templates/wap-5-background_fyaxsj.png);
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.2;
+}
+
+@media (min-width:1048px) {
+    .wap-section-07 {
+        padding: 75px 22px;
+
+        &>.container {
+            flex-direction: unset;
+        }
+    }
+}
+
 .wap-section-05 {
     background-image: url(https://res.cloudinary.com/drpqhjyvk/image/upload/v1654181598/templates/download_v5mjp7.jpg);
     display: flex;
@@ -394,7 +627,7 @@
             aspect-ratio: 1/1;
             display: flex;
             align-items: center;
-            
+
 
 
             &>img {
@@ -406,6 +639,7 @@
 
         .txt-container {
             max-width: 800px;
+
             .txt.title {
                 color: white;
                 font-weight: bold;
@@ -429,7 +663,7 @@
     }
 }
 
-.wap-section-07 {
+.wap-section-071 {
     display: flex;
     flex-direction: column;
     gap: 1em;
@@ -448,22 +682,24 @@
     }
 
     .txt-container {
-        
+
         display: flex;
         flex-direction: column;
         gap: 1em;
         color: rgba(0, 0, 0, 0.451);
-        &>.img-cmp{
+
+        &>.img-cmp {
             flex-grow: 1;
             max-width: 100%;
+
             // width: 2000px;
-            img{
+            img {
                 width: 100%;
                 // height: 100%;
                 object-fit: cover;
             }
         }
-        
+
         .txt-container-second {
             display: flex;
             flex-direction: column;
@@ -472,105 +708,59 @@
     }
 
 }
+
 @media (min-width:800px) {
-    .wap-section-07 {
-        
+    .wap-section-071 {
+
         .txt-container {
-            &>.img-cmp{
-            }
+            &>.img-cmp {}
+
             .txt-container-second {
                 flex-direction: row;
             }
         }
-    
+
     }
 }
+
 @media (min-width:1000px) {
-    .wap-section-07 {
+    .wap-section-071 {
         display: flex;
-    
+
         .txt.title {
             font-size: 2.875rem;
             text-align: center;
             white-space: pre-wrap;
             // font-weight: 600;
             color: rgb(36, 36, 36);
-    
+
         }
-    
+
         .txt-container {
             display: flex;
             flex-direction: row;
             gap: 1em;
             font-size: 1.4rem;
-           width: 100%;
-    
-            &>.img-cmp{
+            width: 100%;
+
+            &>.img-cmp {
                 flex-grow: 1;
                 width: 2000px;
-                img{
+
+                img {
                     width: 100%;
-                    
+
                     object-fit: cover;
                 }
-                
+
             }
-            
+
             .txt-container-second {
                 display: flex;
                 flex-direction: column;
                 gap: 1em;
             }
         }
-    
+
     }
 }
-// export const wapSection07 = {
-
-//     id: utilService.makeId(16),
-//     type: 'container-draggable',
-//     category: 'wap-section',
-//     className: 'wap-section-07',
-//     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654190568/templates/Capture_bzixyk.png',
-//     cmps: [
-//         
-//         {
-//             id: utilService.makeId(16),
-//             type: 'container',
-//             className: 'txt-container',
-//             cmps: [
-//                 {
-//                     id: utilService.makeId(16),
-//                     type: 'container',
-//                     className: 'txt-container',
-//                     cmps: [{
-//                         id: utilService.makeId(16),
-//                         type: 'txt',
-//                         className: 'txt title',
-//                         txt: 'This intensive training combines thousands of hours of practical research, years of experience in growing Instagram, and the coaching power of two social media experts rolled into one easy investment.'
-//                     }, {
-//                         id: utilService.makeId(16),
-//                         type: 'txt',
-//                         className: 'txt subtitle',
-//                         txt: `If you've looked at Instagram coaching programs and e-courses which cost hundreds of dollars and struggled to commit to that amount financially, this is a great opportunity to learn SO MUCH in one short two hour live seminar`
-//                     }
-//                     ]
-//                 },
-//                 {
-//                     id: utilService.makeId(16),
-//                     type: 'img',
-//                     url: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654199983/templates/unnamed_e30lyj.jpg',
-//                     className: 'wap-section-07-img',
-//                     style: {
-//                         borderRadius: '',
-//                         border: '',
-//                         boxShadow: ''
-//                     }
-//                 }
-//             ],
-//         }
-//     ],
-//     isPublic: true
-
-
-// }

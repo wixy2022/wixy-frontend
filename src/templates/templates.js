@@ -1,21 +1,21 @@
-import { wapHeader01, wapHeader02 } from './header'
-import { wapSection01, wapSection02, wapSection03, wapSection04,wapSection05,wapSection07 } from './section'
-import { wapCards01, wapCards02, wapCards03, wapCards04,wapCards05 } from './card'
-import { wapFooter01, wapFooter02 } from './footer'
+import { wapHeader01, wapHeader02, wapHeader03 } from './header'
+import { wapSection01, wapSection02, wapSection03, wapSection05, wapSection04, wapSection06, wapSection07, wapSection071 } from './section'
+import { wapCards01, wapCards02, wapCards03, wapCards04, wapCards05, wapCards051 } from './card'
+import { wapFooter01, wapFooter02, wapFooter03 } from './footer'
 import { wapText01 } from './text'
 import { wapGallery01 } from './gallery'
 
 export const allTemplates = {
-    header: [wapHeader01, wapHeader02],
-    section: [wapSection01,wapSection05, wapSection02, wapSection03, wapSection04,wapSection07],
+    header: [wapHeader01, wapHeader02, wapHeader03],
+    section: [wapSection01, wapSection02, wapSection05, wapSection03, wapSection04, wapSection06, wapSection07, wapSection071],
     text: [wapText01],
-    cards: [wapCards01, wapCards02, wapCards03, wapCards04,wapCards05],
+    cards: [wapCards01, wapCards02, wapCards03, wapCards04, wapCards05, wapCards051],
     gallery: [wapGallery01],
     form: [],
     map: [],
     chat: [],
     video: [],
-    footer: [wapFooter01, wapFooter02],
+    footer: [wapFooter01, wapFooter02, wapFooter03],
 }
 //   const names = ['header', 'section', 'text', 'cards', 'gallery', 'form', 'map', 'chat', 'video', 'footer',]
 
@@ -32,6 +32,7 @@ export const temp1Wap = {
         wapGallery01,
         wapGallery01,
         wapGallery01,
+        wapText01,
         wapCards01,
         wapFooter01]
 }
@@ -50,6 +51,14 @@ export const temp3Wap = {
     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653774405/templates/page-template-03_yiq4qw.png',
     description: 'Construction Company',
     cmps: [wapSection03, wapSection04, wapCards04]
+}
+
+export const temp5Wap = {
+    _id: '629294fbf04ad0403c9fe2ff',
+    name: 'template 5',
+    imgUrl: '',
+    description: 'Animal & Veterinary Service',
+    cmps: [wapHeader03, wapSection06, wapCards05, wapSection07, wapFooter03]
 }
 
 

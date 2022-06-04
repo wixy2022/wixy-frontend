@@ -13,13 +13,16 @@ import { Loader } from "../cmps/app-loader"
 import { EditButtons } from "../cmps/edit-buttons"
 import { EditModal } from "../cmps/edit-modal"
 
+
 import { wapService } from "../services/wap.service"
 import { utilService } from '../services/util.service'
 import { storageService } from "../services/async-storage.service"
 import { socketService } from '../services/socket.service'
 
+import {setMsg} from '../store/actions/msg.action'
 import { setActiveCmp, setActiveCmpTxt, setActiveCmpPos, updateWapByActiveCmp } from "../store/actions/wap.action" /* FIX - move to line 6 */
 import { setScreenHeight, setScreen } from "../store/actions/screen.action"
+
 
 export const Editor = React.memo(({ setPageClass }) => {
     const wap = useSelector(storeState => storeState.wapModule.wap)
@@ -88,7 +91,7 @@ export const Editor = React.memo(({ setPageClass }) => {
                     console.log('status', err.response.status)
                     console.log('data', err.response.data)
                     /* FIX -  */
-                    // this.props.setUserMsg({ type: 'danger', txt: 'Failed loading your page. Please try again later' })
+                    dispatch(setMsg({ type: 'danger', txt: 'Failed loading your page.' }))
 
                     dispatch(setWap(wapService.getEmptyWap()))
                 }
