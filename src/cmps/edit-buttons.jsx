@@ -63,8 +63,8 @@ export const EditButtons = React.memo(({ onUpdateWap }) => {
             case 'txt': return [getDetails('theme'), getDetails('style'), getDetails('delete')]
             case 'anchor': return [getDetails('theme'), getDetails('style'), getDetails('delete')]
             case 'img': return [getDetails('theme'), getDetails('style'), getDetails('delete')]
-            case 'container-draggable': return [getDetails('theme'), getDetails('clone'), getDetails('delete')]
-            case 'container': return [getDetails('theme'), getDetails('delete')]
+            case 'container-draggable': return [getDetails('theme'), getDetails('style'), getDetails('clone'), getDetails('delete')]
+            case 'container': return [getDetails('theme'), getDetails('style'), getDetails('delete')]
             default: return ''
         }
     }

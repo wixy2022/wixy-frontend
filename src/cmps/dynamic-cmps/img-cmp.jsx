@@ -6,7 +6,7 @@ export const ImgCmp = ({ cmp, isPublish, onSelectActiveCmp, onUpdateWap }) => {
 
     const onDrop = useCallback(async (acceptedFiles) => {
         const url = await uploadService.uploadImg((acceptedFiles[0]))
-        onUpdateWap('url', url)
+        onUpdateWap(cmp, 'url', url)
     }, [])
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -27,7 +27,7 @@ export const ImgCmp = ({ cmp, isPublish, onSelectActiveCmp, onUpdateWap }) => {
     return <section className={`img-cmp ${cmp.className}`} style={{ ...cmp.style, overflow: 'hidden' }}>
         <img {...getInputProps()}
             {...getRootProps({ onClick: ev => { ev.stopPropagation(); onSelectActiveCmp(cmp, ev.target) } })}
-            onDragEnter={(ev => { ev.stopPropagation(); onSelectActiveCmp(cmp, ev.target) })}
+            // onDragEnter={(ev => { ev.stopPropagation(); onSelectActiveCmp(cmp, ev.target) })}
             src={cmp.url} style={{ minHeight: '100%', minWidth: '100%', objectFit: 'cover' }} alt={cmp.alt} />
     </section>
 }

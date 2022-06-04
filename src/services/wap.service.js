@@ -120,7 +120,6 @@ function _updateWapProperties(cmp, ancestorsIds, activeCmp, key, value) {
     const updatedCmp = { ...cmp }
     //if we want to change a specific value in the current cmp
     if (!ancestorsIds.length) {
-        console.log('GOT HERE', )
         if (key === 'className') return { ...activeCmp, style: {}, [key]: value }
         return { ...activeCmp, [key]: value }
     }

@@ -227,7 +227,7 @@ export const Editor = React.memo(({ setPageClass }) => {
     // }
 
     const onUpdateWap = (activeCmp, key, value = null) => {
-        /* This function takes care of remove and duplicate cmp */
+        /* This function takes care of remove, duplicate cmp and DnD image */
         const updatedWap = wapService.updateWap(wap, activeCmp, key, value)
         dispatch(setWap(updatedWap))
         onEndEditMode()
@@ -274,7 +274,7 @@ export const Editor = React.memo(({ setPageClass }) => {
                                         cmp={cmp} forwardref={providedDraggable.innerRef}
                                         // onChangeInput={onChangeInput}
                                         onSelectActiveCmp={onSelectActiveCmp}
-                                        // onUpdateWap={onUpdateWap}
+                                        onUpdateWap={onUpdateWap}
                                         draggableProps={providedDraggable.draggableProps}
                                         dragHandleProps={providedDraggable.dragHandleProps}
                                         onUpdateCmpTxt={onUpdateCmpTxt}
