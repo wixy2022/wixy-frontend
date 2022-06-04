@@ -11,11 +11,11 @@ export const Templates = () => {
 
 
     return <section className="templates-page">
-        <h1 className="templates-title">
-            Pick the Website Template You Love
-        </h1>
-        <div className="templates-preview">
-            {allWaps.map(wap => <TemplateCard key={utilService.createKey()} wap={wap} />)}
-        </div>
+        <main>
+            <h1 className="templates-title">Pick a Template You Love</h1>
+            <div className="templates-preview">
+                {allWaps.map(wap => <TemplateCard key={utilService.createKey()} wap={wap} />)}
+            </div>
+        </main>
     </section>
 }

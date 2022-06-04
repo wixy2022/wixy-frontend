@@ -29,7 +29,7 @@ export const EditButtons = React.memo(({ onUpdateWap }) => {
 
         const top = editorScrollTop + y - 80
         const style = { left, top, bottom: '' }
-        if (window.innerHeight < height) style.top = 80
+        if (window.innerHeight - 50 < height) style.top = 40 + editorScrollTop
         else if (top < 80) {
             style.top += height + 40
         }
