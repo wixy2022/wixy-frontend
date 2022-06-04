@@ -401,6 +401,7 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
+    overflow-x: clip;
 
     &>* {
         width: 100%;
@@ -410,7 +411,7 @@
         width: 256px;
         height: 256px;
         border-radius: 256px;
-        background-color: rgba(241, 199, 16, .7);
+        background-color: rgb(231 203 74);
         z-index: 1;
         position: absolute;
         right: -51.2px;
@@ -440,6 +441,7 @@
         font-size: 1.75em;
         margin-bottom: 15px;
         margin-top: 15px;
+        z-index: 10;
     }
 
     &>.container {

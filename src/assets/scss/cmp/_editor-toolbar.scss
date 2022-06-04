@@ -306,9 +306,8 @@
                     display: none;
 
                 }
-                &:hover::before{
-                    
-                }
+
+                &:hover::before {}
 
                 &.header {
                     &.header:hover {
@@ -563,20 +562,22 @@
 
     .editor.tool-bar-open .template-tool-bar {
         bottom: unset;
-       &::after{
-        content: '';
-        width: 1px;
-        top: 0;
-        height: 100%;
-        position: absolute;
-        left: 128px;
-        border-right: 1px solid rgba(169, 171, 171, 0.275);
+
+        &::after {
+            content: '';
+            width: 1px;
+            top: 0;
+            height: 100%;
+            position: absolute;
+            left: 128px;
+            border-right: 1px solid rgba(169, 171, 171, 0.275);
 
 
         }
+
         /* border-right: 1px solid rgba(169, 171, 171, 0.275); */
 
-        
+
         .editor-icon-container {
             margin-block-start: unset;
             width: 40px;
@@ -595,17 +596,19 @@
                 background-color: rgba(128, 128, 128, 0.11);
 
             }
-            
+
             .editor-icon-img {
-                &:hover::before{
+                &:hover::before {
                     // display: none!important;
                 }
-                &.active-tool::before{
+
+                &.active-tool::before {
                     color: rgb(78 183 245);
                     // font-weight: 600;
                     border: 1em;
                     // background-color: $clr1;
                 }
+
                 &::before {
                     display: flex;
                     position: absolute;
@@ -620,16 +623,17 @@
                     width: 40px;
                     height: 20px;
                     padding: .3em;
-                    
-                    
+
+
                 }
-                
+
 
                 &.header {
                     content: 'Header';
-                    
-                    
+
+
                 }
+
                 &.section {
                     content: 'Section';
                 }
@@ -675,7 +679,11 @@
             align-items: center;
             flex-wrap: nowrap;
             min-height: unset;
-            overflow-y: unset;
+            max-height: 80vh;
+            min-width: 336px;
+            display: block;
+
+
 
             >* {
                 animation: toolbar-animation .5s forwards;
