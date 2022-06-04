@@ -99,9 +99,9 @@ export const wapCards02 = {
     className: 'template2',
     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653565595/templates/wap-cards-02_t8nkzj.png',
     cmps: [
-        _getCard('Dine-in', 'call us for reservations', '163 Tanglin Rd, #01-28/33,\nSingapore 247933'),
-        _getCard('Home delivery', null, '12 pm to 3 pm\n6.30 pm to 10 pm\nPre-orders accepted', 'https://www.yantra.com.sg/order-here', 'Click here to order'),
-        _getCard('Reach us', null, '163 Tanglin Rd, #01-28/33\nSingapore 247933\n\nyantra@restobars.com.sg\n+65 6836 3088', 'https://form.jotform.com/200841028897056', 'Phone Orders'),
+        _getCard(null, null, 'Dine-in', 'call us for reservations', '163 Tanglin Rd, #01-28/33,\nSingapore 247933'),
+        _getCard(null, null, 'Home delivery', null, '12 pm to 3 pm\n6.30 pm to 10 pm\nPre-orders accepted', 'https://www.yantra.com.sg/order-here', 'Click here to order'),
+        _getCard(null, null, 'Reach us', null, '163 Tanglin Rd, #01-28/33\nSingapore 247933\n\nyantra@restobars.com.sg\n+65 6836 3088', 'https://form.jotform.com/200841028897056', 'Phone Orders'),
     ]
 }
 
