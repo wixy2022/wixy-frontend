@@ -63,6 +63,7 @@ export const EditButtons = React.memo(({ onUpdateWap }) => {
             case 'txt': return [getDetails('theme'), getDetails('style'), getDetails('delete')]
             case 'anchor': return [getDetails('theme'), getDetails('style'), getDetails('delete')]
             case 'img': return [getDetails('theme'), getDetails('style'), getDetails('delete')]
+            case 'video': return [getDetails('style'), getDetails('delete')]
             case 'container-draggable': return [getDetails('theme'), getDetails('style'), getDetails('clone'), getDetails('delete')]
             case 'container': return [getDetails('theme'), getDetails('style'), getDetails('delete')]
             default: return ''
@@ -81,10 +82,10 @@ export const EditButtons = React.memo(({ onUpdateWap }) => {
 
         let posY = ev.clientY + editorScrollTop - 10 //mouse position plus editor scroll position
         // if (posY - editorScrollTop - 325 <= 16) posY += 325 // if it cant open above, it will open below
-        
+
         // if it cant open above, it will open below
         // if it's container and style, the size of the editor is smaller since it has only background colors
-        const offsetBottom = activeCmp.type.includes('container') && action.type === 'style'? 195 : 325
+        const offsetBottom = activeCmp.type.includes('container') && action.type === 'style' ? 195 : 325
         if (posY - editorScrollTop - offsetBottom <= 16) posY += offsetBottom
 
         setEditModalPosition({ posX, posY })

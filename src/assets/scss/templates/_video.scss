@@ -1,0 +1,86 @@
+.wap-video-01 {
+    font-family: Source Sans Pro, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    border: 2px solid rgba(83, 109, 33);
+    background-color: rgba(82, 109, 33, 0.63);
+    background-image: url(https://res.cloudinary.com/drpqhjyvk/image/upload/v1654450044/images/grass_utkage.jpg);
+    width: 100%;
+    height: 440px;
+
+
+    .video-cmp-01 {
+        object-fit: cover;
+        object-position: center;
+        max-width: 90%;
+        position: relative;
+        height: 350px;
+        width: 100%;
+        margin-bottom: 1em;
+
+        .video-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            // background-color: rgba(99, 5, 5, 0.658);
+            z-index: 10;
+        }
+
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &>* {
+        width: 100%;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .txt.title {
+        font-size: 2em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4em;
+        font-weight: 700;
+        word-break: break-word;
+        line-height: normal;
+        color: white;
+        width: 100%;
+        height: 70px;
+        background-color: rgba(82, 109, 33, 0.63);
+        text-align: center;
+    }
+}
+
+@media (min-width:480px) {
+    .wap-video-01 {
+        .video-cmp-01 {
+            width: 80%;
+        }
+
+        .txt.title {
+            font-size: 1.8em;
+        }
+    }
+
+}
+
+@media (min-width:700px) {
+    .wap-video-01 {
+        .video-cmp-01 {
+            width: 60%;
+        }
+    }
+}
