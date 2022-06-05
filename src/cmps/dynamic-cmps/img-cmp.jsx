@@ -27,7 +27,7 @@ export const ImgCmp = ({ cmp, isPublish, onSelectActiveCmp, onUpdateWap }) => {
     return <section className={`img-cmp ${cmp.className}`} style={{ ...cmp.style }} >
         <img {...getInputProps()}
             {...getRootProps({ onClick: ev => { ev.stopPropagation(); onSelectActiveCmp(cmp, ev.target) } })}
-            onDragEnter={(ev => { ev.stopPropagation(); onSelectActiveCmp(cmp, ev.target) })}
+            // onDragEnter={(ev => { ev.stopPropagation(); onSelectActiveCmp(cmp, ev.target) })}
             // Style gets an empty object because of Drag Zone
             src={cmp.url} alt={cmp.alt} style={{}} /> 
     </section >
