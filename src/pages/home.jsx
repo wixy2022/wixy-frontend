@@ -20,7 +20,7 @@ export function Home() {
             <pre>
             </pre>
         </section>
-        <section className="templates">
+        <section className="templates main-layout">
             {allWaps.map((wap, idx) => {
                 if (idx > 2) return
                 // if (idx === allWaps.length - 1) return <TemplateCard key={utilService.createKey()} secondRow={'second-row'} lastTemplate={'last-template'} wap={wap} />
@@ -28,7 +28,7 @@ export function Home() {
                 return <TemplateCard key={utilService.createKey()} wap={wap} />
             })}
         </section>
-        <section className="show-more">
+        <section className="show-more main-layout">
             <div className="line"></div>
             <Link to="/templates"><button className="show-more-btn">Show More</button></Link>
             <div className="line"></div>
@@ -48,14 +48,16 @@ export function Home() {
                 </pre>
                 <div className="link-to-templates">
 
-                    <Link to='/templates' className="get-started"> Get Started
-                    </Link>
+                    <Link to='/templates' className="get-started"> Get Started</Link>
                     <span className=".slide-right">→</span>
                 </div>
             </div>
         </section>
         <section className="build-unique">
-            <div className="presence">
+            <div className="developer-img">
+                <img src="https://res.cloudinary.com/drpqhjyvk/image/upload/v1654432776/web-design_jchflg.jpg" alt="" title="Designed by vectorjuice / Freepik" />
+            </div>
+            <div className="presence main-layout">
                 <h2>
                     Build Your Unique Online Presence
                 </h2>
@@ -84,13 +86,13 @@ export function Home() {
                         </p>
                     </article>
                 </div>
-            </div>
-            <div className="developer-img">
-                <img src="https://img.freepik.com/free-vector/microsite-development-abstract-concept-vector-illustration-microsite-web-development-small-internet-site-graphic-design-service-landing-page-software-programming-team-abstract-metaphor_335657-2296.jpg?t=st=1654375418~exp=1654376018~hmac=6db126f7e504a2e81fc10998bb5aeed1095ba25301bc6f87cc9162fdda824520&w=826" alt="" />
+                <Link to='/templates' className="get-started"> Build your site</Link>
             </div>
         </section>
-       
-        <AppFooter />
+
+        <footer className="app-footer main-layout">
+            <span className="footer-logo">WiXY</span> Yakovlev Alex <span>-</span> Sason Ori <span>-</span> Polatov Vicky
+        </footer>
 
     </section>
 }

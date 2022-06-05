@@ -12,6 +12,7 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
     const [imgUrl, setImgUrl] = useState('')
     const [borderRadiusVal, setBorderRadiusVal] = useState(getComputedStyle(target).borderRadius)
     const [opacityVal, setOpacityVal] = useState(getComputedStyle(target).opacity * 100)
+    console.log('borderRadiusVal', borderRadiusVal)
 
     const { type: editMode } = editModalMode
 
@@ -213,19 +214,23 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
 
     const getInputRange = (title, name, placeholder, value, min = '', max = '') => {
         const getValue = (name, value) => {
-            if (name === 'borderRadius') {
-                if (value.includes('px')) value = '5px'.replace(/px/g, '')
-                return `${value}${value.includes('%') ? '' : '%'}`
-            }
-            value = Math.floor(value)
+            if (name === 'borderRadius') return `${value}%`
             return value
         }
+
+        const getClearValue = (value) => {
+            if ((value + '').includes('px')) value = value.replace(/px/g, '')
+            if ((value + '').includes('%')) value = value.replace(/\%/g, '')
+            return Math.floor(value)
+        }
+
+        const clearedValue = getClearValue(value)
 
         return <label className='edit-modal-range-input'><h4>{title}</h4>
             <div>
                 <input type='range' placeholder={placeholder} name={name} min={min} max={max}
-                    value={value} onChange={handleChange} title={value} />
-                <span>{getValue(name, value)}</span>
+                    value={clearedValue} onChange={handleChange} title={value} />
+                <span>{getValue(name, clearedValue)}</span>
             </div>
         </label>
     }
