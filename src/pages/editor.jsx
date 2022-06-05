@@ -80,7 +80,6 @@ export const Editor = React.memo(({ setPageClass }) => {
 
     const loadWap = async () => {
 
-        if (wap) return
 
         const urlSrcPrm = new URLSearchParams(history.location.search)
         const wapId = urlSrcPrm.get('id')
@@ -101,6 +100,7 @@ export const Editor = React.memo(({ setPageClass }) => {
                 history.push(`/editor?id=${newWap._id}`)
             }
         } else {
+            if (wap) return
             dispatch(setWap(wapService.getEmptyWap()))
         }
     }

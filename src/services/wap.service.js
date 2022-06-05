@@ -1,5 +1,6 @@
 // import { storageService } from './async-storage.service.js'
 // import { utilService } from './util.service.js'
+import { async } from '@firebase/util'
 import { httpService } from './http.service.js'
 import { socketService } from './socket.service.js'
 import { utilService } from './util.service.js'
@@ -16,10 +17,12 @@ export const wapService = {
     getEmptyWap,
     updateWap,
     createAncestors,
-    getThemeList
+    getThemeList,
+    
 }
 
 async function query(filterBy = {}) {
+    console.log(filterBy)
     return await httpService.get(BASE_PATH, filterBy)
 
     /* BACKEND - THE filterBy WILL BE IN THE BACKEND */
@@ -56,6 +59,7 @@ async function remove(wapId) {
     /* Next line should be in the BACKEND */
     // return storageService.remove(STORAGE_KEY, wapId)
 }
+
 
 function getEmptyWap() {
     return {
