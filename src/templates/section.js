@@ -11,7 +11,7 @@ export const wapSection01 = {
             id: utilService.makeId(16),
             type: 'txt',
             className: 'txt title',
-            txt: 'PH-STUDIO',
+            txt: '',
             style: {}
         },
         {
@@ -213,7 +213,7 @@ export const wapSection06 = {
     type: 'container-draggable',
     category: 'wap-section',
     className: 'wap-section-06',
-    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654366798/templates/Capture_rvdokw.png', 
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654366798/templates/Capture_rvdokw.png',
     cmps: [{
         id: utilService.makeId(16),
         type: 'container',
@@ -237,7 +237,7 @@ export const wapSection07 = {
     type: 'container-draggable',
     category: 'wap-section',
     className: 'wap-section-07',
-    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654366897/templates/Capture_ah45fs.png', 
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654366897/templates/Capture_ah45fs.png',
     cmps: [
         {
             id: utilService.makeId(16),

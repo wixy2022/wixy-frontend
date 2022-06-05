@@ -1,21 +1,21 @@
 import { wapHeader01, wapHeader02, wapHeader03 } from './header'
 import { wapSection01, wapSection02, wapSection03, wapSection05, wapSection04, wapSection06, wapSection07, wapSection071 } from './section'
 import { wapCards01, wapCards02, wapCards03, wapCards04, wapCards05, wapCards051 } from './card'
-import { wapFooter01, wapFooter02, wapFooter03 } from './footer'
-import { wapText01 } from './text'
+import { wapFooter01, wapFooter02, wapFooter03, wapFooter04, wapFooter05, wapFooter06, wapFooter07 } from './footer'
+import { wapText01, wapText02, wapText03, wapText04, wapText05 } from './text'
 import { wapGallery01 } from './gallery'
 
 export const allTemplates = {
     header: [wapHeader01, wapHeader02, wapHeader03],
     section: [wapSection01, wapSection02, wapSection05, wapSection03, wapSection04, wapSection06, wapSection07, wapSection071],
-    text: [wapText01],
+    text: [wapText01, wapText02, wapText03, wapText04, wapText05],
     cards: [wapCards01, wapCards02, wapCards03, wapCards04, wapCards05, wapCards051],
     gallery: [wapGallery01],
     form: [],
     map: [],
     chat: [],
     video: [],
-    footer: [wapFooter01, wapFooter02, wapFooter03],
+    footer: [wapFooter01, wapFooter02, wapFooter03, wapFooter04, wapFooter05, wapFooter06, wapFooter07],
 }
 //   const names = ['header', 'section', 'text', 'cards', 'gallery', 'form', 'map', 'chat', 'video', 'footer',]
 
@@ -70,12 +70,12 @@ export const temp5Wap = {
 }
 
 export const blankWap = {
-        // _id: '629294fbf04ad0403c9fe2ff',
-        name: 'new-template',
-        imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654410524/icons/start_from_scratch5_abauon.jpg',
-        description: 'Start from Scratch',
-        cmps: []
+    // _id: '629294fbf04ad0403c9fe2ff',
+    name: 'new-template',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654410524/icons/start_from_scratch5_abauon.jpg',
+    description: 'Start from Scratch',
+    cmps: []
 }
 
 // /////////////// DEV ONLY
-export const allWaps = [temp5Wap, temp4Wap, temp3Wap, temp2Wap, temp1Wap,blankWap]
+export const allWaps = [temp5Wap, temp4Wap, temp3Wap, temp2Wap, temp1Wap, blankWap]

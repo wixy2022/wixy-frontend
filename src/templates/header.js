@@ -23,16 +23,16 @@ export const wapHeader01 = {
                     id: utilService.makeId(16),
                     type: 'anchor',
                     url: 'https://www.facebook.com/',
-                    className: 'link',
-                    txt: 'facebook',
+                    className: 'link fa fa-facebook',
+                    txt: '',
 
                 },
                 {
                     id: utilService.makeId(16),
                     type: 'anchor',
                     url: 'https://www.instagram.com/?hl=en',
-                    className: 'link',
-                    txt: 'instagram',
+                    className: 'link fa fa-instagram',
+                    txt: '',
                     style: {},
                 }
             ],

@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { connect } from "react-redux"
 import { signUp, login } from '../store/actions/user.action.js'
-import {setMsg} from '../store/actions/msg.action'
+import { setMsg } from '../store/actions/msg.action'
 
 import { SignUp } from '../cmps/signup'
 import { SignIn } from '../cmps/signin'
@@ -13,7 +13,7 @@ import { gapi } from 'gapi-script'
 
 const clientId = '777045938185-r0hkggifahev5ccik4eairjhrv7d0kua.apps.googleusercontent.com'
 class _Login extends React.Component {
-    
+
     state = {
         isLoginForm: true,
         isRememberMeMode: false,
@@ -40,9 +40,9 @@ class _Login extends React.Component {
         } catch {
             this.setState({ firstName: '', lastName: '' })
         }
-        if (loggedInUser){
+        if (loggedInUser) {
 
-            this.props.setMsg({type:'success',txt:'Logged in'})
+            this.props.setMsg({ type: 'success', txt: 'Logged in' })
             this.props.history.push('/templates')
         }
 
@@ -52,8 +52,8 @@ class _Login extends React.Component {
     handleSocialAuthentication = async (user) => {
         user.isSocial = true
         const loggedInUser = await this.props.login(user, this.state.isRememberMeMode)
-        if (loggedInUser){
-             this.props.setMsg({type:'success',txt:'Logged in'})
+        if (loggedInUser) {
+            this.props.setMsg({ type: 'success', txt: 'Logged in' })
             this.props.history.push('/templates')
 
         }
