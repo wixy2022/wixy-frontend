@@ -86,7 +86,14 @@
     // position: relative;
     outline: 3px solid blue !important;
     // border: 1px solid blue !important;
+<<<<<<< HEAD
     z-index: 2;
+=======
+
+    &.container-draggable-cmp {
+        z-index: 2;
+    }
+>>>>>>> F-124-style-editor-with-range-input
 }
 
 /* DEBUG */
