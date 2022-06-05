@@ -53,7 +53,7 @@ export const EditButtons = React.memo(({ onUpdateWap }) => {
             switch (type) {
                 case 'theme': return { type: 'theme', title: 'Themes', img: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654205439/icons/stars_xapg9v.png' }
                 case 'style': return { type: 'style', title: 'Custom style', img: "https://res.cloudinary.com/drpqhjyvk/image/upload/v1654204281/icons/paintbrush_zraxt1.png" }
-                case 'clone': return { type: 'clone', title: 'Duplicate', img: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653598367/icons/copy_exfrdo.png' }
+                case 'clone': return { type: 'clone', title: 'Duplicate', img: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654446733/icons/duplicate_vijzov.png' }
                 case 'delete': return { type: 'delete', title: 'Delete', img: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653598367/icons/trash_egjl8h.png' }
                 default: return ''
             }
