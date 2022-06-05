@@ -30,7 +30,7 @@ export const AppHeader = ({ pageClass ,setPageClass}) => {
     return <section className={`app-header ${headerClass}`}>
 
 
-        <main className="flex align-center">
+        <main className="flex align-center main-layout">
             <Link className="logo-link" to="/"><div className="logo">
                 <img src="https://res.cloudinary.com/drpqhjyvk/image/upload/v1653740284/logo-wixy_fafsy0.png" alt="" />
             </div></Link>

@@ -6,6 +6,7 @@
     z-index: 2000;
     .show-site-links{
         display: flex;
+        gap: 15px;
     }
     .user-modal-header {
         display: flex;
@@ -17,7 +18,7 @@
         background-color: white;
         top: 4em;
         // right: 2.2em;
-        right: 20px;
+        right: 15px;
         width: 300px;
 
         .logout-btn {
@@ -93,9 +94,9 @@
 
     .logo {
         height: 48px;
-        padding: 15px;
+        padding: 15px 0;
         // margin-inline-start: 20px;
-        width: 110px;
+        width: 80px;
         // margin-inline-end: 16px;
         border-inline-end: 1px solid lightgrey;
 
@@ -154,15 +155,15 @@
         justify-content: flex-end;
         // width: 700px;
         // width: 70px;
-        width: 79px;
-        margin: auto;
+        width: 0;
+        // margin: auto;
 
         .user-img-header {
             width: 40px;
             height: 40px;
             border-radius: 50%;
             // margin-right: 34px;
-            margin-right: 20px;
+            // margin-right: 20px;
         }
     }
 }
@@ -198,7 +199,7 @@
     color: #fff;
     border: none;
     height: 30px;
-    margin-inline-end: 20px;
+    // margin-inline-end: 20px;
     letter-spacing: .15px;
 
     &:hover {
@@ -219,7 +220,7 @@
     color:  $clr1;
     border: 1px solid  $clr1;
     height: 30px;
-    margin-inline-end: 20px;
+    // margin-inline-end: 15px;
     letter-spacing: .15px;
     &:hover{
         background-color: #5999ff;
