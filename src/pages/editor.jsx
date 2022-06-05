@@ -13,6 +13,8 @@ import { Loader } from "../cmps/app-loader"
 import { EditButtons } from "../cmps/edit-buttons"
 import { EditModal } from "../cmps/edit-modal"
 
+import * as htmlToImage from 'html-to-image';
+import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 
 import { wapService } from "../services/wap.service"
 import { utilService } from '../services/util.service'
@@ -22,20 +24,23 @@ import { socketService } from '../services/socket.service'
 import { setMsg } from '../store/actions/msg.action'
 import { setActiveCmp, setActiveCmpTxt, setActiveCmpPos, updateWapByActiveCmp } from "../store/actions/wap.action" /* FIX - move to line 6 */
 import { setScreenHeight, setScreen } from "../store/actions/screen.action"
+import { useEffectUpdate } from "../hooks/use-effect-update"
+import { uploadService } from "../services/upload.service"
 
 
 export const Editor = React.memo(({ setPageClass }) => {
     const wap = useSelector(storeState => storeState.wapModule.wap)
+    const { user } = useSelector(storeState => storeState.userModule)
     const dispatch = useDispatch()
     const history = useHistory()
     const params = useParams()
 
-
-
     const [toolBarMode, setToolBarMode] = useState('')
     const [templateKey, setTemplateKey] = useState(null)
     const editorRef = useRef()
+    const myImg = useRef()
     const templates = allTemplates
+
 
     useEffect(() => {
         const { wapId } = params
@@ -44,20 +49,44 @@ export const Editor = React.memo(({ setPageClass }) => {
         socketService.on('wap changed', (wap) => dispatch(setWap(wap)))
         // socketService.off('wap changed');
 
-        return () => {
+        return async () => {
             socketService.off('wap changed')
             if (wap?.cmp?.length === 0) wapService.remove(wap?._id)
-            else if(wap) dispatch(saveWap(storageService.getWapFromStorage()))
-            console.log('saved as', storageService.getWapFromStorage())
+            else if (wap) {
+
+                const wapFromStorage = storageService.getWapFromStorage()
+                if (myImg.current) {
+                    const img = await uploadService.uploadImg(myImg.current)
+                    wapFromStorage.imgUrl = img
+                    dispatch(saveWap(wapFromStorage))
+                    
+                }else{
+
+                    dispatch(saveWap(wap))
+                }
+            }
+
             console.log('died')
             // socketService.terminate()
         }
     }, [])
 
+    useEffectUpdate(() => {
+        // takeScreenshot(editorRef.current)
+        getImg()
+        
+    }, [wap])
+
+    async function getImg (){
+        console.log('editorRef.current', editorRef.current)
+        const img = await htmlToImage.toPng(editorRef.current)
+        myImg.current = img
+    }
     useEffect(() => {
-        console.log('updated as', wap)
-        // dispatch(setWap(wap))
         storageService.saveWapToStorage(wap)
+
+        
+        // takeScreenshot(document.querySelector('.editor-site-container'))
         return () => {
             // if (wap) dispatch(saveWap(wap))
         }

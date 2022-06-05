@@ -5405,6 +5405,11 @@
     "relateurl" "^0.2.7"
     "terser" "^5.10.0"
 
+"html-to-image@^1.9.0":
+  "integrity" "sha512-9gaDCIYg62Ek07F2pBk76AHgYZ2gxq2YALU7rK3gNCqXuhu6cWzsOQqM7qGbjZiOzxGzrU1deDqZpAod2NEwbA=="
+  "resolved" "https://registry.npmjs.org/html-to-image/-/html-to-image-1.9.0.tgz"
+  "version" "1.9.0"
+
 "html-webpack-plugin@^5.5.0":
   "resolved" "https://registry.npmjs.org/html-webpack-plugin/-/html-webpack-plugin-5.5.0.tgz"
   "version" "5.5.0"

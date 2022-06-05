@@ -1,6 +1,6 @@
 import { NavLink, Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { setScreen } from "../store/actions/screen.action"
 import { logout } from '../store/actions/user.action'
 import { useHistory } from "react-router-dom"
@@ -16,9 +16,9 @@ export const AppHeader = ({ pageClass ,setPageClass}) => {
     const [isOpen, setIsOpen] = useState('')
     const isLogin = user ? 'Logout' : 'Login'
     const [isPreview, setIsPreview] = useState(false)
-    //    const  =()=>{
-
-    //    }
+    
+    
+    
     const onOpenModal = (ev) => {
         ev.stopPropagation()
         isOpen ? setIsOpen('') : setIsOpen('open')
@@ -27,7 +27,8 @@ export const AppHeader = ({ pageClass ,setPageClass}) => {
         if (isLogin === 'Logout') dispatch(logout())
         else history.push('/login')
     }
-    return <section className={`app-header ${headerClass}`}>
+    // console.log(image)
+    return <section  className={`app-header ${headerClass}`}>
 
 
         <main className="flex align-center main-layout">
@@ -38,8 +39,8 @@ export const AppHeader = ({ pageClass ,setPageClass}) => {
                 <NavLink to='/' exact>Home</NavLink>
                 <NavLink to='/templates'>Templates</NavLink>
                 <NavLink to='/editor'>Editor</NavLink>
-
             </nav>
+            
             {(pageClass !== 'editor-open') && <div onClick={(ev) => {
                 onOpenModal(ev)
                 setHeaderClass(isOpen)

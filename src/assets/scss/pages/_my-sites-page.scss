@@ -1,0 +1,24 @@
+.my-sites{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    h2{
+        font-size: rem(40px);
+        
+        margin-block: 30px;
+    }
+    .user-waps{
+        display: grid;
+        padding: 0 15px 0;
+        grid-template-columns: repeat(3,minmax(100px,1fr));
+        gap: 2em;
+    }
+}
+
+
+
+// <div className="user-waps">
+
+// {userWaps.map(wap => <TemplateCard key={utilService.createKey()} wap={wap} />)}
+// </div>

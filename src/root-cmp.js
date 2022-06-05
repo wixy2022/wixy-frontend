@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { createRef, useRef, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import { Templates } from './pages/templates.jsx'
 import { AppHeader } from "./cmps/app-header";
@@ -12,11 +12,12 @@ import { MySites } from "./pages/my-sites.jsx";
 
 export function App() {
   const [pageClass, setPageClass] = useState('')
+  
   return (
     <div className={`main-app ${pageClass}`}>
-      <AppHeader setPageClass={setPageClass} pageClass={pageClass}  />
+      <AppHeader setPageClass={setPageClass}  pageClass={pageClass}  />
 
-      <main className="app">
+      <main  className="app">
         <Switch>
           <Route path="/templates" component={Templates} />
           <Route path="/login" component={Login} />
