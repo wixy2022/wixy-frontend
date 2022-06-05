@@ -83,16 +83,16 @@
     gap: 1em;
     padding: 1em;
 
+    h4 {
+        font-weight: normal;
+        margin-bottom: 0.4em;
+    }
+
     .color-palette {
         display: grid;
         grid-template-columns: repeat(7, auto);
         grid-template-rows: 1fr 1fr;
-        // align-items: center;
         justify-content: start;
-        // margin: auto;
-        // place-content: center;
-        // justify-content: center;
-        // align-content: center;
         column-gap: 5px;
         row-gap: 5px;
 
@@ -117,10 +117,7 @@
         }
 
         img {
-            // width: 23px;
             height: 19px;
-            // border-radius: 50%;
-            // border: 1px solid rgb(14 14 14);
             cursor: pointer;
 
             &:first-of-type{
@@ -134,11 +131,6 @@
         border-color: $clr2;
         outline: unset;
         margin: 0;
-    }
-
-    h4 {
-        font-weight: normal;
-        margin-bottom: 0.4em;
     }
 
     .edit-modal-url-input div {

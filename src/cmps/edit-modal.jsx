@@ -259,11 +259,11 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
         {editMode === 'style' && (activeCmp.type === 'txt' || activeCmp.type === 'anchor') && <main className="edit-modal-container">
             {getTxtStyleBtns()} {/* TEXT-DECORATION */}
 
+            {activeCmp.type === 'anchor' && getInputUrl('Link To', 'linkUrl', 'Enter URL', linkUrl, 'text')} {/* LINK */}
+
             {getColorPalette('Text Color', 'color')} {/* TEXT-COLOR */}
 
             {getColorPalette('Text Background', 'backgroundColor')} {/* BCG-COLOR */}
-
-            {activeCmp.type === 'anchor' && getInputUrl('Link To', 'linkUrl', 'Enter URL', linkUrl, 'text')} {/* LINK */}
         </main>
         }
 
