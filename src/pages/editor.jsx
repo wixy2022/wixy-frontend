@@ -30,7 +30,6 @@ import { uploadService } from "../services/upload.service"
 
 export const Editor = React.memo(({ setPageClass }) => {
     const wap = useSelector(storeState => storeState.wapModule.wap)
-    const { user } = useSelector(storeState => storeState.userModule)
     const dispatch = useDispatch()
     const history = useHistory()
     const params = useParams()

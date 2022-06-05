@@ -7,7 +7,7 @@ import { utilService } from "../services/util.service"
 import { wapService } from "../services/wap.service"
 import { saveWap } from "../store/actions/wap.action"
 
-export const Publish = ({ setPageClass ,pageClass,wapToLoad}) => {
+export const Publish = ({ setPageClass ,wapToLoad}) => {
     const savedWap = useSelector(storeState => storeState.wapModule.wap)
     const [wap, setWap] = useState(null)
     const history = useHistory()
@@ -24,12 +24,12 @@ export const Publish = ({ setPageClass ,pageClass,wapToLoad}) => {
 
     const loadWap = async () => {
         if(wapToLoad) return setWap(wapToLoad)
-        const wapFromStorage = storageService.getWapFromStorage()
-        if (wapFromStorage) {
-            return setWap(wapFromStorage)
-        }
+        // const wapFromStorage = storageService.getWapFromStorage()
+        // if (wapFromStorage) {
+        //     return setWap(wapFromStorage)
+        // }
 
-        if (savedWap) return setWap(savedWap)
+        // if (savedWap) return setWap(savedWap)
         
         console.log(wap, savedWap)
         const urlSrcPrm = new URLSearchParams(history.location.search)

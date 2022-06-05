@@ -5,6 +5,8 @@ import { setScreen } from "../store/actions/screen.action"
 import { logout } from '../store/actions/user.action'
 import { useHistory } from "react-router-dom"
 import { PreviewModal } from '../cmps/preview-modal.jsx'
+import { wapService } from "../services/wap.service"
+import { saveWap } from "../store/actions/wap.action"
 
 export const AppHeader = ({ pageClass ,setPageClass}) => {
     const { user } = useSelector(storeState => storeState.userModule)
@@ -26,6 +28,11 @@ export const AppHeader = ({ pageClass ,setPageClass}) => {
     const onSetLoginLogout = () => {
         if (isLogin === 'Logout') dispatch(logout())
         else history.push('/login')
+    }
+    const saveAndPublish =()=>{
+        // dispatch(saveWap(wap))
+        wapService.save(wap)
+        return `publish/?id=${wap?._id}`
     }
     // console.log(image)
     return <section  className={`app-header ${headerClass}`}>
@@ -66,7 +73,7 @@ export const AppHeader = ({ pageClass ,setPageClass}) => {
             {(pageClass === 'editor-open') && <div className="show-site-links">
 
                 <button onClick={() => setIsPreview(true)} className="preview-btn logo-link">Preview</button>
-                <NavLink to={`/publish`} target={"_blank"} className="publish-btn logo-link">Publish</NavLink>
+                <NavLink to={saveAndPublish} target={"_blank"} className="publish-btn logo-link">Publish</NavLink>
             </div>}
         </main>
         {isPreview &&<>

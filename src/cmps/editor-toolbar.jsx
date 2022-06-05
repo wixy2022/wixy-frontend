@@ -3,11 +3,12 @@ import { Draggable } from "react-beautiful-dnd"
 import { DraggableTemplate } from './draggable-template.jsx'
 import { utilService } from "../services/util.service.js"
 import { Droppable } from "react-beautiful-dnd"
+import { useSelector } from "react-redux"
 
 export const TemplateToolBar = ({ setToolBarMode,onSaveWap, templates, setTemplateKey, onCloseScreen, onSetHeight }) => {
     const [selectedTemplates, setSelectedTemplates] = useState(null)
     const [currTopic, setCurrTopic] = useState(null)
-
+    const {user} = useSelector(storeState=>storeState.userModule)
     const onHandleTemplates = async (ev) => {
         ev.stopPropagation()
         const { name } = ev.target
@@ -38,7 +39,7 @@ export const TemplateToolBar = ({ setToolBarMode,onSaveWap, templates, setTempla
         </button>)
     }
     return <section className="template-tool-bar" >
-            <div onClick={onSaveWap} className="save"><img className="save-img" src="https://res.cloudinary.com/drpqhjyvk/image/upload/v1654447979/diskette_v3iykh.png" alt="" /></div>
+           {user&&<div onClick={onSaveWap} className="save"><img className="save-img" src="https://res.cloudinary.com/drpqhjyvk/image/upload/v1654447979/diskette_v3iykh.png" alt="" /></div>}
         <div className="template-bar-btns">
             {getToolBarButtons()}
         </div>
