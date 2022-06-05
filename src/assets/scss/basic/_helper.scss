@@ -74,6 +74,10 @@
 
 /* FONT AWESOME */
 
+.fa {
+    font-family: fa;
+}
+
 .fa-solid {
     font-family: fa-solid;
 }
@@ -85,6 +89,19 @@
 .fa-solid.fa-lock-keyhole::before {
     content: "\f023";
 }
+
+.fa.fa-facebook::before {
+    content: "\f39e";
+}
+
+.fa.fa-twitter::before {
+    content: "\f099";
+}
+
+.fa.fa-instagram::before {
+    content: "\f16d";
+}
+
 
 /* ACTIVE CMP */
 .active-cmp {
