@@ -92,7 +92,7 @@ export const Editor = React.memo(({ setPageClass }) => {
 
         const urlSrcPrm = new URLSearchParams(history.location.search)
         const wapId = urlSrcPrm.get('id')
-
+        console.log('wap', wap)
         if (wapId) {
             try {
                 const wap = await wapService.getById(wapId)
@@ -104,8 +104,7 @@ export const Editor = React.memo(({ setPageClass }) => {
                 console.log('data', err.response.data)
 
                 dispatch(setMsg({ type: 'danger', txt: 'Failed loading your page.' }))
-                const newWap = dispatch(saveWap(wapService.getEmptyWap()))
-                history.push(`/editor?id=${newWap._id}`)
+                dispatch(saveWap(wapService.getEmptyWap()))
             }
         } else {
             if (wap) return
