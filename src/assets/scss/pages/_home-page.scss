@@ -15,7 +15,7 @@
             align-items: center;
             z-index: 10;
             position: absolute;
-            font-size: 3em;
+            font-size: 2em;
             font-weight: 900;
             left: 50%;
             top: 50%;
@@ -47,10 +47,6 @@
 
         .logo {
             width: 400px;
-
-            img {
-                width: 100%;
-            }
         }
 
         .hero-img {
@@ -100,11 +96,15 @@
         display: grid;
         // margin-block-end: 200px;;
 
-        padding: 0 rem(40px) 0;
+        // padding: 0 rem(40px) 0;
         grid-template-columns: repeat(1, minmax(0, rem(400px)));
         justify-content: center;
         align-items: center;
         gap: 2em;
+
+        .template-card .template-card-img-container .wap-description {
+            margin-bottom: unset;
+        }
     }
 
     .about {}
@@ -117,7 +117,8 @@
         justify-content: center;
         align-items: center;
         gap: 1em;
-        margin-block-start: 10vh;
+        margin-block-start: 5vh;
+        grid-row: span 3;
 
         .line {
             width: 33%;
@@ -127,14 +128,16 @@
     }
 
     .freedom {
-        margin-block-start: 10vh;
+        margin-block-start: 5vh;
 
-        padding: 13% 3rem 0;
+        // padding: 13% 3rem 0;
 
         display: flex;
         flex-direction: column;
         background-color: #14348e;
-        height: rem(600px);
+        // height: rem(600px);
+        height: fit-content;
+        padding: 3rem 20px;
         justify-content: center;
         gap: 4em;
         position: relative;
@@ -144,7 +147,6 @@
         >& {
             flex-grow: 1;
             display: flex;
-
         }
 
         pre {
@@ -174,11 +176,12 @@
 
             // font-weight: bold;
             .link-to-templates {
+                align-self: flex-end;
                 max-width: 300px;
                 display: flex;
                 // margin-top: 20px;
                 gap: 1em;
-                
+
                 align-items: center;
             }
 
@@ -222,17 +225,20 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        padding-bottom: 2rem;
 
         justify-content: space-between;
         gap: 2em;
 
         .developer-img {
+            align-self: stretch;
             width: 100%;
-           flex-grow: 1;
+            flex-grow: 1;
             background-image: url('https://static.wixstatic.com/media/311dce_3945bf5d06e344c4a70b134fd3dc46d3~mv2.jpg/v1/fill/w_680,h_980,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/311dce_3945bf5d06e344c4a70b134fd3dc46d3~mv2.jpg');
             //    flex-basis: 0;
             background-position: 50% 30%;
-            height: 100%;
+            // height: 100%;
+            min-height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -247,7 +253,7 @@
             // padding-inline-start: 5%;
             padding-block-start: 1rem;
             // margin-inline-start: 8.3em;
-            max-width: 350px;
+            // max-width: 350px;
             text-align: left;
             display: flex;
             flex-direction: column;
@@ -272,37 +278,47 @@
             }
 
             .lines {
-                display: flex;
-                gap: 1em;
-                padding: 1em 0 1em;
+                display: none;
+                //     display: flex;
+                //     gap: 1em;
+                //     padding: 1em 0 1em;
 
-                .line-black {
-                    width: 80%;
-                    height: 1px;
-                    border: 1px solid black;
-                }
+                //     .line-black {
+                //         width: 80%;
+                //         height: 1px;
+                //         border: 1px solid black;
+                //     }
+                // }
+            }
+
+            .get-started {
+                align-self: center;
+                width: 100%;
+                max-width: 270px;
+                margin-top: 2em;
+                padding: 1.3rem;
+                text-align: center;
+                font-weight: bold;
+                color: #14348e;
+                background-color: white;
+                border-radius: 6em;
             }
         }
-
     }
-
-
-
-
 }
 
 
 .app-footer {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     box-shadow: 0 -1px 6px 0px rgba(0, 0, 0, 0.329);
     color: rgba(0, 0, 0, 0.705);
     position: relative;
     font-size: 12px;
 
     span:not(.footer-logo) {
-        margin: 5px 15px
+        margin: 5px 5px
     }
 
     .footer-logo {
@@ -316,8 +332,73 @@
     }
 }
 
-@media (min-width:1000px) {
+@media screen and (min-width: 600px) {
     .home-page {
+        .show-more {
+            margin-block-start: 10vh;
+        }
+
+        .freedom {
+            margin-block-start: 10vh;
+            padding: 13% 3rem;
+            flex-direction: row;
+
+            .right-pre .link-to-templates {
+                align-self: unset;
+            }
+        }
+
+        .build-unique .presence {
+            max-width: 500px;
+
+            .features {
+                gap: 1em;
+                display: flex;
+                flex-direction: row;
+
+                article {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1em;
+                    min-width: 200px;
+                }
+            }
+
+            .lines {
+                display: flex;
+                gap: 1em;
+                padding: 1em 0 1em;
+
+                .line-black {
+                    width: 80%;
+                    height: 1px;
+                    border: 1px solid black;
+                }
+            }
+        }
+
+        .app-footer {
+            justify-content: center;
+
+            span:not(.footer-logo) {
+                margin: 5px 15px
+            }
+        }
+    }
+}
+
+@media screen and (min-width:1000px) {
+    .home-page {
+        .hero {
+            .get-started {
+                font-size: 3em;
+            }
+
+            .logo img {
+                width: 100%;
+            }
+        }
+
         & .templates {
             grid-template-columns: repeat(3, minmax(0, rem(400px)));
             gap: 3em;
@@ -334,35 +415,54 @@
             justify-content: center;
             gap: 4em;
             position: relative;
+
+            &>* {
+                flex-basis: 0;
+                flex-grow: 1;
+            }
+
             .right-pre {
                 align-items: center;
                 font-size: rem(22px);
             }
-            .left-pre{
+
+            .left-pre {
                 font-size: rem(48px);
             }
 
         }
-        
+
 
         .build-unique {
             flex-direction: row;
+            padding-bottom: unset;
+
             .developer-img {
                 border-top-left-radius: 1em;
                 width: 50%;
                 background-position: 50% 30%;
-                height: 100%;
+                // height: 100%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-    
+
                 img {
-                    width: 62%;
-                    height: 100%;
+                    // width: 62%;
+                    // width: 90%;
+                    width: unset;
+                    height: unset;
+                    max-width: 90%;
+                    max-height: 700px;
+                    // aspect-ratio: 1/1;
+                    object-fit: cover;
+                    // height: 100%;
+
                 }
             }
 
             .presence {
+                order: -1;
+
                 flex-grow: 1;
                 padding-inline-start: 5%;
                 padding-block-start: 1rem;
@@ -375,20 +475,20 @@
 
                 }
 
-                .features {
-                    gap: 1em;
-                    display: flex;
-                    flex-direction: row;
+                // .features {
+                //     gap: 1em;
+                //     display: flex;
+                //     flex-direction: row;
 
-                    article {
-                        display: flex;
-                        flex-direction: column;
-                        gap: 1em;
-                        min-width: 200px;
-                    }
-                }
-               
-        
+                //     article {
+                //         display: flex;
+                //         flex-direction: column;
+                //         gap: 1em;
+                //         min-width: 200px;
+                //     }
+                // }
+
+
             }
         }
     }
