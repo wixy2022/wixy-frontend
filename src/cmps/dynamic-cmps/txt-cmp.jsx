@@ -31,7 +31,9 @@ export const TxtCmp = ({ cmp, onChangeInput, onSelectActiveCmp, onUpdateWap, isP
         onUpdateCmpTxt(innerText)
     }
 
-    if (isPublish) return <pre className={`txt-cmp ${cmp.className}`} style={cmp.style}>{cmp.txt}</pre>
+    if (isPublish) return <div className="txt-cmp relative">
+        <pre className={`txt-cmp ${cmp.className}`} style={cmp.style}>{cmp.txt}</pre>
+    </div>
 
     return <div className="txt-cmp relative" onClick={ev => ev.stopPropagation()}>
         {/* {isOptionModalOpen && <EditButtons cmpType={cmp.type} onOpenEditModal={onOpenEditModal} parentEl={elTarget} />} */}
