@@ -11,6 +11,8 @@ export function wapReducer(state = initialState, action) {
     switch (action.type) {
         case 'SET_WAP':
             return { ...state, wap: action.wap }
+        case 'SAVE_WAP':
+            return { ...state, wap: action.savedWap }
         case 'SET_ACTIVE_CMP':
             return { ...state, activeCmp: action.cmp }
         case 'SET_ACTIVE_CMP_POSITION':
