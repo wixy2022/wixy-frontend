@@ -80,7 +80,6 @@ export const Editor = React.memo(({ setPageClass }) => {
 
     const loadWap = async () => {
 
-
         const urlSrcPrm = new URLSearchParams(history.location.search)
         const wapId = urlSrcPrm.get('id')
 
