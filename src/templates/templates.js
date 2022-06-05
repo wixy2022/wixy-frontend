@@ -69,6 +69,13 @@ export const temp5Wap = {
     cmps: [wapHeader03, wapSection06, wapCards05, wapSection07, wapFooter03]
 }
 
+export const blankWap = {
+        // _id: '629294fbf04ad0403c9fe2ff',
+        name: 'new-template',
+        imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654410524/icons/start_from_scratch5_abauon.jpg',
+        description: 'Start from Scratch',
+        cmps: []
+}
 
 // /////////////// DEV ONLY
-export const allWaps = [temp5Wap, temp4Wap, temp3Wap, temp2Wap, temp1Wap]
+export const allWaps = [temp5Wap, temp4Wap, temp3Wap, temp2Wap, temp1Wap,blankWap]

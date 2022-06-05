@@ -226,7 +226,7 @@ export const wapCards05 = {
     type: 'container-draggable',
     category: 'wap-cards',
     className: 'wap-cards-05',
-    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654205627/templates/img1-wap5_hut6wa.jpg',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654410218/Capture_ao8gq5.png',
     cmps: [
         _getCard('img-card', 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654205627/templates/img1-wap5_hut6wa.jpg', 'Getting A Pet'),
         _getCard('img-card', 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654205627/templates/img2-wap5_dt4vh5.jpg', 'Code Of Animal Welfare (for pet owners)'),

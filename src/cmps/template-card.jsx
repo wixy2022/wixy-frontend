@@ -14,9 +14,15 @@ export const TemplateCard = ({ wap, secondRow, lastTemplate }) => {
     const [isPreview, setIsPreview] = useState(false)
 
     const getTemplatePath = async () => {
+        let cloneWap
+        if (wap.name === 'new-template') {
+            cloneWap = wapService.getEmptyWap()
+        } else {
+            cloneWap = JSON.parse(JSON.stringify(wap))
+            cloneWap.cmps.forEach(cmp => wapService.createAncestors(cmp))
+
+        }
         // const wapJoneyDep = wapService.createAncestors(wap)
-        const cloneWap = JSON.parse(JSON.stringify(wap))
-        cloneWap.cmps.forEach(cmp => wapService.createAncestors(cmp))
 
         const savedWap = await wapService.save(cloneWap)
         storageService.saveWapToStorage(savedWap)
@@ -44,10 +50,10 @@ export const TemplateCard = ({ wap, secondRow, lastTemplate }) => {
                 alt="" className={`template-card-img ${isMouseIn ? 'smoke' : ''} ${secondRow} ${lastTemplate}`} />
             {!secondRow && <h4 className="wap-description">{wap?.description}</h4>}
         </div>
-        {isPreview &&<>
-         <PreviewModal wapToLoad={wap} setPageClass={()=>{console.log('hey')}} setIsPreview={setIsPreview}/>
-         <div onClick={(ev) => {ev.stopPropagation(); setIsPreview(false)}} className="black-screen"></div>
+        {isPreview && <>
+            <PreviewModal wapToLoad={wap} setPageClass={() => { console.log('hey') }} setIsPreview={setIsPreview} />
+            <div onClick={(ev) => { ev.stopPropagation(); setIsPreview(false) }} className="black-screen"></div>
         </>
-         }
+        }
     </div>
 }

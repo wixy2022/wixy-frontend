@@ -88,7 +88,7 @@ export const wapHeader03 = {
     type: 'container-draggable',
     category: 'wap-header',
     className: 'wap-header-03',
-    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654200853/templates/wap-5-logo_lcrifl.jpg',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654409416/Capture_iypvpd.png',
     cmps: [
         {
             id: utilService.makeId(16),
