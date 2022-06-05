@@ -16,7 +16,8 @@
         // gap: 1em;
         background-color: white;
         top: 4em;
-        right: 2.2em;
+        // right: 2.2em;
+        right: 20px;
         width: 300px;
 
         .logout-btn {
@@ -152,14 +153,16 @@
         align-items: center;
         justify-content: flex-end;
         // width: 700px;
-        width: 70px;
+        // width: 70px;
+        width: 79px;
         margin: auto;
 
         .user-img-header {
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            margin-right: 34px;
+            // margin-right: 34px;
+            margin-right: 20px;
         }
     }
 }
@@ -195,7 +198,7 @@
     color: #fff;
     border: none;
     height: 30px;
-    margin-inline-end: 25px;
+    margin-inline-end: 20px;
     letter-spacing: .15px;
 
     &:hover {
@@ -216,7 +219,7 @@
     color:  $clr1;
     border: 1px solid  $clr1;
     height: 30px;
-    margin-inline-end: 25px;
+    margin-inline-end: 20px;
     letter-spacing: .15px;
     &:hover{
         background-color: #5999ff;

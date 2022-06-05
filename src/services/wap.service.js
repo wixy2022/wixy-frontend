@@ -86,7 +86,12 @@ function updateWap(wap, activeCmp, key, value) {
     const ancestorsIds = [...activeCmp.ancestors]
     // let newWap = JSON.parse(JSON.stringify(wap)) /* FIX - Try not using JSON.parse */
     // const updatedWap = _updateWapProperties(newWap, ancestorsIds, activeCmp, key, value)
+    
     const updatedWap = _updateWapProperties(wap, ancestorsIds, activeCmp, key, value)
+    
+    const nonEmptyCmps = updatedWap.cmps.filter(currCmp => currCmp.cmps.length > 0)
+    updatedWap.cmps = nonEmptyCmps
+    
     socketService.emit('edit wap', updatedWap)
     return updatedWap
 }
