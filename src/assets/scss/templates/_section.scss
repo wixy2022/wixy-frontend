@@ -14,8 +14,8 @@
     .txt-cmp {
         flex-grow: 1;
         flex-basis: 0;
-        font-size: 2rem;
-        color: rgb(61, 61, 61);
+        font-size: 2.2rem;
+        color: rgb(199, 199, 199);
         max-height: 55px;
     }
 
@@ -362,7 +362,7 @@
             width: 450px;
             border-radius: 450px;
             justify-content: flex-end;
-            top: -128.571428571px;
+            top: -12%;
             left: -75px;
             align-items: flex-end;
             background-color: rgba(83, 109, 33, .88);
@@ -402,6 +402,7 @@
     align-items: flex-start;
     justify-content: flex-start;
     overflow-x: clip;
+    background-color: white;
 
     &>* {
         width: 100%;

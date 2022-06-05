@@ -10,10 +10,14 @@ export const AnchorCmp = ({ cmp, onSelectActiveCmp, isPublish, onUpdateCmpTxt })
     onUpdateCmpTxt(innerText)
   }
 
-  if (isPublish) return <a className={`anchor-cmp ${cmp.className}`} style={cmp.style}>{cmp.txt}</a>
+  if (isPublish) return <a className={`anchor-cmp ${cmp.className}`}
+    target="_blank"
+    href={cmp.url}
+    style={cmp.style}
+  >{cmp.txt}</a>
 
   return <a className={`anchor-cmp ${cmp.className}`}
-    target="_blank" style={cmp.style}
+    style={cmp.style}
     onFocus={onFocusIn} onBlur={onBlur}
     onClick={ev => ev.stopPropagation()}
     contentEditable suppressContentEditableWarning={true}>

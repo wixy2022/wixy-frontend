@@ -3,6 +3,7 @@ import { wapSection01, wapSection02, wapSection03, wapSection05, wapSection04, w
 import { wapCards01, wapCards02, wapCards03, wapCards04, wapCards05, wapCards051 } from './card'
 import { wapFooter01, wapFooter02, wapFooter03, wapFooter04, wapFooter05, wapFooter06, wapFooter07 } from './footer'
 import { wapText01, wapText02, wapText03, wapText04, wapText05 } from './text'
+import { wapVideo01 } from './video'
 import { wapGallery01 } from './gallery'
 
 export const allTemplates = {
@@ -14,7 +15,7 @@ export const allTemplates = {
     form: [],
     map: [],
     chat: [],
-    video: [],
+    video: [wapVideo01],
     footer: [wapFooter01, wapFooter02, wapFooter03, wapFooter04, wapFooter05, wapFooter06, wapFooter07],
 }
 //   const names = ['header', 'section', 'text', 'cards', 'gallery', 'form', 'map', 'chat', 'video', 'footer',]

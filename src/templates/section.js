@@ -5,7 +5,7 @@ export const wapSection01 = {
     type: 'container-draggable',
     category: 'wap-hero',
     className: 'wap-hero-01',
-    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653580957/templates/hero-t1_ldzw5u.png',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654433128/section-01_p8730e.jpg',
     cmps: [
         {
             id: utilService.makeId(16),
