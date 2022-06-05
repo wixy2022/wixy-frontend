@@ -67,17 +67,7 @@ export const wapHeader02 = {
             id: utilService.makeId(16),
             type: 'txt',
             className: 'txt',
-            txt: 'Dine-in',
-        }, {
-            id: utilService.makeId(16),
-            type: 'txt',
-            className: 'txt',
             txt: 'Order food',
-        }, {
-            id: utilService.makeId(16),
-            type: 'txt',
-            className: 'txt',
-            txt: 'Media & Awards',
         }],
     }
     ],
