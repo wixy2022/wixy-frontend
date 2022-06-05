@@ -32,39 +32,39 @@
             width: 2px;
         }
 
-       
-.wap-section-02 {
-    overflow: hidden;
-    background-color: rgb(224, 213, 202);
 
-    &>.img-container {
-        overflow: hidden;
-        max-height: 250px;
+        .wap-section-02 {
+            overflow: hidden;
+            background-color: rgb(224, 213, 202);
 
-        &>img {
-            width: 100%;
-            min-height: 100%;
-            object-fit: cover;
-            object-position: center;
+            &>.img-container {
+                overflow: hidden;
+                max-height: 250px;
+
+                &>img {
+                    width: 100%;
+                    min-height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                }
+            }
+
+            .txt-container {
+                padding: 1rem;
+                display: flex;
+                flex-direction: column;
+                gap: 1em;
+
+                .txt.title {
+                    font-size: 2.5rem;
+                    font-style: italic;
+                }
+
+                .txt.subtitle {
+                    font-weight: bold;
+                }
+            }
         }
-    }
-
-    .txt-container {
-        padding: 1rem;
-        display: flex;
-        flex-direction: column;
-        gap: 1em;
-
-        .txt.title {
-            font-size: 2.5rem;
-            font-style: italic;
-        }
-
-        .txt.subtitle {
-            font-weight: bold;
-        }
-    }
-}
 
         .wap-cards-02 .card {
             padding: 2rem;
@@ -364,16 +364,29 @@
             }
 
             pre {
-                font-size: 1.2em;
+                font-size: 1.5em;
                 font-family: alfa-slab-one;
             }
 
             &>*:not(.edit-buttons) {
-                display: inline;
+                display: flex;
             }
 
             .wap-header-01 {
                 display: flex;
+            }
+
+            .fa {
+                font-size: 1.5em;
+                width: 28px;
+                height: 28px;
+                background-color: white;
+                color: rgb(14, 14, 14);
+                border-radius: 50%;
+                padding: 3px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
         }
 
@@ -920,6 +933,27 @@
             bottom: 0px;
             left: 0px;
             opacity: 0.2;
+        }
+
+        .wap-txt-03 {
+            background-color: rgba(228, 227, 230, 0.623);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 50px;
+            padding: 8px;
+
+            pre {
+                background-color: lightgray;
+                margin: auto;
+                max-width: 90%;
+                padding: 20px;
+                column-count: 1;
+                column-gap: 5%;
+                /* column-rule: 1px solid grey; */
+                box-shadow: inset 0 0 4.6px 0px #1e1a3c;
+
+            }
         }
     }
 

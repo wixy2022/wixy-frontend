@@ -82,6 +82,106 @@ export const wapFooter03 = {
     ],
 }
 
+export const wapFooter04 = {
+    id: utilService.makeId(16),
+    type: 'container-draggable',
+    category: 'wap-footer-04',
+    className: 'wap-footer-04',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654431384/footer-04_yuzr7d.jpg',
+    cmps: [{
+        id: utilService.makeId(16),
+        type: 'txt',
+        className: 'txt title',
+        txt: '+65 6836 3088',
+    }, {
+        id: utilService.makeId(16),
+        type: 'txt',
+        className: 'txt subtitle',
+        txt: '© 2021 by Studio-S',
+    }]
+}
+
+export const wapFooter05 = {
+    id: utilService.makeId(16),
+    type: 'container-draggable',
+    category: 'wap-footer-05',
+    className: 'wap-footer-05',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654431384/footer-05_ieirmw.jpg',
+    cmps: [{
+        id: utilService.makeId(16),
+        type: 'txt',
+        className: 'txt title',
+        txt: '+65 6836 3088',
+    }, {
+        id: utilService.makeId(16),
+        type: 'txt',
+        className: 'txt subtitle',
+        txt: '© 2021 by Studio-S',
+    }]
+}
+
+export const wapFooter06 = {
+    id: utilService.makeId(16),
+    type: 'container-draggable',
+    category: 'wap-footer-06',
+    className: 'wap-footer-06',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654431384/footer-06_s33j6f.jpg',
+    cmps: [{
+        id: utilService.makeId(16),
+        type: 'txt',
+        className: 'txt title',
+        txt: '+65 6836 3088',
+    }, {
+        id: utilService.makeId(16),
+        type: 'txt',
+        className: 'txt subtitle',
+        txt: '© 2021 by Studio-S',
+    }]
+}
+
+export const wapFooter07 = {
+    id: utilService.makeId(16),
+    type: 'container-draggable',
+    category: 'wap-footer-07',
+    className: 'wap-footer-07',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654431384/footer-07_o3sij5.jpg',
+    cmps: [{
+        id: utilService.makeId(16),
+        type: 'txt',
+        className: 'txt title',
+        txt: '+65 6836 3088',
+    }, {
+        id: utilService.makeId(16),
+        type: 'txt',
+        className: 'txt subtitle',
+        txt: '© 2021 by Studio-S',
+    },
+    {
+        id: utilService.makeId(16),
+        type: 'anchor',
+        url: 'https://www.facebook.com/',
+        className: 'link fa fa-facebook',
+        txt: '',
+
+    },
+    {
+        id: utilService.makeId(16),
+        type: 'anchor',
+        url: 'https://www.instagram.com/',
+        className: 'link fa fa-instagram',
+        txt: '',
+
+    },
+    {
+        id: utilService.makeId(16),
+        type: 'anchor',
+        url: 'https://www.twitter.com/',
+        className: 'link fa fa-twitter',
+        txt: '',
+
+    }
+    ]
+}
 
 
 
