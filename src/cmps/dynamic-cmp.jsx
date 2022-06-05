@@ -2,6 +2,7 @@ import React from "react"
 import { AnchorCmp } from "./dynamic-cmps/anchor-cmp"
 import { ImgCmp } from "./dynamic-cmps/img-cmp"
 import { TxtCmp } from "./dynamic-cmps/txt-cmp"
+import { VideoCmp } from "./dynamic-cmps/video-cmp"
 import { utilService } from "../services/util.service"
 
 // import { ContainerCmp } from "./dynamic-cmps/container-cmps.jsx"
@@ -72,6 +73,7 @@ export class DynamicCmp extends React.Component {
 
             case 'anchor': return <AnchorCmp cmp={cmp} isPublish={isPublish} onUpdateWap={onUpdateWap} onSelectActiveCmp={onSelectActiveCmp} onUpdateCmpTxt={onUpdateCmpTxt} />
             case 'img': return <ImgCmp cmp={cmp} isPublish={isPublish} onUpdateWap={onUpdateWap} onSelectActiveCmp={onSelectActiveCmp} />
+            case 'video': return <VideoCmp cmp={cmp} isPublish={isPublish} onUpdateWap={onUpdateWap} onSelectActiveCmp={onSelectActiveCmp} />
             default: return ''
         }
     }

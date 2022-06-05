@@ -10,6 +10,7 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
     const [themeList, setThemeList] = useState(wapService.getThemeList(activeCmp.type))
     const [linkUrl, setLinkUrl] = useState('')
     const [imgUrl, setImgUrl] = useState('')
+    const [videoUrl, setVideoUrl] = useState('')
     const [borderRadiusVal, setBorderRadiusVal] = useState(getComputedStyle(target).borderRadius)
     const [opacityVal, setOpacityVal] = useState(getComputedStyle(target).opacity * 100)
 
@@ -57,6 +58,16 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
                     </main>
                 </li>)}
         </ul>
+    }
+
+    const getYoutubeUrl = (url) => {
+        if (!url || !url.includes('youtube.com/watch?v=')) return
+        const params = url.split('?')[1]
+        const searchParams = new URLSearchParams(params)
+        const vidId = searchParams.get('v')
+        if (!vidId) return
+
+        return `https://www.youtube.com/embed/${vidId}`
     }
 
     const onSetProperty = (type, value, key = 'style') => {
@@ -109,11 +120,19 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
             else target.style[type] = value
 
         } else if (key === 'url') {
-            target.children[0].src = value
+            if (type === 'videoUrl') {
+                value = getYoutubeUrl(value)
+                target.parentElement.children[1].src = value
+            } else if (type === 'imgUrl') {
+                target.children[0].src = value
+            } else {
+                target.src = value
+            }
             updateActiveCmp({ ...activeCmp, url: value })
             // valueToSet = value
             setLinkUrl('')
             setImgUrl('')
+            setVideoUrl('')
         }
 
         // setActiveCmp({ ...activeCmp, [key]: valueToSet })
@@ -172,6 +191,7 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
     const handleChange = ({ target: { value, name } }) => {
         if (name === 'linkUrl') setLinkUrl(value)
         else if (name === 'imgUrl') setImgUrl(value)
+        else if (name === 'videoUrl') setVideoUrl(value)
         else if (name === 'borderRadius') { setBorderRadiusVal(value); onSetProperty(name, value, 'style') }
         else if (name === 'opacity') { setOpacityVal(value); onSetProperty(name, value, 'style') }
     }
@@ -233,9 +253,20 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
     const getInputUrl = (title, name, placeholder, value, type, min = '', max = '') => {
         const onSubmit = (ev) => {
             ev.preventDefault()
-            const { name } = ev.target[0]
-            const value = name === 'url' ? linkUrl : imgUrl
-            onSetProperty('url', value, 'url')
+            let { name } = ev.target[0]
+            switch (name) {
+                case 'url':
+                    value = linkUrl
+                    break
+                case 'imgUrl':
+                    value = imgUrl
+                    name = 'url'
+                    break
+                case 'videoUrl':
+                    value = videoUrl
+            }
+
+            onSetProperty(name, value, 'url')
         }
 
         return <form className='edit-modal-url-input' onSubmit={onSubmit} >
@@ -275,15 +306,17 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
         }
 
         {editMode === 'style' && activeCmp.type === 'img' && <main className="edit-modal-container">
-
-            {/* {getInput('Change Image', 'imgUrl', 'Enter URL and press Enter', imgUrl, 'text')} IMG-URL */}
             {getInputUrl('Change Image', 'imgUrl', 'Enter URL', imgUrl, 'text')} {/* IMG-URL */}
-
             {/* {getInput('Border Radius', 'borderRadius', 'Border Radius Size', borderRadiusVal, 'number', 0, 50)} / BORDER-RADIUS */}
             {getInputRange('Border Radius', 'borderRadius', 'Border Radius Size', borderRadiusVal, 0, 50)} {/* / BORDER-RADIUS */}
-
             {getInputRange('Opacity', 'opacity', 'Image Opacity', opacityVal, 0, 100)} {/* / OPACITY */}
 
+        </main>
+        }
+
+        {editMode === 'style' && activeCmp.type === 'video' && <main className="edit-modal-container">
+            {getInputUrl('Change Video', 'videoUrl', 'Enter URL', videoUrl, 'text')} {/* IMG-URL */}
+            {/* {getInput('Border Radius', 'borderRadius', 'Border Radius Size', borderRadiusVal, 'number', 0, 50)} / BORDER-RADIUS */}
         </main>
         }
 

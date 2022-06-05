@@ -5,7 +5,7 @@ export const wapHeader01 = {
     type: 'container-draggable',
     category: 'wap-header',
     className: 'wap-header-01',
-    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653580954/templates/header-t1_yosljg.png',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654433128/header-01_iuiuxi.jpg',
     cmps: [
         {
             id: utilService.makeId(16),
@@ -47,7 +47,7 @@ export const wapHeader02 = {
     category: 'wap-header',
     theme: 'classic',
     className: 'wap-header-02',
-    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653565595/templates/wap-header-02_yz1fq7.png',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654433128/header-02_nbqckl.jpg',
     cmps: [{
         id: utilService.makeId(16),
         type: 'txt',
