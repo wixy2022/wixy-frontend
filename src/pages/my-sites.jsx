@@ -19,10 +19,11 @@ export const MySites = () => {
 
     const loadUserWaps = async () => {
         const userWapsFromBack = await wapService.query({ userId: user._id })
-        console.log(userWapsFromBack)
+        
         setUserWaps(userWapsFromBack)
     }
     if (!userWaps) return <Loader />
+    
     return <div className="my-sites">
         <h2>My Sites</h2>
         <div className="user-waps">

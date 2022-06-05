@@ -4,7 +4,7 @@ import { DraggableTemplate } from './draggable-template.jsx'
 import { utilService } from "../services/util.service.js"
 import { Droppable } from "react-beautiful-dnd"
 
-export const TemplateToolBar = ({ setToolBarMode, templates, setTemplateKey, onCloseScreen, onSetHeight }) => {
+export const TemplateToolBar = ({ setToolBarMode,onSaveWap, templates, setTemplateKey, onCloseScreen, onSetHeight }) => {
     const [selectedTemplates, setSelectedTemplates] = useState(null)
     const [currTopic, setCurrTopic] = useState(null)
 
@@ -28,7 +28,7 @@ export const TemplateToolBar = ({ setToolBarMode, templates, setTemplateKey, onC
 
     }
     const getToolBarButtons = () => {
-        const names = ['header', 'section', 'text', 'cards', 'gallery', 'form', 'map', 'chat', 'video', 'footer',]
+        const names = ['header', 'section', 'text', 'cards', 'gallery', 'video', 'footer',]
         return names.map((name) => <button
             onClick={onHandleTemplates}
             className='editor-icon-container'
@@ -38,6 +38,7 @@ export const TemplateToolBar = ({ setToolBarMode, templates, setTemplateKey, onC
         </button>)
     }
     return <section className="template-tool-bar" >
+            <div onClick={onSaveWap} className="save"><img className="save-img" src="https://res.cloudinary.com/drpqhjyvk/image/upload/v1654447979/diskette_v3iykh.png" alt="" /></div>
         <div className="template-bar-btns">
             {getToolBarButtons()}
         </div>

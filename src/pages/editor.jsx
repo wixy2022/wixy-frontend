@@ -38,59 +38,47 @@ export const Editor = React.memo(({ setPageClass }) => {
     const [toolBarMode, setToolBarMode] = useState('')
     const [templateKey, setTemplateKey] = useState(null)
     const editorRef = useRef()
-    const myImg = useRef()
+
     const templates = allTemplates
 
 
     useEffect(() => {
         const { wapId } = params
-        // socketService.setup()
         socketService.emit('wap id', wapId)
         socketService.on('wap changed', (wap) => dispatch(setWap(wap)))
-        // socketService.off('wap changed');
 
         return async () => {
             socketService.off('wap changed')
             if (wap?.cmp?.length === 0) wapService.remove(wap?._id)
             else if (wap) {
-
-                const wapFromStorage = storageService.getWapFromStorage()
-                if (myImg.current) {
-                    const img = await uploadService.uploadImg(myImg.current)
-                    wapFromStorage.imgUrl = img
-                    dispatch(saveWap(wapFromStorage))
-                    
-                }else{
-
-                    dispatch(saveWap(wap))
-                }
+                dispatch(saveWap(storageService.getWapFromStorage()))
             }
-
-            console.log('died')
-            // socketService.terminate()
         }
     }, [])
 
-    useEffectUpdate(() => {
-        // takeScreenshot(editorRef.current)
-        getImg()
-        
-    }, [wap])
+    const onSaveWap = async () => {
+        const wapFromStorage = storageService.getWapFromStorage()
+        try {
 
-    async function getImg (){
-        console.log('editorRef.current', editorRef.current)
-        const img = await htmlToImage.toPng(editorRef.current)
-        myImg.current = img
+            const imgBase64 = await htmlToImage.toJpeg(editorRef.current)
+            const img = await uploadService.uploadImg(imgBase64)
+
+            wapFromStorage.imgUrl = img
+            dispatch(setMsg({ type: 'success', txt: 'Saved webpage.' }))
+            dispatch(saveWap(wapFromStorage))
+        } catch (err) {
+            dispatch(setMsg({ type: 'danger', txt: 'Failed saving webpage.' }))
+        }
+
     }
+
     useEffect(() => {
         storageService.saveWapToStorage(wap)
+        const screenHeight = editorRef.current.scrollHeight
+        dispatch(setScreenHeight(screenHeight))
 
-        
-        // takeScreenshot(document.querySelector('.editor-site-container'))
         return () => {
-            // if (wap) dispatch(saveWap(wap))
         }
-        // socketService.emit('edit wap', wap)
     }, [wap])
 
     useEffect(() => {
@@ -100,12 +88,6 @@ export const Editor = React.memo(({ setPageClass }) => {
             setPageClass('')
         }
     }, [history.location.search])
-
-    // useEffect(() => {
-    //     const screenHeight = editorRef.current.scrollHeight
-    //     dispatch(setScreenHeight(screenHeight))
-    //     dispatch(saveWap(wap))
-    // }, [wap])
 
     const loadWap = async () => {
 
@@ -121,8 +103,7 @@ export const Editor = React.memo(({ setPageClass }) => {
             } catch (err) {
                 console.log('status', err.response.status)
                 console.log('data', err.response.data)
-                /* FIX -  */
-                // this.props.setUserMsg({ type: 'danger', txt: 'Failed loading your page. Please try again later' })
+
                 dispatch(setMsg({ type: 'danger', txt: 'Failed loading your page.' }))
                 const newWap = dispatch(saveWap(wapService.getEmptyWap()))
                 history.push(`/editor?id=${newWap._id}`)
@@ -133,16 +114,8 @@ export const Editor = React.memo(({ setPageClass }) => {
         }
     }
 
-    /* SCREEN */
-
-    useEffect(() => {
-        const screenHeight = editorRef.current.scrollHeight
-        dispatch(setScreenHeight(screenHeight))
-    }, [wap])
-
     const onCloseScreen = () => {
         dispatch(updateWapByActiveCmp())
-        // socketService.emit('edit wap', wap)
         onEndEditMode()
     }
 
@@ -156,12 +129,6 @@ export const Editor = React.memo(({ setPageClass }) => {
         const screenHeight = editorRef.current.scrollHeight
         dispatch(setScreenHeight(screenHeight))
     }
-
-    // const onEditElement = () => {
-    //     dispatch(setScreen(true))
-    // }
-
-    /* SCREEN */
 
     const handleOnDragEnd = (result) => {
         if (!result.destination) {
@@ -187,8 +154,6 @@ export const Editor = React.memo(({ setPageClass }) => {
         }
     }
 
-
-
     const onSelectActiveCmp = (currCmp, elCurrCmp, onChange) => {
 
 
@@ -208,8 +173,6 @@ export const Editor = React.memo(({ setPageClass }) => {
         dispatch(setActiveCmpTxt(txt))
     }
 
-
-
     const onUpdateWap = (activeCmp, key, value = null) => {
         /* This function takes care of remove, duplicate cmp and DnD image */
         const updatedWap = wapService.updateWap(wap, activeCmp, key, value)
@@ -222,6 +185,7 @@ export const Editor = React.memo(({ setPageClass }) => {
         <DragDropContext onDragEnd={handleOnDragEnd}>
 
             <TemplateToolBar
+                onSaveWap={onSaveWap}
                 setToolBarMode={setToolBarMode}
                 templates={templates}
                 setTemplateKey={setTemplateKey}
