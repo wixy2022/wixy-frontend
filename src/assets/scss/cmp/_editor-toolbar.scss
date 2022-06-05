@@ -593,7 +593,7 @@
 
     .editor.tool-bar-open .template-tool-bar {
         bottom: unset;
-
+        box-shadow: none;
         &::after {
             content: '';
             width: 1px;
@@ -643,7 +643,7 @@
                 &::before {
                     display: flex;
                     position: absolute;
-                    left: 55px;
+                    left: 47px;
                     top: -2px;
                     position: absolute;
                     align-items: center;
