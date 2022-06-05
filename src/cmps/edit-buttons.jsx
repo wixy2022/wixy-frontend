@@ -63,8 +63,8 @@ export const EditButtons = React.memo(({ onUpdateWap }) => {
             case 'txt': return [getDetails('theme'), getDetails('style'), getDetails('delete')]
             case 'anchor': return [getDetails('theme'), getDetails('style'), getDetails('delete')]
             case 'img': return [getDetails('theme'), getDetails('style'), getDetails('delete')]
-            case 'container-draggable': return [getDetails('theme'), getDetails('clone'), getDetails('delete')]
-            case 'container': return [getDetails('theme'), getDetails('delete')]
+            case 'container-draggable': return [getDetails('theme'), getDetails('style'), getDetails('clone'), getDetails('delete')]
+            case 'container': return [getDetails('theme'), getDetails('style'), getDetails('delete')]
             default: return ''
         }
     }
@@ -72,19 +72,23 @@ export const EditButtons = React.memo(({ onUpdateWap }) => {
     const onOpenEditModal = (ev, action) => {
         ev.stopPropagation()
 
-        /* FIX - 250 is the width of the modal */
-        /* FIX - 325 = height of modal 245 and 80 i've added */
+        /* 250 is the width of the modal */
+        /* 325 = height of modal 245 and 80 i've added */
 
         let posX = ev.clientX - editorOffsetLeft //mouse position less editor posX
         if (window.innerWidth < 500) posX = '' //if mobile, CSS will make it centered to screen
         else if (posX - 250 <= 16) posX += 250 //if it cant open to the left, it will open to the right
 
         let posY = ev.clientY + editorScrollTop - 10 //mouse position plus editor scroll position
-        if (posY - editorScrollTop - 325 <= 16) posY += 325 // if it cant open above, it will open below
+        // if (posY - editorScrollTop - 325 <= 16) posY += 325 // if it cant open above, it will open below
+        
+        // if it cant open above, it will open below
+        // if it's container and style, the size of the editor is smaller since it has only background colors
+        const offsetBottom = activeCmp.type.includes('container') && action.type === 'style'? 195 : 325
+        if (posY - editorScrollTop - offsetBottom <= 16) posY += offsetBottom
 
         setEditModalPosition({ posX, posY })
 
-        /* FIX - ADD BUTTONS BY ACTION */
         setEditModalMode(action)
         setIsEditModalOpen(true)
     }

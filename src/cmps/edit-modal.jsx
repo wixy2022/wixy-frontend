@@ -101,10 +101,10 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
                 // setOpacityVal('')
             }
 
-            if(type === 'opacity' || type === 'borderRadius') value += '%'
+            if (type === 'opacity' || type === 'borderRadius') value += '%'
             valueToSet = { ...activeCmp.style, [type]: value }
             updateActiveCmp({ ...activeCmp, style: valueToSet })
-            
+
             if (type === 'opacity' || type === 'borderRadius') target.children[0].style[type] = value
             else target.style[type] = value
 
@@ -176,46 +176,46 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
         else if (name === 'opacity') { setOpacityVal(value); onSetProperty(name, value, 'style') }
     }
 
-    const onSubmit = (ev) => {
-        ev.preventDefault()
-        const { name } = ev.target[0]
-        let type, value, key
+    // const onSubmit = (ev) => {
+    //     ev.preventDefault()
+    //     const { name } = ev.target[0]
+    //     let type, value, key
 
-        switch (name) {
-            case 'url':
-            case 'imgUrl':
-                type = 'url'
-                value = name === 'url' ? linkUrl : imgUrl
-                key = 'url'
-                break
-            case 'borderRadius':
-                type = 'borderRadius'
-                value = borderRadiusVal + '%'
-                key = 'style'
-                break
-            case 'opacity':
-                type = 'opacity'
-                value = opacityVal + '%'
-                key = 'style'
-                break
-        }
-        onSetProperty(type, value, key)
-    }
+    //     switch (name) {
+    //         case 'url':
+    //         case 'imgUrl':
+    //             type = 'url'
+    //             value = name === 'url' ? linkUrl : imgUrl
+    //             key = 'url'
+    //             break
+    //         // case 'borderRadius':
+    //         //     type = 'borderRadius'
+    //         //     value = borderRadiusVal + '%'
+    //         //     key = 'style'
+    //         //     break
+    //         // case 'opacity':
+    //         //     type = 'opacity'
+    //         //     value = opacityVal + '%'
+    //         //     key = 'style'
+    //         //     break
+    //     }
+    //     onSetProperty(type, value, key)
+    // }
 
-    const getInput = (title, name, placeholder, value, type, min = '', max = '') => {
-        return <form className='link-edit-container' onSubmit={onSubmit} >
-            <label><h4>{title}</h4>
-                <input type={type} placeholder={placeholder} name={name} min={min} max={max}
-                    value={value} onChange={handleChange} />
-            </label>
-        </form>
-    }
+    // const getInput = (title, name, placeholder, value, type, min = '', max = '') => {
+    //     return <form className='link-edit-container' onSubmit={onSubmit} >
+    //         <label><h4>{title}</h4>
+    //             <input type={type} placeholder={placeholder} name={name} min={min} max={max}
+    //                 value={value} onChange={handleChange} />
+    //         </label>
+    //     </form>
+    // }
 
     const getInputRange = (title, name, placeholder, value, min = '', max = '') => {
         const getValue = (name, value) => {
             if (name === 'borderRadius') {
                 if (value.includes('px')) value = '5px'.replace(/px/g, '')
-                    return `${value}${value.includes('%') ? '' : '%'}`
+                return `${value}${value.includes('%') ? '' : '%'}`
             }
             value = Math.floor(value)
             return value
@@ -231,6 +231,13 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
     }
 
     const getInputUrl = (title, name, placeholder, value, type, min = '', max = '') => {
+        const onSubmit = (ev) => {
+            ev.preventDefault()
+            const { name } = ev.target[0]
+            const value = name === 'url' ? linkUrl : imgUrl
+            onSetProperty('url', value, 'url')
+        }
+
         return <form className='edit-modal-url-input' onSubmit={onSubmit} >
             <label><h4>{title}</h4>
                 <div>
@@ -263,7 +270,7 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
 
             {getColorPalette('Text Color', 'color')} {/* TEXT-COLOR */}
 
-            {getColorPalette('Text Background', 'backgroundColor')} {/* BCG-COLOR */}
+            {getColorPalette('Background Color', 'backgroundColor')} {/* BCG-COLOR */}
         </main>
         }
 
@@ -279,6 +286,10 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
 
         </main>
         }
+
+        {editMode === 'style' && activeCmp.type.includes('container') && <main className="edit-modal-container">
+            {getColorPalette('Background Color', 'backgroundColor')} {/* BCG-COLOR */}
+        </main>}
 
     </section >
 }
