@@ -48,8 +48,7 @@ export function Home() {
                 </pre>
                 <div className="link-to-templates">
 
-                    <Link to='/templates' className="get-started"> Get Started
-                    </Link>
+                    <Link to='/templates' className="get-started"> Get Started</Link>
                     <span className=".slide-right">→</span>
                 </div>
             </div>
@@ -87,6 +86,7 @@ export function Home() {
                         </p>
                     </article>
                 </div>
+                <Link to='/templates' className="get-started"> Build your site</Link>
             </div>
         </section>
 

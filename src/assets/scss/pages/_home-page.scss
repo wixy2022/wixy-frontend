@@ -102,7 +102,7 @@
         align-items: center;
         gap: 2em;
 
-        .template-card .template-card-img-container .wap-description{
+        .template-card .template-card-img-container .wap-description {
             margin-bottom: unset;
         }
     }
@@ -176,6 +176,7 @@
 
             // font-weight: bold;
             .link-to-templates {
+                align-self: flex-end;
                 max-width: 300px;
                 display: flex;
                 // margin-top: 20px;
@@ -289,13 +290,21 @@
                 //     }
                 // }
             }
+
+            .get-started {
+                align-self: center;
+                width: 100%;
+                max-width: 270px;
+                margin-top: 2em;
+                padding: 1.3rem;
+                text-align: center;
+                font-weight: bold;
+                color: #14348e;
+                background-color: white;
+                border-radius: 6em;
+            }
         }
-
     }
-
-
-
-
 }
 
 
@@ -333,6 +342,10 @@
             margin-block-start: 10vh;
             padding: 13% 3rem;
             flex-direction: row;
+
+            .right-pre .link-to-templates {
+                align-self: unset;
+            }
         }
 
         .build-unique .presence {
