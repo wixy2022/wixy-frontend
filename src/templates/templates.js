@@ -5,14 +5,14 @@ import { wapFooter01, wapFooter02, wapFooter03, wapFooter04, wapFooter05, wapFoo
 import { wapText01, wapText02, wapText03, wapText04, wapText05 } from './text'
 import { wapVideo01 } from './video'
 import { wapGallery01 } from './gallery'
-
+import {wapForm01} from './form'
 export const allTemplates = {
     header: [wapHeader01, wapHeader02, wapHeader03],
     section: [wapSection01, wapSection02, wapSection05, wapSection03, wapSection04, wapSection06, wapSection07, wapSection071],
     text: [wapText01, wapText02, wapText03, wapText04, wapText05],
     cards: [wapCards01, wapCards02, wapCards03, wapCards04, wapCards05, wapCards051],
     gallery: [wapGallery01],
-    form: [],
+    form: [wapForm01],
     map: [],
     chat: [],
     video: [wapVideo01],

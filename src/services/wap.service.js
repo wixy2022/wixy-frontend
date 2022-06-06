@@ -18,6 +18,7 @@ export const wapService = {
     updateWap,
     createAncestors,
     getThemeList,
+    addLeads
     
 }
 
@@ -35,6 +36,7 @@ async function getById(wapId) {
     /* Next line should be in the BACKEND */
     // return storageService.get(STORAGE_KEY, wapId)
 }
+
 
 async function save(wap) {
     /* Next line should be in the BACKEND */
@@ -60,6 +62,9 @@ async function remove(wapId) {
     // return storageService.remove(STORAGE_KEY, wapId)
 }
 
+async function addLeads(leadData){
+return await httpService.post(BASE_PATH, leadData)
+}
 
 function getEmptyWap() {
     return {
