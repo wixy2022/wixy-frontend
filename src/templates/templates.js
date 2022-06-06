@@ -10,9 +10,10 @@ import { wapGallery01 } from './gallery'
 
 export const allTemplates = {
     header: [wapHeader01, wapHeader02, wapHeader03],
-    section: [wapSection01, wapSection02, wapSection05, wapSection03, wapSection04, wapSection06, wapSection07, wapSection071],
+    // section: [wapSection01, wapSection02, wapSection05, wapSection03, wapSection04, wapSection06, wapSection07, wapSection071],
+    section: [wapSection06, wapSection05, wapSection071, wapSection03, wapSection04, wapSection01, wapSection02],
     text: [wapText01, wapText02, wapText03, wapText04, wapText05],
-    cards: [wapCards01, wapCards02, wapCards03, wapCards04, wapCards05, wapCards051],
+    cards: [wapSection07, wapCards05, wapCards051, wapCards04, wapCards02, wapCards03, wapCards01],
     gallery: [wapGallery01],
     form: [],
     map: [],
@@ -166,10 +167,10 @@ export const wapVideo99 = {
 export const temp99Wap = {
     // _id: '629294fbf04ad0403c9fe2ff',
     name: 'template 99',
-    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654503144/presentation/fake_wap_nsxuzq.jpg',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654505398/presentation/fake_wap2_rbxmq2.jpg',
     description: 'Chocolate and flowers arrangements',
     cmps: [wapSection99, wapHeader99, wapSection07, wapVideo99, wapFooter03]
 }
 
 // /////////////// DEV ONLY
-export const allWaps = [temp99Wap, temp4Wap, temp3Wap, temp2Wap, temp1Wap, blankWap, temp5Wap]
+export const allWaps = [temp99Wap, temp4Wap, temp3Wap, temp2Wap, temp1Wap, temp5Wap, blankWap]

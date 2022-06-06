@@ -59,14 +59,18 @@ img {
 .img-cmp {
     overflow: hidden;
 }
-.cursor1{
-    width: 30px ;
+
+.cursor1 {
+    width: 30px;
     left: -2000px;
     top: -2000px;
     background-size: 30px;
     height: 30px;
     position: fixed;
-    z-index: 20000;
     object-fit: contain;
-    background-image: url(../../img/kisspng-computer-mouse-pointer-arrow-icon-cursor-arrow-png-transparent-image-5a757a463ea008.0994869315176484542565.png);
+    z-index: 20000;
+    border-radius: 50%;
+    background-image: url(../../img/cursor.png);
+    background-position-x: 1.5px;
+    box-shadow: 0 0 10px $clr1;
 }
