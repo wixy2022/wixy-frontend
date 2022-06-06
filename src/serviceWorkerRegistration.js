@@ -1,6 +1,12 @@
 // This optional code is used to register a service worker.
 // register() is not called by default.
 
+import Axios from "axios";
+
+
+let axios = Axios.create({
+  withCredentials: true
+})
 // This lets the app load faster on subsequent visits in production, and gives
 // it offline capabilities. However, it also means that developers (and users)
 // will only see deployed updates on subsequent visits to a page, after all the
@@ -12,10 +18,10 @@
 
 const isLocalhost = Boolean(
   window.location.hostname === 'localhost' ||
-    // [::1] is the IPv6 localhost address.
-    window.location.hostname === '[::1]' ||
-    // 127.0.0.0/8 are considered localhost for IPv4.
-    window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/)
+  // [::1] is the IPv6 localhost address.
+  window.location.hostname === '[::1]' ||
+  // 127.0.0.0/8 are considered localhost for IPv4.
+  window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/)
 );
 
 export function register(config) {
@@ -41,7 +47,7 @@ export function register(config) {
         navigator.serviceWorker.ready.then(() => {
           console.log(
             'This web app is being served cache-first by a service ' +
-              'worker. To learn more, visit https://cra.link/PWA'
+            'worker. To learn more, visit https://cra.link/PWA'
           );
         });
       } else {
@@ -69,7 +75,7 @@ function registerValidSW(swUrl, config) {
               // content until all client tabs are closed.
               console.log(
                 'New content is available and will be used when all ' +
-                  'tabs for this page are closed. See https://cra.link/PWA.'
+                'tabs for this page are closed. See https://cra.link/PWA.'
               );
 
               // Execute callback
@@ -133,5 +139,56 @@ export function unregister() {
       .catch((error) => {
         console.error(error.message);
       });
+  }
+}
+const publicVapidKey = 'BFJRJ5RBPh85KdwMjFmNXzvYB2Z8_0_e8hNr90i2yY9dfCL9DM2wxv1BeRbar5PJe7e03s2VwP2KpWX_2516t3M'
+let subscription
+export const pushReq = async (params, query) => {
+  let queryString = Object.entries(query).join('&')
+  queryString = queryString.replaceAll(',', '=')
+  console.log(queryString)
+  await axios.post(`http://localhost:3030/subscribe/${params}?${queryString}`, JSON.stringify(subscription),{
+    headers: {
+      'content-type': 'application/json',
+    }
+  })
+}
+const send = async () => {
+  console.log('Regestering service worker...')
+  const register = await navigator.serviceWorker.register(process.env.NODE_ENV === 'production' ? `${process.env.PUBLIC_URL}/service-worker.js` : `${process.env.PUBLIC_URL}/sw.js`, {
+    scope: '/'
+  })
+  console.log('Service worker registered...')
+  console.log('Regestering push...')
+  subscription = await register.pushManager.subscribe({
+    userVisibleOnly: true,
+    applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
+  })
+  console.log('Push registered...')
+  console.log('Sending push...')
+  pushReq('dd dd     dd', { title: 'New lead !', body: 'You have got new lead' })
+  console.log('Push send...')
+}
+function urlBase64ToUint8Array(base64String) {
+  const padding = '='.repeat((4 - base64String.length % 4) % 4)
+  const base64 = (base64String + padding)
+    .replace(/\-/g, '+')
+    .replace(/_/g, '/')
+  const rawData = window.atob(base64)
+  const outputArray = new Uint8Array(rawData.length)
+  for (let i = 0; i < rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i)
+  }
+  return outputArray
+}
+if ('serviceWorker' in navigator) {
+  send().catch(err => console.error(err))
+}
+export function LocalServiceWorkerRegister() {
+  if ('serviceWorker' in navigator && process.env.NODE_ENV !== 'production') {
+    const swPath = `${process.env.PUBLIC_URL}/sw.js`;
+    navigator.serviceWorker.register(swPath).then(registration => {
+      console.log('Service worker registered localy');
+    })
   }
 }

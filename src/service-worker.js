@@ -68,5 +68,15 @@ self.addEventListener('message', (event) => {
     self.skipWaiting();
   }
 });
+self.addEventListener('push',(ev)=>{
+  const data = ev.data?.json()
+    console.log('Push recieved...')
+    console.log(data,'data')
+    self.registration.showNotification(data.title, {
+      body : data.body,
+      icon: 'favicon.jpg'
+    })
+})
+
 
 // Any other custom service worker logic can go here.
