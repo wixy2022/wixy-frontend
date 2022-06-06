@@ -196,7 +196,7 @@ export const Editor = React.memo(({ setPageClass }) => {
         }
     }
 
-    return <section onM onMouseMove={mouseMoving} className={`editor ${toolBarMode}`}>
+    return <section  onMouseMove={mouseMoving} className={`editor ${toolBarMode}`}>
         {!wap && <Loader />}
 
         <DragDropContext onDragEnd={handleOnDragEnd}>
