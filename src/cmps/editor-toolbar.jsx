@@ -29,7 +29,7 @@ export const TemplateToolBar = ({ setToolBarMode,onSaveWap, templates, setTempla
 
     }
     const getToolBarButtons = () => {
-        const names = ['header', 'section', 'text', 'cards', 'gallery', 'video', 'footer',]
+        const names = ['header', 'section', 'text', 'cards', 'gallery', 'video','form', 'footer',]
         return names.map((name) => <button
             onClick={onHandleTemplates}
             className='editor-icon-container'
