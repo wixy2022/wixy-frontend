@@ -22,7 +22,6 @@ export const TemplateCard = ({ wap, secondRow, lastTemplate }) => {
             cloneWap.cmps.forEach(cmp => wapService.createAncestors(cmp))
 
         }
-        // const wapJoneyDep = wapService.createAncestors(wap)
 
         const savedWap = await wapService.save(cloneWap)
         storageService.saveWapToStorage(savedWap)
