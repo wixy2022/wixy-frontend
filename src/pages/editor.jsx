@@ -103,7 +103,8 @@ export const Editor = React.memo(({ setPageClass }) => {
                 console.log('status', err.response.status)
                 console.log('data', err.response.data)
 
-                dispatch(setMsg({ type: 'danger', txt: 'Failed loading your page.' }))
+                /* FIX -  */
+                // dispatch(setMsg({ type: 'danger', txt: 'Failed loading your page.' }))
                 dispatch(saveWap(wapService.getEmptyWap()))
             }
         } else {
