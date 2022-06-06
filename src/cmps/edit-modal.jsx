@@ -13,8 +13,7 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
     const [videoUrl, setVideoUrl] = useState('')
     const [borderRadiusVal, setBorderRadiusVal] = useState(getComputedStyle(target).borderRadius)
     const [opacityVal, setOpacityVal] = useState(getComputedStyle(target).opacity * 100)
-    console.log('borderRadiusVal', borderRadiusVal)
-
+ 
     const { type: editMode } = editModalMode
 
     const onClassName = (ev, value) => {

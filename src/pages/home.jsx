@@ -21,12 +21,15 @@ export function Home() {
             </pre>
         </section>
         <section className="templates main-layout">
-            {allWaps.map((wap, idx) => {
-                if (idx > 2) return
-                // if (idx === allWaps.length - 1) return <TemplateCard key={utilService.createKey()} secondRow={'second-row'} lastTemplate={'last-template'} wap={wap} />
-                // else if (idx > 2) return <TemplateCard key={utilService.createKey()} secondRow={'second-row'} wap={wap} />
-                return <TemplateCard key={utilService.createKey()} wap={wap} />
-            })}
+            <h2 className="templates-header">Recently created sites</h2>
+            <section className="templates-grid">
+                {allWaps.map((wap, idx) => {
+                    if (idx > 2) return
+                    // if (idx === allWaps.length - 1) return <TemplateCard key={utilService.createKey()} secondRow={'second-row'} lastTemplate={'last-template'} wap={wap} />
+                    // else if (idx > 2) return <TemplateCard key={utilService.createKey()} secondRow={'second-row'} wap={wap} />
+                    return <TemplateCard key={utilService.createKey()} wap={wap} />
+                })}
+            </section>
         </section>
         <section className="show-more main-layout">
             <div className="line"></div>
