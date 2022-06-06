@@ -7,15 +7,13 @@ import { utilService } from "../services/util.service"
 import { wapService } from "../services/wap.service"
 import { saveWap } from "../store/actions/wap.action"
 
-export const Publish = ({ setPageClass ,wapToLoad}) => {
+export const Publish = ({ setPageClass, wapToLoad }) => {
     const savedWap = useSelector(storeState => storeState.wapModule.wap)
     const [wap, setWap] = useState(null)
     const history = useHistory()
 
-
-
     useEffect(() => {
-         setPageClass('publisher-open')
+        setPageClass('publisher-open')
         loadWap()
         return () => {
             setPageClass('')
@@ -23,14 +21,14 @@ export const Publish = ({ setPageClass ,wapToLoad}) => {
     }, [])
 
     const loadWap = async () => {
-        if(wapToLoad) return setWap(wapToLoad)
+        if (wapToLoad) return setWap(wapToLoad)
         // const wapFromStorage = storageService.getWapFromStorage()
         // if (wapFromStorage) {
         //     return setWap(wapFromStorage)
         // }
 
         // if (savedWap) return setWap(savedWap)
-        
+
         console.log(wap, savedWap)
         const urlSrcPrm = new URLSearchParams(history.location.search)
         const wapId = urlSrcPrm.get('id')
@@ -51,10 +49,17 @@ export const Publish = ({ setPageClass ,wapToLoad}) => {
 
         // setWap(wapService.getEmptyWap())
     }
+
+    const onSubmitLead = (lead) => {
+        lead.wapId = wap._id
+        console.log('lead', lead)
+        wapService.addLeads(lead)
+    }
+
     if (!wap) return <></>
-    return <section onClick={ev=>ev.stopPropagation()} className="publish">
+    return <section onClick={ev => ev.stopPropagation()} className="publish">
         {wap.cmps.map(cmp => {
-            return <DynamicCmp onClick={ev=>ev.stopPropagation()} cmp={cmp} key={utilService.createKey()} isPublish={true} />
+            return <DynamicCmp onClick={ev => ev.stopPropagation()} cmp={cmp} key={utilService.createKey()} isPublish={true} onSubmitLead={onSubmitLead} />
 
         })}
     </section>

@@ -35,7 +35,7 @@ export class DynamicCmp extends React.Component {
 
     getCmp = (cmp) => {
         // const { onEditElement, onOpenEditModal, isPublish } = this.props
-        const { onSelectActiveCmp, onUpdateWap, isPublish, onUpdateCmpTxt } = this.props
+        const { onSelectActiveCmp, onUpdateWap, isPublish, onUpdateCmpTxt, onSubmitLead } = this.props        
 
         if (cmp.category) cmp.className += ' ' + cmp.category
         if (cmp.theme) cmp.className += ' ' + cmp.theme
@@ -66,15 +66,15 @@ export class DynamicCmp extends React.Component {
                     {cmp.cmps.map((currCmp) =>
                         <DynamicCmp isPublish={isPublish} key={utilService.createKey()} className={currCmp.className} cmp={currCmp}
                             onUpdateWap={onUpdateWap}
-                            //onChangeInput={this.onChangeInput}
-                            onSelectActiveCmp={onSelectActiveCmp} onUpdateCmpTxt={onUpdateCmpTxt} />
+                            onSelectActiveCmp={onSelectActiveCmp} onUpdateCmpTxt={onUpdateCmpTxt} 
+                            onSubmitLead={onSubmitLead}/>
                     )}
                 </section>
 
             case 'anchor': return <AnchorCmp cmp={cmp} isPublish={isPublish} onUpdateWap={onUpdateWap} onSelectActiveCmp={onSelectActiveCmp} onUpdateCmpTxt={onUpdateCmpTxt} />
             case 'img': return <ImgCmp cmp={cmp} isPublish={isPublish} onUpdateWap={onUpdateWap} onSelectActiveCmp={onSelectActiveCmp} />
             case 'video': return <VideoCmp cmp={cmp} isPublish={isPublish} onUpdateWap={onUpdateWap} onSelectActiveCmp={onSelectActiveCmp} />
-            case 'form': return <FormCmp cmp={cmp} isPublish={isPublish} onUpdateWap={onUpdateWap} onSelectActiveCmp={onSelectActiveCmp} />
+            case 'form': return <FormCmp cmp={cmp} isPublish={isPublish} onSubmitLead={onSubmitLead} />
             default: return ''
         }
     }
