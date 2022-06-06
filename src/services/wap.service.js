@@ -63,7 +63,7 @@ async function remove(wapId) {
 }
 
 async function addLeads(leadData){
-return await httpService.post(BASE_PATH, leadData)
+return await httpService.put(BASE_PATH, leadData)
 }
 
 function getEmptyWap() {
