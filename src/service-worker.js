@@ -71,7 +71,6 @@ self.addEventListener('message', (event) => {
 self.addEventListener('push',(ev)=>{
   const data = ev.data?.json()
     console.log('Push recieved...')
-    console.log(data,'data')
     self.registration.showNotification(data.title, {
       body : data.body,
       icon: 'favicon.jpg'

@@ -135,7 +135,7 @@ export function unregister() {
       });
   }
 }
-const publicVapidKey = 'BG-M5kO1e4LBVvKCqJ16x6wz-QUfTccMSSupLiibB2tapYthRA4b_w92H0GutdNTkykd98twnU1bHTybHLDfOdI'
+const publicVapidKey = 'BL5K2ebzwnuwBgEQDwtJt5EYi10JeixdhoEwgp2_DS23_U0FjCwZlZ-y97bHlYdMrg61IPxYKXNwvtE5f8eoqpo'
 let subscription
 export const pushReq = async (params, query) => {
   let queryString = Object.entries(query).join('&')
@@ -167,17 +167,31 @@ const send = async () => {
   pushReq('dd dd     dd', { title: 'New lead !', body: 'You have got new lead' })
   console.log('Push send...')
 }
+// function urlBase64ToUint8Array(base64String) {
+//   const padding = '='.repeat((4 - base64String.length % 4) % 4)
+//   const base64 = (base64String + padding)
+//     .replace(/\-/g, '+')
+//     .replace(/_/g, '/')
+//   const rawData = window.atob(base64)
+//   const outputArray = new Uint8Array(rawData.length)
+//   for (let i = 0; i < rawData.length; ++i) {
+//     outputArray[i] = rawData.charCodeAt(i)
+//   }
+//   return outputArray
+// }
 function urlBase64ToUint8Array(base64String) {
-  const padding = '='.repeat((4 - base64String.length % 4) % 4)
+  const padding = '='.repeat((4 - base64String.length % 4) % 4);
   const base64 = (base64String + padding)
     .replace(/\-/g, '+')
-    .replace(/_/g, '/')
-  const rawData = window.atob(base64)
-  const outputArray = new Uint8Array(rawData.length)
+    .replace(/_/g, '/');
+
+  const rawData = window.atob(base64);
+  const outputArray = new Uint8Array(rawData.length);
+
   for (let i = 0; i < rawData.length; ++i) {
-    outputArray[i] = rawData.charCodeAt(i)
+    outputArray[i] = rawData.charCodeAt(i);
   }
-  return outputArray
+  return outputArray;
 }
 if ('serviceWorker' in navigator) {
   send().catch(err => console.error(err))

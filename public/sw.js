@@ -5,7 +5,9 @@ self.addEventListener('message', async (event) => {
 self.addEventListener('push',(ev)=>{
     const data = ev.data?.json()
       console.log('Push recieved...')
-      self.registration.showNotification(data.title, {
+      console.log(data.title,'data')
+
+      self.registration.showNotification('data.title', {
         body : data.body,
         icon: 'favicon.jpg',
         onclick:console.log,
