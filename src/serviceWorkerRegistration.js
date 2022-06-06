@@ -1,12 +1,6 @@
 // This optional code is used to register a service worker.
 // register() is not called by default.
 
-import Axios from "axios";
-
-
-let axios = Axios.create({
-  withCredentials: true
-})
 // This lets the app load faster on subsequent visits in production, and gives
 // it offline capabilities. However, it also means that developers (and users)
 // will only see deployed updates on subsequent visits to a page, after all the
@@ -141,15 +135,19 @@ export function unregister() {
       });
   }
 }
-const publicVapidKey = 'BFJRJ5RBPh85KdwMjFmNXzvYB2Z8_0_e8hNr90i2yY9dfCL9DM2wxv1BeRbar5PJe7e03s2VwP2KpWX_2516t3M'
+const publicVapidKey = 'BG-M5kO1e4LBVvKCqJ16x6wz-QUfTccMSSupLiibB2tapYthRA4b_w92H0GutdNTkykd98twnU1bHTybHLDfOdI'
 let subscription
 export const pushReq = async (params, query) => {
   let queryString = Object.entries(query).join('&')
   queryString = queryString.replaceAll(',', '=')
   console.log(queryString)
-  await axios.post(`http://localhost:3030/subscribe/${params}?${queryString}`, JSON.stringify(subscription),{
+  await fetch(`http://localhost:3030/subscribe/${params}?${queryString}`, {
+    method: 'POST',
+    mode: 'cors',
+    body: JSON.stringify(subscription),
     headers: {
       'content-type': 'application/json',
+      "Access-Control-Allow-Origin": '*'
     }
   })
 }
