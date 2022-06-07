@@ -9,34 +9,49 @@ import { Publish } from "./pages/publish";
 import { Home } from "./pages/home";
 import { MySites } from "./pages/my-sites.jsx";
 import { pushReq } from "./serviceWorkerRegistration.js";
+import { socketService } from "./services/socket.service.js";
+import { useSelector } from "react-redux";
+import { userService } from "./services/user.service.js";
 
 
 export function App() {
   const [pageClass, setPageClass] = useState('')
-  
-  useEffect(()=>{
-    return ()=>{
-    
-        pushReq('dd dd     dd', { title: 'New lead !', body: 'You have got new lead' })
-  
+  const user = userService.getLoggedInUserLocal()
+  useEffect(() => {
+
+    (async () => {
+      console.log(user)
+
+      if (Object.keys(user).length) {
+        await userService.login(user, true)
+      }
+    })()
+    socketService.on('lead-notification', (wapId) => {
+      console.log(wapId)
+      pushReq('dd dd     dd', { wapId, title: 'New lead !', body: 'You have got new lead' })
+    })
+    return () => {
+
+
+
     }
-  },[])
+  }, [])
   return (
     <div className={`main-app ${pageClass}`}>
-      <AppHeader setPageClass={setPageClass}  pageClass={pageClass}  />
+      <AppHeader setPageClass={setPageClass} pageClass={pageClass} />
 
-      <main  className="app">
+      <main className="app">
         <Switch>
           <Route path="/templates" component={Templates} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Login} />
           <Route path="/my-sites" component={MySites} />
           <Route path="/editor" component={() => <Editor setPageClass={setPageClass} />} />
-          <Route path="/publish" component={() => <Publish  pageClass={pageClass} setPageClass={setPageClass}/>} />
+          <Route path="/publish" component={() => <Publish pageClass={pageClass} setPageClass={setPageClass} />} />
           <Route path="/" component={Home} />
         </Switch>
       </main>
-      <UserMsg/>
+      <UserMsg />
     </div>
   )
 

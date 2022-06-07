@@ -30,6 +30,7 @@ function createSocketService() {
 
       setTimeout(() => {
         const user = userService.getLoggedInUser()
+        console.log(user)
         if (user) this.login(user._id)
       }, 500)
     },
@@ -45,9 +46,11 @@ function createSocketService() {
       socket.emit(eventName, data)
     },
     login(userId) {
+      console.log(userId)
       socket.emit(SOCKET_EMIT_LOGIN, userId)
     },
     logout() {
+      console.log('logouttttttt')
       socket.emit(SOCKET_EMIT_LOGOUT)
     },
     terminate() {

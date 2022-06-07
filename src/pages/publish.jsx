@@ -3,6 +3,7 @@ import { useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { DynamicCmp } from "../cmps/dynamic-cmp"
 import { storageService } from "../services/async-storage.service"
+import { socketService } from "../services/socket.service"
 import { utilService } from "../services/util.service"
 import { wapService } from "../services/wap.service"
 import { saveWap } from "../store/actions/wap.action"
@@ -54,6 +55,8 @@ export const Publish = ({ setPageClass, wapToLoad }) => {
         lead.wapId = wap._id
         console.log('lead', lead)
         wapService.addLeads(lead)
+        socketService.emit('lead-added',wap._id)
+        
     }
 
     if (!wap) return <></>

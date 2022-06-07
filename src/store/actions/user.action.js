@@ -1,3 +1,4 @@
+import { socketService } from '../../services/socket.service.js'
 import { userService } from '../../services/user.service.js'
 
 export function signUp(credentials) {
@@ -12,6 +13,8 @@ export function login(loggedInUser, isRememberMode) {
     return async dispatch => {
         const user = await userService.login(loggedInUser, isRememberMode)
         dispatch({ type: 'SET_USER', user })
+        socketService.login(user._id)
+        userService.setLoggedInUser(user)
         return user
     }
 }
@@ -21,5 +24,6 @@ export function logout() {
         await userService.logout()
         dispatch({ type: 'SET_USER', user: null })
         console.log('/login')
+        socketService.logout()
     }
 }

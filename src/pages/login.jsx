@@ -10,6 +10,7 @@ import { SignIn } from '../cmps/signin'
 import { FacebookAuthentication } from '../cmps/facebook-authentication'
 import { GoogleAuthentication } from '../cmps/google-authentication'
 import { gapi } from 'gapi-script'
+import { socketService } from '../services/socket.service.js'
 
 const clientId = '777045938185-r0hkggifahev5ccik4eairjhrv7d0kua.apps.googleusercontent.com'
 class _Login extends React.Component {
@@ -43,6 +44,7 @@ class _Login extends React.Component {
         if (loggedInUser) {
 
             this.props.setMsg({ type: 'success', txt: 'Logged in' })
+            
             this.props.history.push('/templates')
         }
 
@@ -53,6 +55,7 @@ class _Login extends React.Component {
         user.isSocial = true
         const loggedInUser = await this.props.login(user, this.state.isRememberMeMode)
         if (loggedInUser) {
+            
             this.props.setMsg({ type: 'success', txt: 'Logged in' })
             this.props.history.push('/templates')
 
