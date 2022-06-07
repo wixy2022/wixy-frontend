@@ -19,7 +19,7 @@ export const wapService = {
     createAncestors,
     getThemeList,
     addLeads
-    
+
 }
 
 async function query(filterBy = {}) {
@@ -62,8 +62,8 @@ async function remove(wapId) {
     // return storageService.remove(STORAGE_KEY, wapId)
 }
 
-async function addLeads(leadData){
-return await httpService.put(BASE_PATH, leadData)
+async function addLeads(leadData) {
+    return await httpService.put(BASE_PATH, leadData)
 }
 
 function getEmptyWap() {
@@ -79,6 +79,13 @@ function getEmptyWap() {
 
 
 /* RECURSIONS */
+// let newWap = JSON.parse(JSON.stringify(wap)) /* FIX - Try not using JSON.parse */
+// const updatedWap = _updateWapProperties(newWap, ancestorsIds, activeCmp, key, value)
+
+
+
+
+
 
 function createAncestors(cmp, ancestors = []) {
     cmp.ancestors = [...ancestors, cmp.id]
@@ -90,18 +97,23 @@ function createAncestors(cmp, ancestors = []) {
     return cmp
 }
 
+const wapDemo = {
+    id: 'VhKTOyC0dj0XU5CE',
+    type: 'container',
+    className: 'card flex left-card',
+    cmps: [{}, {}, {}],
+    ancestorsIds: ['wLpdlR6IUnhdAbuw', 'H1jy9poXhgx9PRA7', 'VhKTOyC0dj0XU5CE'],
+}
+
 function updateWap(wap, activeCmp, key, value) {
     if (!activeCmp) return wap
     const ancestorsIds = [...activeCmp.ancestors]
-    
-    // let newWap = JSON.parse(JSON.stringify(wap)) /* FIX - Try not using JSON.parse */
-    // const updatedWap = _updateWapProperties(newWap, ancestorsIds, activeCmp, key, value)
-    
+
     const updatedWap = _updateWapProperties(wap, ancestorsIds, activeCmp, key, value)
-    
+
     const nonEmptyCmps = updatedWap.cmps.filter(currCmp => currCmp.cmps.length > 0)
     updatedWap.cmps = nonEmptyCmps
-    
+
     socketService.emit('edit wap', updatedWap)
     return updatedWap
 }
