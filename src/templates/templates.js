@@ -169,7 +169,7 @@ export const temp99Wap = {
     name: 'template 99',
     imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654505398/presentation/fake_wap2_rbxmq2.jpg',
     description: 'Chocolate and flowers arrangements',
-    cmps: [wapSection99, wapHeader99, wapSection07, wapVideo99, wapFooter03]
+    cmps: [wapSection99, wapHeader99, wapSection07, wapVideo99, wapForm01, wapFooter03]
 }
 
 // /////////////// DEV ONLY
