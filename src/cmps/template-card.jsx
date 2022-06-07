@@ -6,7 +6,7 @@ import { wapService } from "../services/wap.service"
 import { saveWap, setWap } from "../store/actions/wap.action"
 import { PreviewModal } from "./preview-modal"
 
-export const TemplateCard = ({ wap, secondRow, lastTemplate }) => {
+export const TemplateCard = ({ wap }) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const [isMouseIn, setIsMouseIn] = useState(false)
@@ -30,9 +30,6 @@ export const TemplateCard = ({ wap, secondRow, lastTemplate }) => {
         // return `/editor?id=${newWap._id}`
     }
 
-    if (!secondRow) secondRow = ''
-    if (!lastTemplate) lastTemplate = ''
-
     return <div onMouseEnter={(() => setIsMouseIn(true))} onMouseLeave={(() => setIsMouseIn(false))} className="template-card">
 
         <div className="template-header">
@@ -40,7 +37,7 @@ export const TemplateCard = ({ wap, secondRow, lastTemplate }) => {
             <span className="circle"></span>
             <span className="circle"></span>
         </div>
-        <div className={`template-card-img-container`}>
+        <div className="template-card-img-container">
             {isMouseIn && <div className="card-hover-screen">
                 <button className="edit" onClick={getTemplatePath}>Edit</button>
                 <button onClick={() => setIsPreview(true)} className="view">View</button>
@@ -48,9 +45,10 @@ export const TemplateCard = ({ wap, secondRow, lastTemplate }) => {
                 <Link to={`/dashboard?id=${wap._id}`} className="Analytics">Analytics</Link>
             </div>}
             <img src={wap?.imgUrl ? wap.imgUrl : defaultImg}
-                alt="" className={`template-card-img ${isMouseIn ? 'smoke' : ''} ${secondRow} ${lastTemplate}`} />
-            {!secondRow && <h4 className="wap-description">{wap?.description}</h4>}
+                alt="" className={`template-card-img ${isMouseIn ? 'smoke' : ''}`} />
         </div>
+        <h4 className="wap-description">{wap?.description}</h4>
+
         {isPreview && <>
             <PreviewModal wapToLoad={wap} setPageClass={() => { console.log('hey') }} setIsPreview={setIsPreview} />
             <div onClick={(ev) => { ev.stopPropagation(); setIsPreview(false) }} className="black-screen"></div>

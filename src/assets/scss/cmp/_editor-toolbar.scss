@@ -9,24 +9,25 @@
     align-items: center;
     padding-block-start: 30px;
     position: fixed;
-    .save{
-        width: 45px;
-        height: 45px;
+
+    .save {
+        width: 20px;
+        height: 20px;
         cursor: pointer;
-        
+
         position: absolute;
-        bottom:60px;
+        bottom: 60px;
         display: flex;
         align-items: center;
         justify-content: center;
         left: 12px;
         border-radius: 50%;
-        
+
         background-color: rgb(234 236 240 / 87%);
-        .save-img{
-            
-        }
-                // <div className="save"><i className="fal fa-save"></i></div>f0c7
+
+        .save-img {}
+
+        // <div className="save"><i className="fal fa-save"></i></div>f0c7
 
     }
 
@@ -99,7 +100,7 @@
         z-index: 50;
         padding: 0 .2em .4em;
         position: relative;
-       
+
     }
 
     .editor-icon-container {
@@ -264,19 +265,21 @@
 
         height: 100%;
         flex-direction: row;
-        box-shadow: 0px 5px 3px #00000082;
+        box-shadow: 0px 1px 3px #00000082;
         justify-content: flex-start;
         align-items: flex-start;
-        .save{
 
+        .save {
             z-index: 300;
-            left: 1px;
+            left: 15px;
             background-color: unset;
-            &:hover{
+
+            &:hover {
                 background-color: rgb(234 236 240 / 87%);
 
             }
         }
+
         .template-bar-btns {
             overflow-x: unset;
             width: 50px;
@@ -287,6 +290,38 @@
             display: flex;
             flex-direction: column;
             margin-inline-start: 2.3px;
+            .edtior-arrow{
+                width: 25px;
+                height: 25px;
+                border-radius: 1em;
+                background-color: white;
+                border: 1px solid grey;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                right: -14px;
+                cursor: pointer;
+                top: -22px;
+                z-index: 2500;
+                &:hover{
+                    background-color: whitesmoke;
+                }
+                .fa-chevron {
+                    background-repeat: no-repeat;
+                    background-size: 10px;
+                    background-position: center;
+                    width: 20px;
+                    height: 20px;
+                    &.right{
+                        background-image: url(../../img/chevron-right-solid.svg);
+                    }
+                    &.left{
+                        background-image: url(../../img/chevron-left-solid.svg);
+                    }
+                }
+                
+            }
 
         }
 
@@ -594,6 +629,7 @@
     .editor.tool-bar-open .template-tool-bar {
         bottom: unset;
         box-shadow: none;
+
         &::after {
             content: '';
             width: 1px;
@@ -607,7 +643,12 @@
         }
 
         /* border-right: 1px solid rgba(169, 171, 171, 0.275); */
-
+        .template-bar-btns{
+            .edtior-arrow{
+                right: -345px;
+               
+            }
+        }
 
         .editor-icon-container {
             margin-block-start: unset;
@@ -713,7 +754,8 @@
             max-height: 80vh;
             min-width: 336px;
             display: block;
-            &::-webkit-scrollbar{
+
+            &::-webkit-scrollbar {
                 width: 3px;
             }
 

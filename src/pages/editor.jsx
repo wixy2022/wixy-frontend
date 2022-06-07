@@ -27,6 +27,8 @@ import { setScreenHeight, setScreen } from "../store/actions/screen.action"
 import { useEffectUpdate } from "../hooks/use-effect-update"
 import { uploadService } from "../services/upload.service"
 
+import editorGif from '../assets/img/editor-instructions.gif'
+
 
 export const Editor = React.memo(({ setPageClass }) => {
     const wap = useSelector(storeState => storeState.wapModule.wap)
@@ -163,8 +165,8 @@ export const Editor = React.memo(({ setPageClass }) => {
 
         dispatch(setActiveCmpPos({
             target: elCurrCmp,
-            editorOffsetLeft: editorRef.current.offsetLeft,
-            editorScrollTop: editorRef.current.scrollTop
+            // editorOffsetLeft: editorRef.current.offsetLeft,
+            // editorScrollTop: editorRef.current.scrollTop
         }))
     }
 
@@ -214,10 +216,11 @@ export const Editor = React.memo(({ setPageClass }) => {
                         style={(wap?.cmps.length === 0) ? { backgroundColor: '(128, 128, 128, 0.09)' } : {}}
                         ref={el => { editorRef.current = el; providedDroppable.innerRef(el); }}
                     >
-                        {(wap?.cmps.length === 0) && <>
-                            <h1 className="editor-empty-msg"> →  Drag here to create your own website  ←</h1>
-                            <div className="editor-empty-gif"><img src="https://j.gifs.com/oZ909K.gif" alt="" /></div>
-                        </>
+                        {(wap?.cmps.length === 0) && <div className="editor-empty-gif-container">
+                            <h1 className="editor-empty-msg">Drag here to create your own website</h1>
+                            {/* <div className="editor-empty-gif"><img src="https://j.gifs.com/oZ909K.gif" alt="" /></div> */}
+                            <div className="editor-empty-gif"><img src={editorGif} alt="" /></div>
+                        </div>
                         }
 
                         <Screen onCloseScreen={onCloseScreen} />
@@ -250,6 +253,7 @@ export const Editor = React.memo(({ setPageClass }) => {
                         {providedDroppable.placeholder}
                         {<EditButtons
                             onUpdateWap={onUpdateWap}
+                            editorRef={editorRef}
                         />}
                     </div>
                 </>

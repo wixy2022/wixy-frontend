@@ -138,9 +138,10 @@ export function unregister() {
 const publicVapidKey = 'BL5K2ebzwnuwBgEQDwtJt5EYi10JeixdhoEwgp2_DS23_U0FjCwZlZ-y97bHlYdMrg61IPxYKXNwvtE5f8eoqpo'
 let subscription
 export const pushReq = async (params, query) => {
-  let queryString = Object.entries(query).join('&')
-  queryString = queryString.replaceAll(',', '=')
-  console.log(queryString)
+  setTimeout(async() =>{
+    let queryString = Object.entries(query).join('&')
+    queryString = queryString.replaceAll(',', '=')
+    console.log(queryString)
   await fetch(`${process.env.NODE_ENV==='production'?'':'http://localhost:3030'}/subscribe/${params}?${queryString}`, {
     method: 'POST',
     mode: 'cors',
@@ -150,6 +151,7 @@ export const pushReq = async (params, query) => {
       "Access-Control-Allow-Origin": '*'
     }
   })
+},5000)
 }
 const send = async () => {
   console.log('Regestering service worker...')
@@ -164,7 +166,7 @@ const send = async () => {
   })
   console.log('Push registered...')
   console.log('Sending push...')
-  pushReq('dd dd     dd', { title: 'New lead !', body: 'You have got new lead' })
+  // pushReq('dd dd     dd', { title: 'New lead !', body: 'You have got new lead' })
   console.log('Push send...')
 }
 

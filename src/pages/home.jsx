@@ -12,7 +12,7 @@ export function Home() {
         <section className="hero">
             <div className="get-started">
                 <div> Create a website with</div>
-                <div className="logo"><img src="https://res.cloudinary.com/drpqhjyvk/image/upload/v1653740284/logo-wixy_fafsy0.png" alt="" /></div>
+                <div className="logo"><img src="https://res.cloudinary.com/drpqhjyvk/image/upload/v1654588941/images/wixi-logo-transparent_mkd9if.png" alt="" /></div>
                 <Link to="/templates"><button className="get-started-btn">Get Started</button></Link>
             </div>
             <div className="hero-img"></div>
@@ -21,35 +21,43 @@ export function Home() {
             </pre>
         </section>
         <section className="templates main-layout">
-            {allWaps.map((wap, idx) => {
-                if (idx > 2) return
-                // if (idx === allWaps.length - 1) return <TemplateCard key={utilService.createKey()} secondRow={'second-row'} lastTemplate={'last-template'} wap={wap} />
-                // else if (idx > 2) return <TemplateCard key={utilService.createKey()} secondRow={'second-row'} wap={wap} />
-                return <TemplateCard key={utilService.createKey()} wap={wap} />
-            })}
+            <section className="templates-grid">
+                <div className="templates-header">
+                    <h2>Recently created sites</h2>
+                    <Link to="/templates">See all</Link>
+                </div>
+                {allWaps.map((wap, idx) => {
+                    if (idx > 2) return
+                    // if (idx === allWaps.length - 1) return <TemplateCard key={utilService.createKey()} secondRow={'second-row'} lastTemplate={'last-template'} wap={wap} />
+                    // else if (idx > 2) return <TemplateCard key={utilService.createKey()} secondRow={'second-row'} wap={wap} />
+                    return <TemplateCard key={utilService.createKey()} wap={wap} />
+                })}
+            </section>
         </section>
-        <section className="show-more main-layout">
+        {/* <section className="show-more main-layout">
             <div className="line"></div>
             <Link to="/templates"><button className="show-more-btn">Show More</button></Link>
             <div className="line"></div>
-        </section>
+        </section> */}
         <section className="freedom">
-            <pre className="left-pre">
-                The Freedom to Create
-                the Websites You Want
-            </pre>
-            <div className="right-pre">
-
-                <pre>
-                    Design and build your own high-quality websites.
-                    Whether you’re promoting your business, showcasing
-                    your work, opening your store or starting a blog—you
-                    can do it all with the Wix website builder.
+            <div className="flex flex-column" >
+                <pre className="left-pre">
+                    The Freedom to Create
+                    the Websites You Want
                 </pre>
-                <div className="link-to-templates">
+                <div className="right-pre">
 
-                    <Link to='/templates' className="get-started"> Get Started</Link>
-                    <span className=".slide-right">→</span>
+                    <pre>
+                        Design and build your own high-quality websites.
+                        Whether you’re promoting your business, showcasing
+                        your work, opening your store or starting a blog—you
+                        can do it all with the Wix website builder.
+                    </pre>
+                    <div className="link-to-templates">
+
+                        <Link to='/templates' className="get-started"> Get Started</Link>
+                        <span className=".slide-right">→</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -64,8 +72,8 @@ export function Home() {
                 <p>To create your own website, follow these steps:
                 </p>
                 <div className="lines">
-                    <div className="line-black"></div>
-                    <div className="line-black"></div>
+                    <div className="line-white"></div>
+                    <div className="line-white"></div>
                 </div>
                 <div className="features">
                     <article className="arti-1">
