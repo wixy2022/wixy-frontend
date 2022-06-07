@@ -8,7 +8,7 @@ export const wapForm01 = {
     type: 'container-draggable',
     category: 'wap-form',
     className: 'wap-form-01',
-    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654458306/video-background_jmbohw.jpg',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654616110/templates/form01_nn34og.jpg',
     cmps: [{
         id: utilService.makeId(16),
         type: 'container',

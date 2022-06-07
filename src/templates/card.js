@@ -5,7 +5,7 @@ export const wapCards01 = {
     type: 'container-draggable',
     category: 'wap-cards',
     className: 'wap-cards-01',
-    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1653581168/templates/cards-t1_pcba2x.png',
+    imgUrl: 'https://res.cloudinary.com/drpqhjyvk/image/upload/v1654616613/templates/wap-cards-01_alnovl.jpg',
     cmps: [
         // {
         //     id: utilService.makeId(16),
