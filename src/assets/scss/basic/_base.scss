@@ -59,3 +59,18 @@ img {
 .img-cmp {
     overflow: hidden;
 }
+
+.cursor1 {
+    width: 30px;
+    left: -2000px;
+    top: -2000px;
+    background-size: 30px;
+    height: 30px;
+    position: fixed;
+    object-fit: contain;
+    z-index: 20000;
+    border-radius: 50%;
+    background-image: url(../../img/cursor.png);
+    background-position-x: 1.5px;
+    box-shadow: 0 0 10px $clr1;
+}

@@ -18,6 +18,7 @@ export const wapService = {
     updateWap,
     createAncestors,
     getThemeList,
+    addLeads
     
 }
 
@@ -35,6 +36,7 @@ async function getById(wapId) {
     /* Next line should be in the BACKEND */
     // return storageService.get(STORAGE_KEY, wapId)
 }
+
 
 async function save(wap) {
     /* Next line should be in the BACKEND */
@@ -60,6 +62,9 @@ async function remove(wapId) {
     // return storageService.remove(STORAGE_KEY, wapId)
 }
 
+async function addLeads(leadData){
+return await httpService.put(BASE_PATH, leadData)
+}
 
 function getEmptyWap() {
     return {
@@ -154,7 +159,7 @@ function getThemeList(type) {
             case 'anchor': return { classic: 5, dark: 5, dramatic: 5, festive: 5, light: 4 }
             case 'img': return { classic: 5, dark: 6, dramatic: 4, festive: 7, light: 6 }
             case 'container-draggable':
-            case 'container': return { classic: 4, dark: 5, dramatic: 5, festive: 6, light: 6 }
+            case 'container': return { classic: 6, dark: 5, dramatic: 5, festive: 6, light: 6 }
             default: return { classic: 0, dark: 0, dramatic: 0, festive: 0, light: 0 }
         }
     }

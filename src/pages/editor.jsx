@@ -34,10 +34,11 @@ export const Editor = React.memo(({ setPageClass }) => {
     const history = useHistory()
     const params = useParams()
 
+    const cursorRef = useRef()
     const [toolBarMode, setToolBarMode] = useState('')
     const [templateKey, setTemplateKey] = useState(null)
     const editorRef = useRef()
-
+    const  MouseTimout =useRef()
     const templates = allTemplates
 
 
@@ -45,9 +46,11 @@ export const Editor = React.memo(({ setPageClass }) => {
         const { wapId } = params
         socketService.emit('wap id', wapId)
         socketService.on('wap changed', (wap) => dispatch(setWap(wap)))
+        socketService.on('guest-mouse-move', moveMouseRef)
 
         return async () => {
             socketService.off('wap changed')
+            socketService.off('mouse-move')
             if (wap?.cmp?.length === 0) wapService.remove(wap?._id)
             else if (wap) {
                 dispatch(saveWap(storageService.getWapFromStorage()))
@@ -92,7 +95,7 @@ export const Editor = React.memo(({ setPageClass }) => {
 
         const urlSrcPrm = new URLSearchParams(history.location.search)
         const wapId = urlSrcPrm.get('id')
-
+        console.log('wap', wap)
         if (wapId) {
             try {
                 const wap = await wapService.getById(wapId)
@@ -103,9 +106,9 @@ export const Editor = React.memo(({ setPageClass }) => {
                 console.log('status', err.response.status)
                 console.log('data', err.response.data)
 
-                dispatch(setMsg({ type: 'danger', txt: 'Failed loading your page.' }))
-                const newWap = dispatch(saveWap(wapService.getEmptyWap()))
-                history.push(`/editor?id=${newWap._id}`)
+                /* FIX -  */
+                // dispatch(setMsg({ type: 'danger', txt: 'Failed loading your page.' }))
+                dispatch(saveWap(wapService.getEmptyWap()))
             }
         } else {
             if (wap) return
@@ -178,9 +181,25 @@ export const Editor = React.memo(({ setPageClass }) => {
         dispatch(setWap(updatedWap))
         onEndEditMode()
     }
+    const mouseMoving = ({ clientX, clientY }) => {
 
-    return <section className={`editor ${toolBarMode}`}>
+        socketService.emit('on-mouse-move', { x: clientX, y: clientY })
+    }
+    const moveMouseRef = ({ x, y }) => {
+        if(MouseTimout.current) clearTimeout(MouseTimout.current)
+        MouseTimout.current = setTimeout(()=>{
+            cursorRef.current.style.left = '2000px'
+            clearTimeout(MouseTimout.current)
+        },4500)
+        if(cursorRef.current){
+            cursorRef.current.style.left = x + 'px'
+            cursorRef.current.style.top = y + 'px'
+        }
+    }
+
+    return <section  onMouseMove={mouseMoving} className={`editor ${toolBarMode}`}>
         {!wap && <Loader />}
+
         <DragDropContext onDragEnd={handleOnDragEnd}>
 
             <TemplateToolBar
@@ -240,5 +259,6 @@ export const Editor = React.memo(({ setPageClass }) => {
                 }
             </Droppable>
         </DragDropContext>
+        <div ref={cursorRef} className="cursor1"></div>
     </section>
 })

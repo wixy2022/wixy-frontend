@@ -9689,14 +9689,14 @@
   "resolved" "https://registry.npmjs.org/word-wrap/-/word-wrap-1.2.3.tgz"
   "version" "1.2.3"
 
-"workbox-background-sync@6.5.3":
+"workbox-background-sync@^6.5.3", "workbox-background-sync@6.5.3":
   "resolved" "https://registry.npmjs.org/workbox-background-sync/-/workbox-background-sync-6.5.3.tgz"
   "version" "6.5.3"
   dependencies:
     "idb" "^6.1.4"
     "workbox-core" "6.5.3"
 
-"workbox-broadcast-update@6.5.3":
+"workbox-broadcast-update@^6.5.3", "workbox-broadcast-update@6.5.3":
   "resolved" "https://registry.npmjs.org/workbox-broadcast-update/-/workbox-broadcast-update-6.5.3.tgz"
   "version" "6.5.3"
   dependencies:
@@ -9744,24 +9744,24 @@
     "workbox-sw" "6.5.3"
     "workbox-window" "6.5.3"
 
-"workbox-cacheable-response@6.5.3":
+"workbox-cacheable-response@^6.5.3", "workbox-cacheable-response@6.5.3":
   "resolved" "https://registry.npmjs.org/workbox-cacheable-response/-/workbox-cacheable-response-6.5.3.tgz"
   "version" "6.5.3"
   dependencies:
     "workbox-core" "6.5.3"
 
-"workbox-core@6.5.3":
+"workbox-core@^6.5.3", "workbox-core@6.5.3":
   "resolved" "https://registry.npmjs.org/workbox-core/-/workbox-core-6.5.3.tgz"
   "version" "6.5.3"
 
-"workbox-expiration@6.5.3":
+"workbox-expiration@^6.5.3", "workbox-expiration@6.5.3":
   "resolved" "https://registry.npmjs.org/workbox-expiration/-/workbox-expiration-6.5.3.tgz"
   "version" "6.5.3"
   dependencies:
     "idb" "^6.1.4"
     "workbox-core" "6.5.3"
 
-"workbox-google-analytics@6.5.3":
+"workbox-google-analytics@^6.5.3", "workbox-google-analytics@6.5.3":
   "resolved" "https://registry.npmjs.org/workbox-google-analytics/-/workbox-google-analytics-6.5.3.tgz"
   "version" "6.5.3"
   dependencies:
@@ -9770,13 +9770,13 @@
     "workbox-routing" "6.5.3"
     "workbox-strategies" "6.5.3"
 
-"workbox-navigation-preload@6.5.3":
+"workbox-navigation-preload@^6.5.3", "workbox-navigation-preload@6.5.3":
   "resolved" "https://registry.npmjs.org/workbox-navigation-preload/-/workbox-navigation-preload-6.5.3.tgz"
   "version" "6.5.3"
   dependencies:
     "workbox-core" "6.5.3"
 
-"workbox-precaching@6.5.3":
+"workbox-precaching@^6.5.3", "workbox-precaching@6.5.3":
   "resolved" "https://registry.npmjs.org/workbox-precaching/-/workbox-precaching-6.5.3.tgz"
   "version" "6.5.3"
   dependencies:
@@ -9784,7 +9784,7 @@
     "workbox-routing" "6.5.3"
     "workbox-strategies" "6.5.3"
 
-"workbox-range-requests@6.5.3":
+"workbox-range-requests@^6.5.3", "workbox-range-requests@6.5.3":
   "resolved" "https://registry.npmjs.org/workbox-range-requests/-/workbox-range-requests-6.5.3.tgz"
   "version" "6.5.3"
   dependencies:
@@ -9801,19 +9801,19 @@
     "workbox-routing" "6.5.3"
     "workbox-strategies" "6.5.3"
 
-"workbox-routing@6.5.3":
+"workbox-routing@^6.5.3", "workbox-routing@6.5.3":
   "resolved" "https://registry.npmjs.org/workbox-routing/-/workbox-routing-6.5.3.tgz"
   "version" "6.5.3"
   dependencies:
     "workbox-core" "6.5.3"
 
-"workbox-strategies@6.5.3":
+"workbox-strategies@^6.5.3", "workbox-strategies@6.5.3":
   "resolved" "https://registry.npmjs.org/workbox-strategies/-/workbox-strategies-6.5.3.tgz"
   "version" "6.5.3"
   dependencies:
     "workbox-core" "6.5.3"
 
-"workbox-streams@6.5.3":
+"workbox-streams@^6.5.3", "workbox-streams@6.5.3":
   "resolved" "https://registry.npmjs.org/workbox-streams/-/workbox-streams-6.5.3.tgz"
   "version" "6.5.3"
   dependencies:
