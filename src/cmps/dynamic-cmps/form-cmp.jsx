@@ -11,11 +11,11 @@ export const FormCmp = ({ cmp, isPublish, onSubmitLead }) => {
     const onFormSubmit = (ev) => {
         ev.preventDefault()
         const data = new FormData(ev.currentTarget)
-        const fullname = data.get('fullname')
+        const fullName = data.get('fullname')
         const email = data.get('email')
         const phoneNumber = data.get('phoneNumber')
 
-        onSubmitLead({ fullname, email, phoneNumber })
+        onSubmitLead({ fullName, email, phoneNumber })
 
         Object.keys(initialFields).forEach(field => setInitialFields({ ...initialFields, [field]: '' }))
     }

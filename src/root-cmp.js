@@ -8,6 +8,7 @@ import { Editor } from "./pages/editor";
 import { Publish } from "./pages/publish";
 import { Home } from "./pages/home";
 import { MySites } from "./pages/my-sites.jsx";
+import { Dashboard } from "./pages/dashboard.jsx"
 import { pushReq } from "./serviceWorkerRegistration.js";
 import { socketService } from "./services/socket.service.js";
 import { useSelector } from "react-redux";
@@ -42,6 +43,7 @@ export function App() {
 
       <main className="app">
         <Switch>
+          <Route path="/dashboard" component={Dashboard} />
           <Route path="/templates" component={Templates} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Login} />

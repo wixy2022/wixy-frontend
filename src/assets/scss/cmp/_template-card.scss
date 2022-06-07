@@ -58,7 +58,18 @@
         flex-direction: column;
         row-gap: 1em;
 
-        & button {
+        .analytics{
+            color: #0c6efc;
+            background-color: #fff;
+            border: 1px solid #0c6efc;
+            &:hover{
+                &:hover {
+                    background-color: lighten(rgb(12, 110, 252), 10%);
+                    color: white;
+                }
+            }
+        }
+        & button ,& a{
             display: flex;
             align-items: center;
             justify-content: center;
@@ -80,7 +91,7 @@
                     background-color: lighten(rgb(12, 110, 252), 10%);
                 }
             }
-
+            
             &.view {
                 border: 1px solid #0c6efc;
                 color: #0c6efc;

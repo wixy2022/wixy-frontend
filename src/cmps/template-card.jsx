@@ -6,7 +6,7 @@ import { wapService } from "../services/wap.service"
 import { saveWap, setWap } from "../store/actions/wap.action"
 import { PreviewModal } from "./preview-modal"
 
-export const TemplateCard = ({ wap }) => {
+export const TemplateCard = ({ isMySites,wap }) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const [isMouseIn, setIsMouseIn] = useState(false)
@@ -22,11 +22,11 @@ export const TemplateCard = ({ wap }) => {
             cloneWap.cmps.forEach(cmp => wapService.createAncestors(cmp))
 
         }
-
         const savedWap = await wapService.save(cloneWap)
         storageService.saveWapToStorage(savedWap)
         dispatch(setWap(savedWap))
         history.push(`/editor?id=${savedWap._id}`)
+
         // return `/editor?id=${newWap._id}`
     }
 
@@ -40,7 +40,9 @@ export const TemplateCard = ({ wap }) => {
         <div className="template-card-img-container">
             {isMouseIn && <div className="card-hover-screen">
                 <button className="edit" onClick={getTemplatePath}>Edit</button>
-                <button onClick={() => setIsPreview(true)} className="view">View</button>
+               {!isMySites&& <button onClick={() => setIsPreview(true)} className="view">View</button>}
+                {/* {TODO - ONLY IF IS MY-SITES PAGE} */}
+                {isMySites&&<Link to={`/dashboard?id=${wap._id}`} className="analytics">Analytics</Link>}
             </div>}
             <img src={wap?.imgUrl ? wap.imgUrl : defaultImg}
                 alt="" className={`template-card-img ${isMouseIn ? 'smoke' : ''}`} />
