@@ -22,23 +22,23 @@
 
     .template-card-img-container {
         position: relative;
+        margin-bottom: 10px;
 
         .template-card-img {
             aspect-ratio: 16/9;
             width: 100%;
-            margin-bottom: 10px;
 
             &.smoke {
                 opacity: 0.16;
             }
         }
+    }
 
-        .wap-description {
-            color: $clr4;
-            font-weight: 400;
-            text-align: left;
-            margin-bottom: 20px;
-        }
+    .wap-description {
+        color: $clr4;
+        font-weight: 400;
+        text-align: left;
+        margin-bottom: 20px;
     }
 
     .last-template {
