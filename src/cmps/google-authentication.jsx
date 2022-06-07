@@ -35,6 +35,7 @@ export class GoogleAuthentication extends React.Component {
                 onFailure={this.onFailure}
                 coockiePolicy={'single_host_origin'}
                 isSignedIn={false}
+                nredirect_uri={'https://wixy-2022.herokuapp.com/#/login'}
             />
         </div>
     }
