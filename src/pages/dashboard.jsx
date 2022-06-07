@@ -10,6 +10,7 @@ import { setMsg } from "../store/actions/msg.action"
 import { Loader } from '../cmps/app-loader'
 import { Chart } from '../cmps/chart'
 
+import {testData} from '../templates/templates'
 
 export const Dashboard = () => {
     const [wap, setWap] = useState(null)
@@ -38,13 +39,14 @@ export const Dashboard = () => {
         if (wapId) {
             try {
                 const wap = await wapService.getById(wapId)
-                setWap(wap)
+                if(wap)setWap(wap)
                 // dispatch(setWap(wap))
                 return
             } catch (err) {
                 console.log('status', err.response.status)
                 console.log('data', err.response.data)
                 // dispatch(setMsg({ type: 'danger', txt: '' }))
+                setWap(testData)
             }
         } else {
             if (wap) return
@@ -54,6 +56,7 @@ export const Dashboard = () => {
     }
 
     if (!wap) return <Loader />
+    
     const leadsCount = wap.leads?.length || 'No contacts yet'
     const traffic = wap.visitors || 'No visitors yet'
     return <main className="dashboard">
