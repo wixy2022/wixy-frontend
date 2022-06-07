@@ -11,10 +11,10 @@ export function signUp(credentials) {
 
 export function login(loggedInUser, isRememberMode) {
     return async dispatch => {
+        userService.setLoggedInUser(loggedInUser)
         const user = await userService.login(loggedInUser, isRememberMode)
         dispatch({ type: 'SET_USER', user })
         socketService.login(user._id)
-        userService.setLoggedInUser(user)
         return user
     }
 }

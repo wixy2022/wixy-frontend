@@ -23,7 +23,7 @@ export function App() {
     (async () => {
       console.log(user)
 
-      if (Object.keys(user).length) {
+      if (Object.keys(user).length<0) {
         await userService.login(user, true)
       }
     })()
