@@ -24,6 +24,7 @@ export function App() {
       console.log(user)
 
       if (Object.keys(user).length<0) {
+        if(!user)return
         await userService.login(user, true)
       }
     })()
