@@ -28,7 +28,7 @@ export const MySites = () => {
         <h2>My Sites</h2>
         <div className="user-waps">
 
-            {userWaps.map(wap => <TemplateCard key={utilService.createKey()} wap={wap} />)}
+            {userWaps.map(wap => <TemplateCard key={utilService.createKey()} isMySites={true} wap={wap} />)}
         </div>
     </div>
 }

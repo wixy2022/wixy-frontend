@@ -5,7 +5,6 @@ import { storageService } from "../services/async-storage.service"
 import { utilService } from "../services/util.service"
 import { wapService } from "../services/wap.service"
 import { socketService } from "../services/socket.service"
-import { saveWap } from "../store/actions/wap.action"
 
 export const Publish = ({ setPageClass, wapToLoad }) => {
     const [wap, setWap] = useState(null)
