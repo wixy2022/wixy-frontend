@@ -42,8 +42,8 @@
             }
         }
 
-        .logo {
-            width: 400px;
+        .logo img {
+            width: 300px;
         }
 
         .hero-img {
@@ -155,11 +155,11 @@
         //     flex-grow: 1;
         //     display: flex;
         // }
-        >div{
+        >div {
             gap: 2em;
         }
 
-        pre{
+        pre {
             white-space: unset;
             max-width: rem(600px);
             color: white;
@@ -325,6 +325,10 @@
 
 @media screen and (min-width: 600px) {
     .home-page {
+        .hero .logo img {
+            width: 400px;
+        }
+
         .show-more {
             margin-block-start: 10vh;
         }
@@ -334,7 +338,7 @@
             // padding: 13% 3rem;
             flex-direction: row;
 
-            >div{
+            >div {
                 flex-direction: row;
             }
 
@@ -424,7 +428,7 @@
             gap: 4em;
             position: relative;
 
-            >div{
+            >div {
                 max-width: 1295px;
                 justify-content: center;
             }

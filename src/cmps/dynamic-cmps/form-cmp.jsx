@@ -37,7 +37,7 @@ export const FormCmp = ({ cmp, isPublish, onSubmitLead }) => {
                     <label htmlFor={input.id} className={label.className}>{label.txt}</label>
 
                     <input id={input.id} value={initialFields[input.keyValue]} onInput={handleChange} name={input.keyValue} type={input.inputType}
-                        className={input.className} placeholder={input.placeHolder} />
+                        className={input.className} placeholder={input.placeHolder} required/>
                 </li>
             })}
         </ul>

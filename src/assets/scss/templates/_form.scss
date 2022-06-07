@@ -3,7 +3,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(20deg, #536d21 50%, #c3d9af 50%);
+    // background: linear-gradient(20deg, #536d21 50%, #c3d9af 50%);
+    background-color: #e1f4d0;
 
     &>.container {
         padding: 1.5rem;
@@ -63,10 +64,15 @@
                 border-bottom: 1px solid $clr3;
                 padding: 0;
                 font-size: 1em;
+                padding-bottom: 0.2em;
 
                 &:focus-visible {
                     outline: none;
                 }
+            }
+
+            input[disabled]{
+                background-color: transparent;
             }
         }
 
