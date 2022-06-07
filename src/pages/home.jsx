@@ -21,8 +21,11 @@ export function Home() {
             </pre>
         </section>
         <section className="templates main-layout">
-            <h2 className="templates-header">Recently created sites</h2>
             <section className="templates-grid">
+                <div className="templates-header">
+                    <h2>Recently created sites</h2>
+                    <Link to="/templates">See all</Link>
+                </div>
                 {allWaps.map((wap, idx) => {
                     if (idx > 2) return
                     // if (idx === allWaps.length - 1) return <TemplateCard key={utilService.createKey()} secondRow={'second-row'} lastTemplate={'last-template'} wap={wap} />
@@ -31,28 +34,30 @@ export function Home() {
                 })}
             </section>
         </section>
-        <section className="show-more main-layout">
+        {/* <section className="show-more main-layout">
             <div className="line"></div>
             <Link to="/templates"><button className="show-more-btn">Show More</button></Link>
             <div className="line"></div>
-        </section>
+        </section> */}
         <section className="freedom">
-            <pre className="left-pre">
-                The Freedom to Create
-                the Websites You Want
-            </pre>
-            <div className="right-pre">
-
-                <pre>
-                    Design and build your own high-quality websites.
-                    Whether you’re promoting your business, showcasing
-                    your work, opening your store or starting a blog—you
-                    can do it all with the Wix website builder.
+            <div className="flex flex-column" >
+                <pre className="left-pre">
+                    The Freedom to Create
+                    the Websites You Want
                 </pre>
-                <div className="link-to-templates">
+                <div className="right-pre">
 
-                    <Link to='/templates' className="get-started"> Get Started</Link>
-                    <span className=".slide-right">→</span>
+                    <pre>
+                        Design and build your own high-quality websites.
+                        Whether you’re promoting your business, showcasing
+                        your work, opening your store or starting a blog—you
+                        can do it all with the Wix website builder.
+                    </pre>
+                    <div className="link-to-templates">
+
+                        <Link to='/templates' className="get-started"> Get Started</Link>
+                        <span className=".slide-right">→</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -67,8 +72,8 @@ export function Home() {
                 <p>To create your own website, follow these steps:
                 </p>
                 <div className="lines">
-                    <div className="line-black"></div>
-                    <div className="line-black"></div>
+                    <div className="line-white"></div>
+                    <div className="line-white"></div>
                 </div>
                 <div className="features">
                     <article className="arti-1">

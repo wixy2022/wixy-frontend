@@ -219,11 +219,11 @@ export const Editor = React.memo(({ setPageClass }) => {
                         style={(wap?.cmps.length === 0) ? { backgroundColor: '(128, 128, 128, 0.09)' } : {}}
                         ref={el => { editorRef.current = el; providedDroppable.innerRef(el); }}
                     >
-                        {(wap?.cmps.length === 0) && <>
-                            <h1 className="editor-empty-msg"> →  Drag here to create your own website  ←</h1>
+                        {(wap?.cmps.length === 0) && <div className="editor-empty-gif-container">
+                            <h1 className="editor-empty-msg">Drag here to create your own website</h1>
                             {/* <div className="editor-empty-gif"><img src="https://j.gifs.com/oZ909K.gif" alt="" /></div> */}
                             <div className="editor-empty-gif"><img src={editorGif} alt="" /></div>
-                        </>
+                        </div>
                         }
 
                         <Screen onCloseScreen={onCloseScreen} />
