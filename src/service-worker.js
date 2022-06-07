@@ -68,18 +68,23 @@ self.addEventListener('message', (event) => {
     self.skipWaiting();
   }
 });
+let wapId
+
 self.addEventListener('push',(ev)=>{
   const data = ev.data?.json()
     console.log('Push recieved...')
+    wapId = data.wapId
+
     self.registration.showNotification(data.title, {
       body : data.body,
       badge: 'favicon.png',
-      icon: 'favicon.jpg'
+      icon: 'favicon.jpg',
+      badge: 'favicon.png',
     })
 })
 
 self.addEventListener('notificationclick', function(event) {
-  let url = 'https://wixy-2022.herokuapp.com/#/';
+  let url = `https://wixy-2022.herokuapp.com/#/dashboard?id=${wapId}`;
   event.notification.close(); // Android needs explicit close.
   event.waitUntil(
       self?.clients.matchAll({type: 'window'}).then( windowClients => {
