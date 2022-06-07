@@ -153,7 +153,7 @@ export const wapVideo99 = {
             id: utilService.makeId(16),
             type: 'txt',
             className: 'txt title',
-            txt: 'Watch our Veterinarian Answers your\'s Questions'
+            txt: 'Watch our Veterinarian Answers your Questions'
         },
         {
             id: utilService.makeId(16),
