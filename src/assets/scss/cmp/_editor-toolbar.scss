@@ -287,6 +287,38 @@
             display: flex;
             flex-direction: column;
             margin-inline-start: 2.3px;
+            .edtior-arrow{
+                width: 25px;
+                height: 25px;
+                border-radius: 1em;
+                background-color: white;
+                border: 1px solid grey;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                right: -14px;
+                cursor: pointer;
+                top: -22px;
+                z-index: 2500;
+                &:hover{
+                    background-color: whitesmoke;
+                }
+                .fa-chevron {
+                    background-repeat: no-repeat;
+                    background-size: 10px;
+                    background-position: center;
+                    width: 20px;
+                    height: 20px;
+                    &.right{
+                        background-image: url(../../img/chevron-right-solid.svg);
+                    }
+                    &.left{
+                        background-image: url(../../img/chevron-left-solid.svg);
+                    }
+                }
+                
+            }
 
         }
 
@@ -607,7 +639,12 @@
         }
 
         /* border-right: 1px solid rgba(169, 171, 171, 0.275); */
-
+        .template-bar-btns{
+            .edtior-arrow{
+                right: -345px;
+               
+            }
+        }
 
         .editor-icon-container {
             margin-block-start: unset;

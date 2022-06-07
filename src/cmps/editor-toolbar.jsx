@@ -10,8 +10,10 @@ export const TemplateToolBar = ({ setToolBarMode,onSaveWap, templates, setTempla
     const [currTopic, setCurrTopic] = useState(null)
     const {user} = useSelector(storeState=>storeState.userModule)
     const onHandleTemplates = async (ev) => {
+        console.log(ev.target.name)
         ev.stopPropagation()
         const { name } = ev.target
+        if(!name )return
         onCloseScreen()
         // await onSetHeight()
 
@@ -42,6 +44,10 @@ export const TemplateToolBar = ({ setToolBarMode,onSaveWap, templates, setTempla
            {user&&<div onClick={onSaveWap} className="save"><img className="save-img" src="https://res.cloudinary.com/drpqhjyvk/image/upload/v1654447979/diskette_v3iykh.png" alt="" /></div>}
         <div className="template-bar-btns">
             {getToolBarButtons()}
+            <button onClick={onHandleTemplates} name={'section'} className="edtior-arrow">
+            <a  onClick={onHandleTemplates} name={'section'} className={`fa-chevron ${selectedTemplates?'left':'right'}`}></a>
+            </button>
+            {/* <div><span className={`${selectedTemplates?'fa fa-angle-left':'fa-solid fa-chevron-right'}`}></span></div> */}
         </div>
         <Droppable isDropDisabled={true} droppableId="template-tool-bar-drop">
             {(providedDroppable) => {

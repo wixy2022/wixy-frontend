@@ -1,4 +1,4 @@
-.main-layout{
+.main-layout {
     width: 100%;
     padding: 0 15px;
 }
@@ -101,11 +101,22 @@
 .fa.fa-instagram::before {
     content: "\f16d";
 }
+
 .fa-regular.fa-floppy-disk::before {
-   
+
     content: '\f0c7';
 }
 
+.fa-solid.fa-angle-right::before {
+    font-family: fa-solid;
+    content: "\f105";
+    font-size: 30px;
+
+}
+
+
+
+// background-color: rgba(0, 0, 255, 0.508);
 
 /* ACTIVE CMP */
 .active-cmp {

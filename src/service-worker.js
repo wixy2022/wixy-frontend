@@ -73,6 +73,7 @@ self.addEventListener('push',(ev)=>{
     console.log('Push recieved...')
     self.registration.showNotification(data.title, {
       body : data.body,
+      badge: 'favicon.png',
       icon: 'favicon.jpg'
     })
 })

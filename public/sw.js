@@ -10,9 +10,11 @@ self.addEventListener('push',(ev)=>{
     body : data.body,
     icon: 'favicon.jpg',
     requireInteraction: true,
+    badge: 'favicon.png',
+
     onclick:console.log,
   }
-      self.registration.showNotification('data.title',options )
+      self.registration.showNotification(data.title,options )
   })
 
   self.addEventListener('notificationclick', function(event) {
