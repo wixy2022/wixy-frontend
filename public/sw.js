@@ -19,7 +19,7 @@ self.addEventListener('push',(ev)=>{
     let url = 'https://wixy-2022.herokuapp.com/#/';
     event.notification.close(); // Android needs explicit close.
     event.waitUntil(
-        clients.matchAll({type: 'window'}).then( windowClients => {
+        self?.clients.matchAll({type: 'window'}).then( windowClients => {
             // Check if there is already a window/tab open with the target URL
             for (var i = 0; i < windowClients.length; i++) {
                 var client = windowClients[i];
@@ -29,8 +29,8 @@ self.addEventListener('push',(ev)=>{
                 }
             }
             // If not, then open the target URL in a new window/tab.
-            if (clients.openWindow) {
-                return clients.openWindow(url);
+            if (self?.clients.openWindow) {
+                return self?.clients.openWindow(url);
             }
         })
     );
