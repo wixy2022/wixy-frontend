@@ -4,7 +4,8 @@ export const utilService = {
     makeLorem,
     getRandomIntInclusive,
     dateToString,
-    createKey
+    createKey,
+    getMonthName
 }
 
 function makeId(length = 6) {
@@ -34,10 +35,28 @@ function getRandomIntInclusive(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
 }
 
+function getMonthName(date) {
+    const monthNames = [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'June',
+        'July',
+        'Aug',
+        'Sept',
+        'Oct',
+        'Nov',
+        'Dec',
+    ]
+    return monthNames[date.getMonth()]
+}
+
 function dateToString(date, language = 'he-IL') {
     return Intl.DateTimeFormat(language, { dateStyle: 'short', timeStyle: 'short', hour12: false }).format(new Date(date))
 }
 
-function createKey (){
+function createKey() {
     return makeId(10)
 }
