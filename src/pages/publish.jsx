@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
 import { DynamicCmp } from "../cmps/dynamic-cmp"
+import { storageService } from "../services/async-storage.service"
 import { utilService } from "../services/util.service"
 import { wapService } from "../services/wap.service"
 import { socketService } from "../services/socket.service"
