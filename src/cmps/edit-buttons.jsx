@@ -5,7 +5,7 @@ import { EditModal } from "./edit-modal"
 
 import { setActiveCmp } from "../store/actions/wap.action"
 
-export const EditButtons = React.memo(({ onUpdateWap }) => {
+export const EditButtons = React.memo(({ onUpdateWap, editorRef }) => {
 
     const { activeCmp, activeCmpPos } = useSelector(storeState => storeState.wapModule)
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
@@ -17,7 +17,9 @@ export const EditButtons = React.memo(({ onUpdateWap }) => {
 
     //Positioning the modal
     const getButtonsPosition = () => {
-        const { target, editorOffsetLeft, editorScrollTop } = activeCmpPos
+        const { target } = activeCmpPos //editorOffsetLeft, editorScrollTop
+        const editorOffsetLeft = editorRef.current.offsetLeft
+        const editorScrollTop = editorRef.current.scrollTop
         const x = target.getBoundingClientRect().x
         const y = target.getBoundingClientRect().y
         const width = target.offsetWidth
@@ -43,7 +45,7 @@ export const EditButtons = React.memo(({ onUpdateWap }) => {
     }, [activeCmpPos])
 
     if (!activeCmp || !activeCmpPos) return
-    const { editorOffsetLeft, editorScrollTop } = activeCmpPos
+    // const { editorOffsetLeft, editorScrollTop } = activeCmpPos
     let { target } = activeCmpPos
     if (activeCmp.type === 'img') target = target.parentElement
     target.classList.add('active-cmp')
@@ -73,6 +75,9 @@ export const EditButtons = React.memo(({ onUpdateWap }) => {
     const onOpenEditModal = (ev, action) => {
         ev.stopPropagation()
 
+        const editorOffsetLeft = editorRef.current.offsetLeft
+        const editorScrollTop = editorRef.current.scrollTop
+
         /* 250 is the width of the modal */
         /* 325 = height of modal 245 and 80 i've added */
 
@@ -85,7 +90,7 @@ export const EditButtons = React.memo(({ onUpdateWap }) => {
 
         // if it cant open above, it will open below
         // if it's container and style, the size of the editor is smaller since it has only background colors
-        const offsetBottom = activeCmp.type.includes('container') && action.type === 'style' ? 195 : 325
+        const offsetBottom = (activeCmp.type.includes('container') || activeCmp.type === 'video') && action.type === 'style' ? 195 : 325
         if (posY - editorScrollTop - offsetBottom <= 16) posY += offsetBottom
 
         setEditModalPosition({ posX, posY })

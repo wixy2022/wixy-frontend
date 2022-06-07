@@ -27,6 +27,8 @@ import { setScreenHeight, setScreen } from "../store/actions/screen.action"
 import { useEffectUpdate } from "../hooks/use-effect-update"
 import { uploadService } from "../services/upload.service"
 
+import editorGif from '../assets/img/editor-instructions.gif'
+
 
 export const Editor = React.memo(({ setPageClass }) => {
     const wap = useSelector(storeState => storeState.wapModule.wap)
@@ -166,8 +168,8 @@ export const Editor = React.memo(({ setPageClass }) => {
 
         dispatch(setActiveCmpPos({
             target: elCurrCmp,
-            editorOffsetLeft: editorRef.current.offsetLeft,
-            editorScrollTop: editorRef.current.scrollTop
+            // editorOffsetLeft: editorRef.current.offsetLeft,
+            // editorScrollTop: editorRef.current.scrollTop
         }))
     }
 
@@ -219,7 +221,8 @@ export const Editor = React.memo(({ setPageClass }) => {
                     >
                         {(wap?.cmps.length === 0) && <>
                             <h1 className="editor-empty-msg"> →  Drag here to create your own website  ←</h1>
-                            <div className="editor-empty-gif"><img src="https://j.gifs.com/oZ909K.gif" alt="" /></div>
+                            {/* <div className="editor-empty-gif"><img src="https://j.gifs.com/oZ909K.gif" alt="" /></div> */}
+                            <div className="editor-empty-gif"><img src={editorGif} alt="" /></div>
                         </>
                         }
 
@@ -253,6 +256,7 @@ export const Editor = React.memo(({ setPageClass }) => {
                         {providedDroppable.placeholder}
                         {<EditButtons
                             onUpdateWap={onUpdateWap}
+                            editorRef={editorRef}
                         />}
                     </div>
                 </>

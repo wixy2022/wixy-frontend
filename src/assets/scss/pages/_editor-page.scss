@@ -30,7 +30,12 @@
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
+        // width: 80%;
+        // opacity: 0.4;
         width: 80%;
+        max-width: 90vw;
+        max-height: 90vh;
+        overflow: hidden;
         opacity: 0.4;
         border: 2px dashed black;
 

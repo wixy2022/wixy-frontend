@@ -16,7 +16,8 @@
         gap: 10px;
         border-radius: 50%;
         box-sizing: unset;
-        background-color: #fffaf0;
+        // background-color: #fffaf0;
+        background-color: white;
         padding: 5px;
         display: flex;
         align-items: center;
@@ -28,7 +29,8 @@
         }
 
         &:hover {
-            background-color: #cac8c8;
+            // background-color: #cac8c8;
+            background-color: whitesmoke;
         }
     }
 }
