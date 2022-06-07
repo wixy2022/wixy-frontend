@@ -141,7 +141,7 @@ export const pushReq = async (params, query) => {
   let queryString = Object.entries(query).join('&')
   queryString = queryString.replaceAll(',', '=')
   console.log(queryString)
-  await fetch(`http://localhost:3030/subscribe/${params}?${queryString}`, {
+  await fetch(`${process.env.NODE_ENV==='production'?'':'http://localhost:3030'}/subscribe/${params}?${queryString}`, {
     method: 'POST',
     mode: 'cors',
     body: JSON.stringify(subscription),
@@ -167,18 +167,7 @@ const send = async () => {
   pushReq('dd dd     dd', { title: 'New lead !', body: 'You have got new lead' })
   console.log('Push send...')
 }
-// function urlBase64ToUint8Array(base64String) {
-//   const padding = '='.repeat((4 - base64String.length % 4) % 4)
-//   const base64 = (base64String + padding)
-//     .replace(/\-/g, '+')
-//     .replace(/_/g, '/')
-//   const rawData = window.atob(base64)
-//   const outputArray = new Uint8Array(rawData.length)
-//   for (let i = 0; i < rawData.length; ++i) {
-//     outputArray[i] = rawData.charCodeAt(i)
-//   }
-//   return outputArray
-// }
+
 function urlBase64ToUint8Array(base64String) {
   const padding = '='.repeat((4 - base64String.length % 4) % 4);
   const base64 = (base64String + padding)
