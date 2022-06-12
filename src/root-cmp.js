@@ -1,4 +1,4 @@
-import { createRef, useEffect, useRef, useState } from "react";
+import {  useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import { Templates } from './pages/templates.jsx'
 import { AppHeader } from "./cmps/app-header";
@@ -11,23 +11,11 @@ import { MySites } from "./pages/my-sites.jsx";
 import { Dashboard } from "./pages/dashboard.jsx"
 import { pushReq } from "./serviceWorkerRegistration.js";
 import { socketService } from "./services/socket.service.js";
-import { useSelector } from "react-redux";
-import { userService } from "./services/user.service.js";
 
 
 export function App() {
   const [pageClass, setPageClass] = useState('')
-  const user = userService.getLoggedInUserLocal()
   useEffect(() => {
-
-    (async () => {
-      console.log(user)
-
-      if (Object.keys(user).length<0) {
-        if(!user)return
-        await userService.login(user, true)
-      }
-    })()
     socketService.on('lead-notification', (wapId) => {
       console.log(wapId)
       pushReq('dd dd     dd', { wapId, title: 'New lead !', body: 'You have got new lead' })
