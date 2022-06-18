@@ -13,37 +13,31 @@ export const userService = {
     getLoggedInUser,
     signUp,
     setLoggedInUser,
-    getLoggedInUserLocal
 }
 
 function getLoggedInUser() {
-    const user = JSON.parse(sessionStorage.getItem('loggedinUser'))
+    const user = JSON.parse(localStorage.getItem('loggedinUser'))
     return user || null
 }
 
 
 async function login(user, isRememberMode) {
     const loggedinUser = await httpService.post(`auth/login`, user)
-    if (isRememberMode) sessionStorage.setItem('loggedinUser', JSON.stringify(loggedinUser))
+    if (isRememberMode) localStorage.setItem('loggedinUser', JSON.stringify(loggedinUser))
     return loggedinUser
 }
 
 async function logout() {
     await httpService.post(`auth/logout`)
-    sessionStorage.removeItem('loggedinUser')
+    localStorage.removeItem('loggedinUser')
 }
 
 async function signUp(user) {
     const loggedinUser = await httpService.post(`auth/signup`, user)
-    sessionStorage.setItem('loggedinUser', JSON.stringify(loggedinUser))
+    localStorage.setItem('loggedinUser', JSON.stringify(loggedinUser))
     return Promise.resolve(loggedinUser)
 }
 
 function setLoggedInUser(user) {
-    localStorage.setItem('loggedinUser',JSON.stringify(user)) 
-}
-
-function getLoggedInUserLocal() {
-    const user = JSON.parse(localStorage.getItem('loggedinUser'))
-    return user || {}
+    localStorage.setItem('loggedinUser', JSON.stringify(user))
 }
