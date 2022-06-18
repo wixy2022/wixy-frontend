@@ -20,12 +20,9 @@ export function App() {
       console.log(wapId)
       pushReq('dd dd     dd', { wapId, title: 'New lead !', body: 'You have got new lead' })
     })
-    return () => {
-
-
-
-    }
+    return () => {}
   }, [])
+
   return (
     <div className={`main-app ${pageClass}`}>
       <AppHeader setPageClass={setPageClass} pageClass={pageClass} />

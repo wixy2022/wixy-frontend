@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 import { Link, useHistory } from "react-router-dom"
 import { storageService } from "../services/async-storage.service"
 import { wapService } from "../services/wap.service"
-import { saveWap, setWap } from "../store/actions/wap.action"
+import { setWap } from "../store/actions/wap.action"
 import { PreviewModal } from "./preview-modal"
 
 export const TemplateCard = ({ isMySites,wap }) => {
@@ -22,12 +22,11 @@ export const TemplateCard = ({ isMySites,wap }) => {
             cloneWap.cmps.forEach(cmp => wapService.createAncestors(cmp))
 
         }
+
         const savedWap = await wapService.save(cloneWap)
         storageService.saveWapToStorage(savedWap)
         dispatch(setWap(savedWap))
         history.push(`/editor?id=${savedWap._id}`)
-
-        // return `/editor?id=${newWap._id}`
     }
 
     return <div onMouseEnter={(() => setIsMouseIn(true))} onMouseLeave={(() => setIsMouseIn(false))} className="template-card">

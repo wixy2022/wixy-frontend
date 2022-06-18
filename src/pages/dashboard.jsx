@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min"
+import { useDispatch } from "react-redux"
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 
 import { wapService } from "../services/wap.service"
 import { socketService } from "../services/socket.service"
@@ -16,7 +16,6 @@ export const Dashboard = () => {
     const [wap, setWap] = useState(null)
     const dispatch = useDispatch()
     const history = useHistory()
-    const params = useParams()
 
     useEffect(() => {
         loadWap()
@@ -39,14 +38,14 @@ export const Dashboard = () => {
         if (wapId) {
             try {
                 const wap = await wapService.getById(wapId)
-                if(wap)setWap(wap)
+                if(wap) setWap(wap)
                 // dispatch(setWap(wap))
                 return
             } catch (err) {
                 console.log('status', err.response.status)
                 console.log('data', err.response.data)
-                // dispatch(setMsg({ type: 'danger', txt: '' }))
-                setWap(testData)
+                dispatch(setMsg({ type: 'danger', txt: 'failed to load wap' }))
+                // setWap(testData)
             }
         } else {
             if (wap) return

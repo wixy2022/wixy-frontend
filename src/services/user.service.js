@@ -18,8 +18,7 @@ export const userService = {
 
 function getLoggedInUser() {
     const user = JSON.parse(sessionStorage.getItem('loggedinUser'))
-    return user || {}
-
+    return user || null
 }
 
 
@@ -39,13 +38,12 @@ async function signUp(user) {
     sessionStorage.setItem('loggedinUser', JSON.stringify(loggedinUser))
     return Promise.resolve(loggedinUser)
 }
-function setLoggedInUser(user) {
-    localStorage.setItem('loggedinUser',JSON.stringify(user))
-   
 
+function setLoggedInUser(user) {
+    localStorage.setItem('loggedinUser',JSON.stringify(user)) 
 }
+
 function getLoggedInUserLocal() {
     const user = JSON.parse(localStorage.getItem('loggedinUser'))
     return user || {}
-
 }

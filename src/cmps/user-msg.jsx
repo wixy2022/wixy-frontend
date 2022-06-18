@@ -3,39 +3,33 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setMsg } from '../store/actions/msg.action';
 
 export const UserMsg = () => {
-    // const intialMeterValue = 200
     const [value, setValue] = useState(200)
     const dispatch = useDispatch()
-    const {msg} = useSelector(storeState => storeState.msgModule)
+    const { msg } = useSelector(storeState => storeState.msgModule)
     const timeoutId = useRef();
     const intrevalId = useRef()
     let meterValue = useRef(200)
-    
+
     useEffect(() => {
         if (timeoutId.current || intrevalId.current) {
             clearTimeout(timeoutId.current)
             clearInterval(intrevalId.current)
         }
         intrevalId.current = setInterval(() => {
-            // setMeterValue(meterValue - 0.3)
-             meterValue.current-=0.411
-             setValue(meterValue.current)
+            meterValue.current -= 0.411
+            setValue(meterValue.current)
         }, 2)
         timeoutId.current = setTimeout(() => {
             onCloseMsg()
         }, 2000)
     }, [msg])
-    // const setMeterValue =()=>{
-
-    // }
 
     useEffect(() => {
         console.log(msg)
     }, [])
     const onCloseMsg = () => {
         dispatch(setMsg(null))
-        meterValue.current=200
-        // setMeterValue(200)
+        meterValue.current = 200
         clearTimeout(timeoutId.current)
         clearInterval(intrevalId.current)
     }
@@ -61,7 +55,6 @@ export const UserMsg = () => {
                 <meter value={value} min={0} max={200} ></meter>
             </div>
             <span>{symbol}</span>
-
         </section>
     )
 }

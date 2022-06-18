@@ -1,14 +1,12 @@
 import { NavLink, Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { useEffect, useRef, useState } from "react"
-import { setScreen } from "../store/actions/screen.action"
+import { useState } from "react"
 import { logout } from '../store/actions/user.action'
 import { useHistory } from "react-router-dom"
 import { PreviewModal } from '../cmps/preview-modal.jsx'
 import { wapService } from "../services/wap.service"
-import { saveWap } from "../store/actions/wap.action"
 
-export const AppHeader = ({ pageClass ,setPageClass}) => {
+export const AppHeader = ({ pageClass, setPageClass }) => {
     const { user } = useSelector(storeState => storeState.userModule)
     const dispatch = useDispatch()
     const history = useHistory()
@@ -18,25 +16,23 @@ export const AppHeader = ({ pageClass ,setPageClass}) => {
     const [isOpen, setIsOpen] = useState('')
     const isLogin = user ? 'Logout' : 'Login'
     const [isPreview, setIsPreview] = useState(false)
-    
-    
-    
+
     const onOpenModal = (ev) => {
         ev.stopPropagation()
         isOpen ? setIsOpen('') : setIsOpen('open')
     }
+
     const onSetLoginLogout = () => {
         if (isLogin === 'Logout') dispatch(logout())
         else history.push('/login')
     }
-    const saveAndPublish =()=>{
-        // dispatch(saveWap(wap))
+    
+    const saveAndPublish = () => {
         wapService.save(wap)
         return `publish/?id=${wap?._id}`
     }
-    // console.log(image)
-    return <section  className={`app-header ${headerClass}`}>
 
+    return <section className={`app-header ${headerClass}`}>
 
         <main className="flex align-center main-layout">
             <Link className="logo-link" to="/"><div className="logo">
@@ -47,7 +43,7 @@ export const AppHeader = ({ pageClass ,setPageClass}) => {
                 <NavLink to='/templates'>Templates</NavLink>
                 <NavLink to='/editor'>Editor</NavLink>
             </nav>
-            
+
             {(pageClass !== 'editor-open') && <div onClick={(ev) => {
                 onOpenModal(ev)
                 setHeaderClass(isOpen)
@@ -76,10 +72,10 @@ export const AppHeader = ({ pageClass ,setPageClass}) => {
                 <NavLink to={saveAndPublish} target={"_blank"} className="publish-btn logo-link">Publish</NavLink>
             </div>}
         </main>
-        {isPreview &&<>
-         <PreviewModal setPageClass={setPageClass} setIsPreview={setIsPreview}/>
-         <div onClick={(ev) => {ev.stopPropagation(); setIsPreview(false)}} className="black-screen"></div>
+        {isPreview && <>
+            <PreviewModal setPageClass={setPageClass} setIsPreview={setIsPreview} />
+            <div onClick={(ev) => { ev.stopPropagation(); setIsPreview(false) }} className="black-screen"></div>
         </>
-         }
+        }
     </section>
 }

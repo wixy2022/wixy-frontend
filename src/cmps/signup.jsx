@@ -42,8 +42,6 @@ export class SignUp extends React.Component {
                         alignItems: 'center',
                     }}
                 >
-                    <Avatar style={{ margin: 1, backgroundColor: '#424242' }}>
-                    </Avatar>
                     <Typography component="h1" variant="h5">
                         Sign up
                     </Typography>

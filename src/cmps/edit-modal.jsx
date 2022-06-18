@@ -1,9 +1,8 @@
-import { borderRadius } from "@mui/system"
 import React, { useState } from "react"
-import { wapService } from "../services/wap.service"
 import { useSelector } from "react-redux"
+import { wapService } from "../services/wap.service"
 
-export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, onUpdateWap, elementType, setActiveCmp, activeCmpSettings, updateActiveCmp, target, editModalMode }) => {
+export const EditModal = ({ posX, posY, setIsEditModalOpen, onUpdateActiveCmp, target, editModalMode }) => {
 
     const { activeCmp } = useSelector(storeState => storeState.wapModule)
 
@@ -13,16 +12,14 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
     const [videoUrl, setVideoUrl] = useState('')
     const [borderRadiusVal, setBorderRadiusVal] = useState(getComputedStyle(target).borderRadius)
     const [opacityVal, setOpacityVal] = useState(getComputedStyle(target).opacity * 100)
- 
+
     const { type: editMode } = editModalMode
 
     const onClassName = (ev, value) => {
         ev.stopPropagation()
         let updatedClassName = activeCmp.className.replace(/\stheme-[^\s]+/g, '') + ` ${value}`
-        updateActiveCmp({ ...activeCmp, className: updatedClassName.trim(), style: {} })
+        onUpdateActiveCmp({ ...activeCmp, className: updatedClassName.trim(), style: {} })
 
-        // onActiveCmpUpdate('className', `${updatedClassName} theme-${value}`)
-        // onUpdateWap('className', `${updatedClassName} ${value}`)
         if (activeCmp.category) updatedClassName += ' ' + activeCmp.category
         target.className = `active-cmp ${activeCmp.type}-cmp ${updatedClassName}`
         target.style = ''
@@ -73,12 +70,11 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
     const onSetProperty = (type, value, key = 'style') => {
 
         if (type === 'clear') {
-            updateActiveCmp({ ...activeCmp, style: {} })
+            onUpdateActiveCmp({ ...activeCmp, style: {} })
             target.style = {}
             return
         }
 
-        // const { textDecoration, fontWeight, fontStyle } = activeCmpSettings
         const textDecoration = getComputedStyle(target).textDecoration
         const fontWeight = getComputedStyle(target).fontWeight
         const fontStyle = getComputedStyle(target).fontStyle
@@ -89,8 +85,6 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
                 case 'textDecoration':
                     if (!textDecoration ||
                         !textDecoration.includes('underline')
-                        // textDecoration !== 'underline'
-                        // && activeCmp.style?.textDecoration !== 'underline'
                     ) value = 'underline'
                     else value = 'none'
                     break
@@ -98,23 +92,18 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
                     if (!fontWeight ||
                         fontWeight !== 'bold' &&
                         fontWeight < 700
-                        // && activeCmp.style?.fontWeight !== '800'
                     ) value = '800'
                     else value = 'normal'
                     break
                 case 'fontStyle':
                     if ((!fontStyle || fontStyle !== 'italic')
-                        //&& !activeCmp.style || activeCmp.style?.fontStyle !== 'italic'
                     ) value = 'italic'
                     else value = 'normal'
-                // default:
-                // setBorderRadiusVal('')
-                // setOpacityVal('')
             }
 
             if (type === 'opacity' || type === 'borderRadius') value += '%'
             valueToSet = { ...activeCmp.style, [type]: value }
-            updateActiveCmp({ ...activeCmp, style: valueToSet })
+            onUpdateActiveCmp({ ...activeCmp, style: valueToSet })
 
             if (type === 'opacity' || type === 'borderRadius') target.children[0].style[type] = value
             else target.style[type] = value
@@ -128,15 +117,12 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
             } else {
                 target.src = value
             }
-            updateActiveCmp({ ...activeCmp, url: value })
-            // valueToSet = value
+            onUpdateActiveCmp({ ...activeCmp, url: value })
+
             setLinkUrl('')
             setImgUrl('')
             setVideoUrl('')
         }
-
-        // setActiveCmp({ ...activeCmp, [key]: valueToSet })
-        // onUpdateWap(key, valueToSet)
     }
 
     const getColorPalette = (title, type) => {
@@ -195,41 +181,6 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
         else if (name === 'borderRadius') { setBorderRadiusVal(value); onSetProperty(name, value, 'style') }
         else if (name === 'opacity') { setOpacityVal(value); onSetProperty(name, value, 'style') }
     }
-
-    // const onSubmit = (ev) => {
-    //     ev.preventDefault()
-    //     const { name } = ev.target[0]
-    //     let type, value, key
-
-    //     switch (name) {
-    //         case 'url':
-    //         case 'imgUrl':
-    //             type = 'url'
-    //             value = name === 'url' ? linkUrl : imgUrl
-    //             key = 'url'
-    //             break
-    //         // case 'borderRadius':
-    //         //     type = 'borderRadius'
-    //         //     value = borderRadiusVal + '%'
-    //         //     key = 'style'
-    //         //     break
-    //         // case 'opacity':
-    //         //     type = 'opacity'
-    //         //     value = opacityVal + '%'
-    //         //     key = 'style'
-    //         //     break
-    //     }
-    //     onSetProperty(type, value, key)
-    // }
-
-    // const getInput = (title, name, placeholder, value, type, min = '', max = '') => {
-    //     return <form className='link-edit-container' onSubmit={onSubmit} >
-    //         <label><h4>{title}</h4>
-    //             <input type={type} placeholder={placeholder} name={name} min={min} max={max}
-    //                 value={value} onChange={handleChange} />
-    //         </label>
-    //     </form>
-    // }
 
     const getInputRange = (title, name, placeholder, value, min = '', max = '') => {
         const getValue = (name, value) => {
@@ -300,18 +251,14 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
 
         {editMode === 'style' && (activeCmp.type === 'txt' || activeCmp.type === 'anchor') && <main className="edit-modal-container">
             {getTxtStyleBtns()} {/* TEXT-DECORATION */}
-
             {activeCmp.type === 'anchor' && getInputUrl('Link To', 'linkUrl', 'Enter URL', linkUrl, 'text')} {/* LINK */}
-
             {getColorPalette('Text Color', 'color')} {/* TEXT-COLOR */}
-
             {getColorPalette('Background Color', 'backgroundColor')} {/* BCG-COLOR */}
         </main>
         }
 
         {editMode === 'style' && activeCmp.type === 'img' && <main className="edit-modal-container">
             {getInputUrl('Change Image', 'imgUrl', 'Enter URL', imgUrl, 'text')} {/* IMG-URL */}
-            {/* {getInput('Border Radius', 'borderRadius', 'Border Radius Size', borderRadiusVal, 'number', 0, 50)} / BORDER-RADIUS */}
             {getInputRange('Border Radius', 'borderRadius', 'Border Radius Size', borderRadiusVal, 0, 50)} {/* / BORDER-RADIUS */}
             {getInputRange('Opacity', 'opacity', 'Image Opacity', opacityVal, 0, 100)} {/* / OPACITY */}
 
@@ -320,7 +267,6 @@ export const EditModal = ({ posX, posY, setIsEditModalOpen, onActiveCmpUpdate, o
 
         {editMode === 'style' && activeCmp.type === 'video' && <main className="edit-modal-container">
             {getInputUrl('Change Video', 'videoUrl', 'Enter URL', videoUrl, 'text')} {/* IMG-URL */}
-            {/* {getInput('Border Radius', 'borderRadius', 'Border Radius Size', borderRadiusVal, 'number', 0, 50)} / BORDER-RADIUS */}
         </main>
         }
 

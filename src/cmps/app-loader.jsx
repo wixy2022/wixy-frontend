@@ -1,6 +1,4 @@
 
-
-
 export const Loader =()=>{
     return <div className="loader">
     <video width="350" height="300"

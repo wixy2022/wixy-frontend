@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min"
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
+import { setActiveCmp, setActiveCmpTxt, setActiveCmpPos, updateWapByActiveCmp } from "../store/actions/wap.action"
+import { setScreenHeight, setScreen } from "../store/actions/screen.action"
 import { setWap, saveWap } from "../store/actions/wap.action"
+import { setMsg } from '../store/actions/msg.action'
 
 import { DynamicCmp } from "../cmps/dynamic-cmp"
 import { TemplateToolBar } from "../cmps/editor-toolbar"
@@ -11,24 +14,15 @@ import { allTemplates } from "../templates/templates"
 import { Screen } from '../cmps/screen'
 import { Loader } from "../cmps/app-loader"
 import { EditButtons } from "../cmps/edit-buttons"
-import { EditModal } from "../cmps/edit-modal"
-
-import * as htmlToImage from 'html-to-image';
-import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 
 import { wapService } from "../services/wap.service"
 import { utilService } from '../services/util.service'
 import { storageService } from "../services/async-storage.service"
 import { socketService } from '../services/socket.service'
-
-import { setMsg } from '../store/actions/msg.action'
-import { setActiveCmp, setActiveCmpTxt, setActiveCmpPos, updateWapByActiveCmp } from "../store/actions/wap.action" /* FIX - move to line 6 */
-import { setScreenHeight, setScreen } from "../store/actions/screen.action"
-import { useEffectUpdate } from "../hooks/use-effect-update"
 import { uploadService } from "../services/upload.service"
 
 import editorGif from '../assets/img/editor-instructions.gif'
-
+import * as htmlToImage from 'html-to-image';
 
 export const Editor = React.memo(({ setPageClass }) => {
     const wap = useSelector(storeState => storeState.wapModule.wap)
@@ -40,7 +34,7 @@ export const Editor = React.memo(({ setPageClass }) => {
     const [toolBarMode, setToolBarMode] = useState('')
     const [templateKey, setTemplateKey] = useState(null)
     const editorRef = useRef()
-    const MouseTimout = useRef()
+    const mouseTimeout = useRef()
     const templates = allTemplates
 
 
@@ -80,9 +74,6 @@ export const Editor = React.memo(({ setPageClass }) => {
         storageService.saveWapToStorage(wap)
         const screenHeight = editorRef.current.scrollHeight
         dispatch(setScreenHeight(screenHeight))
-
-        return () => {
-        }
     }, [wap])
 
     useEffect(() => {
@@ -155,23 +146,24 @@ export const Editor = React.memo(({ setPageClass }) => {
         }
     }
 
-    const onSelectActiveCmp = (currCmp, elCurrCmp, onChange) => {
-
+    const onSelectActiveCmp = (currCmp, elCurrCmp) => {
 
         onSetHeight()
         dispatch(setScreen(true))
 
-        dispatch(setActiveCmp({ ...currCmp })) /* FIX - change names of parameters to cmp and target */
+        dispatch(setActiveCmp({ ...currCmp }))
 
         dispatch(setActiveCmpPos({
             target: elCurrCmp,
-            // editorOffsetLeft: editorRef.current.offsetLeft,
-            // editorScrollTop: editorRef.current.scrollTop
         }))
     }
 
     const onUpdateCmpTxt = (txt) => {
         dispatch(setActiveCmpTxt(txt))
+    }
+
+    const onUpdateActiveCmp = (updatedCmp) => {
+        dispatch(setActiveCmp(updatedCmp))
     }
 
     const onUpdateWap = (activeCmp, key, value = null) => {
@@ -180,15 +172,17 @@ export const Editor = React.memo(({ setPageClass }) => {
         dispatch(setWap(updatedWap))
         onEndEditMode()
     }
+    
     const mouseMoving = ({ clientX, clientY }) => {
 
         socketService.emit('on-mouse-move', { x: clientX, y: clientY })
     }
+
     const moveMouseRef = ({ x, y }) => {
-        if (MouseTimout.current) clearTimeout(MouseTimout.current)
-        MouseTimout.current = setTimeout(() => {
+        if (mouseTimeout.current) clearTimeout(mouseTimeout.current)
+            mouseTimeout.current = setTimeout(() => {
             cursorRef.current.style.left = '2000px'
-            clearTimeout(MouseTimout.current)
+            clearTimeout(mouseTimeout.current)
         }, 4500)
         if (cursorRef.current) {
             cursorRef.current.style.left = x + 'px'
@@ -218,7 +212,6 @@ export const Editor = React.memo(({ setPageClass }) => {
                     >
                         {(wap?.cmps.length === 0) && <div className="editor-empty-gif-container">
                             <h1 className="editor-empty-msg">Drag here to create your own website</h1>
-                            {/* <div className="editor-empty-gif"><img src="https://j.gifs.com/oZ909K.gif" alt="" /></div> */}
                             <div className="editor-empty-gif"><img src={editorGif} alt="" /></div>
                         </div>
                         }
@@ -252,6 +245,7 @@ export const Editor = React.memo(({ setPageClass }) => {
                         )}
                         {providedDroppable.placeholder}
                         {<EditButtons
+                            onUpdateActiveCmp={onUpdateActiveCmp}
                             onUpdateWap={onUpdateWap}
                             editorRef={editorRef}
                         />}

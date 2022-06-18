@@ -9,13 +9,12 @@ export const TemplateToolBar = ({ setToolBarMode,onSaveWap, templates, setTempla
     const [selectedTemplates, setSelectedTemplates] = useState(null)
     const [currTopic, setCurrTopic] = useState(null)
     const {user} = useSelector(storeState=>storeState.userModule)
+    
     const onHandleTemplates = async (ev) => {
-        console.log(ev.target.name)
         ev.stopPropagation()
         const { name } = ev.target
         if(!name )return
         onCloseScreen()
-        // await onSetHeight()
 
         if (currTopic === name) {
             setCurrTopic(null)
@@ -28,8 +27,8 @@ export const TemplateToolBar = ({ setToolBarMode,onSaveWap, templates, setTempla
             setSelectedTemplates(templates[name])
             setToolBarMode('tool-bar-open')
         }
-
     }
+    
     const getToolBarButtons = () => {
         const names = ['header', 'section', 'text', 'cards', 'gallery', 'video','form', 'footer',]
         return names.map((name) => <button
@@ -40,6 +39,7 @@ export const TemplateToolBar = ({ setToolBarMode,onSaveWap, templates, setTempla
             <a name={name} onClick={onHandleTemplates} className={`editor-icon-img ${name} ${currTopic === name ? 'active-tool' : ''} `} ></a>
         </button>)
     }
+    
     return <section className="template-tool-bar" >
            {user&&<div onClick={onSaveWap} className="save"><img className="save-img" src="https://res.cloudinary.com/drpqhjyvk/image/upload/v1654447979/diskette_v3iykh.png" alt="" /></div>}
         <div className="template-bar-btns">
@@ -47,7 +47,6 @@ export const TemplateToolBar = ({ setToolBarMode,onSaveWap, templates, setTempla
             <button onClick={onHandleTemplates} name={'section'} className="edtior-arrow">
             <a  onClick={onHandleTemplates} name={'section'} className={`fa-chevron ${selectedTemplates?'left':'right'}`}></a>
             </button>
-            {/* <div><span className={`${selectedTemplates?'fa fa-angle-left':'fa-solid fa-chevron-right'}`}></span></div> */}
         </div>
         <Droppable isDropDisabled={true} droppableId="template-tool-bar-drop">
             {(providedDroppable) => {
@@ -83,18 +82,3 @@ export const TemplateToolBar = ({ setToolBarMode,onSaveWap, templates, setTempla
         </Droppable>
     </section>
 }
-// {/* <Draggable /* ... usual draggable props here */> */}
-    // {(draggableProvided, snapshot) => {
-    //     if (
-    //         typeof (
-    //             draggableProvided.draggableProps.onTransitionEnd
-    //         ) === 'function'
-    //     ) {
-    //         window?.requestAnimationFrame(() =>
-    //             draggableProvided.draggableProps.onTransitionEnd({
-    //                 propertyName: 'transform',
-    //             })
-    //         );
-    //     }
-    //     return (
-    //         <Card ref={draggableProvided.innerRef} {...draggableProvided.draggableProps}>

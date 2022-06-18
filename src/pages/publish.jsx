@@ -45,6 +45,7 @@ export const Publish = ({ setPageClass, wapToLoad }) => {
     }
 
     if (!wap) return <></>
+    
     return <section onClick={ev => ev.stopPropagation()} className="publish">
         {wap.cmps.map(cmp => {
             return <DynamicCmp onClick={ev => ev.stopPropagation()} cmp={cmp} key={utilService.createKey()} isPublish={true} onSubmitLead={onSubmitLead} />

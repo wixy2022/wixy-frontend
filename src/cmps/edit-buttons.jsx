@@ -5,7 +5,7 @@ import { EditModal } from "./edit-modal"
 
 import { setActiveCmp } from "../store/actions/wap.action"
 
-export const EditButtons = React.memo(({ onUpdateWap, editorRef }) => {
+export const EditButtons = React.memo(({ onUpdateActiveCmp, onUpdateWap, editorRef }) => {
 
     const { activeCmp, activeCmpPos } = useSelector(storeState => storeState.wapModule)
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
@@ -13,11 +13,9 @@ export const EditButtons = React.memo(({ onUpdateWap, editorRef }) => {
     const [editModalMode, setEditModalMode] = useState(null)
     const [buttonsPosition, setButtonsPosition] = useState({})
 
-    const dispatch = useDispatch()
-
     //Positioning the modal
     const getButtonsPosition = () => {
-        const { target } = activeCmpPos //editorOffsetLeft, editorScrollTop
+        const { target } = activeCmpPos
         const editorOffsetLeft = editorRef.current.offsetLeft
         const editorScrollTop = editorRef.current.scrollTop
         const x = target.getBoundingClientRect().x
@@ -27,7 +25,6 @@ export const EditButtons = React.memo(({ onUpdateWap, editorRef }) => {
         if (x === 0 && y === 0) return
 
         const left = x + (width / 2) - editorOffsetLeft
-        // const left = x + editorOffsetLeft
 
         const top = editorScrollTop + y - 80
         const style = { left, top, bottom: '' }
@@ -45,7 +42,7 @@ export const EditButtons = React.memo(({ onUpdateWap, editorRef }) => {
     }, [activeCmpPos])
 
     if (!activeCmp || !activeCmpPos) return
-    // const { editorOffsetLeft, editorScrollTop } = activeCmpPos
+
     let { target } = activeCmpPos
     if (activeCmp.type === 'img') target = target.parentElement
     target.classList.add('active-cmp')
@@ -105,11 +102,6 @@ export const EditButtons = React.memo(({ onUpdateWap, editorRef }) => {
         onOpenEditModal(ev, action)
     }
 
-    const updateActiveCmp = (update) => {
-        /* FIX - move to editor? */
-        dispatch(setActiveCmp(update))
-    }
-
     //Adding buttons
     const actions = getActions(activeCmp.type)
 
@@ -127,7 +119,7 @@ export const EditButtons = React.memo(({ onUpdateWap, editorRef }) => {
             setIsEditModalOpen={setIsEditModalOpen}
             editMode='themes'
             cmp={activeCmp}
-            updateActiveCmp={updateActiveCmp}
+            onUpdateActiveCmp={onUpdateActiveCmp}
             editModalMode={editModalMode}
         />}
     </>

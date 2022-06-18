@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom"
-import { AppFooter } from "../cmps/app-footer";
 import { TemplateCard } from '../cmps/template-card.jsx'
 import { allWaps } from "../templates/templates";
 import { utilService } from '../services/util.service'
 
 export function Home() {
-
 
     return <section className="home-page">
 
@@ -28,17 +26,11 @@ export function Home() {
                 </div>
                 {allWaps.map((wap, idx) => {
                     if (idx > 2) return
-                    // if (idx === allWaps.length - 1) return <TemplateCard key={utilService.createKey()} secondRow={'second-row'} lastTemplate={'last-template'} wap={wap} />
-                    // else if (idx > 2) return <TemplateCard key={utilService.createKey()} secondRow={'second-row'} wap={wap} />
                     return <TemplateCard key={utilService.createKey()} wap={wap} />
                 })}
             </section>
         </section>
-        {/* <section className="show-more main-layout">
-            <div className="line"></div>
-            <Link to="/templates"><button className="show-more-btn">Show More</button></Link>
-            <div className="line"></div>
-        </section> */}
+
         <section className="freedom">
             <div className="flex flex-column" >
                 <pre className="left-pre">
